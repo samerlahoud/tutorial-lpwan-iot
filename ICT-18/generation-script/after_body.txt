@@ -1,0 +1,3 @@
+\section[]{}
+\frame{\small \frametitle{Contenu du cours}
+\tableofcontents} 
