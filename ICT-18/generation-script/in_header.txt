@@ -62,15 +62,26 @@
 \let\Tiny=\tiny
 
 \AtBeginPart{}
-%\AtBeginSection[]
-%{
-%  \begin{frame}
-%    \frametitle{Outline}
-%    \tableofcontents[currentsection]
-%  \end{frame}
-%}
+\setcounter{tocdepth}{1}
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
 
-\AtBeginSubsection{}
+\AtBeginSubsection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsubsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
 \AtBeginSubsubsection{}
+
 \setlength{\emergencystretch}{0em}
 \setlength{\parskip}{0pt}
