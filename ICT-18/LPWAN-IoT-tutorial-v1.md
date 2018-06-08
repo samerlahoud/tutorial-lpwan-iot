@@ -11,18 +11,106 @@ output:
     slide_level: 3
 ...
 
+### Tutorial Outcomes
+- Questions we are going to answer
+- Feedback form
+- Presentation slides are available
+
 # General Framework
-### Definition of the Internet of Things
+### Defining the Internet of Things
 \begin{block}{Internet of Things}
 The Internet of Things (IoT) generally refers to scenarios where network connectivity and computing capability extends to devices, sensors, and everyday items (ISOC IoT Overview, October 2015).
 \end{block}
 
-- IoT devices are also called smart objects or connected objects
+- Characteristics of IoT devices
    	- Physical world interface
   	- Computing capability
   	- Communication interface
 
-- IoT is referred to as Smart Object Networking (IETF)
+### A New Dimension in Communications
+\begin{figure}
+    \centering
+    \includegraphics<1>[scale=0.4]{./images/intro-dimension-iot-1}
+    \includegraphics<2>[scale=0.4]{./images/intro-dimension-iot-2}
+    \caption{ITU Internet Reports (2005), The Internet of Things}
+\end{figure}
+
+- Current communications brought the ABC (Always Best Connected) paradigm
+- The Internet of Things (IoT) explores a new dimension in communications
+
+### End-to-End IoT Chain
+
+\begin{figure}
+	\centering
+	\includegraphics<1>[scale=0.35]{./images/iot-e2e-chain-1.eps}
+	\includegraphics<2>[scale=0.35]{./images/iot-e2e-chain-2.eps}
+	\includegraphics<3>[scale=0.35]{./images/iot-e2e-chain-3.eps}
+	\includegraphics<4>[scale=0.35]{./images/iot-e2e-chain-4.eps}
+	\includegraphics<5>[scale=0.35]{./images/iot-e2e-chain-5.eps}
+\end{figure}
+
+### IoT for Smart Agriculture
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.35]{./images/smart-agri-4.eps}
+\end{figure}
+
+### Constraints on the Device and Network Layers
+
+- Difficult physical accessibility and limited access to power sources
+    - Wireless communications
+    - Autonomy and long battery life operation
+- Wide area coverage with a large number of communicating devices
+    - Scalable deployment
+    - Cost efficient devices
+- Very loose bandwidth and latency constraints
+    - Adaptive radio and access mechanisms
+
+#### Challenge
+Do existing wireless networking technologies satisfy these constraints?
+
+### LPWAN Sweet Spot
+
+\begin{figure}
+	\centering
+	\includegraphics<1>[scale=0.35]{./images/spider-graph-0.eps}
+	\includegraphics<2>[scale=0.35]{./images/spider-graph-1.eps}
+	\includegraphics<3>[scale=0.35]{./images/spider-graph-2.eps}
+	\includegraphics<4>[scale=0.35]{./images/spider-graph-3.eps}
+\end{figure}
+
+### LPWAN Typical Use Cases
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{./images/lpwa-use-cases.pdf}
+	\caption*{Usman Raza {\it et al.}, Low Power Wide Area Networks: An Overview, IEEE Communications Surveys \& Tutorials, Issue 99, 2017}
+\end{figure}
+
+### LPWAN Architecture
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.4]{./images/lpwa-architecture.eps}
+\end{figure}
+
+### Common Characteristics of LPWAN Technologies
+
+- Optimised radio modulation
+- Star topology
+- Frame sizes in the order of tens of bytes
+- Frames transmitted a few times per day at ultra-low speeds
+- Mostly upstream transmission pattern
+- Devices spend most of their time in low-energy deep-sleep mode
+
+<!--
+"NB-IoT will crush Sigfox and LoRa because it means there will be no need for them," Matt Beal, Vodafone's director of innovation and architecture
+
+"Is Sigfox/LoRa the new WiMAX?", Stefan Kindt, Head of Technology Marketing at Nokia Networks
+-->
+
+### LPWAN Technologies
+Various technologies are currently candidating for LPWA: LoRaWAN, NB-IoT, Sigfox, Wi-SUN, Ingenu, etc.
 
 # Design Rationale
 ### Need for Optimised Radio Modulation
@@ -261,30 +349,29 @@ $$R_b = SF \cdot \frac{B}{2^{SF}}$$
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.45]{./images-lora/spreading-factors.pdf}
+	\includegraphics[scale=0.25]{./images/sf-comparison.eps}
 \end{figure}
 
 ### LoRa Bit-Rate
-- LoRa also includes a variable error correction scheme that improves the robustness of the transmitted signal at the expense of redundancy
+- LoRa includes a variable error correction scheme that improves the robustness of the transmitted signal at the expense of redundancy
+- Given a coding rate $CR$, the bit-rate is given by:
 
 \begin{equation*}
-\Rightarrow R_b = SF \cdot \frac{B}{2^{SF}} \cdot CR
+R_b = SF \cdot \frac{B}{2^{SF}} \cdot CR
 \end{equation*}
-\begin{itemize}
-  \item[] where $CR$ represents the coding rate
-\end{itemize}
 
-- $R_b$ can also be written as follows:
+- $R_b$ can also be written as:
 
 \begin{equation*}
-\Rightarrow R_b = SF \cdot \frac{B}{2^{SF}} \cdot \frac{4}{4+CR}
+R_b = SF \cdot \frac{B}{2^{SF}} \cdot \frac{4}{4+CR}
 \end{equation*}
-\begin{itemize}
-  \item[] where $1 \leq CR \leq 4$ and $7 \leq SF \leq 12$
-\end{itemize}
+$$\text{with } 1 \leq CR \leq 4,\text{and } 7 \leq SF \leq 12$$
 
 ### LoRa Physical Layer
-- 8 preamble ($up$-$chirp$) symbols, 2 synchronization ($down$-$chirp$) symbols, and 5 modulated symbols (payload)
+- LoRa transmission consists of:
+    - 8 preamble ($up$-$chirp$) symbols
+    - 2 synchronization ($down$-$chirp$) symbols
+    - 5 modulated symbols (payload)
 
 \begin{figure}
 	\centering
@@ -295,7 +382,7 @@ $$R_b = SF \cdot \frac{B}{2^{SF}}$$
 
 - Operates in license-free bands all around the world
     - 433, 868 (EU), 915 MHz
-- Spectrum regulation for EU (including Lebanon)
+- Spectrum regulation for EU
     - Transmit power (EIRP) is limited to 14 dBm (25 mW)
     - 1% per sub-band duty-cycle limitation
 - Receiver sensitivity: -142 dBm
@@ -324,35 +411,6 @@ $$R_b = SF \cdot \frac{B}{2^{SF}}$$
 
 -  Higher spreading factors lead to lower sensitivity and larger coverage
 -  Lower spreading factors lead to higher data rates
-
-### Enhanced Network Capacity
-
-\begin{itemize}
-  \item LoRa employs orthogonal spreading factors which enables multiple spread signals to be transmitted at the same time and on the same channel
-  \item Modulated signals at different spreading factors appear as noise to the target receiver
-  \item The equivalent capacity of a single 125 kHz LoRa channel is:
-  \item[] $\mbox{    }SF12 + SF11 + SF10 + SF9 + SF8 + SF7 + SF6$
-  \item[] $= 293 + 537 + 976 + 1757 + 3125 + 5468 + 9375$
-  \item[] $= 21 531$ b/s $= 21.321$ kb/s
-\end{itemize}
-
-### Link Budget
-
-- The link budget is a measure of all the gains and losses from the transmitter, through the propagation channel, to the target receiver
-- The link budget of a network wireless link can be expressed as:
-
-\begin{equation*}
-P_{Rx} = P_{Tx} + G_{System} - L_{System} - L_{Channel} - M
-\end{equation*}
-\begin{itemize}
-  \item[] where:
-  \item[] $P_{Rx}$ = the expected received power
-  \item[] $P_{Tx}$ = the transmitted power
-  \item[] $G_{System}$ = system gains such as antenna gains
-  \item[] $L_{System}$ = system losses such as feed-line losses
-  \item[] $L_{Channel}$ = losses due to the propagation channel
-  \item[] $M$ = fading margin and protection margin
-\end{itemize}
 
 ### From LoRa to LoRaWAN
 
@@ -755,8 +813,34 @@ Kerlink Wirnet gateway
     - Hangout: rt.laplante@gmail.com and type `/bot eguz`
 
 # Performance Evaluation
-## Test
-### Test
+## Link Budget
+
+### Enhanced Network Capacity
+\begin{itemize}
+  \item LoRa employs orthogonal spreading factors which enables multiple spread signals to be transmitted at the same time and on the same channel
+  \item Modulated signals at different spreading factors appear as noise to the target receiver
+  \item The equivalent capacity of a single 125 kHz LoRa channel is:
+  \item[] $\mbox{    }SF12 + SF11 + SF10 + SF9 + SF8 + SF7 + SF6$
+  \item[] $= 293 + 537 + 976 + 1757 + 3125 + 5468 + 9375$
+  \item[] $= 21 531$ b/s $= 21.321$ kb/s
+\end{itemize}
+
+### Link Budget
+- The link budget is a measure of all the gains and losses from the transmitter, through the propagation channel, to the target receiver
+- The link budget of a network wireless link can be expressed as:
+
+\begin{equation*}
+P_{Rx} = P_{Tx} + G_{System} - L_{System} - L_{Channel} - M
+\end{equation*}
+\begin{itemize}
+  \item[] where:
+  \item[] $P_{Rx}$ = the expected received power
+  \item[] $P_{Tx}$ = the transmitted power
+  \item[] $G_{System}$ = system gains such as antenna gains
+  \item[] $L_{System}$ = system losses such as feed-line losses
+  \item[] $L_{Channel}$ = losses due to the propagation channel
+  \item[] $M$ = fading margin and protection margin
+\end{itemize}
 
 # Research Challenges
 ## Test
