@@ -27,3 +27,12 @@ P_{Rx} = P_{Tx} + G_{System} - L_{System} - L_{Channel} - M
   \item[] $L_{Channel}$ = losses due to the propagation channel
   \item[] $M$ = fading margin and protection margin
 \end{itemize}
+
+### Capacity of LoRaWAN
+- ALOHA with duty cycle
+$$\frac{\delta}{\tau} N \exp(-2 N \frac{\delta}{\tau})$$
+- ALOHA with multiple receivers and perfect packet capture
+$$\frac{\delta}{\tau} N \exp(-2 N \frac{\delta}{\tau}) (1+\sum_{n=2}^{N} \frac{(2 N \frac{\delta}{\tau})^n}{n!} (1-(1-\frac{1}{n})^r))$$
+- ALOHA with multiple receivers and realistic packet capture
+$$\frac{\delta}{\tau} N \exp(-2 N \frac{\delta}{\tau}) (1+\sum_{n=2}^{N} \frac{(2 N \frac{\delta}{\tau})^n}{n!} (1-(1-\frac{K^{n-1}}{n})^r))$$
+with $$K = \frac{1}{2}10^{-\frac{\Delta}{10 \alpha}}$$
