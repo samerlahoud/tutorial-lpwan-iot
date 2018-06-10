@@ -1,7 +1,7 @@
 %!PS-Adobe-3.0 EPSF-3.0
 %%HiResBoundingBox: 0.000000 0.000000 740.000000 359.000000
 %APL_DSC_Encoding: UTF8
-%APLProducer: (Version 10.11.6 (Build 15G1217) Quartz PS Context)
+%APLProducer: (Version 10.12.6 (Build 16G1314) Quartz PS Context)
 %%Title: (Unknown)
 %%Creator: (Unknown)
 %%CreationDate: (Unknown)
@@ -44,6 +44,7 @@ mark
 /f*/eofill
 /sf/selectfont
 /s/show
+%/as/ashow
 /xS/xshow
 /yS/yshow
 /xyS/xyshow
@@ -56,33 +57,36 @@ mark
 /q/gsave
 /Q/grestore
 counttomark 2 idiv
+%dup (number of ld's = )print == flush	% *** how many 
 {ld}repeat pop
-/SC{	
+/SC{	% CSname
     /ColorSpace fr scs
 }bd
 /sopr /setoverprint where{pop/setoverprint}{/pop}ifelse ld
 /soprm /setoverprintmode where{pop/setoverprintmode}{/pop}ifelse ld
 /cgmtx matrix def
 /sdmtx{cgmtx currentmatrix pop}bd
-/CM {cgmtx setmatrix}bd		
-/cm {cmmtx astore CM concat}bd	
+/CM {cgmtx setmatrix}bd		% pop the ctm: our gstate ctm on host is now identity
+/cm {cmmtx astore CM concat}bd	% reset the matrix and then concat
 /W{clip newpath}bd
 /W*{eoclip newpath}bd
+
 statusdict begin product end dup (HP) anchorsearch{
-    pop pop pop	
+    pop pop pop	% pop off the search results
     true
 }{
-    pop	
+    pop	% previous search result
    (hp) anchorsearch{
 	pop pop true
     }{
 	pop false
     }ifelse
 }ifelse
-{	
+
+{	% HP is the product: we use this method of stroking because of a bug in their clone printers with certain T3 fonts
     { 
-	{ 
-	    pop pop 
+	{ % charCode Wx Wy
+	    pop pop % charCode
 	    (0)dup 0 4 -1 roll put
 	    F charpath
 	}cshow
@@ -94,8 +98,9 @@ statusdict begin product end dup (HP) anchorsearch{
 /cps {cply stroke}bd
 /pgsave 0 def
 /bp{/pgsave save store}bd
-/ep{pgsave restore showpage}def		
+/ep{pgsave restore showpage}def		% dont' bind
 /re{4 2 roll m 1 index 0 rlineto 0 exch rlineto neg 0 rlineto h}bd
+
 /scrdict 10 dict def
 /scrmtx matrix def
 /patarray 0 def
@@ -111,6 +116,7 @@ makepattern
 grestore
 setpattern
 }bd
+
 /cg_BeginEPSF{
     userdict save/cg_b4_Inc_state exch put
     userdict/cg_endepsf/cg_EndEPSF load put
@@ -120,7 +126,7 @@ setpattern
     /showpage {} def
     0 setgray 0 setlinecap 1 setlinewidth 0 setlinejoin
     10 setmiterlimit [] 0 setdash newpath
-    false setstrokeadjust false setoverprint	
+    false setstrokeadjust false setoverprint	% don't use F
 }bd
 /cg_EndEPSF{
   countdictstack 3 sub { end } repeat
@@ -130,6 +136,7 @@ setpattern
   userdict/cg_b4_Inc_state get restore
   F setpacking
 }bd
+
 /cg_biproc{currentfile/RunLengthDecode filter}bd
 /cg_aiproc{currentfile/ASCII85Decode filter/RunLengthDecode filter}bd
 /ImageDataSource 0 def
@@ -158,13 +165,14 @@ L3?{
 /EI{imsave restore}bd
 /ID{
 counttomark 2 idiv
-dup 2 add	
+dup 2 add	% leave room for imagetype and imagematrix
 dict begin
 {def} repeat
-pop		
+pop		% remove mark
 /ImageType 1 def
 /ImageMatrix[Width 0 0 Height neg 0 Height]def
 currentdict dup/ImageMask known{ImageMask}{F}ifelse exch
+% currentdict on stack
 L3?{
     dup/MaskedImage known
     { 
@@ -188,8 +196,9 @@ L3?{
 }if
 exch
 {imagemask}{image}ifelse	
-end	
+end	% pop imagedict from dict stack
 }bd
+
 /cguidfix{statusdict begin mark version end
 {cvr}stopped{cleartomark 0}{exch pop}ifelse
 2012 lt{dup findfont dup length dict begin
@@ -201,27 +210,27 @@ currentdict end definefont pop
 /t_array 0 def
 /t_i 0 def
 /t_c 1 string def
-/x_proc{ 
+/x_proc{ % x y
     exch t_array t_i get add exch moveto
     /t_i t_i 1 add store
 }bd
-/y_proc{ 
+/y_proc{ % x y
     t_array t_i get add moveto
     /t_i t_i 1 add store
 }bd
 /xy_proc{
-        
+        % x y
 	t_array t_i 2 copy 1 add get 3 1 roll get 
 	4 -1 roll add 3 1 roll add moveto
 	/t_i t_i 2 add store
 }bd
-/sop 0 def		
-/cp_proc/x_proc ld 	
-/base_charpath		
+/sop 0 def		% don't bind sop
+/cp_proc/x_proc ld 	% default moveto proc is for xwidths only
+/base_charpath		% string array
 {
     /t_array xs
     /t_i 0 def
-    { 
+    { % char
 	t_c 0 3 -1 roll put
         currentpoint
 	t_c cply sop
@@ -229,7 +238,9 @@ currentdict end definefont pop
     }forall
     /t_array 0 def
 }bd
-/sop/stroke ld		
+/sop/stroke ld		% default sop is stroke. Done here so we don't bind in /base_charpath 
+
+% default sop is stroke
 /nop{}def
 /xsp/base_charpath ld
 /ysp{/cp_proc/y_proc ld base_charpath/cp_proc/x_proc ld}bd
@@ -237,15 +248,19 @@ currentdict end definefont pop
 /xmp{/sop/nop ld /cp_proc/x_proc ld base_charpath/sop/stroke ld}bd
 /ymp{/sop/nop ld /cp_proc/y_proc ld base_charpath/sop/stroke ld}bd
 /xymp{/sop/nop ld /cp_proc/xy_proc ld base_charpath/sop/stroke ld}bd
-/refnt{ 
+/refnt{ % newname encoding fontname
 findfont dup length dict copy dup
 /Encoding 4 -1 roll put 
 definefont pop
 }bd
-/renmfont{ 
+/renmfont{ % newname fontname
 findfont dup length dict copy definefont pop
 }bd
+
 L3? dup dup{save exch}if
+
+% languagelevel2 ONLY code goes here
+
 /Range 0 def
 /DataSource 0 def
 /val 0 def
@@ -266,68 +281,72 @@ L3? dup dup{save exch}if
 /ymin 0 def
 /xmax 0 def
 /xmin 0 def
-/setupFunEval 
+
+/setupFunEval % funDict -- 	% this calculates and sets up a function dict for evaulation.
 {
     begin
 	/nRange Range length 2 idiv store
-	/mulRange   
-		    
+	/mulRange   % precompute the range data needed to map a sample value from the table to a range value
+		    % this data looks like [ range0mul range0min range1mul range1min ... rangeN-1mul rangeN-1min ]
 	[ 
 	    0 1 nRange 1 sub
-	    { 
-		    2 mul/nDim2 xd		
-		    Range nDim2 get		
-		    Range nDim2 1 add get	
-		    1 index sub			
-						
-		    255 div			
-		    exch			
+	    { % index
+		    2 mul/nDim2 xd		% 2*dimension# we are dealing with
+		    Range nDim2 get		% ymin
+		    Range nDim2 1 add get	% ymin ymax 
+		    1 index sub			% ymin (ymax-ymin)
+						% xmin = 0, xmax = 255 (2^bitspersample - 1)
+		    255 div			% ymin (ymax-ymin)/(xmax - xmin)
+		    exch			% (ymax-ymin)/(xmax - xmin) ymin
 	    }for
 	]store
     end
 }bd
-/FunEval 
+
+/FunEval % val1 fundict -> comp1 comp2 ... compN
 {
     begin
-	
-	nRange mul /val xd	
-				
+	% the value passed in is the base index into the table
+	nRange mul /val xd	% compute the actual index to the table
+				% since there are nRange entries per base index
 	0 1 nRange 1 sub
 	{
-	    dup 2 mul/nDim2 xd 
-	    val	
-	    add DataSource exch get 
-	    mulRange nDim2 get mul 	
-	    mulRange nDim2 1 add get 
-	    add 
-	}for	
+	    dup 2 mul/nDim2 xd % dim
+	    val	% base value to use to do our lookup
+	    add DataSource exch get %  lookedupval
+	    mulRange nDim2 get mul 	% lookedupval*(ymax-ymin)/(xmax-xmin)
+	    mulRange nDim2 1 add get % lookedupval*(ymax-ymin)/(xmax-xmin) ymin
+	    add % interpolated result
+	}for	% comp1 comp2 ... compN
     end
 }bd
-/max 
+
+/max % a b -> max(a, b)
 {
 	2 copy lt
 	{exch pop}{pop}ifelse
 }bd
+
 /sh2
-{	
-	/Coords load aload pop 	
-	3 index 3 index translate	
-					
-	3 -1 roll sub	
-	3 1 roll exch 	
-	sub				
+{	% emulation of shading type 2. Assumes shading dictionary is top dictionary on the dict stack
+	/Coords load aload pop 	% x0 y0 x1 y1
+	3 index 3 index translate	% origin is now at beginning point of shading
+					% x0 y0 x1 y1
+	3 -1 roll sub	% x0 x1 y1-y0
+	3 1 roll exch 	% y1-y0 x1 x0
+	sub				% y1-y0 x1-x0
 	2 copy
-	dup mul exch dup mul add sqrt	
+	dup mul exch dup mul add sqrt	% length of segment between two points
 	dup
 	scale  
-	atan	
+	atan	% atan (dy/dx)
+	%dup (rotation angle = )print ==
+	rotate		% now line between 0,0 and 1,0 is the line perpendicular to which the axial lines are drawn					
 	
-	rotate		
+	/Function load setupFunEval	% may need to setup function dictionary by calling setupFunEval
 	
-	/Function load setupFunEval	
-	
-	
-	clippath {pathbbox}stopped {0 0 0 0}if newpath 	
+	% this is now specific to axial shadings. Compute the maximum bounds to fill
+	clippath {pathbbox}stopped {0 0 0 0}if newpath 	% x0 y0 x1 y1
 	/ymax xs
 	/xmax xs
 	/ymin xs
@@ -336,43 +355,46 @@ L3? dup dup{save exch}if
 	{
 		/Extend load 0 get
 		{	
-			0/Function load FunEval sc	
+			0/Function load FunEval sc	% evaluate the function to get a color and set it
 			xmin ymin xmin abs ymax ymin sub rectfill
 		}if
 	}if
-	
+	% paint the rects. The sampling frequency is that of our table
 	/Nsteps/Function load/Size get 0 get 1 sub store
 	/dx 1 Nsteps div store
 	gsave
 		/di ymax ymin sub store
 		/Function load
-		
+		% loop Nsteps + 1 times, incrementing the index by 1 each time
 		0 1 Nsteps
 		{
 			1 index FunEval sc
 			0 ymin dx di rectfill
 			dx 0 translate
 		}for
-		pop	
-	grestore	
+		pop	% pop our function
+	grestore	% origin is back to start point
 	currentdict/Extend known
 	{
 		/Extend load 1 get
 		{	
-			Nsteps/Function load FunEval sc	
+			Nsteps/Function load FunEval sc	% last element
 			1 ymin xmax 1 sub abs ymax ymin sub rectfill
 		}if
 	}if
 }bd
-/shp	
-{	
+
+/shp	% this paints our shape for shading type 3
+{	% x1 r1 x0 r0 -
 	4 copy
-	
+
+	% fill interior arc
 	dup 0 gt{
 		0 exch a1 a0 arc
 	}{
 		pop 0 moveto
 	}ifelse
+
 	dup 0 gt{
 		0 exch a0 a1 arcn
 	}{
@@ -380,12 +402,14 @@ L3? dup dup{save exch}if
 	}ifelse
 	
 	fill
-	
+
+	% fill exterior arc
 	dup 0 gt{
 		0 exch a0 a1 arc
 	}{
 		pop 0 moveto
 	}ifelse
+
 	dup 0 gt{
 		0 exch a1 a0 arcn
 	}{
@@ -394,66 +418,69 @@ L3? dup dup{save exch}if
 	
 	fill
 }bd
+
 /calcmaxs
-{	
-	
-	xmin dup mul ymin dup mul add sqrt		
-	xmax dup mul ymin dup mul add sqrt		
-	xmin dup mul ymax dup mul add sqrt		
-	xmax dup mul ymax dup mul add sqrt		
-	max max max								
+{	% calculate maximum distance vector from origin to corner points
+	% of bbox
+	xmin dup mul ymin dup mul add sqrt		% (xmin2 + ymin2)
+	xmax dup mul ymin dup mul add sqrt		% (xmax2 + ymin2)
+	xmin dup mul ymax dup mul add sqrt		% (xmin2 + ymax2)
+	xmax dup mul ymax dup mul add sqrt		% (xmax2 + ymax2)
+	max max max								% maximum value
 }bd
+
 /sh3
-{	
-	/Coords load aload pop 	
-	5 index 5 index translate	
-	3 -1 roll 6 -1 roll sub		
-	3 -1 roll 5 -1 roll sub		
+{	% emulation of shading type 3. Assumes shading dictionary is top dictionary on the dict stack
+	/Coords load aload pop 	% x0 y0 r1 x1 y1 r2
+	5 index 5 index translate	% origin is now at first circle origin
+	3 -1 roll 6 -1 roll sub		% y0 r1 y1 r2 dx
+	3 -1 roll 5 -1 roll sub		% r1 r2 dx dy
 	2 copy dup mul exch dup mul add sqrt
-	/dx xs						
+	/dx xs						% r1 r2 dx dy
 	2 copy 0 ne exch 0 ne or
 	{
-		
-		exch atan rotate	
+		% r1 r2 dx dy
+		exch atan rotate	% we are now rotated so dy is zero and positive values of dx move us as expected
 	}{
 		pop pop
 	}ifelse
-	
+	% r1 r2		
 	/r2 xs
 	/r1 xs
 	/Function load 
-	dup/Size get 0 get 1 sub	
-	/Nsteps xs		
-	setupFunEval		
-	
-	
-	
-	
-	
+	dup/Size get 0 get 1 sub	% this is the size of our table minus 1
+	/Nsteps xs		% at some point we should optimize this better so NSteps is based on needed steps for the device
+	setupFunEval		% may need to setup function dictionary by calling setupFunEval
+	% determine the case:
+	% case 0: circle1 inside circle2
+	% case 1: circle 2 inside circle 1
+	% case 2: r1 = r2 
+	% case 3: r1 != r2
 	dx r2 add r1 lt{
-		
+		% circle 2 inside of circle 1
 		0 
 	}{
 		dx r1 add r2 le
-		{ 
+		{ % circle 1 inside of circle 2
 			1
-		}{ 
+		}{ % circles don't contain each other
 			r1 r2 eq
-			{	
+			{	% equal
 				2
-			}{ 
+			}{ % r1 != r2
 				3
 			}ifelse		
 		}ifelse
 	}ifelse
-	/sh3tp xs		
+	/sh3tp xs		% sh3tp has the number of our different cases
 	clippath {pathbbox}stopped {0 0 0 0}if 
-	newpath 	
+	newpath 	% x0 y0 x1 y1
 	/ymax xs
 	/xmax xs
 	/ymin xs
 	/xmin xs
-	
+
+	% Arc angle atan( sqrt((dx*dx + dy*dy) - dr*dr), dr)
 	dx dup mul r2 r1 sub dup mul sub dup 0 gt
 	{
 		sqrt r2 r1 sub atan
@@ -464,98 +491,101 @@ L3? dup dup{save exch}if
 		/a0 0 store
 		/a1 360 store		
 	}ifelse		
+
 	currentdict/Extend known
 	{
-		/Extend load 0 get r1 0 gt and	
+		/Extend load 0 get r1 0 gt and	% no need to extend if the radius of the first end is 0
 		{	
-			0/Function load FunEval sc	
-			
-			
-			
-			
+			0/Function load FunEval sc	% evaluate the function to get a color and set it
+			% case 0: circle1 inside circle2
+			% case 1: circle 2 inside circle 1
+			% case 2: circles don't contain each other and r1 == r2
+			% case 3: circles don't contain each other and r1 != r2
 			{ 
-				{	
+				{	% case 0
 					dx 0 r1 360 0 arcn
 					xmin ymin moveto
 					xmax ymin lineto
 					xmax ymax lineto
 					xmin ymax lineto
 					xmin ymin lineto
-					eofill		
+					eofill		% for the bigger radius we fill everything except our circle
 				}
-				{	
+				{	% case 1
 					r1 0 gt{0 0 r1 0 360 arc fill}if
 				}
-				{	
-					
-					
+				{	% case 2
+					% r1 == r2, extend 0
+					% r3 = r, x3 = -(abs(minx) + r), x1 = 0
 				
-					
+					% x(i+1) r(i+1) x(i) r(i) shp
 					0 r1 xmin abs r1 add neg r1 shp
 				}
-				{	
-					
+				{	% case 3
+					% no containment, r1 != r2
 				
-					r2 r1 gt{	
-						
+					r2 r1 gt{	% the endpoint we are drawing is that with a circle of zero radius
+						% x(i+1) r(i+1) x(i) r(i) shp
 						0 r1
-						r1 neg r2 r1 sub div dx mul	
-						0	
-						shp	
-					}{	
-						
-						
-						
-						0 r1 calcmaxs	
+						r1 neg r2 r1 sub div dx mul	% this is point of beginning circle
+						0	% point of ending circle
+						shp	% takes x(i+1) r(i+1) x(i) r(i)
+					}{	% the first circle is the bigger of the two
+						% we find a circle on our line which is outside the bbox in the
+						% negative direction
+						% x(i+1) r(i+1) x(i) r(i) shp
+						0 r1 calcmaxs	% 0 r1 maxs
 						dup
-						
+						% calculating xs: (-(maxs+r2)*x2)/(x2-(r1-r2))
 						r2 add dx mul dx r1 r2 sub sub div
-						neg				
-						exch 1 index	
+						neg				% maxs xs'
+						exch 1 index	% xs' maxs xs'
 						abs exch sub
 						shp
 					}ifelse
 				} 
-			}sh3tp get exec	
+			}sh3tp get exec	% execute the extend at beginning proc for our shading type
 		}if
 	}if
-	
+
+	% now do the shading
 	/d0 0 store
 	/r0 r1 store
 	/di dx Nsteps div store
 	/ri r2 r1 sub Nsteps div store 
 	/Function load 
 	0 1 Nsteps
-	{	
+	{	% function t(i)
 		1 index FunEval sc
 		d0 di add r0 ri add d0 r0 shp
 		{
-		
+		% fill interior arc
 		d0 0 r0 a1 a0 arc
 		d0 di add 0 r0 ri add a0 a1 arcn
 		fill
 		
-		
+		% fill exterior arc
 		d0 0 r0 a0 a1 arc
 		d0 di add 0 r0 ri add a1 a0 arcn
 		fill
 		}pop
 		
-		
+		% advance to next
 		/d0 d0 di add store
 		/r0 r0 ri add store
 	}for
-	pop	
-	
+	pop	% pop our function dict
+
+	% handle Extend
 	currentdict/Extend known
 	{
-		/Extend load 1 get r2 0 gt and	
+		/Extend load 1 get r2 0 gt and	% no need to extend if the radius of the last end is 0
 		{	
-			Nsteps/Function load FunEval sc	
-			
-			
-			
-			
+			Nsteps/Function load FunEval sc	% last element
+			% case 0: circle1 inside circle2
+			% case 1: circle 2 inside circle 1
+			% case 2: circles don't contain each other and r1 == r2
+			% case 3: circles don't contain each other and r1 != r2
 			{ 
 				{
 					dx 0 r2 0 360 arc fill
@@ -567,53 +597,53 @@ L3? dup dup{save exch}if
 					xmax ymax lineto
 					xmin ymax lineto
 					xmin ymin lineto
-					eofill		
+					eofill		% for the bigger radius we fill everything except our circle
 				} 
-				{	
-					
-					
+				{	% r1 == r2, extend 1
+					% r3 = r, x3 = (abs(xmax) + r), x1 = dx
+					% x(i+1) r(i+1) x(i) r(i) shp
 					xmax abs r1 add r1 dx r1 shp
 				}	
-				{	
+				{	% no containment, r1 != r2
 			
 					r2 r1 gt{
-						
-						
-						
-						calcmaxs dup	
-						
-						r1 add dx mul dx r2 r1 sub sub div	
-						exch 1 index	
+						% we find a circle on our line which is outside the bbox in the
+						% positive direction
+						% x(i+1) r(i+1) x(i) r(i) shp
+						calcmaxs dup	% maxs maxs
+						% calculating xs: ((maxs+r1)*x2)/(x2-(r2-r1))
+						r1 add dx mul dx r2 r1 sub sub div	% maxs xs
+						exch 1 index	% xs maxs xs
 						exch sub
 						dx r2
 						shp
-					}{	
-						
-						r1 neg r2 r1 sub div dx mul	
-						0		
-						dx 		
-						r2		
+					}{	% the endpoint we are drawing is that with a circle of zero radius
+						% x(i+1) r(i+1) x(i) r(i) shp
+						r1 neg r2 r1 sub div dx mul	% this is point of ending circle
+						0		% radius of ending circle
+						dx 		% point of starting circle
+						r2		% radius of starting circle
 						shp
 					}ifelse
 				}
 			}			
-			sh3tp get exec	
+			sh3tp get exec	% execute the extend at end proc for our shading type
 		}if
 	}if
 }bd
-/sh		
-{	
+/sh		% emulation of shfill operator for type 2 and type 3 shadings based on type 0 functions
+{	% shadingDict --
 	begin
 		/ShadingType load dup dup 2 eq exch 3 eq or
-		{	
+		{	% shadingtype
 			gsave
 				newpath
 				/ColorSpace load scs
 				currentdict/BBox known
 				{
-					/BBox load aload pop	
-					2 index sub				
-					3 index					
+					/BBox load aload pop	% llx lly urx ury
+					2 index sub				% llx lly urx ury-lly
+					3 index					% llx lly urx ury-lly llx
 					3 -1 roll exch sub 
 					exch rectclip
 				}if
@@ -621,21 +651,28 @@ L3? dup dup{save exch}if
 				{sh2}{sh3}ifelse
 			grestore
 		}{
-			
+			% shadingtype
 			pop 
 			(DEBUG: shading type unimplemented\n)print flush
 		}ifelse
 	end
 }bd
+
+% end of language level 2 ONLY code
+
 {restore}if not dup{save exch}if
-	L3?{	
+% languagelevel3 ONLY code goes here
+	L3?{	% we do these loads conditionally or else they will fail on a level 2 printer
 		/sh/shfill ld
 		/csq/clipsave ld
 		/csQ/cliprestore ld
 	}if
 {restore}if
+
+%currentdict dup maxlength exch length sub (number of extra slots in md = )print == flush	% *** how many entries are free
 end
 setpacking
+% count 0 ne { pstack(***extras on stack during prolog execution***\n)print flush}if	% *** BARK if anything is left on stack
 %%EndFile
 %%EndProlog
 %%BeginSetup
@@ -902,14 +939,22 @@ def
 /DecodeLMN [ { 0.9857  mul} bind { 1.0000  mul} bind { 1.3202  mul} bind ] def 
 end ] /Cs4 exch/ColorSpace dr pop
 %%EndPageSetup
+/Cs1 SC
+1 1 1 sc
+q
+0 0 740 359 rc
+-102 361 m
+1091 361 l
+1091 -228 l
+-102 -228 l
+h
+-102 361 m
+f
 2 w
 1 J
 1 j
 0.60000002 i
-/Cs1 SC
 0 0 0 sc
-q
-0 0 740 359 rc
 1 0 0 -1 -102 361 cm
 112 4.4804001 m
 604 4.4804001 l
@@ -925,6 +970,9 @@ h
 S
 Q
 8 w
+1 J
+1 j
+0.60000002 i
 /Cs2 SC
 0 0 0 sc
 q
@@ -1947,9 +1995,9 @@ S
 /Cs4 SC
 0 sc
 0 i
-1 0 0 -1 245.5 15 cm
--52.5 5.5 m
-(56783/"\)*012)[ 7.968000 9.296000 12.896000 9.168000 4.240000 10.928000 8.800000 5.776000 11.312000 9.344000 6.176000 0.000000 ] xS
+1 0 0 -1 240.5 15 cm
+-25.5 5.5 m
+(5678/)[ 7.968000 9.296000 12.896000 9.168000 0.000000 ] xS
 1 w
 0.60000002 i
 /Cs1 SC
