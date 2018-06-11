@@ -11,6 +11,8 @@
   \item[] $= 21 531$ b/s $= 21.321$ kb/s
 \end{itemize}
 
+test
+
 ### Link Budget
 - The link budget is a measure of all the gains and losses from the transmitter, through the propagation channel, to the target receiver
 - The link budget of a network wireless link can be expressed as:
