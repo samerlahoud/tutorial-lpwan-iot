@@ -16,7 +16,7 @@
 The Internet of Things (IoT) generally refers to scenarios where network connectivity and computing capability extends to devices, sensors, and everyday items (ISOC IoT Overview, 2015).
 \end{block}
 
-| Scenario       | Example                                     |
+| Scenario      | Example                                     |
 | ------------- |:-------------------------------------------:|
 | Human         | Wearables for health monitoring             |
 | Home          | Heating, security automation                |
@@ -47,6 +47,7 @@ The Internet of Things (IoT) generally refers to scenarios where network connect
 	\centering
   \includegraphics[scale=0.55]{./images/smart-agri.eps}
 \end{figure}
+- Periodic sensing of microclimates in vineyards
 
 ### Constraints on the Device and Network Layers
 - Difficult physical accessibility and limited access to power sources
