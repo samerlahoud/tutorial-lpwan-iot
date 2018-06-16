@@ -56,25 +56,24 @@ P_{Rx} = P_{Tx} + G_{System} - L_{System} - L_{Channel} - M
 
 $$L_{Channel}(i) = A+B \log_{10}(d(i,g))$$
 
-- The two parameters $A$ and $B$ depend on the antenna heights ($h_b = 30$ m for the gateway, and $h_d = 1.5$ m for the end-device) and the central frequency $f_c = 868$ MHz
-
-$$A = 69.55 + 26.16 \log_{10}(f_c) - 13.82 \log_{10}(h_b) - 3.2(\log{10}(11.75h_m))^2+4.97$$
+- The two parameters $A$ and $B$ depend on the antenna heights ($h_b = 30$ m for the gateway and $h_d = 1.5$ m for the end-device) and the central frequency $f_c = 868$ MHz
+$$A = 69.55 + 26.16 \log_{10}(f_c) - 13.82 \log_{10}(h_b) - 3.2(\log{10}(11.75 h_d))^2+4.97$$
 $$B = 44.9 - 6.55 \log_{10}(h_b)$$
 
 ### Link Budget
 
-- We consider
+- We consider the following parameters:
     - Transmit power: $P_{Tx} = 14$ dBm
     - Sum of antenna gains: $G_{System} = 6$ dBi
     - Fading and protection margin: $M = 10$ dB
     - Noise floor: $N= -153$ dBm
 
-- For end-device $i$, we can now compute the received power $P_{RX}(i)$ and SNR:
+- We can now compute the received power $P_{RX}(i)$ and $\text{SNR}(i)$ for end-device $i$:
 $$P_{Rx}(i) = P_{Tx} + G_{System} - L_{Channel}(i) - M$$
 $$\text{SNR}(i) = P_{Rx}(i) - N$$
 
 ### Spreading Factor Selection
-- The spreading factor is selected using the following matching table:
+- The spreading factor for each end-device is selected using the following matching table:
 
 SNR Interval (dB) | Spreading Factor      |
 ------------------|:---------------------:|
@@ -85,7 +84,7 @@ SNR Interval (dB) | Spreading Factor      |
 [-17.5, -15[      | 11                    |
 [-20, -17.5[      | 12                    |
 
-- Note that for SNR values lower that -20 dB, the end-device is considered out of coverage of the gateway 
+- Note that for SNR values lower that -20 dB, the end-device is considered out of coverage of the gateway
 
 ### Coverage Study
 \begin{figure}
@@ -111,13 +110,24 @@ Cumulative coverage (\%)     |40.50      | 51.60       | 61.60       | 70.40    
 -->
 
 ### Spreading Factor and Time on Air
+- The Time on Air is defined as the time required to transmit a packet in a sub-band
+- The selection of the spreading factor impacts the Time on Air and consequently determines the duty cycle limitation
 \begin{figure}
 	\centering
-  \includegraphics[scale=0.4]{./images/timeonair.eps}
+  \includegraphics[scale=0.35]{./images/timeonair.eps}
 \end{figure}
 
-### Energy
-### Multiple Gateways
+### Spreading Factor and Energy Consumption
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.2]{./images/energy-sf-lorawan.png}
+  \caption*{Source: Lluís Casals {\it et al.}, Modeling the Energy Performance of LoRaWAN, Sensors, 2017}
+\end{figure}
+
+- DR0 to DR5 correspond to spreading factors 12 to 7 with a bandwidth of 125 kHz. DR6 correspond to spreading factor 7 and bandwidth of 250 kHz
+- For an end-device sending messages every 100 minutes, changing the spreading factor from 12 to 7 can increase its lifetime by almost 1.5 years
+
+### Enhancing the Coverage with Multiple Gateways
 \begin{figure}
 	\centering
   \includegraphics[scale=0.4]{./images/coverage-sf789101112u-4gw.eps}
