@@ -30,35 +30,62 @@ P_{Rx} = P_{Tx} + G_{System} - L_{System} - L_{Channel} - M
 
 ## Coverage of LoRaWAN
 
-### Scenario of Study
-- Geographic area
-    - Square area of 16.000 sqm
-    - 1000 end-devices uniformly distributed
-- Link budget  
+### Evaluation Scenario
+- Area
+    - Surface: square of 8 Km $\times$ 8 Km
+    - Number of end-devices: 1000
+    - Distribution of end-devices: uniform
+    - Single gateway
+    - Environment type: urban
+- Radio link  
+    - Bandwidth: 125 kHz
     - Transmit power: 14 dBm
-    - Okumura-Hata pathloss in urban area
-    - Shadow fading: $\mathcal{N}(0,8dB)$
     - Gateway height: 30 m
     - End-device height: 1.5 m
-    - Bandwidth: 125 kHz
     - Antenna gains: 3 dBi
+    - Noise floor: -153 dBm
+    - Pathloss: Okumura-Hata
+    - Shadow fading: lognormal $\mathcal{N}(0,8)$
 
-### SNR-SF Mapping
-if SNR_margin(i) <= -20
-       node_SF(i) = 0;
-   elseif SNR_margin(i) <= -17.5
-       node_SF(i) = 12;
-   elseif SNR_margin(i) <= -15
-       node_SF(i) = 11;
-   elseif SNR_margin(i) <= -12.5
-       node_SF(i) = 10;
-   elseif SNR_margin(i) <= -10
-       node_SF(i) = 9;
-   elseif SNR_margin(i) <= -7.5
-       node_SF(i) = 8;
-   elseif SNR_margin(i) <= +Inf
-       node_SF(i) = 7;
-   end
+\begin{picture}(50,50)
+\put(190,80){\hbox{\includegraphics[scale=0.3]{./images/initial-network.eps}}}
+\end{picture}
+
+### Pathloss Model
+- Using the Okumura-Hata urban model, the pathloss between device $i$ and the gateway is proportional to the logarithm of the distance $d(i,g)$ in Km:
+
+$$L_{Channel}(i) = A+B \log_{10}(d(i,g))$$
+
+- The two parameters $A$ and $B$ depend on the antenna heights ($h_b = 30$ m for the gateway, and $h_d = 1.5$ m for the end-device) and the central frequency $f_c = 868$ MHz
+
+$$A = 69.55 + 26.16 \log_{10}(f_c) - 13.82 \log_{10}(h_b) - 3.2(\log{10}(11.75h_m))^2+4.97$$
+$$B = 44.9 - 6.55 \log_{10}(h_b)$$
+
+### Link Budget
+
+- We consider
+    - Transmit power: $P_{Tx} = 14$ dBm
+    - Sum of antenna gains: $G_{System} = 6$ dBi
+    - Fading and protection margin: $M = 10$ dB
+    - Noise floor: $N= -153$ dBm
+
+- For end-device $i$, we can now compute the received power $P_{RX}(i)$ and SNR:
+$$P_{Rx}(i) = P_{Tx} + G_{System} - L_{Channel}(i) - M$$
+$$\text{SNR}(i) = P_{Rx}(i) - N$$
+
+### Spreading Factor Selection
+- The spreading factor is selected using the following matching table:
+
+SNR Interval (dB) | Spreading Factor      |
+------------------|:---------------------:|
+[-7.5, $+\infty$[ | 7                     |          
+[-10, -7.5[       | 8                     |
+[-12.5, -10[      | 9                     |
+[-15, -12.5[      | 10                    |
+[-17.5, -15[      | 11                    |
+[-20, -17.5[      | 12                    |
+
+- Note that for SNR values lower that -20 dB, the end-device is considered out of coverage of the gateway 
 
 ### Coverage Study
 \begin{figure}
@@ -91,8 +118,14 @@ Cumulative coverage (\%)     |40.50      | 51.60       | 61.60       | 70.40    
 
 ### Energy
 ### Multiple Gateways
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/coverage-sf789101112u-4gw.eps}
+\end{figure}
 
-
+Spreading Factor             | 7         | 8           | 9           | 10          | 11          | 12          |
+-----------------------------|:---------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|
+Cumulative coverage (\%)     |88.70      | 94.50       | 97.60       | 99.20       | 99.60       | 100.00      |
 
 ## Capacity of LoRaWAN
 ### ALOHA Model
