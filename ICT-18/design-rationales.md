@@ -1,16 +1,114 @@
 # Design Rationale
-### Need for Optimised Radio Modulation
 
-- End-devices are mainly composed of:
+### Revisiting LPWAN Requirements
+- Low device complexity and cost
+- Reliability under extreme coverage conditions
+- Low power consumption: long battery lifetime
+- High capacity: support for massive number of low-rate devices
+- Simplified network topology and deployment
+
+#### Objectives and Approaches
+\begin{itemize}
+\item Develop a \textit{clean-slate} technology that meets the LPWAN requirements
+\vspace{-1mm}
+\item[] $\Rightarrow$ LoRaWAN
+\item Adapt and leverage existing 4G technology to meet the LPWAN requirements
+\vspace{-1mm}
+\item[] $\Rightarrow$ NB-IoT
+\end{itemize}
+
+## Low Device Complexity and Cost
+
+### Device Complexity and Cost
+- Devices are mainly composed of:
     - a processing unit: usually a microcontroller with a limited amount of memory
     - a sensing unit: sensors and analog to digital converters
     - a radio unit: usually a transceiver capable of bidirectional communications
-- The radio unit power, that includes the transceiver circuit power and transmit signal power, is a main contributor to device power consumption
 
-- Reducing the transmit signal power leads to lower signal-to-noise ratio ($SNR$) particularly at long distances
+- The radio unit complexity and cost are primarily related to the complexity of:
+    - digital baseband processing
+    - radio-frequency (RF) analog processing
 
-##### Modulation Requirement
-Low \textit{SNR} threshold to achieve acceptable radio transmission quality even with reduced transmit signal power
+### Digital Baseband Processing
+- Reduce baseband processing complexity through:
+    - limiting message size:
+        - \small LoRaWAN: maximum application payload size between 51 and 222 bytes, depending on the spreading factor
+        - NB-IoT: Downlink (DL) Transport Block Size (TBS) = 680 bits (R13), or 2536 bits (R14); Uplink (UL) TBS = 1000 bits (R13), or 2536 bits (R14)
+    - using simple channel codes:
+        - \small LoRaWAN: Hamming code
+        - NB-IoT: LTE tail-biting convolution code (TBCC) in the DL; LTE turbo code, or repetition code in the UL
+    - not using higher-order modulations or multiple-input multiple-output (MIMO) transmissions
+        - \small LoRaWAN: LoRa
+        - NB-IoT: QPSK in the DL; QPSK in the UL multi-tone; $\pi$/4-QPSK, or $\pi$/2- BPSK in the UL single-tone
+    - supporting only half-duplex operation: no simultaneous transmission and reception
+
+### RF Processing
+- Reduce RF processing complexity and cost through:
+    - using one transmit-and-receive antenna
+    - not using a duplexer (since only half-duplex operation is supported)
+    - on-chip integrating power amplifier (since transmit power is limited)
+
+## Reliability under extreme coverage conditions
+
+### Radio Quality
+- Reliability $\Rightarrow$ bit error rate ($BER$) $\leq$ target $BER$
+- The energy per bit to noise power spectral density ratio ($E_ b/N_0$) is defined as the ratio of the energy per bit ($E_b$) to the noise power spectral density ($N_0$)
+\vspace{-2mm}
+\begin{figure}
+	\centering
+	\includegraphics<1>[scale=0.43]{./images/qpsk-perf-1.pdf}
+	\includegraphics<2>[scale=0.43]{./images/qpsk-perf-2.pdf}
+\end{figure}
+
+### Radio Quality
+\begin{equation*}
+\mbox{$BER \leq$ $BER_{target}$} \Leftrightarrow \frac{E_b}{N_0} \geq \left( \frac{E_b}{N_0}\right)_{threshold}
+\end{equation*}
+
+- $(E_b/N_0)_{threshold}$ does not depend on the signal bandwidth and bit-rate
+- The $SNR$, or equivalently the carrier-to-noise ratio ($CNR$ or $C/N$), is defined as the ratio of the received signal power $C$ to the power of the noise $N$ within the bandwidth of the transmitted signal
+
+\begin{equation*}
+SNR = \frac{C}{N} = \frac{E_b/T_b}{N_0B} = \frac{E_b}{N_0}\frac{R_b}{B}
+\end{equation*}
+\begin{itemize}
+  \item[] where $B$ is the signal bandwidth in Hz, and $R_b$ is the bit-rate in b/s.
+\end{itemize}
+
+### Receiver Sensitivity
+\begin{table} 
+\centering 
+\begin{tabular}{c c c}
+$BER$ $\leq$ $BER_{target}$& $\Leftrightarrow$ &$SNR$ $\geq \underbrace{\left(\frac{E_b}{N_0}\right)_{threshold} \frac{R_b}{B}}_{SNR_{threshold}}$ \\
+&&\\
+& $\Leftrightarrow$& $S$ (dBm) $\geq \underbrace{SNR_{threshold}\mbox{ (dB) } + N \mbox{ (dBm)}}_{\mbox{Receiver sensitivity}}$ \\ 
+\end{tabular}
+\end{table}
+
+- $N$ (dBm) is the background noise power at the receiver $= NT$ (dBm) $+ NF$ (dB)
+    - $NT$ is the thermal noise caused by thermal agitation of charge carriers: $-174 + 10\log_{10}(B)$
+    - $NF$ is the noise figure caused by RF components
+
+### Maximum Coupling Loss
+- The Maximum Coupling Loss ($MCL$) defines the maximum loss the system can cope with between a transmitter and a receiver:
+
+\begin{equation*}
+MCL \mbox{ (dB) }= P_{Tx} - \underbrace{(SNR_{threshold} -174 + 10\log_{10}(B) + NF)}_{\mbox{Receiver sensitivity}}
+\end{equation*}
+
+\begin{itemize}
+\item[] where $P_{Tx}$ is the transmit power in dBm.
+\end{itemize}
+
+- Coverage targets are usually specified in terms of $MCL$
+- How to improve coverage?
+
+### How to Improve Coverage?
+- Increasing $P_{Tx}$, or lowering $NF$ leads to higher device complexity and cost
+- Reducing $B$ leads to lower network capacity
+- Reducing $SNR_{threshold}$
+    - LoRaWAN: optimised radio modulation that uses spread spectrum $\Rightarrow$ LoRa
+    - NB-IoT: repetitions and efficient HARQ retransmissions
 
 ### What is Spread Spectrum?
 
