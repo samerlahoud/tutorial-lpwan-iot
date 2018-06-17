@@ -124,8 +124,8 @@ Cumulative coverage (\%)     |40.50      | 51.60       | 61.60       | 70.40    
   \caption*{Source: Lluís Casals {\it et al.}, Modeling the Energy Performance of LoRaWAN, Sensors, 2017}
 \end{figure}
 
-- DR0 to DR5 correspond to spreading factors 12 to 7 with a bandwidth of 125 kHz. DR6 correspond to spreading factor 7 and bandwidth of 250 kHz
-- For an end-device sending messages every 100 minutes, changing the spreading factor from 12 to 7 can increase its lifetime by almost 1.5 years
+- DR0 to DR5 correspond to spreading factors 12 to 7 with a bandwidth of 125 kHz. DR6 correspond to spreading factor 7 and a bandwidth of 250 kHz
+- For an end-device sending packets every 100 minutes, changing the spreading factor from 12 to 7 increases its lifetime by almost 1.5 years
 
 ### Enhancing the Coverage with Multiple Gateways
 \begin{figure}
@@ -138,6 +138,54 @@ Spreading Factor             | 7         | 8           | 9           | 10       
 Cumulative coverage (\%)     |88.70      | 94.50       | 97.60       | 99.20       | 99.60       | 100.00      |
 
 ## Capacity of LoRaWAN
+### Pure ALOHA Model
+- The start times of the packets in an ALOHA channel is modeled as a Poisson point process with parameter $\lambda$ packets/second
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/collision-aloha.eps}
+\end{figure}
+- If each packet in the channel lasts $T_a$ seconds, the normalized channel traffic can be defined as
+$$G= \lambda T_a$$
+- The normalized throughput of the ALOHA random access channel is given by
+$$S = G \exp(-2G)$$
+
+### ALOHA Model for LoRaWAN
+- We consider the case where only *one* spreading factor and *one* sub-channel are available
+- The general case of multiple sub-channels and spreading factors can be easily inferred
+    - Multiple spreading factors are orthogonal
+    - Packets are uniformly transmitted on available sub-channels
+- The time to transmit a packet of $l$ bytes (size of MAC payload) on spreading factor $s$ is denoted $T_a(l,s)$
+- Given a duty cycle limitation of $d=1\%$, the packet generation rate for each end-device operating on spreading factor $s$ must verify:
+$$\lambda(s) \leq \frac{d}{T_a(l,s)}$$
+- The normalized channel traffic for $N$ end-devices is obtained as follows:
+$$G = N . \lambda(s) . T_a(s)$$
+
+### Capacity Formulas for LoRaWAN
+- We consider a LoRaWAN network with $N$ end-devices and one gateway
+    - One spreading factor $s$ and one sub-channel are available
+    - Transmit attempts are done according to a Poisson distribution
+    - All end-devices have the same packet generation rate $\lambda(s)$
+    - All packets have the same length of $l$ bytes
+- The normalized throughput of the LoRaWAN network is given by:
+$$S = G\exp(-2G) = N \lambda(s) T_a(l,s) \exp(-2 N \lambda(s) T_a(l,s))$$
+- The total number of successfully received packets during $D$ is obtained by:
+$$\frac{D}{T_a(l,s)}\times S$$
+
+
+### Test
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/total-received-packets-nb-users-aloha.eps}
+\end{figure}
+
+- Deduce the number of nodes
+- Deduce the arrival rate
+- Put all results for SF7
+- Compare two SF
+- Conclude
+
+### Introduce Multiple Gateways
 ### ALOHA Model
 - ALOHA with duty cycle
 $$\frac{\delta}{\tau} N \exp(-2 N \frac{\delta}{\tau})$$
