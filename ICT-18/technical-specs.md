@@ -23,7 +23,7 @@ $$R_b = SF \cdot \frac{B}{2^{SF}}$$
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.4]{./images/lora-symbols.pdf}
+	\includegraphics[scale=0.5]{./images/lora-symbols.pdf}
 \end{figure}
 
 ### LoRa Spreading Factors
@@ -49,28 +49,6 @@ R_b = SF \cdot \frac{B}{2^{SF}} \cdot \frac{4}{4+CR}
 \end{equation*}
 $$\text{with } 1 \leq CR \leq 4,\text{and } 7 \leq SF \leq 12$$
 
-### LoRa Physical Layer
-- LoRa transmission consists of:
-    - 8 preamble ($up$-$chirp$) symbols
-    - 2 synchronization ($down$-$chirp$) symbols
-    - 5 modulated symbols (payload)
-
-\begin{figure}
-	\centering
-	\includegraphics[scale=0.45]{./images/phy-layer.pdf}
-\end{figure}
-
-### LoRa Characteristics
-
-- Operates in license-free bands all around the world
-    - 433, 868 (EU), 915 MHz
-- Spectrum regulation for EU
-    - Transmit power (EIRP) is limited to 14 dBm (25 mW)
-    - 1% per sub-band duty-cycle limitation
-- Receiver sensitivity: -142 dBm
-- Link budget: 156 dB
-- Uses spreading factors and channel coding rates to set the modulation rate
-
 ### LoRa Radio Optimization
 
 | Spreading Factor  | Bit Rate (kb/s) |  Sensitivity (dBm) |
@@ -94,13 +72,24 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 7 \leq SF \leq 12$$
 -  Higher spreading factors lead to lower sensitivity and larger coverage
 -  Lower spreading factors lead to higher data rates
 
-### Channels
+### LoRa Physical Layer
+- LoRa transmission consists of:
+    - 8 preamble ($up$-$chirp$) symbols
+    - 2 synchronization ($down$-$chirp$) symbols
+    - 5 modulated symbols (payload)
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.45]{./images/phy-layer.pdf}
+\end{figure}
+
+### LoRa Channels
+
+- Operates in license-free bands all around the world
+    - 433, 868 (EU), 915 MHz
 - EU 863-870MHz ISM Band
-
-- Default radiated transmit output power by devices: 14 dBm
-- Minimum set of three channels, maximum of 16 channels
-
-
+    - Default radiated transmit output power by devices: 14 dBm
+    - Minimum set of three channels, maximum of 16 channels
 
 |Modulation | Bw [kHz] | Freq [MHz] | Data Rate | Nb Channels | Duty cycle
 |-------|-------|---------|--------|---------|--------------------
