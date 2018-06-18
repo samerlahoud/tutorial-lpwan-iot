@@ -1,0 +1,87 @@
+%\usetheme{Boadilla}
+\usetheme{usj-tree}
+%\usetheme{metropolis}
+
+\usepackage{graphicx}
+\usepackage{rotating}
+%\setbeamertemplate{caption}[numbered]
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage[normalem]{ulem}
+%\mode<presentation>
+\usepackage{wasysym}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\usepackage{longtable,booktabs}
+\usepackage{caption}
+% These lines are needed to make table captions work with longtable:
+\makeatletter
+\def\fnum@table{\tablename~\thetable}
+\makeatother
+
+\makeatletter % undo the wrong changes made by mathspec
+\let\RequirePackage\original@RequirePackage
+\let\usepackage\RequirePackage
+\makeatother
+
+\usepackage{amsmath}
+
+%\uselanguage{French}
+%\languagepath{French}
+
+\useinnertheme{rectangles}
+%\usecolortheme{seahorse}
+\setbeamertemplate{navigation symbols}{}
+
+%\institute[USJ]{ICT 2018, 25th International Conference on Telecommunication}
+\setbeamertemplate{title page}[empty]
+
+\setbeamerfont{subtitle}{size=\small}
+\setsansfont[BoldFont={Fira Sans}]{Fira Sans Light}
+
+\setbeamercovered{transparent}
+
+\definecolor{clemsonpurple}{HTML}{522D80}
+\definecolor{clemsonorange}{HTML}{F66733}
+\definecolor{mDarkBrown}{HTML}{604c38}
+\definecolor{mDarkTeal}{HTML}{23373b}
+\definecolor{mLightBrown}{HTML}{EB811B}
+\definecolor{mLightGreen}{HTML}{14B03D}
+
+\setbeamerfont{title}{series=\bfseries,parent=structure}
+\setbeamerfont{frametitle}{series=\bfseries,parent=structure}
+
+%\setbeamercolor{title}{fg=clemsonpurple,bg=white}
+%\setbeamercolor{local structure}{fg=clemsonpurple}
+%\setbeamercolor{section in toc}{fg=clemsonpurple,bg=white}
+% \setbeamercolor{subsection in toc}{fg=clemsonorange,bg=white}
+%\setbeamercolor{item projected}{fg=clemsonpurple,bg=white}
+%\setbeamertemplate{itemize item}{\color{clemsonpurple}$\bullet$}
+%\setbeamertemplate{itemize subitem}{\color{clemsonpurple}\scriptsize{$\bullet$}}
+\let\Tiny=\tiny
+
+\AtBeginPart{}
+\setcounter{tocdepth}{1}
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\AtBeginSubsection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsubsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+\AtBeginSubsubsection{}
+
+\setlength{\emergencystretch}{0em}
+\setlength{\parskip}{0pt}

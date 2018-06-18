@@ -1,0 +1,7 @@
+# good bob is your uncle
+pandoc --latex-engine=xelatex -t beamer LPWANs-for-IoT-v3.md -H ./generation-script/in_header.txt -o LPWANs-for-IoT.pdf
+
+
+pandoc -s -t beamer LPWANs-for-IoT-v2.md -H ./generation-script/in_header.txt -o source-LPWANs-for-IoT.tex
+
+Latex models in /Users/simurgh/Library/texmf/tex/latex/
