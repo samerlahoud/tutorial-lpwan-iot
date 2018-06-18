@@ -168,25 +168,57 @@ $$G = N . \lambda(s) . T_a(s)$$
     - All packets have the same length of $l$ bytes
 - The normalized throughput of the LoRaWAN network is given by:
 $$S = G\exp(-2G) = N \lambda(s) T_a(l,s) \exp(-2 N \lambda(s) T_a(l,s))$$
-- The total number of successfully received packets during $D$ is obtained by:
-$$\frac{D}{T_a(l,s)}\times S$$
+- The total number of successfully received packets per second is obtained by:
+$$\frac{1}{T_a(l,s)}\times S$$
 
 
-### Test
-
+### Received Packets per Hour
+- The number of received packets per hour decreases after 50 end-devices
 \begin{figure}
 	\centering
   \includegraphics[scale=0.4]{./images/total-received-packets-nb-users-aloha.eps}
+  \caption*{$l$=50 bytes, SF=7, $\lambda(s) = \frac{d}{T_a(l,s)}$}
 \end{figure}
 
-- Deduce the number of nodes
-- Deduce the arrival rate
-- Put all results for SF7
-- Compare two SF
-- Conclude
+### Received Packets per End-Device per Hour
+- For 100 end-devices generating 289 packets per hour, the average number of received packets per end-device equals 40 per hour
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/received-packets-nb-users-aloha.eps}
+  \caption*{$l$=50 bytes, SF=7, $\lambda(s) = \frac{d}{T_a(l,s)}$}
+\end{figure}
 
-### Introduce Multiple Gateways
-### ALOHA Model
+### Packet Generation Rate  
+- For small number of end-devices, the throughput is limited by the duty cycle
+- For large number of end-devices, the throughput is limited by collisions
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/received-packets-generated-packets-aloha.eps}
+  \caption*{$l$=50 bytes, SF=7}
+\end{figure}
+
+### Spreading Factors and Packet Reception 
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/sf-compare-received-packets-nb-users-aloha.eps}
+  \caption*{$l$=50 bytes, $\lambda(s) = \frac{d}{T_a(l,s)}$}
+\end{figure}
+- For 50 end-devices, the average number of received packets per end-device per hour increases from 6 to 106 when SF decreases from 12 to 7
+
+### Use Case Conclusion
+- Conclude for use case
+
+### Multiple Gateways and Capture Effect
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/capture-effect-aloha.eps}
+  \caption*{$l$=50 bytes, SF=7, $\lambda(s) = \frac{d}{T_a(l,s)}$}
+\end{figure}
+- The total number of received packets starts decreasing after 50 end-devices
+
+
+### Old remove
 - ALOHA with duty cycle
 $$\frac{\delta}{\tau} N \exp(-2 N \frac{\delta}{\tau})$$
 - ALOHA with multiple receivers and perfect packet capture
