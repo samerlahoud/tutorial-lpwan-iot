@@ -72,6 +72,7 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 7 \leq SF \leq 12$$
 -  Higher spreading factors lead to lower sensitivity and larger coverage
 -  Lower spreading factors lead to higher data rates
 
+<!--
 ### LoRa Physical Layer
 - LoRa transmission consists of:
     - 8 preamble ($up$-$chirp$) symbols
@@ -82,6 +83,7 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 7 \leq SF \leq 12$$
 	\centering
 	\includegraphics[scale=0.45]{./images/phy-layer.pdf}
 \end{figure}
+-->
 
 ### LoRa Channels
 
@@ -391,14 +393,13 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 ### Adaptive Data Rate
 
 - Objectives
-
     - Increase battery life
     - Maximize network capacity
 - Data rate validation
     - A device periodically sets the ADR acknowledgment bit and waits for an acknowledgment from the network
     - If an ACK is not received, the device switches to the next lower data rate that provides a longer radio range
 
-
+<!--
 ### Wrap-up Example (1/3)
 \begin{figure}
 \includegraphics[scale=0.65]{./images/lorawan-ex1.png}
@@ -415,7 +416,7 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 \begin{figure}
 \includegraphics[scale=0.65]{./images/lorawan-ex3.png}
 \end{figure}
-
+-->
 <!--
 ## Security
 ### Online Video Tutorial on Security

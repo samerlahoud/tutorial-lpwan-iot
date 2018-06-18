@@ -76,12 +76,12 @@ SNR = \frac{C}{N} = \frac{E_b/T_b}{N_0B} = \frac{E_b}{N_0}\frac{R_b}{B}
 \end{itemize}
 
 ### Receiver Sensitivity
-\begin{table} 
-\centering 
+\begin{table}
+\centering
 \begin{tabular}{c c c}
 $BER$ $\leq$ $BER_{target}$& $\Leftrightarrow$ &$SNR$ $\geq \underbrace{\left(\frac{E_b}{N_0}\right)_{threshold} \frac{R_b}{B}}_{SNR_{threshold}}$ \\
 &&\\
-& $\Leftrightarrow$& $S$ (dBm) $\geq \underbrace{SNR_{threshold}\mbox{ (dB) } + N \mbox{ (dBm)}}_{\mbox{Receiver sensitivity}}$ \\ 
+& $\Leftrightarrow$& $S$ (dBm) $\geq \underbrace{SNR_{threshold}\mbox{ (dB) } + N \mbox{ (dBm)}}_{\mbox{Receiver sensitivity}}$ \\
 \end{tabular}
 \end{table}
 
@@ -109,7 +109,7 @@ MCL \mbox{ (dB) }= P_{Tx} - \underbrace{(SNR_{threshold} -174 + 10\log_{10}(B) +
 ### How to Improve Coverage?
 \begin{itemize}
 \item Coverage targets are usually specified in terms of $MCL$
-\item Increasing $P_{Tx}$, or lowering $NF$, leads to higher device complexity and cost 
+\item Increasing $P_{Tx}$, or lowering $NF$, leads to higher device complexity and cost
 \item[] $\Rightarrow$ inadequate solutions
 \item Reducing $B$ leads to lower network capacity $\Rightarrow$ inadequate solution
 \item Reducing $SNR_{threshold}$
@@ -284,7 +284,7 @@ CSS provides a low-complexity, low-cost, low-power, yet robust alternative to th
         \item[] Class B devices extend Class A by adding scheduled receive windows.
         \item[] Class C devices extend Class A by keeping the receive windows open unless they are transmitting.
 \vspace{2mm}
-        
+
         \item NB-IoT: devices monitor paging channels either periodically, or only after a mobile-originated data transfer (for a short period of time).
         \item[] \textit{extended Discontinuous Reception (eDRX)} and \textit{Power-Saving Mode (PSM)} support these operations.
     \end{itemize}

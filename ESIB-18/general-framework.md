@@ -24,6 +24,7 @@ The Internet of Things (IoT) generally refers to scenarios where network connect
 | Vehicles      | Condition-based maintenance                 |
 | Cities        | Traffic control, environmental monitoring   |
 
+<!--
 ### IoT Reference Model
 \begin{figure}
 	\centering
@@ -34,6 +35,7 @@ The Internet of Things (IoT) generally refers to scenarios where network connect
 	\includegraphics<5>[scale=0.3]{./images/iot-e2e-chain-5.eps}
   \caption*{Source: Overview of the Internet of Things, ITU-T Y.2060, 2012}
 \end{figure}
+-->
 
 ### Evolution of IoT Devices
 - The largest growth is expected for devices connected to a wide-area network
@@ -96,7 +98,7 @@ Low power refers to the ability of an IoT device to function for many years on a
 | Design complexity       | Simplified network topology and deployment                 |
 | Network scalability     | Support of high density of devices                         |
 
-
+<!--
 ### LPWAN Architecture
 \begin{figure}
 	\centering
@@ -110,14 +112,13 @@ Low power refers to the ability of an IoT device to function for many years on a
 - Frames transmitted a few times per day at ultra-low speeds
 - Mostly upstream transmission pattern
 - Devices spend most of their time in low-energy deep-sleep mode
-
+-->
 <!--
 "NB-IoT will crush Sigfox and LoRa because it means there will be no need for them," Matt Beal, Vodafone's director of innovation and architecture
 
 "Is Sigfox/LoRa the new WiMAX?", Stefan Kindt, Head of Technology Marketing at Nokia Networks
 -->
-
+<!--
 #### LPWAN Technologies
 Various technologies are currently candidating for LPWA: LoRaWAN, NB-IoT, Sigfox, Wi-SUN, Ingenu, etc.
-
-### Comparison of LPWAN Technologies
+-->
