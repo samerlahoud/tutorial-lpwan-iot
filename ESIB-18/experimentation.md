@@ -8,6 +8,8 @@
     - Test and assess different pruning lengths
 - Participation in the PoC with Libatel for OGERO
     - Deployment at Château Kefraya
+- Participation in the FOSS4I international research project
+    - Development of a smart irrigation module controlled via LoRa
 
 ### First LoRaWAN Pilot in Lebanon at ESIB
 
