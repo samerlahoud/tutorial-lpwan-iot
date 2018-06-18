@@ -253,7 +253,6 @@ LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its ow
 \includegraphics[scale=0.5]{./images/lorawan-rx-window.png}
 \end{figure}
 
-## MAC Layer
 ### MAC Header
 - Format
 
@@ -428,6 +427,8 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 \includegraphics[scale=0.65]{./images/lorawan-ex3.png}
 \end{figure}
 
+<!--
 ## Security
 ### Online Video Tutorial on Security
 - [https://www.youtube.com/watch?v=Nu_yZelDMZI]()
+-->
