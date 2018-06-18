@@ -1,5 +1,5 @@
 # Technical Specification
-
+## LoRaWAN
 ### What is LoRa?
 
 \begin{block}{Definition of LoRa}
@@ -430,7 +430,7 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
     - Modulation technique
     - Access method
     - Core network functions
- 
+
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.3]{./images/nb-iot-freq-deployment.eps}
@@ -439,8 +439,8 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 ### NB-IoT Characteristics
 - Radio resource: 1 LTE Physical Resource Block (PRB)
     - Bandwidth: 180 kHz
-    - Duration: 0.5 ms 
-- Multiple access: Downlink OFDMA, Uplink SC-FDMA 
+    - Duration: 0.5 ms
+- Multiple access: Downlink OFDMA, Uplink SC-FDMA
 - Modulation scheme
     - Downlink: QPSK
     - Uplink: QPSK (multi-tone), $\pi$/4-QPSK, or $\pi$/2-BPSK (single-tone)
@@ -451,9 +451,9 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 - Communication channels
     - Broadcast channel
     - Shared control channels (uplink and downlink)
-- Access method 
+- Access method
     - Cell acquisition and registration
-    - Random access procedure 
+    - Random access procedure
     - Scheduling of uplink and downlink transmissions  
 - Localization and mobility management (in idle mode)
 
@@ -461,8 +461,8 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 NB-IoT access is performed in two steps: random access then scheduled transmission
 
 ### Optimizing LTE mechanisms for NB-IoT
- 
-- Coverage extension 
+
+- Coverage extension
     - Repeating the same transmission several times, available on all channels
     - Achieves extra coverage (up to 20 dB compared to GPRS)
 
