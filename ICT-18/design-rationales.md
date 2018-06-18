@@ -5,7 +5,6 @@
 - Reliability under extreme coverage conditions
 - Low power consumption: long battery lifetime
 - High capacity: support for massive number of low-rate devices
-- Simplified network topology and deployment
 
 #### Objectives and Approaches
 \begin{itemize}
@@ -85,8 +84,8 @@ $BER$ $\leq$ $BER_{target}$& $\Leftrightarrow$ &$SNR$ $\geq \underbrace{\left(\f
 \end{tabular}
 \end{table}
 
-- $N$ (dBm) is the background noise power at the receiver $= NT$ (dBm) $+ NF$ (dB)
-    - $NT$ is the thermal noise caused by thermal agitation of charge carriers: $-174 + 10\log_{10}(B)$
+- $N$ (dBm) is the background noise power at the receiver $= TN$ (dBm) $+ NF$ (dB)
+    - $TN$ is the thermal noise caused by thermal agitation of charge carriers: $-174 + 10\log_{10}(B)$
     - $NF$ is the noise figure caused by RF components
 
 ### Maximum Coupling Loss
@@ -100,134 +99,85 @@ MCL \mbox{ (dB) }= P_{Tx} - \underbrace{(SNR_{threshold} -174 + 10\log_{10}(B) +
 \item[] where $P_{Tx}$ is the transmit power in dBm.
 \end{itemize}
 
-- Coverage targets are usually specified in terms of $MCL$
-- How to improve coverage?
+\vspace{-2mm}
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.34]{./images/MCL.pdf}
+\end{figure}
 
 ### How to Improve Coverage?
-- Increasing $P_{Tx}$, or lowering $NF$ leads to higher device complexity and cost
-- Reducing $B$ leads to lower network capacity
-- Reducing $SNR_{threshold}$
-    - LoRaWAN: optimised radio modulation that uses spread spectrum $\Rightarrow$ LoRa
-    - NB-IoT: repetitions and efficient HARQ retransmissions
+\begin{itemize}
+\item Coverage targets are usually specified in terms of $MCL$
+\item Increasing $P_{Tx}$, or lowering $NF$, leads to higher device complexity and cost 
+\item[] $\Rightarrow$ inadequate solutions
+\item Reducing $B$ leads to lower network capacity $\Rightarrow$ inadequate solution
+\item Reducing $SNR_{threshold}$
+\begin{itemize}
+\item LoRaWAN: optimised radio modulation that uses spread spectrum $\Rightarrow$ LoRa
+\item NB-IoT: repetitions and efficient HARQ retransmissions
+\end{itemize}
+\end{itemize}
+
+## Chirp Spread Spectrum in LoRaWAN
 
 ### What is Spread Spectrum?
-
-\begin{block}{Spread Spectrum (SS)}
-Spread-spectrum techniques deliberately spread a signal in the frequency domain, resulting in a signal with a wider bandwidth
-\end{block}
-
-- Frequency-hopping SS (FHSS), direct-sequence SS (DSSS), time-hopping SS (THSS), and chirp SS (CSS) are forms of spread spectrum
-
+- Spread-spectrum techniques deliberately spread a signal in the frequency domain, resulting in a signal with a wider bandwidth
+- Direct-sequence SS (DSSS), frequency-hopping SS (FHSS), time-hopping SS (THSS), and chirp SS (CSS) are forms of spread spectrum
 <!--
 ..., and combinations of these techniques are forms of SS.
 THSS: the transmission time is changed randomly by varying the period and duty cycle of the pulse (within the transmission window) using a pseudo-random sequence.
 -->
+- Spreading process in DSSS systems: at the transmitter, the input data $S(t)$ is multiplied with a spreading code $C(t)$
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.1]{./images/spreading-process.png}
-	\caption{Spreading process in DSSS systems}
+	\includegraphics[scale=0.4]{./images/spreading-process.pdf}
 \end{figure}
 
 ### What is Spread Spectrum?
+- De-spreading process in DSSS systems: at the receiver, $S(t)$ is re-covered by re-multiplying with the same spreading code $C(t)$
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.11]{./images/de-spreading-process.png}
-	\caption{De-spreading process in DSSS systems}
+	\includegraphics[scale=0.4]{./images/de-spreading-process.pdf}
 \end{figure}
 
-##### Direct Sequence Spread Spectrum
-
-- At the transmitter, the wanted signal is multiplied with a spreading code
-- At the receiver, the wanted signal is re-covered by re-multiplying with the same spreading code
-
-### Radio Quality Indicators
-
-- The $SNR$, or equivalently the carrier-to-noise ratio ($CNR$ or $C/N$), is defined as the ratio of the received signal power $C$ to the power of the noise $N$ within the bandwidth of the transmitted signal  
-- The energy per bit to noise power spectral density ratio ($E_ b/N_0$) is defined as the ratio of the energy per bit ($E_b$) to the noise power spectral density ($N_0$)
-- $E_b/N_0$ is a normalized $SNR$ measure, also known as the "$SNR$ per bit"
-- The $E_b/N_0$ (or $SNR$) needs to be greater than the $E_b/N_0$ (or $SNR$) threshold for acceptable transmission quality (bit error rate ($BER) \leq$ target $BER$)
-
-\begin{equation*}
-\frac{E_b}{N_0} \geq \left( \frac{E_b}{N_0}\right)_{threshold} \Rightarrow \mbox{$BER \leq$ $BER_{target}$}
-\end{equation*}
-
-##### $SNR$ threshold vs. $E_b/N_0$ threshold
-Unlike the $SNR$ threshold, the $E_b/N_0$ threshold does not depend on the signal bandwidth and bit-rate (including any use of spread spectrum)
-
 ### Why Spread Spectrum?
-
-\begin{equation*}
-SNR = \frac{C}{N} = \frac{E_b/T_b}{N_0B} = \frac{E_b}{N_0}\frac{R_b}{R_c}
-\end{equation*}
-\begin{itemize}
-  \item[] where $B$ is the signal bandwidth in Hz, $R_b$ the bit-rate in b/s, and $R_c$ the chip rate in chip/second
-\end{itemize}
-
-\begin{equation*}
-\Rightarrow \left( \frac{E_b}{N_0}\right)_{dB} = (SNR)_{dB} + G_p
-\end{equation*}
-\begin{itemize}
-  \item[] where $G_p$ is the processing gain given by: $G_p = 10log_{10}(BT_b) = 10log_{10}(\frac{R_c}{R_b})$
-\end{itemize}
-
 - Spread spectrum compensates for the $SNR$ degradation
 
-##### The higher the processing gain is...
-- the lower the $SNR$ threshold is $\Rightarrow$ lower receiver sensitivity $\Rightarrow$ larger radio coverage (assuming a fixed transmit signal power)
-- the lower $R_b$ is (assuming a fixed $W$)
-
-### $G_p$ and Receiver Sensitivity
-
-- The receiver sensitivity is given by:
-
 \begin{equation*}
-S = SNR_{threshold} + \nu
+SNR = \frac{E_b}{N_0}\frac{R_b}{B} \Rightarrow \left( \frac{E_b}{N_0}\right)_{dB} = (SNR)_{dB} + G_p
 \end{equation*}
 \begin{itemize}
-  \item[] where $\nu$ is the background noise power at the receiver: sum of the thermal noise (generated by the thermal agitation of charge carriers) and the noise figure (caused by RF components)
+  \item[] where $G_p$ is the processing gain given by: $G_p = 10\log_{10}(T_bB)$
 \end{itemize}
 
-\setbeamercovered{invisible}
+\begin{equation*}
+SNR_{threshold} = \left( \frac{E_b}{N_0}\right)_{threshold} - G_p
+\end{equation*}
 
-\begin{longtable}[c]{@{}ccc@{}}
-\toprule
-$R_c/R_b$ & $G_p$ & Receiver sensitivity (dBm) \tabularnewline
-\midrule
-\endhead
-128 & 21.0721 & \uncover<+->{-121} \tabularnewline
-256 & 24.0824 & \uncover<+->{-124} \tabularnewline
-512 & 27.0927 & \uncover<+->{-127} \tabularnewline
-1024 & 30.1030 & \uncover<+->{-130} \tabularnewline
-2048 & 33.1133 & \uncover<+->{-133} \tabularnewline
-4096 & 36.1236 & \uncover<+->{-136} \tabularnewline
-\bottomrule
-\end{longtable}
-
-## Chirp Spread Spectrum
+- The higher $G_p$ is
+    - the lower $SNR_{threshold}$ is $\Rightarrow$ larger radio coverage
+    - the lower $R_b$ is
 
 ### Linear Chirp
-
-\begin{block}{Linear Chirp}
-Sinusoidal signal whose frequency linearly increases ($up$-$chirp$) or decreases ($down$-$chirp$) over time
-\end{block}
-
+- A linear chirp is a sinusoidal signal whose frequency linearly increases ($up$-$chirp$) or decreases ($down$-$chirp$) over time
+\vspace{-3mm}
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.35]{./images/chirp.png}
-	\caption{A sinusoidal linear up-chirp in the time domain}
+	\includegraphics[scale=0.4]{./images/chirp-1.pdf}
+    \vspace{-5mm}
+	\caption*{A sinusoidal linear up-chirp in the time domain}
 \end{figure}
 
 ### Linear Chirp Theory
-
 - A linear chirp waveform can be written as:
 
 \begin{equation*}
 x(t) = a(t)sin(2 \pi f_0 t + \pi \mu t^2 + \phi_0)
 \end{equation*}
 \begin{itemize}
-  \item[] where $a(t)$ is the envelope of the chirp signal which is zero outside a time interval of length $T$, $f_0$ the initial frequency, $\mu$ the chirp rate, or chirpyness, and $\phi_0$ the initial phase
+  \item[] where $a(t)$ is the envelope of the chirp signal which is zero outside a time interval of length $T$, $f_0$ the initial frequency, $\mu$ the chirp rate, or chirpyness, and $\phi_0$ the initial phase.
 \end{itemize}
 
 - The instantaneous frequency $f(t)$ is defined as:
@@ -243,31 +193,26 @@ f(t) = \frac{1}{2 \pi} \frac{d(2 \pi f_0 t + \pi \mu t^2 + \phi_0)}{dt} = f_0 + 
 \end{equation*}
 
 ### Spectrograms of Linear Chirps
-
 - $\mu > 0 \Rightarrow up$-$chirps$, $\mu < 0 \Rightarrow down$-$chirps$
 
 \begin{figure}
 	\centering
-    \includegraphics[scale=0.3]{./images/spectrograms.png}
-    \caption{Spectrograms of linear $up$-$chirp$ (top) and  $down$-$chirp$ (bottom)}
+    \includegraphics[scale=0.4]{./images/spectrograms.pdf}
+    \caption*{Spectrograms of linear $up$-$chirp$ (a) and  $down$-$chirp$ (b)}
 \end{figure}
 
 ### Bandwidth Spreading
-
 - The bandwidth $B$ is defined as the range of the instantaneous frequency: $B = |\mu| T$
 - The processing gain is given by the time-bandwidth product $TB$
 
+\vspace{-2mm}
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.3]{./images/definitions.png}
+	\includegraphics[scale=0.45]{./images/definitions.pdf}
 \end{figure}
 
 ### What is Chirp Spread Spectrum?
-
-\begin{block}{Chirp Spread Spectrum (CSS)}
-Spread spectrum technique that uses wideband linear frequency modulated chirps to encode information
-\end{block}
-
+- Chirp Spread Spectrum (CSS) is a spread spectrum technique that uses wideband linear frequency modulated chirps to encode information
 - Encoding information using $up$-$chirp$ and $down$-$chirp$ signals:
     - Example: "1" $\Rightarrow$ transmit an $up$-$chirp$, "0" $\Rightarrow$ transmit a $down$-$chirp$
     - Chirps are transmitted in equidistant time steps
@@ -283,8 +228,9 @@ multiply with the complexe conjugate of the chirp signal
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.37]{./images/bok.pdf}
-	\caption{a) BOK using $up$- and $down$- chirps b) BOK using PPM}
+	\includegraphics[scale=0.35]{./images/bok.pdf}
+    \vspace{-5mm}
+	\caption*{a) BOK using $up$- and $down$- chirps b) BOK using PPM}
 \end{figure}
 
 ### Advantages of CSS
@@ -299,3 +245,122 @@ Unlike the DSSS, the CSS does not add any pseudo-random elements to the signal, 
 
 #### Why CSS?
 CSS provides a low-complexity, low-cost, low-power, yet robust alternative to the traditional SS techniques
+
+## Repetitions in NB-IoT
+
+### Signal Combination
+- Users in extreme coverage conditions blindly repeat information (without any feedback from the receiver)
+- The receiver accumulates the blindly transmitted signals and combines all the repetitions
+- Repetitions compensate for the $SNR$ degradation
+
+\begin{equation*}
+\left(SNR\right)_N \mbox{ (dB)} = \underbrace{10\log_{10}(N)}_{\mbox{$G_p$}} + \left(SNR\right)_1
+\end{equation*}
+
+\begin{itemize}
+\item[] where $(SNR)_N$ is the ideal $SNR$ after combining $N$ transmissions and $(SNR)_1$ is the $SNR$ of a single transmission.
+\end{itemize}
+
+\begin{equation*}
+\left(SNR\right)_N \geq SNR_{threshold} \Rightarrow (SNR)_1 \geq  \underbrace{SNR_{threshold} - 10\log_{10}(N)}_{\mbox{Reduced $SNR_{threshold}$}}
+\end{equation*}
+
+### Real vs. Ideal Processing Gain
+- In practice, combining two signals is rarely perfect: signal impairments will result in a lower overall processing gain
+- For $N$ between 2 and 16, the ideal gain can be achieved without any visible degradation
+
+## Low power consumption
+
+### Battery Lifetime
+\begin{itemize}
+\item As most of the IoT applications require infrequent transmission of small data volumes, battery lifetime is increased through:
+
+\begin{itemize}
+    \item optimizing device reachability:
+
+    \begin{itemize}
+        \item \small LoRaWAN: Class A devices open two short DL receive windows only after an uplink transmission.
+        \item[] Class B devices extend Class A by adding scheduled receive windows.
+        \item[] Class C devices extend Class A by keeping the receive windows open unless they are transmitting.
+\vspace{2mm}
+        
+        \item NB-IoT: devices monitor paging channels either periodically, or only after a mobile-originated data transfer (for a short period of time).
+        \item[] \textit{extended Discontinuous Reception (eDRX)} and \textit{Power-Saving Mode (PSM)} support these operations.
+    \end{itemize}
+\end{itemize}
+\end{itemize}
+
+### Battery Lifetime
+
+\begin{itemize}
+\item[]
+\begin{itemize}
+\item reducing signaling messages when a device needs to transmit data
+\begin{itemize}
+\item \small LoRaWAN: uncoordinated data transmission
+\item NB-IoT: the device context is maintained during power-saving states, avoiding unnecessary signaling
+\end{itemize}
+\end{itemize}
+\end{itemize}
+
+- Idle devices enter in deep sleep mode. They:
+    - shut down their transceiver
+    - keep track of time and scheduled events via a low-power oscillator (that is kept running)
+- Devices wake up from deep sleep to:
+    - transmit data
+    - open receive windows, or monitor paging channels
+
+### extended Discontinuous Reception (eDRX)
+- How often an idle device monitors paging channels?
+- An eDRX cycle is the time period between two paging occasions the device needs to monitor (up to 2 h, 54 min, and 46 s)
+- In between these two occasions, the device is assumed to be in deep sleep mode
+- eDRX cycle is negotiated on a per device basis
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.33]{./images/eDRX.pdf}
+    \vspace{-2mm}
+	\caption*{Two possible eDRX cycle configurations}
+\end{figure}
+
+### Power-Saving Mode (PSM)
+- In PSM, an idle device does not monitor paging channels $\Rightarrow$ unreachability
+- A device leaves PSM to send application data or a periodic tracking area update message
+\vspace{-2mm}
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.33]{./images/PSM.pdf}
+    \vspace{-2mm}
+	\caption*{Operation in PSM including periodic TAU}
+\end{figure}
+
+### Power-Saving Mode (PSM)
+- After data transfer, the device monitors paging occasions until  an active timer expires
+- When the active timer expires, the device re-enters PSM and is unreachable until the next mobile-originated event
+- The tracking area update period is configurable (up to a year)
+
+## High capacity
+
+### Support for Massive Number of Low-Rate Devices
+- Trading off data rate for coverage
+- How to increase network capacity?
+    - LoRaWAN uses multiple orthogonal spreading factors simultaneously on the same channel
+    - NB-IoT uses single-tone transmissions in the UL when coupling loss is high
+
+### Why Single-Tone Transmissions?
+- The channel capacity $C$ is given by:
+
+\begin{equation*}
+C = B\log_2 (1+\frac{S}{N}) = B\log_2 (1+\frac{S}{N_0B})
+\end{equation*}
+
+- When coupling loss is high, $\frac{S}{N_0B} \ll 1 \Rightarrow \ln(1 + \frac{S}{N_0B}) \approx \frac{S}{N_0B}$.
+
+\begin{equation*}
+\Rightarrow C = \frac{S}{N_0}\log_2(e)
+\end{equation*}
+
+\begin{itemize}
+\item[] $C$ no longer depends on $B$
+\item[] $\Rightarrow$ allocate a single tone (subcarrier) for devices in bad coverage to avoid resource wastage
+\end{itemize}
