@@ -6,24 +6,31 @@
     - Deploy and test LoRa for agriculture
     - Automate measurement process of microclimates under vines
     - Test and assess different pruning lengths
-- LISA will deploy a LoRa based IoT network in Bekaa in 2018
+- Participation in the PoC with Libatel for OGERO
+    - Deployment at Château Kefraya
 
 ### First LoRaWAN Pilot in Lebanon at ESIB
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.3]{./images/lora-pilot-architecture.eps}
+	\includegraphics[scale=0.25]{./images/lora-pilot-architecture.eps}
 \end{figure}
 
-- Lab prototype: Arduino + Dragino (HopeRF) LoRa shield, Raspberry Pi based DIY gateway
-- Deployment: Sodaq autonomo with (Microchip) LoRabee devices,
-Kerlink Wirnet gateway
+- Diversity of devices: Arduino + Dragino (HopeRF) LoRa shield, Sodaq autonomo with (Microchip) LoRabee, Pycom LoPy, Raspberry Pi based DIY gateway, Kerlink Wirnet gateway
+- Diversity of usage: Course on IoT technologies, student projects, research studies  
 
-### LoRa Campus Coverage
+### LoRa Campus Coverage (1/2)
 
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.3]{./images/RSSI-map-ESIB.eps}
+\end{figure}
+
+### LoRa Campus Coverage (2/2)
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{./images/ploss-exp.png}
 \end{figure}
 
 ### LoRa Drive Test
@@ -36,7 +43,7 @@ Kerlink Wirnet gateway
 ### LoRa Cool Services
 
 - View the live dashboard
-    - https://emoncms.org/dashboard/view&id=42658
+    - https://goo.gl/jksaJW
 - Play with MQTT and receive LoRa messages
     - Install a MQTT app (MQTT Dashboard on Android)
     - Connect to 212.98.137.194 port 1883
