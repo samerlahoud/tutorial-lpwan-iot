@@ -282,7 +282,6 @@ CSS provides a low-complexity, low-cost, low-power, yet robust alternative to th
     \begin{itemize}
         \item \small LoRaWAN: Class A devices open two short DL receive windows only after an uplink transmission.
         \item[] Class B devices extend Class A by adding scheduled receive windows.
-        \item[] Class C devices extend Class A by keeping the receive windows open unless they are transmitting.
 \vspace{2mm}
         
         \item NB-IoT: devices monitor paging channels either periodically, or only after a mobile-originated data transfer (for a short period of time).

@@ -282,7 +282,6 @@ CSS provides a low-complexity, low-cost, low-power, yet robust alternative to th
     \begin{itemize}
         \item \small LoRaWAN: Class A devices open two short DL receive windows only after an uplink transmission.
         \item[] Class B devices extend Class A by adding scheduled receive windows.
-        \item[] Class C devices extend Class A by keeping the receive windows open unless they are transmitting.
 \vspace{2mm}
 
         \item NB-IoT: devices monitor paging channels either periodically, or only after a mobile-originated data transfer (for a short period of time).
@@ -310,35 +309,6 @@ CSS provides a low-complexity, low-cost, low-power, yet robust alternative to th
 - Devices wake up from deep sleep to:
     - transmit data
     - open receive windows, or monitor paging channels
-
-### extended Discontinuous Reception (eDRX)
-- How often an idle device monitors paging channels?
-- An eDRX cycle is the time period between two paging occasions the device needs to monitor (up to 2 h, 54 min, and 46 s)
-- In between these two occasions, the device is assumed to be in deep sleep mode
-- eDRX cycle is negotiated on a per device basis
-
-\begin{figure}
-	\centering
-	\includegraphics[scale=0.33]{./images/eDRX.pdf}
-    \vspace{-2mm}
-	\caption*{Two possible eDRX cycle configurations}
-\end{figure}
-
-### Power-Saving Mode (PSM)
-- In PSM, an idle device does not monitor paging channels $\Rightarrow$ unreachability
-- A device leaves PSM to send application data or a periodic tracking area update message
-\vspace{-2mm}
-\begin{figure}
-	\centering
-	\includegraphics[scale=0.33]{./images/PSM.pdf}
-    \vspace{-2mm}
-	\caption*{Operation in PSM including periodic TAU}
-\end{figure}
-
-### Power-Saving Mode (PSM)
-- After data transfer, the device monitors paging occasions until  an active timer expires
-- When the active timer expires, the device re-enters PSM and is unreachable until the next mobile-originated event
-- The tracking area update period is configurable (up to a year)
 
 ## High capacity
 

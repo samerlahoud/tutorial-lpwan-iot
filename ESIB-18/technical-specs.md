@@ -422,3 +422,87 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 ### Online Video Tutorial on Security
 - [https://www.youtube.com/watch?v=Nu_yZelDMZI]()
 -->
+
+## NB-IoT
+
+## What is NB-IoT?
+
+- Radio technology standard by 3GPP: releases R13 and R14
+- Reutilizes cellular telecommunication bands
+    - Three possible operation modes: in-band, guard-band, or standalone
+- Reutilizes cellular telecommunication infrastructure
+- Shares common characteristics with LTE networks    
+    - Modulation technique
+    - Access method
+    - Core network functions
+ 
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.3]{./images/nb-iot-freq-deployment.eps}
+\end{figure}
+
+## NB-IoT Characteristics
+
+- LTE FDD frequency bands
+- Bandwidth: 180 kHz 
+    - 12 subcarriers separated by15 kHz
+- Duration: 1 slot of 0.5 ms 
+- Multiple access: Downlink OFDMA, Uplink SC-FDMA 
+- Modulation scheme
+    - Downlink: QPSK
+    - Uplink: Single Tone: Ï€/4-QPSK, Ï€/2-BPSK, Multi Tone: QPSK
+- Link budget: 164 dB
+- Data rate: ~250 kbps in DL and ~250 kbps in UL (multi-tone)
+
+## Leveraging LTE mechanisms in NB-IoT
+
+- Communication channels
+    - Broadcast channel
+    - Shared control channels (uplink and downlink)
+- Access method 
+    - Cell acquisition and registration
+    - Random access procedure 
+    - Scheduling of uplink and downlink transmissions  
+- Localization and mobility management (in idle mode)
+
+### NB-IoT Access Method
+NB-IoT access is performed in two steps: random access then scheduled transmission
+
+## Optimizing LTE mechanisms for NB-IoT
+ 
+- Coverage extension 
+    - Repeating the same transmission several times, available on all channels
+    - Achieves extra coverage (up to 20 dB compared to GPRS)
+
+- Energy saving: devices monitor paging channels either periodically, or only after a mobile-originated data transfer (for a short period of time).
+    - extended Discontinuous Reception (eDRX)
+    - Power-Saving Mode (PSM)
+
+### extended Discontinuous Reception (eDRX)
+- How often an idle device monitors paging channels?
+- An eDRX cycle is the time period between two paging occasions the device needs to monitor (up to 2 h, 54 min, and 46 s)
+- In between these two occasions, the device is assumed to be in deep sleep mode
+- eDRX cycle is negotiated on a per device basis
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.33]{./images/eDRX.pdf}
+    \vspace{-2mm}
+	\caption*{Two possible eDRX cycle configurations}
+\end{figure}
+
+### Power-Saving Mode (PSM)
+- In PSM, an idle device does not monitor paging channels $\Rightarrow$ unreachability
+- A device leaves PSM to send application data or a periodic tracking area update message
+\vspace{-2mm}
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.33]{./images/PSM.pdf}
+    \vspace{-2mm}
+	\caption*{Operation in PSM including periodic TAU}
+\end{figure}
+
+### Power-Saving Mode (PSM)
+- After data transfer, the device monitors paging occasions until  an active timer expires
+- When the active timer expires, the device re-enters PSM and is unreachable until the next mobile-originated event
+- The tracking area update period is configurable (up to a year)
