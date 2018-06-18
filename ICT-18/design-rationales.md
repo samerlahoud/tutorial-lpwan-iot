@@ -5,6 +5,7 @@
 - Reliability under extreme coverage conditions
 - Low power consumption: long battery lifetime
 - High capacity: support for massive number of low-rate devices
+- Simplified network topology and deployment
 
 #### Objectives and Approaches
 \begin{itemize}
@@ -364,3 +365,9 @@ C = B\log_2 (1+\frac{S}{N}) = B\log_2 (1+\frac{S}{N_0B})
 \item[] $C$ no longer depends on $B$
 \item[] $\Rightarrow$ allocate a single tone (subcarrier) for devices in bad coverage to avoid resource wastage
 \end{itemize}
+
+## Simplified Network Topology and Deployment
+
+### Network Topology and Deployment
+- LoRaWAN has a simple network architecture and operates in license-free bands $\Rightarrow$ low-cost deployment
+- NB-IoT reuses LTE frequency bands and infrastructure (through software upgrade) $\Rightarrow$ fast time-to-market
