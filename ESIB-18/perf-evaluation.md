@@ -1,15 +1,6 @@
 # Performance Evaluation
-## Link Budget
 
-### Enhanced Network Capacity
-\begin{itemize}
-  \item LoRa employs orthogonal spreading factors which enables multiple spread signals to be transmitted at the same time and on the same channel
-  \item Modulated signals at different spreading factors appear as noise to the target receiver
-  \item The equivalent capacity of a single 125 kHz LoRa channel is:
-  \item[] $\mbox{    }SF12 + SF11 + SF10 + SF9 + SF8 + SF7 + SF6$
-  \item[] $= 293 + 537 + 976 + 1757 + 3125 + 5468 + 9375$
-  \item[] $= 21 531$ b/s $= 21.321$ kb/s
-\end{itemize}
+## Link Budget Analysis
 
 ### Link Budget
 - The link budget is a measure of all the gains and losses from the transmitter, through the propagation channel, to the target receiver
@@ -27,6 +18,29 @@ P_{Rx} = P_{Tx} + G_{System} - L_{System} - L_{Channel} - M
   \item[] $L_{Channel}$ = losses due to the propagation channel
   \item[] $M$ = fading margin and protection margin
 \end{itemize}
+
+### Additional Margins
+- Fading margin
+- Interference margin
+- Penetration margin:
+    - indoor penetration loss (first wall): $\sim 18$ dB (in dense urban environment), $\sim 15$ dB (in urban environment), and $\sim 10-12$ dB (in rural environment)
+    - deep indoor penetration loss (second wall): +3 dB 
+- Protection margin
+
+
+<!--
+### Enhanced Network Capacity
+\begin{itemize}
+  \item LoRa employs orthogonal spreading factors which enables multiple spread signals to be transmitted at the same time and on the same channel
+  \item Modulated signals at different spreading factors appear as noise to the target receiver
+  \item The equivalent capacity of a single 125 kHz LoRa channel is:
+  \item[] $\mbox{    }SF12 + SF11 + SF10 + SF9 + SF8 + SF7 + SF6$
+  \item[] $= 293 + 537 + 976 + 1757 + 3125 + 5468 + 9375$
+  \item[] $= 21 531$ b/s $= 21.321$ kb/s
+\end{itemize}
+-->
+
+
 
 ## Coverage of LoRaWAN
 
