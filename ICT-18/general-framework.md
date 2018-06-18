@@ -87,15 +87,14 @@ Low power refers to the ability of an IoT device to function for many years on a
 
 | Indicator               | Requirement                                                |
 |-------------------------|------------------------------------------------------------|
-| Low power consumption   | Devices operate for 10 years on a single charge            |
-| Low device unit cost    | Below $5 per module                                        |
-| Reliability             | Completely unattended and resilient operation              |
-| Improved coverage       | Outdoor and indoor penetration coverage                    |
+| Power consumption       | Devices operate for 10 years on a single charge            |
+| Device unit cost        | Below $5 per module                                        |
+| Dependability           | Completely unattended and resilient operation              |
+| Coverage                | Improved outdoor and indoor penetration coverage           |
 | Security                | Secure connectivity and strong authentication              |
-| Optimized data transfer | Supports small, intermittent blocks of data                |
+| Data transfer           | Supports small, intermittent blocks of data                |
 | Design complexity       | Simplified network topology and deployment                 |
 | Network scalability     | Support of high density of devices                         |
-
 
 ### LPWAN Architecture
 \begin{figure}
