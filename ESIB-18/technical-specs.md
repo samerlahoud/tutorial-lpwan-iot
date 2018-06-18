@@ -425,9 +425,8 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 
 ## NB-IoT
 
-## What is NB-IoT?
-
-- Radio technology standard by 3GPP: releases R13 and R14
+### What is NB-IoT?
+- 3GPP radio technology standard: releases R13 and R14
 - Reutilizes cellular telecommunication bands
     - Three possible operation modes: in-band, guard-band, or standalone
 - Reutilizes cellular telecommunication infrastructure
@@ -441,21 +440,18 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 	\includegraphics[scale=0.3]{./images/nb-iot-freq-deployment.eps}
 \end{figure}
 
-## NB-IoT Characteristics
-
-- LTE FDD frequency bands
-- Bandwidth: 180 kHz 
-    - 12 subcarriers separated by15 kHz
-- Duration: 1 slot of 0.5 ms 
+### NB-IoT Characteristics
+- Radio resource: 1 LTE Physical Resource Block (PRB)
+    - Bandwidth: 180 kHz
+    - Duration: 0.5 ms 
 - Multiple access: Downlink OFDMA, Uplink SC-FDMA 
 - Modulation scheme
     - Downlink: QPSK
-    - Uplink: Single Tone: Ï€/4-QPSK, Ï€/2-BPSK, Multi Tone: QPSK
+    - Uplink: QPSK (multi-tone), $\pi$/4-QPSK, or $\pi$/2-BPSK (single-tone)
 - Link budget: 164 dB
-- Data rate: ~250 kbps in DL and ~250 kbps in UL (multi-tone)
+- Data rate: $\sim$ 250 kbps in the DL and $\sim$ 250 kbps in the UL (multi-tone)
 
-## Leveraging LTE mechanisms in NB-IoT
-
+### Leveraging LTE mechanisms in NB-IoT
 - Communication channels
     - Broadcast channel
     - Shared control channels (uplink and downlink)
@@ -465,18 +461,19 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
     - Scheduling of uplink and downlink transmissions  
 - Localization and mobility management (in idle mode)
 
-### NB-IoT Access Method
+#### NB-IoT Access Method
 NB-IoT access is performed in two steps: random access then scheduled transmission
 
-## Optimizing LTE mechanisms for NB-IoT
+### Optimizing LTE mechanisms for NB-IoT
  
 - Coverage extension 
     - Repeating the same transmission several times, available on all channels
     - Achieves extra coverage (up to 20 dB compared to GPRS)
 
-- Energy saving: devices monitor paging channels either periodically, or only after a mobile-originated data transfer (for a short period of time).
-    - extended Discontinuous Reception (eDRX)
-    - Power-Saving Mode (PSM)
+- Energy saving
+    - Monitoring paging channels either periodically, or only after a mobile- originated data transfer (for a short period of time).
+        - \small extended Discontinuous Reception (eDRX)
+        - Power-Saving Mode (PSM)
 
 ### extended Discontinuous Reception (eDRX)
 - How often an idle device monitors paging channels?

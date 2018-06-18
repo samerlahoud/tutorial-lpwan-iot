@@ -268,7 +268,7 @@ CSS provides a low-complexity, low-cost, low-power, yet robust alternative to th
 
 ### Real vs. Ideal Processing Gain
 - In practice, combining two signals is rarely perfect: signal impairments will result in a lower overall processing gain
-- For $N$ between 2 and 16, the ideal gain can be achieved without any visible degradation
+- For $N$ between 2 and 16, the ideal gain can be achieved without any visible degradation\footnote{Simulations have been carried out for EC-GSM-IoT in O. Liberg et al., \textit{Cellular Internet of Things - Technologies, Standards, and Performance}. Cambridge, MA, USA: American Press, 2017.}
 
 ## Low power consumption
 

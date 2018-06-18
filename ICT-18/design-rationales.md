@@ -268,7 +268,7 @@ CSS provides a low-complexity, low-cost, low-power, yet robust alternative to th
 
 ### Real vs. Ideal Processing Gain
 - In practice, combining two signals is rarely perfect: signal impairments will result in a lower overall processing gain
-- For $N$ between 2 and 16, the ideal gain can be achieved without any visible degradation
+- For $N$ between 2 and 16, the ideal gain can be achieved without any visible degradation\footnote{Simulations have been carried out for EC-GSM-IoT in O. Liberg et al., \textit{Cellular Internet of Things - Technologies, Standards, and Performance}. Cambridge, MA, USA: American Press, 2017.}
 
 ## Low power consumption
 
@@ -310,6 +310,7 @@ CSS provides a low-complexity, low-cost, low-power, yet robust alternative to th
     - transmit data
     - open receive windows, or monitor paging channels
 
+<!--
 ### extended Discontinuous Reception (eDRX)
 - How often an idle device monitors paging channels?
 - An eDRX cycle is the time period between two paging occasions the device needs to monitor (up to 2 h, 54 min, and 46 s)
@@ -338,6 +339,7 @@ CSS provides a low-complexity, low-cost, low-power, yet robust alternative to th
 - After data transfer, the device monitors paging occasions until  an active timer expires
 - When the active timer expires, the device re-enters PSM and is unreachable until the next mobile-originated event
 - The tracking area update period is configurable (up to a year)
+-->
 
 ## High capacity
 
