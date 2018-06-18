@@ -1,7 +1,5 @@
 # Technical Specification
-
-## LoRa Radio Interface
-
+## LoRaWAN
 ### What is LoRa?
 
 \begin{block}{Definition of LoRa}
@@ -9,13 +7,11 @@ LoRa is a wireless modulation technique that uses Chirp Spread Spectrum (CSS) in
 \end{block}
 
 - Processing gain given by $g_p = BT$
-- Variable number of bits encoded in a symbol
-
-$$R_b = \frac{log_2 (g_p)}{T} = log_2 (g_p) \cdot \frac{B}{g_p}$$
-
 - Spreading factor $SF$ given by $log_2 (g_p)$
+- Considering a coding rate $CR$, the bit-rate is given by:
+$$R_b = SF \cdot \frac{B}{2^{SF}} \cdot \frac{4}{4+CR}$$
+$$\text{with } 1 \leq CR \leq 4$$
 
-$$R_b = SF \cdot \frac{B}{2^{SF}}$$
 
 ### LoRa Symbols
 - $log_2 (g_p)$ bits are encoded by transmitting a single $chirp$ in $g_p$ possible cyclic time shifts
@@ -34,6 +30,7 @@ $$R_b = SF \cdot \frac{B}{2^{SF}}$$
 	\includegraphics[scale=0.25]{./images/sf-comparison.eps}
 \end{figure}
 
+<!--
 ### LoRa Bit-Rate
 - LoRa includes a variable error correction scheme that improves the robustness of the transmitted signal at the expense of redundancy
 - Given a coding rate $CR$, the bit-rate is given by:
@@ -48,6 +45,7 @@ R_b = SF \cdot \frac{B}{2^{SF}} \cdot CR
 R_b = SF \cdot \frac{B}{2^{SF}} \cdot \frac{4}{4+CR}
 \end{equation*}
 $$\text{with } 1 \leq CR \leq 4,\text{and } 7 \leq SF \leq 12$$
+-->
 
 ### LoRa Radio Optimization
 
@@ -99,7 +97,7 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 7 \leq SF \leq 12$$
 |        |        | 868.30  | 0.3-5 kbps      |    |
 |        |        | 868.50  |                        |    |
 
-
+<!--
 ### ETSI Limitations
 
 - Restrictions on the maximum time the transmitter can be on or the maximum time a transmitter can transmit per hour
@@ -109,9 +107,9 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 7 \leq SF \leq 12$$
 
     - Listen Before Talk Adaptive Frequency Agility (LBT AFA) transmissions management
 - The current LoRaWAN specification exclusively uses duty-cycled limited transmissions to comply with the ETSI regulations
-
+-->
 ### Duty Cycle Limitation
-- The LoRaWAN enforces a per sub-band duty-cycle limitation
+- The LoRaWAN enforces a per sub-band duty-cycle limitation (ETSI)
 
     - Each time a frame is transmitted in a given sub-band, the time of emission and the on-air duration of the frame are recorded for this sub-band
     - The same sub-band cannot be used again during the next $T_{off}$ seconds where: $$T_{off} = \frac{TimeOnAir}{DutyCyleSubband}- TimeOnAir$$
@@ -131,8 +129,9 @@ A device just transmitted a 0.5 s long frame on one default channel. This channe
 - LoRaWAN
     - Uses LoRa modulation on physical layer
     - Proposes a MAC layer for access control
-    - Specified by LoRa Alliance
+    - Specified by LoRa Alliance (LoRaWAN specification 1.1)
 
+<!--
 ### LoRaWAN Timeline
 
 - Cycleo first introduced LoRa in 2009
@@ -149,9 +148,7 @@ A device just transmitted a 0.5 s long frame on one default channel. This channe
     - Actility, Cisco, Bouygues, IBM, Orange, SK Telecom, KPN, ZTE, Semtech, La Poste, SoftBank, Swisscom, etc.
 
     - LoRaWAN 1.0 specification in 2015
-
-## LoRaWAN Physical Architecture
-
+-->
 ### End-Devices
 \begin{figure}
 \includegraphics[scale=0.5]{./images/lorawan-archi.eps}
@@ -190,7 +187,6 @@ A device just transmitted a 0.5 s long frame on one default channel. This channe
 - Secure bi-directional communication, mobility, and localization
     - Device authentication, message encryption, and frame counter
 
-## LoRaWAN Protocol Architecture
 ### Uplink transmission
 - Uncoordinated data transmission
     - Devices transmit without any coordination on a randomly chosen channel
@@ -202,21 +198,20 @@ LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its ow
 
 ### Device Classes
 - Class A
-
     - Each uplink transmission is followed by two short downlink receive windows
-
     - Adapted for applications that only require downlink communication from the server shortly after the end-device has sent an uplink transmission
 
+\begin{figure}
+		\includegraphics[scale=0.5]{./images/class-a-lorawan.eps}
+\end{figure}
+
 - Class B
-
     - In addition to class A, receive windows are opened at scheduled times
-
     - A time synchronized Beacon is sent by the gateway
-
 - Class C
-
     - Nearly always open receive windows (unless transmitting)
 
+<!--
 ### Messages
 - Uplink messages
 
@@ -243,7 +238,8 @@ LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its ow
 \begin{figure}
 \includegraphics[scale=0.5]{./images/lorawan-rx-window.png}
 \end{figure}
-
+-->
+<!--
 ### MAC Header
 - Format
 
@@ -274,7 +270,7 @@ LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its ow
 
     - Downlink frames, incremented by the NS
 
-
+-->
 ### MAC Commands
 - Commands are exchanged between devices and NS, not visible to the application layer
 - Examples
@@ -285,7 +281,7 @@ LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its ow
     - Sets the maximum aggregated transmit duty-cycle of a device
     - Change to the frequency and the data rate set for the second receive window (RX2) following each uplink
 
-
+<!--
 ### Data Stored in Each device
 - Device address
     - 7 bit network identifier
@@ -306,7 +302,7 @@ LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its ow
 - Activation by Personalization
     - No MAC messages
     - The DevAddr and the two session keys NwkSKey and AppSKey are directly stored into the end-device
-
+-->
 <!--
 ### EU 433MHz ISM Band
 - The LoRaWAN can be used in the ETSI 433-434 MHz band as long as the radio device EIRP is less than 10 mW (or 10 dBm).
@@ -367,7 +363,7 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
     - Systematic periodic uplink (for stationary devices)
     - Uplink on cell change that requires demodulating the gateway specific part of the beacon
 -->
-
+<!--
 ### LoRa Radio Optimization
 
 | Spreading Factor  | Bit Rate (kb/s) |  Sensitivity (dBm) |
@@ -389,7 +385,7 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 
 -  Higher spreading factors lead to better sensitivity and larger coverage
 -  Lower spreading factors lead to higher data rates
-
+-->
 ### Adaptive Data Rate
 
 - Objectives
@@ -434,7 +430,7 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
     - Modulation technique
     - Access method
     - Core network functions
- 
+
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.3]{./images/nb-iot-freq-deployment.eps}
@@ -443,8 +439,8 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 ### NB-IoT Characteristics
 - Radio resource: 1 LTE Physical Resource Block (PRB)
     - Bandwidth: 180 kHz
-    - Duration: 0.5 ms 
-- Multiple access: Downlink OFDMA, Uplink SC-FDMA 
+    - Duration: 0.5 ms
+- Multiple access: Downlink OFDMA, Uplink SC-FDMA
 - Modulation scheme
     - Downlink: QPSK
     - Uplink: QPSK (multi-tone), $\pi$/4-QPSK, or $\pi$/2-BPSK (single-tone)
@@ -455,9 +451,9 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 - Communication channels
     - Broadcast channel
     - Shared control channels (uplink and downlink)
-- Access method 
+- Access method
     - Cell acquisition and registration
-    - Random access procedure 
+    - Random access procedure
     - Scheduling of uplink and downlink transmissions  
 - Localization and mobility management (in idle mode)
 
@@ -465,8 +461,8 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 NB-IoT access is performed in two steps: random access then scheduled transmission
 
 ### Optimizing LTE mechanisms for NB-IoT
- 
-- Coverage extension 
+
+- Coverage extension
     - Repeating the same transmission several times, available on all channels
     - Achieves extra coverage (up to 20 dB compared to GPRS)
 
