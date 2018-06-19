@@ -87,7 +87,7 @@ $$P_{Rx}(i) = P_{Tx} + G_{System} - L_{Channel}(i) - M$$
 $$\text{SNR}(i) = P_{Rx}(i) - N$$
 
 ### Spreading Factor Selection
-- The spreading factor for each end-device is selected using the following matching table (Source: SX1276/77/78/79 Semtech datashet):
+- The spreading factor for each end-device is selected using the following matching table (Source: SX1276/77/78/79 Semtech datasheet):
 
 SNR Interval (dB) | Spreading Factor      |
 ------------------|:---------------------:|
@@ -235,10 +235,10 @@ $$\frac{1}{T_a(l,s)}\times S$$
 - We consider a LoRaWAN network with $N$ end-devices and $r$ gateways
 - We take $G = N \lambda(s) T_a(l,s)$, where $\lambda(s)$ is the packet generation rate of each end-device, and $T_a(l,s)$ the time to transmit a packet of $l$ bytes
 - We assume that a packet is successfully received by one gateway if the corresponding received signal power is higher than the maximum interferer
-    - We consider an additional margin $\Delta$ (3 dB or 6 dB in practice)
-- The probability of successful reception of one packet when $n$ collisions occur is denoted by $P_{cap}(n)$
+    - We consider an additional margin of $\Delta$ dB ($\Delta$ equals 3 dB or 6 dB in practice)
+- The probability of successful reception of one packet when $n$ collisions occur is denoted by $P_{cap}(n,\Delta)$
 - The normalized throughput of the LoRaWAN network is given by:
-$$S = G\exp(-2G) (1+\sum_{n=2}^{N} \frac{(2G)^n}{n!} (1-(1-P_{cap}(n))^r))$$
+$$S = G\exp(-2G) (1+\sum_{n=2}^{N} \frac{(2G)^n}{n!} (1-(1-P_{cap}(n,\Delta))^r))$$
 
 ### Received Packets with Multiple Gateways and Capture Effect
 - The number of received packets per hour per end-device increases from 38 to 52 when considering the capture effect with one gateway, and reaches 84 with 4 gateways
