@@ -24,7 +24,7 @@ P_{Rx} = P_{Tx} + G_{System} - L_{System} - L_{Channel} - M
 - Interference margin
 - Penetration margin:
     - indoor penetration loss (first wall): $\sim 18$ dB (in dense urban environment), $\sim 15$ dB (in urban environment), and $\sim 10-12$ dB (in rural environment)
-    - deep indoor penetration loss (second wall): +3 dB 
+    - deep indoor penetration loss (second wall): +3 dB
 - Protection margin
 
 
@@ -87,7 +87,7 @@ $$P_{Rx}(i) = P_{Tx} + G_{System} - L_{Channel}(i) - M$$
 $$\text{SNR}(i) = P_{Rx}(i) - N$$
 
 ### Spreading Factor Selection
-- The spreading factor for each end-device is selected using the following matching table:
+- The spreading factor for each end-device is selected using the following matching table (Source: SX1276/77/78/79 Semtech datashet):
 
 SNR Interval (dB) | Spreading Factor      |
 ------------------|:---------------------:|
@@ -187,7 +187,7 @@ $$\frac{1}{T_a(l,s)}\times S$$
 
 
 ### Received Packets per Hour
-- The number of received packets per hour decreases after 50 end-devices
+- The number of received packets per hour decreases for more than 50 end-devices
 \begin{figure}
 	\centering
   \includegraphics[scale=0.4]{./images/total-received-packets-nb-users-aloha.eps}
@@ -211,27 +211,47 @@ $$\frac{1}{T_a(l,s)}\times S$$
   \caption*{$l$=50 bytes, SF=7}
 \end{figure}
 
-### Spreading Factors and Packet Reception 
+### Spreading Factors and Packet Reception
+- For 50 end-devices, the average number of received packets per end-device per hour increases from 6 to 106 when SF decreases from 12 to 7
 \begin{figure}
 	\centering
   \includegraphics[scale=0.4]{./images/sf-compare-received-packets-nb-users-aloha.eps}
   \caption*{$l$=50 bytes, $\lambda(s) = \frac{d}{T_a(l,s)}$}
 \end{figure}
-- For 50 end-devices, the average number of received packets per end-device per hour increases from 6 to 106 when SF decreases from 12 to 7
 
 ### Use Case Conclusion
 - Conclude for use case
 
-### Multiple Gateways and Capture Effect
+### Collisions and Capture Effect
+- It is assumed by default that all transmitted signals that collide will fail to be received
+- In practice, the strongest received signal may be successfully received despite the presence of interfering signals $\Rightarrow$ capture effect
+- The capture effect depends on:
+    - The receiver sensitivity
+    - The signal to noise plus interference ratio SINR
+- The presence of multiple receivers favors the capture effect
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/capture-schema.eps}
+\end{figure}
 
+### Applying the Capture Effect for LoRaWAN
+- We consider a LoRaWAN network with $N$ end-devices and $r$ gateways
+- We take $G = N \lambda(s) T_a(l,s)$, where $\lambda(s)$ is the packet generation rate of each end-device, and $T_a(l,s)$ the time to transmit a packet of $l$ bytes
+- We assume that a packet is successfully received by one gateway if the corresponding received signal power is higher than the maximum interferer
+    - We consider an additional margin $\Delta$ (3 dB or 6 dB in practice)
+- The probability of successful reception of one packet when $n$ collisions occur is denoted by $P_{cap}(n)$
+- The normalized throughput of the LoRaWAN network is given by:
+$$S = G\exp(-2G) (1+\sum_{n=2}^{N} \frac{(2G)^n}{n!} (1-(1-P_{cap}(n))^r))$$
+
+### Received Packets with Multiple Gateways and Capture Effect
+- The number of received packets per hour per end-device increases from 38 to 52 when considering the capture effect with one gateway, and reaches 84 with 4 gateways
 \begin{figure}
 	\centering
   \includegraphics[scale=0.4]{./images/capture-effect-aloha.eps}
-  \caption*{$l$=50 bytes, SF=7, $\lambda(s) = \frac{d}{T_a(l,s)}$}
+  \caption*{$l$=50 bytes, SF=7, $\lambda(s) = \frac{d}{T_a(l,s)}$, $\Delta = 6$ dB}
 \end{figure}
-- The total number of received packets starts decreasing after 50 end-devices
 
-
+<!--
 ### Old remove
 - ALOHA with duty cycle
 $$\frac{\delta}{\tau} N \exp(-2 N \frac{\delta}{\tau})$$
@@ -240,3 +260,4 @@ $$\frac{\delta}{\tau} N \exp(-2 N \frac{\delta}{\tau}) (1+\sum_{n=2}^{N} \frac{(
 - ALOHA with multiple receivers and realistic packet capture
 $$\frac{\delta}{\tau} N \exp(-2 N \frac{\delta}{\tau}) (1+\sum_{n=2}^{N} \frac{(2 N \frac{\delta}{\tau})^n}{n!} (1-(1-\frac{K^{n-1}}{n})^r))$$
 with $$K = \frac{1}{2}10^{-\frac{\Delta}{10 \alpha}}$$
+-->
