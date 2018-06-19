@@ -51,7 +51,6 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 7 \leq SF \leq 12$$
 
 | Spreading Factor  | Bit Rate (kb/s) |  Sensitivity (dBm) |
 |:---:|:---:|:---:|
-| 6 | 9.375 | -118 |
 | 7 | 5.468 | -123 |
 | 8 | 3.125 | -126 |
 | 9 | 1.757 | -129 |

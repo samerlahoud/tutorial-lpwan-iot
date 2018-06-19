@@ -42,6 +42,16 @@
 	\includegraphics[scale=0.3]{./images/coverage-tp-map.eps}
 \end{figure}
 
+### LoRa Energy Consumption
+- Sodaq with Microchip LoRaBee (SF=7) sending 30 bytes message every 10 minutes
+    - Sensing temperature, moisture, and light
+    - Lifetime is *one year* on a single charge 1200 mAh battery
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.25]{./images/battery-eguz.png}
+\end{figure}
+
 ### LoRa Cool Services
 
 - View the live dashboard
