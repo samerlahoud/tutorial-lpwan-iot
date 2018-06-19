@@ -43,9 +43,9 @@
 \end{figure}
 
 ### LoRa Energy Consumption
-- Sodaq with Microchip LoRaBee (SF=7) sending 30 bytes message every 10 minutes
+- Sodaq with Microchip LoRaBee (SF=7) sending a 30-byte message every 10 minutes
     - Sensing temperature, moisture, and light
-    - Lifetime is *one year* on a single charge 1200 mAh battery
+    - Lifetime is *one year* on a single charge (1200 mAh battery)
 
 \begin{figure}
 	\centering
@@ -60,7 +60,7 @@
     - Install a MQTT app (MQTT Dashboard on Android)
     - Connect to 212.98.137.194 port 1883
     - Subscribe to topic #
-- Connect with our plants
+- Connect with our plant
     - Twitter: @allo_laplante
     - Hangout: rt.laplante@gmail.com and type `/bot eguz`
 
