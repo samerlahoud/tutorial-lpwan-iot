@@ -37,7 +37,7 @@
     - using simple channel codes:
         - \small LoRaWAN: Hamming code
         - NB-IoT: LTE tail-biting convolution code (TBCC) in the DL; LTE turbo code, or repetition code in the UL
-    - not using higher-order modulations or multiple-input multiple-output (MIMO) transmissions
+    - not using complex modulations or multiple-input multiple-output (MIMO) transmissions
         - \small LoRaWAN: LoRa
         - NB-IoT: QPSK in the DL; QPSK in the UL multi-tone; $\pi$/4-QPSK, or $\pi$/2- BPSK in the UL single-tone
     - supporting only half-duplex operation: no simultaneous transmission and reception

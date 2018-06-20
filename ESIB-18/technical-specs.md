@@ -7,14 +7,14 @@ LoRa is a wireless modulation technique that uses Chirp Spread Spectrum (CSS) in
 \end{block}
 
 - Processing gain given by $g_p = BT$
-- Spreading factor $SF$ given by $log_2 (g_p)$
+- Spreading factor $SF$ given by $\log_2 (g_p)$
 - Considering a coding rate $CR$, the bit-rate is given by:
 $$R_b = SF \cdot \frac{B}{2^{SF}} \cdot \frac{4}{4+CR}$$
 $$\text{with } 1 \leq CR \leq 4$$
 
 
 ### LoRa Symbols
-- $log_2 (g_p)$ bits are encoded by transmitting a single $chirp$ in $g_p$ possible cyclic time shifts
+- $\log_2 (g_p)$ bits are encoded by transmitting a single $chirp$ in $g_p$ possible cyclic time shifts
 - Example: $g_p = 4$ $\Rightarrow$ 2 bits/symbol
 
 \begin{figure}
