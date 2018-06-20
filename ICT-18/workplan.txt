@@ -1,0 +1,13 @@
+- framework : 30 min => SL
+- design rationale : 45 minutes => MH
+
+Tech : 
+- LoRaWAN : 30 minutes => SL
+- NB-IoT : 45 minutes => MH
+
+Perf
+- Link budget : 15 minutes => MH
+- ALOHA for LoRa : 25 minutes => SL
+- Bw based dimensioning : 25 minutes => MH
+
+- Research directions : 25 minutes => MH+SL
