@@ -40,8 +40,6 @@ P_{Rx} = P_{Tx} + G_{System} - L_{System} - L_{Channel} - M
 \end{itemize}
 -->
 
-
-
 ## Coverage of LoRaWAN
 
 ### Evaluation Scenario

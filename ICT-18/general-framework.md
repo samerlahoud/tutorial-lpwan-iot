@@ -120,3 +120,4 @@ Low power refers to the ability of an IoT device to function for many years on a
 Various technologies are currently candidating for LPWA: LoRaWAN, NB-IoT, Sigfox, Wi-SUN, Ingenu, etc.
 
 ### Comparison of LPWAN Technologies
+Test
