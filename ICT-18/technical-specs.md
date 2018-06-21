@@ -429,10 +429,20 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 ## NB-IoT
 
 ### What is NB-IoT?
-- 3GPP radio technology standard: releases R13 and R14
+- NB-IoT is part of the 3GPP LTE specifications: releases R13 and R14
+- NB-IoT leverages the LTE ecosystem to ensure a fast time-to-market:
+    - it reuses many LTE design principles:
+        - \small Multiple access techniques: OFDMA in the DL and SC-FDMA in the UL
+        - Protocol architecture: MAC, RLC, PDCP, RRC...
+        - Security management: authentication, encryption, and integrity protection
+        - Mobility management
+        - Bearer management?
+    - it reuses LTE infrastructure through a software upgrade
+
+### Deployment Flexibility
 - Reutilizes cellular telecommunication bands
     - Three possible operation modes: in-band, guard-band, or standalone
-- Reutilizes cellular telecommunication infrastructure
+
 - Shares common characteristics with LTE networks    
     - Modulation technique
     - Access method
@@ -442,6 +452,11 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 	\centering
 	\includegraphics[scale=0.3]{./images/nb-iot-freq-deployment.eps}
 \end{figure}
+
+### Radio Interface
+
+
+
 
 ### NB-IoT Characteristics
 - Radio resource: 1 LTE Physical Resource Block (PRB)
@@ -506,3 +521,9 @@ NB-IoT access is performed in two steps: random access then scheduled transmissi
 - After data transfer, the device monitors paging occasions until  an active timer expires
 - When the active timer expires, the device re-enters PSM and is unreachable until the next mobile-originated event
 - The tracking area update period is configurable (up to a year)
+
+### Physical Architecture
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.37]{./images/NB-IoT-architecture.pdf}
+\end{figure}

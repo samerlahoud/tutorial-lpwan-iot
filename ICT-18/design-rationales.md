@@ -46,7 +46,7 @@
 - Reduce RF processing complexity and cost through:
     - using one transmit-and-receive antenna
     - not using a duplexer (since only half-duplex operation is supported)
-    - on-chip integrating power amplifier (since transmit power is limited)
+    - on-chip integrating power amplifier $\Rightarrow$ single-chip modem implementation (since transmit power is limited)
 
 ## Reliability Under Extreme Coverage Conditions
 
