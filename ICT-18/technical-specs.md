@@ -146,7 +146,7 @@ A device just transmitted a 0.5 s long frame on one default channel. This channe
 - LoRa Alliance initiated in 2014
     - Actility, Cisco, Bouygues, IBM, Orange, SK Telecom, KPN, ZTE, Semtech, La Poste, SoftBank, Swisscom, etc.
 
-    - LoRaWAN 1.0 specification in 2015
+    - LoRaWAN 1.1 specification in 2018
 
 ## LoRaWAN Physical Architecture
 
@@ -204,6 +204,10 @@ LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its ow
     - Each uplink transmission is followed by two short downlink receive windows
 
     - Adapted for applications that only require downlink communication from the server shortly after the end-device has sent an uplink transmission
+
+\begin{figure}
+	\includegraphics[scale=0.5]{./images/class-a-lorawan.eps}
+\end{figure}
 
 - Class B
 
