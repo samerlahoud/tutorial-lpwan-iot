@@ -48,7 +48,7 @@
     - not using a duplexer (since only half-duplex operation is supported)
     - on-chip integrating power amplifier (since transmit power is limited)
 
-## Reliability under extreme coverage conditions
+## Reliability Under Extreme Coverage Conditions
 
 ### Radio Quality
 - Reliability $\Rightarrow$ bit error rate ($BER$) $\leq$ target $BER$
@@ -270,45 +270,37 @@ CSS provides a low-complexity, low-cost, low-power, yet robust alternative to th
 - In practice, combining two signals is rarely perfect: signal impairments will result in a lower overall processing gain
 - For $N$ between 2 and 16, the ideal gain can be achieved without any visible degradation\footnote{Simulations have been carried out for EC-GSM-IoT in O. Liberg et al., \textit{Cellular Internet of Things - Technologies, Standards, and Performance}. Cambridge, MA, USA: American Press, 2017.}
 
-## Low power consumption
+## Low Power Consumption
 
-### Battery Lifetime
-\begin{itemize}
-\item As most of the IoT applications require infrequent transmission of small data volumes, battery lifetime is increased through:
-
-\begin{itemize}
-    \item optimizing device reachability:
-
-    \begin{itemize}
-        \item \small LoRaWAN: Class A devices open two short DL receive windows only after an uplink transmission.
-        \item[] Class B devices extend Class A by adding scheduled receive windows.
-\vspace{2mm}
-
-        \item NB-IoT: devices monitor paging channels either periodically, or only after a mobile-originated data transfer (for a short period of time).
-        \item[] \textit{extended Discontinuous Reception (eDRX)} and \textit{Power-Saving Mode (PSM)} support these operations.
-    \end{itemize}
-\end{itemize}
-\end{itemize}
-
-### Battery Lifetime
-
-\begin{itemize}
-\item[]
-\begin{itemize}
-\item reducing signaling messages when a device needs to transmit data
-\begin{itemize}
-\item \small LoRaWAN: uncoordinated data transmission
-\item NB-IoT: the device context is maintained during power-saving states, avoiding unnecessary signaling
-\end{itemize}
-\end{itemize}
-\end{itemize}
-
+### Deep Sleep Mode
+- Most of the IoT applications require infrequent transmission of small data volumes
 - Idle devices enter in deep sleep mode. They:
     - shut down their transceiver
     - keep track of time and scheduled events via a low-power oscillator (that is kept running)
 - Devices wake up from deep sleep to:
     - transmit data
     - open receive windows, or monitor paging channels
+
+### Battery Lifetime
+\begin{itemize}
+\item Battery lifetime is increased through:
+
+    \begin{itemize}
+    \item optimizing device reachability:
+    \begin{itemize}
+        \item \small LoRaWAN: Class A devices open two short DL receive windows only after an uplink transmission.
+        \item[] Class B devices extend Class A by adding scheduled receive windows.
+        \item \small NB-IoT: devices monitor paging channels either periodically, or only after a mobile-originated data transfer (for a short period of time).
+        \item[] \textit{extended Discontinuous Reception (eDRX)} and \textit{Power-Saving Mode (PSM)} support these operations.
+    \end{itemize}
+\vspace{2mm}
+    \item reducing signaling messages when a device needs to transmit data
+    \begin{itemize}
+        \item \small LoRaWAN: uncoordinated data transmission
+        \item NB-IoT: the device context is maintained during power-saving states, avoiding unnecessary signaling
+    \end{itemize}
+    \end{itemize}
+\end{itemize}
 
 <!--
 ### extended Discontinuous Reception (eDRX)
@@ -341,7 +333,7 @@ CSS provides a low-complexity, low-cost, low-power, yet robust alternative to th
 - The tracking area update period is configurable (up to a year)
 -->
 
-## High capacity
+## High Capacity
 
 ### Support for Massive Number of Low-Rate Devices
 - Trading off data rate for coverage
