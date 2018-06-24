@@ -112,9 +112,9 @@ MCL \mbox{ (dB) }= P_{Tx} - \underbrace{(SNR_{threshold} -174 + 10\log_{10}(B) +
 \item Increasing $P_{Tx}$, or lowering $NF$, leads to higher device complexity and cost
 \item[] $\Rightarrow$ inadequate solutions
 \item Reducing $B$ leads to lower network capacity $\Rightarrow$ inadequate solution
-\item Reducing $SNR_{threshold}$
+\item Reducing $SNR_{threshold}$ through:
 \begin{itemize}
-\item LoRaWAN: optimised radio modulation that uses spread spectrum $\Rightarrow$ LoRa
+\item LoRaWAN: optimized radio modulation that uses spread spectrum $\Rightarrow$ LoRa
 \item NB-IoT: repetitions and efficient HARQ retransmissions
 \end{itemize}
 \end{itemize}
@@ -288,7 +288,7 @@ CSS provides a low-complexity, low-cost, low-power, yet robust alternative to th
     \begin{itemize}
     \item optimizing device reachability:
     \begin{itemize}
-        \item \small LoRaWAN: Class A devices open two short DL receive windows only after an uplink transmission.
+        \item \small LoRaWAN: Class A devices open two short DL receive windows only after an UL transmission.
         \item[] Class B devices extend Class A by adding scheduled receive windows.
         \item \small NB-IoT: devices monitor paging channels either periodically, or only after a mobile-originated data transfer (for a short period of time).
         \item[] \textit{extended Discontinuous Reception (eDRX)} and \textit{Power-Saving Mode (PSM)} support these operations.
@@ -297,10 +297,19 @@ CSS provides a low-complexity, low-cost, low-power, yet robust alternative to th
     \item reducing signaling messages when a device needs to transmit data
     \begin{itemize}
         \item \small LoRaWAN: uncoordinated data transmission
-        \item NB-IoT: the device context is maintained during power-saving states, avoiding unnecessary signaling
+        \item NB-IoT: suspend/resume (rather than release/re-establish) user plane connection, or transfer data over non-radio signaling
     \end{itemize}
     \end{itemize}
 \end{itemize}
+
+<!--
+Resume user plane connection: the device context is maintained during power-saving states, avoiding unnecessary signaling.
+
+Data transfer (IP and non-IP) over NAS (DoNAS) signaling: a user plane connection needs not to be established.
+
+[IP packets] the MME extracts the IP packets and forwards them to the S-GW which in turn forwards them to the P-GW.
+[Non-IP packets] Non-IP Data Delivery (NIDD) - the MME extracts the data and forwards it to the SCEF (Service Capability Exposure Function)
+-->
 
 <!--
 ### extended Discontinuous Reception (eDRX)

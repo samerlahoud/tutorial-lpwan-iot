@@ -433,10 +433,10 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 - NB-IoT leverages the LTE ecosystem to ensure a fast time-to-market:
     - it reuses many LTE design principles:
         - \small Multiple access techniques: OFDMA in the DL and SC-FDMA in the UL
-        - Protocol architecture: MAC, RLC, PDCP, RRC...
+        - Protocol architecture: MAC, RLC, RRC...
         - Security management: authentication, encryption, and integrity protection
         - Mobility management
-        - Bearer management?
+        - Bearer management
     - it reuses LTE infrastructure through a software upgrade
 
 ### Deployment Flexibility
@@ -466,11 +466,14 @@ WCDMA or LTE network, one or more of the GSM carriers can be used to carry IoT t
 a straightforward process
 - In-band: An NB-IoT carrier is a self-contained network
 element that uses a single physical resource block (PRB).
-- For in-band deployments with no IoT traffic present, the PRB can be used by LTE for other purposes, as the infrastructure and spectrum usage of LTE and NB-IoT are fully integrated.
 
 ### Ericsson - Deployment Flexibility
+- For in-band deployments with no IoT traffic present, the PRB can be used by LTE for other purposes, as the infrastructure and spectrum usage of LTE and NB-IoT are fully integrated.
 - As NB-IoT can be deployed in GSM spectrum, within an LTE carrier, or in an LTE or WCDMA guard band, it provides excellent deployment flexibility related to spectrum allocation, which in
 turn facilitates migration.
+- Stand-alone operation
+– Operation in LTE "guard band"
+– Operation within wider LTE carrier (aka inband)
 
 ### Ericsson
 - With a carrier bandwidth of just 200kHz (the equivalent of a GSM carrier), an NB-IoT carrier can be deployed within an LTE carrier, or in an LTE or WCDMA guard band.
@@ -503,11 +506,67 @@ directly listen for pages before sleeping again.
 - In the uplink, data rates can be increased up to 12 times
 by allocating devices with a multi-tone or multi-subcarrier rather than a single tone, for example.
 - NB-IoT has been designed with good multiplexing and adaptable data rates and so it will be able to meet predicted capacity requirements.
+- Capacity is scalable by adding additional NB-IoT carriers
 
-### Radio Interface
+### [IETF] NB-IoT Overview
+- L1:
+    - FDD only & half-duplex User Equipment (UE)
+    - Narrow band physical downlink channels over 180 kHz (1 PRB)
+    - Preamble based Random Access on 3.75 kHz
+    - Narrow band physical uplink channel on single-tone (15 kHz or 3.75 kHz) or multi-tone (n*15 kHz, n = [3,6,12])
+    - Maximum transport block size (TBS) 680 bits in downlink, 1000 bits in uplink
+- L2, L3:
+    - Single-process, adaptive and asynchronous HARQ for both UL and DL
+    - Data over Non Access Stratum, or data over user plane with RRC Suspend/Resume
+    - MTU size 1500 bytes
+    - Extended Idle mode DRX with up to 3 h cycle, Connected mode DRX with up to 9.216 s cycle
+    - Multi Physical Resource Block (PRB)/Carrier support
+    
+### [IETF] Relevant L1 Characteristics
+- Highest modulation scheme QPSK
+- NB-IoT currently specified on licensed bands only
+– Narrowband operation (180 kHz bandwidth)
+    - in-band (LTE), guard band (LTE) or standalone operation mode (e.g. refarm the GSM carrier at 850/900 MHz)
+- Half Duplex FDD operation mode
+- Maximum transmission block size 680 bits in DL, 1000 bits in UL (In Rel-13)
+- Use repetitions for coverage enhancements, up to 2048 reps in DL, 128 reps in UL data channels
+- $>$ 10 year battery life time
 
+### [IETF] Relevant L2 Characteristics
+- Supported MTU size is 1500 bytes for both, NAS and AS solutions
+- Error correction, concatenation, segmentation and reassembly in RLC Acknowledged Mode
+    - Error correction through ARQ
+    - Segmentation to segment the SDUs from PDCP into the transmission block sizes for physical layer
+- Non-access stratum (NAS) and Access stratum (AS)
+    - NAS is a set of protocols used to convey non-radio signaling between the UE and the core network, passing transparently through radio network. The responsibilities of NAS include authentication, security control, mobility management and bearer management
+    - AS is the functional layer below NAS, working between the UE and radio network. It is responsible for transporting data over wireless connection and managing radio resources.
+    - In NB-IoT, an optimization for data transfer (IP and non-IP) over NAS (DoNAS) signaling is also supported,
+    - Also AS optimization called RRC suspend/resume can be used to minimize the signaling needed to suspend/resume user plane connection.
+    - Non-IP support, which enables the usage of other delivery protocols than IP as well
 
-
+### [IETF] Relevant L2 Characteristics
+- L2 security
+    - Authentication between UE and core network.
+    - Encryption and integrity protection of both AS and NAS signaling.
+    - Encryption of user plane data between the UE and radio network.
+    - Key management mechanisms to effectively support mobility and UE connectivity mode changes.
+    
+### [IETF] Summary for NB-IoT
+| | NB-IoT |
+|:---------------------:|:-----------------------------------------------:|
+| Deployment | In-band & Guard-band LTE, standalone | 
+| Coverage (MCL) | 164 dB |
+| Downlink | OFDMA, 15 KHz tone spacing, TBCC, 1 Rx |
+| Uplink | Single tone: 15 KHz and 3.75 KHz spacing, SC-FDMA: 15 KHz tone spacing, Turbocode |
+| Bandwidth | 180 KHz |
+| Highest modulation | QPSK |
+| Link peak rate (DL/UL) | DL: $\sim$ 30 kbps UL: $\sim$ 60 kbps |
+| Duplexing | HD FDD |
+| MTU size | 1500 Bytes |
+| TBS | Max. TBS 680 bits in DL, 1000 bits in UL, min. 16 bits |
+| Repetitions | Up to 2048 repetitions in DL and 128 repetitions in UL data channels |
+| Power saving | PSM, extended Idle mode DRX with up to 3 h cycle, Connected mode DRX with up to 10.24 s cycle |
+| UE Power class | 23 dBm or 20 dBm |
 
 ### NB-IoT Characteristics
 - Radio resource: 1 LTE Physical Resource Block (PRB)
@@ -576,9 +635,19 @@ NB-IoT access is performed in two steps: random access then scheduled transmissi
 ### Physical Architecture
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.37]{./images/NB-IoT-architecture.pdf}
+	\includegraphics[scale=0.37]{./images/NB-IoT-architecture+SCEF.pdf}
 \end{figure}
+
+<!--
+The Service Capability Exposure Function (SCEF) is the key entity within the 3GPP architecture for service capability exposure that provides a means to securely expose the services and capabilities provided by 3GPP network interfaces.
+Initially, only device triggers were defined. Later, more capabilities were added, mostly for the SCEF to do monitoring and provide notifications of desired events to the AS (Application Server) regarding a UE.
+-->
+
 
 ### Ericsson
 - The access procedures and control channels for NB-IoT are new.
-- 
+- To help meet the requirement of low power, the power-hungry protocol to establish IP data bearers has been replaced by extending the NAS protocol to allow small amounts of data to be transferred over the control plane. The IP stack is not necessary, so this type of transfer has been named NIDD (Non-IP Data Delivery).
+- Data transfer (IP and non-IP) over NAS (DoNAS) signaling: 
+[IP packets] the MME extracts the IP packets and forwards them to the S-GW which in turn forwards them to the P-GW.
+- [Non-IP packets] Non-IP Data Delivery (NIDD) - the MME extracts the data and forwards it to the SCEF (Service Capability Exposure Function)
+
