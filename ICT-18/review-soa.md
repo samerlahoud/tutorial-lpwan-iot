@@ -1,12 +1,3 @@
-## New model from LoRa
-- Empowering Low-Power Wide Area Networks in Urban Settings
-- LoRa Backscatter: Enabling The Vision of Ubiquitous Connectivity
-- Duty-Cycle-Aware Real-Time Scheduling of Wireless Links in Low Power WANs
-- Low Power Radiolocation through Long Range Wide Area Networks
-- Data Recovery through Application Layer Coding for LoRaWAN
-- Integration of LoRaWAN and 4G/5G for the Industrial Internet of Things
-- Distributed Learning for Low Latency Machine Type Communication in a Massive Internet of Things
-
 ## Perf Analysis
 
 ### Global :
@@ -35,3 +26,12 @@
 
 ### Comparison
 - Coverage and Capacity Analysis of Sigfox, LoRa, GPRS, and NB-IoT
+
+## New model from LoRa
+- Empowering Low-Power Wide Area Networks in Urban Settings
+- LoRa Backscatter: Enabling The Vision of Ubiquitous Connectivity
+- Duty-Cycle-Aware Real-Time Scheduling of Wireless Links in Low Power WANs
+- Low Power Radiolocation through Long Range Wide Area Networks
+- Data Recovery through Application Layer Coding for LoRaWAN
+- Integration of LoRaWAN and 4G/5G for the Industrial Internet of Things
+- Distributed Learning for Low Latency Machine Type Communication in a Massive Internet of Things
