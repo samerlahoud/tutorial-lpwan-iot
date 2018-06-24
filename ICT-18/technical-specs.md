@@ -453,6 +453,57 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 	\includegraphics[scale=0.3]{./images/nb-iot-freq-deployment.eps}
 \end{figure}
 
+### Ericsson - Deployment Flexibility
+- As a finite and scarce natural resource, spectrum needs to be used as efficiently as possible.
+- To achieve spectrum efficiency, NB-IoT has been designed
+with a number of deployment options for GSM, WCDMA, or LTE spectrum.
+    - standalone – replacing a GSM carrier with an NB-IoT carrier
+    - in-band – through flexible use of part of an LTE carrier
+    - guard band – either in WCDMA or LTE
+- Starting with standalone: By offloading some GSM/GPRS traffic to the
+WCDMA or LTE network, one or more of the GSM carriers can be used to carry IoT traffic.
+- Migration to in-band: Refarming GSM spectrum for use by LTE is
+a straightforward process
+- In-band: An NB-IoT carrier is a self-contained network
+element that uses a single physical resource block (PRB).
+- For in-band deployments with no IoT traffic present, the PRB can be used by LTE for other purposes, as the infrastructure and spectrum usage of LTE and NB-IoT are fully integrated.
+
+### Ericsson - Deployment Flexibility
+- As NB-IoT can be deployed in GSM spectrum, within an LTE carrier, or in an LTE or WCDMA guard band, it provides excellent deployment flexibility related to spectrum allocation, which in
+turn facilitates migration.
+
+### Ericsson
+- With a carrier bandwidth of just 200kHz (the equivalent of a GSM carrier), an NB-IoT carrier can be deployed within an LTE carrier, or in an LTE or WCDMA guard band.
+- The link budget of NB-IoT has a 20dB improvement over LTE Advanced. 
+- In the uplink, the specification of NB-IoT allows for many
+devices to send small amounts of data in parallel.
+
+- Compared with GPRS, WCDMA and LTE, the link budget of NB-IoT has a 20dB margin, and use cases tend to operate with lower data rates.
+- The improved link budget enables it to reach IoT devices in signal-challenged locations such as basements, tunnels, and remote rural areas.
+- In technical terms, the coverage target of NB-IoT has a link budget of 164dB. The 20dB improvement corresponds to a sevenfold increase in coverage area for an open environment, or roughly the loss that occurs when a signal penetrates the outer wall of a building.
+
+### Ericsson - DRX-C
+- Like LTE, NB-IoT uses two main RRC protocol states: RRC_idle and RRC_connected. In RRC_idle, devices save power, and resources that would be used to send measurement reports and uplink reference signals are freed up. In RRC_connected, devices can receive or send data directly.
+- Discontinuous reception (DRX) is the process through which networks and devices negotiate when devices can sleep and can be applied in both RRC_idle and RRC_connected. 
+- For RRC_connected, the application of DRX reduces the number of measurement reports devices send and the number of times downlink control channels are monitored, leading to battery savings. 3GPP release 12 supports a maximum DRX cycle of 2.56 seconds, which will be extended to 10.24 seconds in release 13 (eDRX).
+- In RRC_idle, devices track area updates and listen to paging messages. To set up a connection with an idle device, the network pages it. 
+- Power consumption is much lower for idle devices than for connected ones, as listening for pages does not need to be performed as often as monitoring the downlink control channel.
+
+### Ericsson - PSM
+- It enabled devices in RRC_idle to enter a deep sleep in which pages are not listened for, nor are mobility-related measurements performed. 
+- Devices in PSM perform tracking area updates after which they
+directly listen for pages before sleeping again. 
+- PSM and eDRX complement each other and can support battery lifetimes in excess of 10 years for different reachability requirements, transmission frequencies of different applications, and mobility.
+
+### Ercisson - Capacity Design
+- The achievable data rate depends on the channel quality (signal to noise ratio), and the quantity of allocated resources (bandwidth).
+- To enable such small bandwidth allocations, NB-IoT uses tones or subcarriers instead of resource blocks.
+- The subcarrier bandwidth for NB-IoT is 15kHz, compared with a resource block, which has an effective bandwidth of 180kHz. 
+- Each device is scheduled on one or more subcarriers in the uplink, and devices can be packed even closer together by decreasing the subcarrier spacing to 3.75kHz.
+- In the uplink, data rates can be increased up to 12 times
+by allocating devices with a multi-tone or multi-subcarrier rather than a single tone, for example.
+- NB-IoT has been designed with good multiplexing and adaptable data rates and so it will be able to meet predicted capacity requirements.
+
 ### Radio Interface
 
 
@@ -527,3 +578,7 @@ NB-IoT access is performed in two steps: random access then scheduled transmissi
 	\centering
 	\includegraphics[scale=0.37]{./images/NB-IoT-architecture.pdf}
 \end{figure}
+
+### Ericsson
+- The access procedures and control channels for NB-IoT are new.
+- 

@@ -274,10 +274,10 @@ CSS provides a low-complexity, low-cost, low-power, yet robust alternative to th
 
 ### Deep Sleep Mode
 - Most of the IoT applications require infrequent transmission of small data volumes
-- Idle devices enter in deep sleep mode. They:
+- Idle devices enter a deep sleep mode. They:
     - shut down their transceiver
     - keep track of time and scheduled events via a low-power oscillator (that is kept running)
-- Devices wake up from deep sleep to:
+- Devices wake up from deep sleep mode to:
     - transmit data
     - open receive windows, or monitor paging channels
 
@@ -356,7 +356,7 @@ C = B\log_2 (1+\frac{S}{N}) = B\log_2 (1+\frac{S}{N_0B})
 
 \begin{itemize}
 \item[] $C$ no longer depends on $B$
-\item[] $\Rightarrow$ allocate a single tone (subcarrier) for devices in bad coverage to avoid resource wastage
+\item[] $\Rightarrow$ allocate a single tone (subcarrier) for devices in bad coverage to increase network capacity without loss of performance
 \end{itemize}
 
 ## Simplified Network Topology and Deployment
