@@ -220,6 +220,8 @@ $$\frac{1}{T_a(l,s)}\times S$$
 ### Use Case Conclusion
 - Conclude for use case
 
+### Introduce Data Extraction Rate
+
 ### Collisions and Capture Effect
 - It is assumed by default that all transmitted signals that collide will fail to be received
 - In practice, the strongest received signal may be successfully received despite the presence of interfering signals $\Rightarrow$ capture effect

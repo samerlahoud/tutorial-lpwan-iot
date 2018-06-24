@@ -23,6 +23,7 @@
 - Mathematical Model of LoRaWAN Channel Access with Capture Effect
 - LoRa for the Internet of Things
 - Modelling and Analysis of Low-Power Wide-Area Networks
+- Performance Evaluation of LoRa Networks in a Smart City Scenario
 
 ### Comparison
 - Coverage and Capacity Analysis of Sigfox, LoRa, GPRS, and NB-IoT
@@ -35,3 +36,4 @@
 - Data Recovery through Application Layer Coding for LoRaWAN
 - Integration of LoRaWAN and 4G/5G for the Industrial Internet of Things
 - Distributed Learning for Low Latency Machine Type Communication in a Massive Internet of Things
+- Improving Reliability and Scalability of LoRaWANs Through Lightweight Scheduling
