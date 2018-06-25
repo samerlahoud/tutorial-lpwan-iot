@@ -50,12 +50,18 @@
 	\centering
   \includegraphics[scale=0.25]{./images/soa-fair-sf.png}
 \end{figure}
+<!--
+### Joint Assignment of Transmit Power and Spreading Factors\footnote{Reynders, Brecht, Wannes Meert, and Sofie Pollin. "Power and spreading factor control in low power wide area networks." 2017 IEEE International Conference on Communications (ICC). IEEE, (2017)}\footnote{Abdelfadeel, Khaled Q., Victor Cionca, and Dirk Pesch. "Fair Adaptive Data Rate Allocation and Power Control in LoRaWAN." IEEE 19th International Symposium on A World of Wireless, Mobile and Multimedia Networks (WoWMoM), 2018.}
 
-### Joint Assignment of Transmit Power and Spreading Factors\footnote{Abdelfadeel, Khaled Q., Victor Cionca, and Dirk Pesch. "Fair Adaptive Data Rate Allocation and Power Control in LoRaWAN." IEEE 19th International Symposium on A World of Wireless, Mobile and Multimedia Networks (WoWMoM), 2018.}
-
-
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.25]{./images/soa-power-ctrl.png}
+	\hfill
+	\includegraphics[scale=0.25]{./images/soa-power-ctrl-der.png}
+\end{figure}
+-->
 ### Impact of Confirmed Messages\footnote{Van den Abeele, Floris, et al. "Scalability analysis of large-scale LoRaWAN networks in ns-3." IEEE Internet of Things Journal 4.6 (2017)}
-- Repeating the messages or using confirmed mode increases the PDR only when the traffic load is very low
+- Repeating unconfirmed messages or using confirmed mode increases the PDR only when the traffic load is very low
 - For high traffic load, the PDR of confirmed mode is limited by the duty cycle and half-duplex transmission
 \begin{figure}
 	\centering
@@ -80,8 +86,15 @@
 	\includegraphics[scale=0.55]{./images/soa-coverage-suburban.png}
 \end{figure}
 
-### Energy
-- Modeling the Energy Performance of LoRaWAN
+### Energy Model for LoRaWAN Devices\footnote{Casals, Lluís, et al. "Modeling the Energy Performance of LoRaWAN." Sensors 17.10 (2017)}
+- Model the current consumption of different LoRaWAN end-devices
+    - Identify the different states of the end-device, and measure the respective current consumption and duration (*e.g.,* wake up, transmission, receive window, sleep)
+- Example of using the model: collisions increase the energy required per delivered payload bit especially for confirmed mode
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.35]{./images/soa-energy-cost.png}
+\end{figure}
 
 ## Going Beyond LoRaWAN
 ### Research Approaches for Improving LoRaWAN

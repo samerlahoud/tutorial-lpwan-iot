@@ -11,13 +11,13 @@
 - {R} LoRaWAN in the Wild
 
 ### Fairness :
-- Fair Adaptive Data Rate Allocation and Power Control in LoRaWAN
+- {D} Fair Adaptive Data Rate Allocation and Power Control in LoRaWAN
 
 ### Delay
 - {R} Analysis of the delay of confirmed downlink frames in Class B of LoRaWAN
 
 ### Energy
-- Modeling the Energy Performance of LoRaWAN
+- {D} Modeling the Energy Performance of LoRaWAN
 
 ### Capacity
 - 2D Time-frequency interference modelling using stochastic geometry for performance evaluation in Low-Power Wide-Area Networks
