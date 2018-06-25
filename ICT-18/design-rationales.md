@@ -302,46 +302,6 @@ CSS provides a low-complexity, low-cost, low-power, yet robust alternative to th
     \end{itemize}
 \end{itemize}
 
-<!--
-Resume user plane connection: the device context is maintained during power-saving states, avoiding unnecessary signaling.
-
-Data transfer (IP and non-IP) over NAS (DoNAS) signaling: a user plane connection needs not to be established.
-
-[IP packets] the MME extracts the IP packets and forwards them to the S-GW which in turn forwards them to the P-GW.
-[Non-IP packets] Non-IP Data Delivery (NIDD) - the MME extracts the data and forwards it to the SCEF (Service Capability Exposure Function)
--->
-
-<!--
-### extended Discontinuous Reception (eDRX)
-- How often an idle device monitors paging channels?
-- An eDRX cycle is the time period between two paging occasions the device needs to monitor (up to 2 h, 54 min, and 46 s)
-- In between these two occasions, the device is assumed to be in deep sleep mode
-- eDRX cycle is negotiated on a per device basis
-
-\begin{figure}
-	\centering
-	\includegraphics[scale=0.33]{./images/eDRX.pdf}
-    \vspace{-2mm}
-	\caption*{Two possible eDRX cycle configurations}
-\end{figure}
-
-### Power-Saving Mode (PSM)
-- In PSM, an idle device does not monitor paging channels $\Rightarrow$ unreachability
-- A device leaves PSM to send application data or a periodic tracking area update message
-\vspace{-2mm}
-\begin{figure}
-	\centering
-	\includegraphics[scale=0.33]{./images/PSM.pdf}
-    \vspace{-2mm}
-	\caption*{Operation in PSM including periodic TAU}
-\end{figure}
-
-### Power-Saving Mode (PSM)
-- After data transfer, the device monitors paging occasions until  an active timer expires
-- When the active timer expires, the device re-enters PSM and is unreachable until the next mobile-originated event
-- The tracking area update period is configurable (up to a year)
--->
-
 ## High Capacity
 
 ### Support for Massive Number of Low-Rate Devices

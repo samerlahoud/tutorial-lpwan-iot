@@ -448,7 +448,7 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 \end{figure}
 
 ### Radio Interface
-- Channel bandwidth: 180 kHz $\equiv$ 1 LTE Physical Resource Block (PRB)
+- Channel bandwidth: 180 kHz $\equiv$ 1 LTE Physical Resource Block (PRB) in the frequency domain
 - Transmission schemes: 
     - OFDMA (subcarrier spacing $\Delta f = 15$ kHz) in the DL
     - SC-FDMA ($\Delta f = 15$ kHz or 3.75 kHz) in the UL
@@ -462,19 +462,30 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
         - 3.75 kHz (1 subcarrier) over 32 ms
 - Maximum Transport Block Size (TBS):
     - 680 bits (R13), or 2536 bits (R14), mapped over up to 10 subframes (10 ms) in the DL
-    - 1000 bits (R13), or 2536 bits (R14), mapped over up to 10 RUs in the UL
 
 ### Radio Interface
-- Modulations:
-    - QPSK in the DL
-    - QPSK (for multi-tone transmission), $\pi$/4-QPSK, or $\pi$/2-BPSK (for single-tone transmission) in the UL
-- Channel codes:
-    - LTE tail-biting convolution code (TBCC) in the DL
-    - LTE turbo code (for data transfer) and repetition code (for HARQ feedback) in the UL
-- Repetitions for coverage enhancement:
-    - up to 2048 repetitions in the DL and up to 128 repetitions in the UL
-    - 20 dB coverage enhancement over GPRS $\Rightarrow$ sevenfold increase in coverage area (in an open environment), or (deep) indoor penetration
-    - Transmission gaps can be configured to avoid long transmissions
+\begin{itemize}
+\item[]
+\begin{itemize}
+    \item 1000 bits (R13), or 2536 bits (R14), mapped over up to 10 RUs in the UL
+\end{itemize}
+\item Modulations:
+\begin{itemize}
+    \item QPSK in the DL
+    \item QPSK (for multi-tone transmission), $\pi$/4-QPSK, or $\pi$/2-BPSK (for single-tone transmission) in the UL
+\end{itemize}
+\item Channel codes:
+\begin{itemize}
+    \item LTE tail-biting convolution code (TBCC) in the DL
+    \item LTE turbo code (for data transfer) and repetition code (for HARQ feedback) in the UL
+\end {itemize}
+\item Repetitions for coverage enhancement:
+\begin{itemize}
+    \item up to 2048 repetitions in the DL and up to 128 repetitions in the UL
+    \item 20 dB coverage enhancement over GPRS $\Rightarrow$ sevenfold increase in coverage area (in an open environment), or (deep) indoor penetration
+    \item Transmission gaps can be configured to avoid long transmissions
+\end {itemize}
+\end {itemize}
 
 ### Device Reachability
 - Idle devices monitor paging channels either periodically, or only after a mobile-originated data transfer (for a short period of time)
@@ -509,13 +520,13 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 - When the active timer expires, the device re-enters PSM and is unreachable until the next mobile-originated event
 - The tracking area update period is configurable on a per-device basis (up to a year)
 
-### Cell Access?
-- When a UE accesses a cell, it follows the same principle as for LTE: 
-    - It first searches a cell on an appropriate frequency
-    - reads the associated SIB information
-    - and starts the random access procedure to establish an RRC connection. 
-- With this connection it registers with the core network via the NAS layer, if not already done. 
-- After the UE has returned to the RRC_IDLE state, it may either use again the random access procedure if it has mobile originated data to send, or waits until it gets paged
+### Cell Access
+- From idle to connected mode:
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.4]{./images/cell-access.pdf}
+\end{figure}
 
 ### Data Transport
 - Signaling messages, that are required before a device transmits data, are reduced:
@@ -523,7 +534,7 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
         - \small Suspend/resume user plane connection (rather than release/re- establish user plane connection)
         - The device context is maintained at the UE, eNB, and MME during idle mode
     - Control Plane CIoT EPS optimization procedure
-        - \small Transfer data over non-radio signaling (DoNAS, Data over Non-Access Stratum) $\Rightarrow$ no need for user plane connection
+        - \small Transfer data over non-radio signaling (DoNAS, Data over Non-Access Stratum)
         - The IP packets are encapsulated in non-radio signaling messages and are sent to the MME
         - The MME extracts the IP packets and forwards them to the S-GW
 
@@ -589,20 +600,21 @@ the minimum time gap between the last DCI subframe and the first scheduled NPDSC
 \end{itemize}
 - Power control for UL data channels:
     - If the number of repetitions is greater than 2, the transmit power $P$ is the maximum device power: $P = P_{max}$
-        - \small R13 defined two device power classes: $P_{max} = 20$ dBm and $P_{max} = 23$ dBm
-        - R14 introduced one additional device power class: $P_{max} = 14$ dBm
-    - If the number of repetitions is 1 or 2, the transmit power is determined by
-\vspace{-3mm}
+        - \small R13 defined two device power classes: $P_{max} =$ 20 and 23 dBm
+        - R14 introduced one additional device power class: $P_{max} =$ 14 dBm
+    - If the number of repetitions is 1 or 2, the transmit power is determined by:
 \begin{equation*}
-P \mbox{(dBm)} = \max \left\{ P_{max}, P_{target} + \alpha L + 10 \log_{10} (M)\right\}
+P \mbox{ (dBm)} = \max \left\{ P_{max}, P_{target} + \alpha L + 10 \log_{10} (M)\right\}
 \end{equation*}
 
 \begin{itemize}
+\item[]
+\begin{itemize}
 \item[] where $P_{target}$ is the target received power, $L$ is the estimated path loss, $\alpha$ is a path loss adjustment factor, and $M$ is a bandwidth adjustment factor
+\end{itemize}
 \end{itemize}
 
 ### Power Control
-
 - $M$ relates $P_{target}$ to target SNR
 
 | Bandwidth (kHz) | $M$ | 
@@ -613,25 +625,15 @@ P \mbox{(dBm)} = \max \left\{ P_{max}, P_{target} + \alpha L + 10 \log_{10} (M)\
 | 90 | 6 | 
 | 180 | 12 |
 
-- $P_{max}$, $P_{target}$, and $\alpha$ are provided by higher-layer configuration signaling.
+- $P_{max}$, $P_{target}$, and $\alpha$ are provided by higher-layer configuration signaling
 
 ### Leveraging LTE mechanisms in NB-IoT
-- Communication channels
-    - Broadcast channel: Narrowband Physical Broadcast Channel (NPBCH)
-    - Control channels (uplink and downlink):
-        - \small Narrowband Physical Downlink Control Channel (NPDCCH): UL grant information, DL scheduling information, Indicator of paging or SI update.
-        - Narrowband Physical Random Access Channel (NPRACH)
-- Access method
-    - Cell acquisition and registration
-    - Random access procedure
-    - Scheduling of uplink and downlink transmissions  
 - Localization and mobility management (in idle mode)
 
-#### NB-IoT Access Method
-NB-IoT access is performed in two steps: random access then scheduled transmission
 
 ### Physical Architecture
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.37]{./images/NB-IoT-architecture+SCEF.pdf}
 \end{figure}
+
