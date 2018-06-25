@@ -96,6 +96,17 @@
 	\includegraphics[scale=0.35]{./images/soa-energy-cost.png}
 \end{figure}
 
+### Modeling The Macro-Diversity Gain\footnote{Song, Qipeng, Xavier Lagrange, and Loutfi Nuaymi. "Evaluation of Macro Diversity Gain in Long Range ALOHA Networks." IEEE Communications Letters 21.11 (2017)}
+- End-device and gateway positions form a stationary Poisson point process
+- The transmit success probability is written $p_s = P  \{SINR = \frac{P_r}{I+N} \approx \frac{P_r}{I} \geq \theta\}$
+- $r$ refers to the distance between the transmitter and the receiver, $\gamma$ is the path-loss exponent, $H$ is an exponentially distributed random variable with unit mean, $\chi$ is a zero-mean Gaussian r.v. with variance $\sigma^2$
+$$p_s(r) = E_\chi \[ \exp(-p \lambda_m \pi A \theta^{\frac{2}{\gamma}} e^{\frac{2\sigma^2}{\gamma^2}}r^2)\]$$
+
+### Other
+- Modelling and Analysis of Low-Power Wide-Area Networks
+- Low Power Wide Area Network Analysis: Can LoRa Scale?
+- Modeling dense urban wireless networks with 3D stochastic geometry
+
 ## Going Beyond LoRaWAN
 ### Research Approaches for Improving LoRaWAN
 - physical Layer

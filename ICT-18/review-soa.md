@@ -7,8 +7,10 @@
 ### Global :
 - {D} Scalability analysis of large-scale LoRaWAN networks in ns-3
 - {D} Do LoRa Low-Power Wide-Area Networks Scale
+- {D} LoRa for the Internet of Things
 - {D} Performance Evaluation of LoRa Considering Scenario Conditions
 - {R} LoRaWAN in the Wild
+- Performance Evaluation of LoRa Networks in a Smart City Scenario
 
 ### Fairness :
 - {D} Fair Adaptive Data Rate Allocation and Power Control in LoRaWAN
@@ -21,13 +23,14 @@
 
 ### Capacity
 - 2D Time-frequency interference modelling using stochastic geometry for performance evaluation in Low-Power Wide-Area Networks
-- An Analytical Model for S-ALOHA Performance Evaluation in M2M Networks
 - Mathematical model of LoRaWAN channel access
-- Does Bidirectional Traffic Do More Harm Than Good in LoRaWAN Based LPWA Networks
 - Mathematical Model of LoRaWAN Channel Access with Capture Effect
-- LoRa for the Internet of Things
+- Does Bidirectional Traffic Do More Harm Than Good in LoRaWAN Based LPWA Networks
+
+- Evaluation of Macro Diversity Gain in Long Range ALOHA Networks
 - Modelling and Analysis of Low-Power Wide-Area Networks
-- Performance Evaluation of LoRa Networks in a Smart City Scenario
+- Low Power Wide Area Network Analysis: Can LoRa Scale?
+- Modeling dense urban wireless networks with 3D stochastic geometry
 
 ### Comparison
 - Coverage and Capacity Analysis of Sigfox, LoRa, GPRS, and NB-IoT
