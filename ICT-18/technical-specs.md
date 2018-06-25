@@ -429,185 +429,62 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 ## NB-IoT
 
 ### What is NB-IoT?
-- NB-IoT is part of the 3GPP LTE specifications: releases R13 and R14
-- NB-IoT leverages the LTE ecosystem to ensure a fast time-to-market:
+- NB-IoT is part of the 3GPP LTE specifications: Releases 13 and 14
+- NB-IoT adapts and leverages the LTE ecosystem:
     - it reuses many LTE design principles:
-        - \small Multiple access techniques: OFDMA in the DL and SC-FDMA in the UL
-        - Protocol architecture: MAC, RLC, RRC...
-        - Security management: authentication, encryption, and integrity protection
-        - Mobility management
+        - \small Transmission schemes
+        - Protocol architecture
         - Bearer management
+        - Security management
+        - Mobility management
     - it reuses LTE infrastructure through a software upgrade
 
 ### Deployment Flexibility
-- Reutilizes cellular telecommunication bands
-    - Three possible operation modes: in-band, guard-band, or standalone
-
-- Shares common characteristics with LTE networks    
-    - Modulation technique
-    - Access method
-    - Core network functions
+- NB-IoT supports three operation modes: in-band (LTE), guard-band (LTE), and standalone ($e.g.,$ refarm the GSM carrier)
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.3]{./images/nb-iot-freq-deployment.eps}
+	\includegraphics[scale=0.18]{./images/NB-IoT-operation-modes.pdf}
 \end{figure}
 
-### Ericsson - Deployment Flexibility
-- As a finite and scarce natural resource, spectrum needs to be used as efficiently as possible.
-- To achieve spectrum efficiency, NB-IoT has been designed
-with a number of deployment options for GSM, WCDMA, or LTE spectrum.
-    - standalone – replacing a GSM carrier with an NB-IoT carrier
-    - in-band – through flexible use of part of an LTE carrier
-    - guard band – either in WCDMA or LTE
-- Starting with standalone: By offloading some GSM/GPRS traffic to the
-WCDMA or LTE network, one or more of the GSM carriers can be used to carry IoT traffic.
-- Migration to in-band: Refarming GSM spectrum for use by LTE is
-a straightforward process
-- In-band: An NB-IoT carrier is a self-contained network
-element that uses a single physical resource block (PRB).
+### Radio Interface
+- Channel bandwidth: 180 kHz $\equiv$ 1 LTE Physical Resource Block (PRB)
+- Transmission schemes: 
+    - OFDMA (subcarrier spacing $\Delta f = 15$ kHz) in the DL
+    - SC-FDMA ($\Delta f = 15$ kHz or 3.75 kHz) in the UL
+- Smallest schedulable unit: 
+    - 1 PRB = 180 kHz (12 subcarriers) over 1 ms (1 subframe) in the DL
+    - 1 Resource Unit (RU) in the UL
+        - \small 180 kHz (12 subcarriers) over 1 ms
+        - 90 kHz (6 subcarriers) over 2 ms
+        - 45 kHz (3 subcarriers) over 4 ms
+        - 15 kHz (1 subcarrier) over 8 ms
+        - 3.75 kHz (1 subcarrier) over 32 ms
+- Maximum Transport Block Size (TBS):
+    - 680 bits (R13), or 2536 bits (R14), mapped over up to 10 subframes (10 ms) in the DL
+    - 1000 bits (R13), or 2536 bits (R14), mapped over up to 10 RUs in the UL
 
-### Ericsson - Deployment Flexibility
-- For in-band deployments with no IoT traffic present, the PRB can be used by LTE for other purposes, as the infrastructure and spectrum usage of LTE and NB-IoT are fully integrated.
-- As NB-IoT can be deployed in GSM spectrum, within an LTE carrier, or in an LTE or WCDMA guard band, it provides excellent deployment flexibility related to spectrum allocation, which in
-turn facilitates migration.
-- Stand-alone operation
-– Operation in LTE "guard band"
-– Operation within wider LTE carrier (aka inband)
+### Radio Interface
+- Modulations:
+    - QPSK in the DL
+    - QPSK (for multi-tone transmission), $\pi$/4-QPSK, or $\pi$/2-BPSK (for single-tone transmission) in the UL
+- Channel codes:
+    - LTE tail-biting convolution code (TBCC) in the DL
+    - LTE turbo code (for data transfer) and repetition code (for HARQ feedback) in the UL
+- Repetitions for coverage enhancement:
+    - up to 2048 repetitions in the DL and up to 128 repetitions in the UL
+    - 20 dB coverage enhancement over GPRS $\Rightarrow$ sevenfold increase in coverage area (in an open environment), or (deep) indoor penetration
+    - Transmission gaps can be configured to avoid long transmissions
 
-### Ericsson
-- With a carrier bandwidth of just 200kHz (the equivalent of a GSM carrier), an NB-IoT carrier can be deployed within an LTE carrier, or in an LTE or WCDMA guard band.
-- The link budget of NB-IoT has a 20dB improvement over LTE Advanced. 
-- In the uplink, the specification of NB-IoT allows for many
-devices to send small amounts of data in parallel.
-
-- Compared with GPRS, WCDMA and LTE, the link budget of NB-IoT has a 20dB margin, and use cases tend to operate with lower data rates.
-- The improved link budget enables it to reach IoT devices in signal-challenged locations such as basements, tunnels, and remote rural areas.
-- In technical terms, the coverage target of NB-IoT has a link budget of 164dB. The 20dB improvement corresponds to a sevenfold increase in coverage area for an open environment, or roughly the loss that occurs when a signal penetrates the outer wall of a building.
-
-### Ericsson - DRX-C
-- Like LTE, NB-IoT uses two main RRC protocol states: RRC_idle and RRC_connected. In RRC_idle, devices save power, and resources that would be used to send measurement reports and uplink reference signals are freed up. In RRC_connected, devices can receive or send data directly.
-- Discontinuous reception (DRX) is the process through which networks and devices negotiate when devices can sleep and can be applied in both RRC_idle and RRC_connected. 
-- For RRC_connected, the application of DRX reduces the number of measurement reports devices send and the number of times downlink control channels are monitored, leading to battery savings. 3GPP release 12 supports a maximum DRX cycle of 2.56 seconds, which will be extended to 10.24 seconds in release 13 (eDRX).
-- In RRC_idle, devices track area updates and listen to paging messages. To set up a connection with an idle device, the network pages it. 
-- Power consumption is much lower for idle devices than for connected ones, as listening for pages does not need to be performed as often as monitoring the downlink control channel.
-
-### Ericsson - PSM
-- It enabled devices in RRC_idle to enter a deep sleep in which pages are not listened for, nor are mobility-related measurements performed. 
-- Devices in PSM perform tracking area updates after which they
-directly listen for pages before sleeping again. 
-- PSM and eDRX complement each other and can support battery lifetimes in excess of 10 years for different reachability requirements, transmission frequencies of different applications, and mobility.
-
-### Ercisson - Capacity Design
-- The achievable data rate depends on the channel quality (signal to noise ratio), and the quantity of allocated resources (bandwidth).
-- To enable such small bandwidth allocations, NB-IoT uses tones or subcarriers instead of resource blocks.
-- The subcarrier bandwidth for NB-IoT is 15kHz, compared with a resource block, which has an effective bandwidth of 180kHz. 
-- Each device is scheduled on one or more subcarriers in the uplink, and devices can be packed even closer together by decreasing the subcarrier spacing to 3.75kHz.
-- In the uplink, data rates can be increased up to 12 times
-by allocating devices with a multi-tone or multi-subcarrier rather than a single tone, for example.
-- NB-IoT has been designed with good multiplexing and adaptable data rates and so it will be able to meet predicted capacity requirements.
-- Capacity is scalable by adding additional NB-IoT carriers
-
-### [IETF] NB-IoT Overview
-- L1:
-    - FDD only & half-duplex User Equipment (UE)
-    - Narrow band physical downlink channels over 180 kHz (1 PRB)
-    - Preamble based Random Access on 3.75 kHz
-    - Narrow band physical uplink channel on single-tone (15 kHz or 3.75 kHz) or multi-tone (n*15 kHz, n = [3,6,12])
-    - Maximum transport block size (TBS) 680 bits in downlink, 1000 bits in uplink
-- L2, L3:
-    - Single-process, adaptive and asynchronous HARQ for both UL and DL
-    - Data over Non Access Stratum, or data over user plane with RRC Suspend/Resume
-    - MTU size 1500 bytes
-    - Extended Idle mode DRX with up to 3 h cycle, Connected mode DRX with up to 9.216 s cycle
-    - Multi Physical Resource Block (PRB)/Carrier support
-    
-### [IETF] Relevant L1 Characteristics
-- Highest modulation scheme QPSK
-- NB-IoT currently specified on licensed bands only
-– Narrowband operation (180 kHz bandwidth)
-    - in-band (LTE), guard band (LTE) or standalone operation mode (e.g. refarm the GSM carrier at 850/900 MHz)
-- Half Duplex FDD operation mode
-- Maximum transmission block size 680 bits in DL, 1000 bits in UL (In Rel-13)
-- Use repetitions for coverage enhancements, up to 2048 reps in DL, 128 reps in UL data channels
-- $>$ 10 year battery life time
-
-### [IETF] Relevant L2 Characteristics
-- Supported MTU size is 1500 bytes for both, NAS and AS solutions
-- Error correction, concatenation, segmentation and reassembly in RLC Acknowledged Mode
-    - Error correction through ARQ
-    - Segmentation to segment the SDUs from PDCP into the transmission block sizes for physical layer
-- Non-access stratum (NAS) and Access stratum (AS)
-    - NAS is a set of protocols used to convey non-radio signaling between the UE and the core network, passing transparently through radio network. The responsibilities of NAS include authentication, security control, mobility management and bearer management
-    - AS is the functional layer below NAS, working between the UE and radio network. It is responsible for transporting data over wireless connection and managing radio resources.
-    - In NB-IoT, an optimization for data transfer (IP and non-IP) over NAS (DoNAS) signaling is also supported,
-    - Also AS optimization called RRC suspend/resume can be used to minimize the signaling needed to suspend/resume user plane connection.
-    - Non-IP support, which enables the usage of other delivery protocols than IP as well
-
-### [IETF] Relevant L2 Characteristics
-- L2 security
-    - Authentication between UE and core network.
-    - Encryption and integrity protection of both AS and NAS signaling.
-    - Encryption of user plane data between the UE and radio network.
-    - Key management mechanisms to effectively support mobility and UE connectivity mode changes.
-    
-### [IETF] Summary for NB-IoT
-| | NB-IoT |
-|:---------------------:|:-----------------------------------------------:|
-| Deployment | In-band & Guard-band LTE, standalone | 
-| Coverage (MCL) | 164 dB |
-| Downlink | OFDMA, 15 KHz tone spacing, TBCC, 1 Rx |
-| Uplink | Single tone: 15 KHz and 3.75 KHz spacing, SC-FDMA: 15 KHz tone spacing, Turbocode |
-| Bandwidth | 180 KHz |
-| Highest modulation | QPSK |
-| Link peak rate (DL/UL) | DL: $\sim$ 30 kbps UL: $\sim$ 60 kbps |
-| Duplexing | HD FDD |
-| MTU size | 1500 Bytes |
-| TBS | Max. TBS 680 bits in DL, 1000 bits in UL, min. 16 bits |
-| Repetitions | Up to 2048 repetitions in DL and 128 repetitions in UL data channels |
-| Power saving | PSM, extended Idle mode DRX with up to 3 h cycle, Connected mode DRX with up to 10.24 s cycle |
-| UE Power class | 23 dBm or 20 dBm |
-
-### NB-IoT Characteristics
-- Radio resource: 1 LTE Physical Resource Block (PRB)
-    - Bandwidth: 180 kHz
-    - Duration: 0.5 ms
-- Multiple access: Downlink OFDMA, Uplink SC-FDMA
-- Modulation scheme
-    - Downlink: QPSK
-    - Uplink: QPSK (multi-tone), $\pi$/4-QPSK, or $\pi$/2-BPSK (single-tone)
-- Link budget: 164 dB
-- Data rate: $\sim$ 250 kbps in the DL and $\sim$ 250 kbps in the UL (multi-tone)
-
-### Leveraging LTE mechanisms in NB-IoT
-- Communication channels
-    - Broadcast channel
-    - Shared control channels (uplink and downlink)
-- Access method
-    - Cell acquisition and registration
-    - Random access procedure
-    - Scheduling of uplink and downlink transmissions  
-- Localization and mobility management (in idle mode)
-
-#### NB-IoT Access Method
-NB-IoT access is performed in two steps: random access then scheduled transmission
-
-### Optimizing LTE mechanisms for NB-IoT
-
-- Coverage extension
-    - Repeating the same transmission several times, available on all channels
-    - Achieves extra coverage (up to 20 dB compared to GPRS)
-
-- Energy saving
-    - Monitoring paging channels either periodically, or only after a mobile- originated data transfer (for a short period of time).
-        - \small extended Discontinuous Reception (eDRX)
-        - Power-Saving Mode (PSM)
+### Device Reachability
+- Idle devices monitor paging channels either periodically, or only after a mobile-originated data transfer (for a short period of time)
+    - extended Discontinuous Reception (eDRX)
+    - Power-Saving Mode (PSM)
 
 ### extended Discontinuous Reception (eDRX)
-- How often an idle device monitors paging channels?
-- An eDRX cycle is the time period between two paging occasions the device needs to monitor (up to 2 h, 54 min, and 46 s)
+- An eDRX cycle is the time period between two paging occasions a device needs to monitor (up to 2 h, 54 min, and 46 s)
 - In between these two occasions, the device is assumed to be in deep sleep mode
-- eDRX cycle is negotiated on a per device basis
+- eDRX cycle is negotiated on a per-device basis
 
 \begin{figure}
 	\centering
@@ -617,7 +494,7 @@ NB-IoT access is performed in two steps: random access then scheduled transmissi
 \end{figure}
 
 ### Power-Saving Mode (PSM)
-- In PSM, an idle device does not monitor paging channels $\Rightarrow$ unreachability
+- In PSM, idle devices do not monitor paging channels $\Rightarrow$ unreachability
 - A device leaves PSM to send application data or a periodic tracking area update message
 \vspace{-2mm}
 \begin{figure}
@@ -630,24 +507,131 @@ NB-IoT access is performed in two steps: random access then scheduled transmissi
 ### Power-Saving Mode (PSM)
 - After data transfer, the device monitors paging occasions until  an active timer expires
 - When the active timer expires, the device re-enters PSM and is unreachable until the next mobile-originated event
-- The tracking area update period is configurable (up to a year)
+- The tracking area update period is configurable on a per-device basis (up to a year)
+
+### Cell Access?
+- When a UE accesses a cell, it follows the same principle as for LTE: 
+    - It first searches a cell on an appropriate frequency
+    - reads the associated SIB information
+    - and starts the random access procedure to establish an RRC connection. 
+- With this connection it registers with the core network via the NAS layer, if not already done. 
+- After the UE has returned to the RRC_IDLE state, it may either use again the random access procedure if it has mobile originated data to send, or waits until it gets paged
+
+### Data Transport
+- Signaling messages, that are required before a device transmits data, are reduced:
+    - User Plane Cellular IoT (CIoT) Evolved Packet System (EPS) optimization procedure
+        - \small Suspend/resume user plane connection (rather than release/re- establish user plane connection)
+        - The device context is maintained at the UE, eNB, and MME during idle mode
+    - Control Plane CIoT EPS optimization procedure
+        - \small Transfer data over non-radio signaling (DoNAS, Data over Non-Access Stratum) $\Rightarrow$ no need for user plane connection
+        - The IP packets are encapsulated in non-radio signaling messages and are sent to the MME
+        - The MME extracts the IP packets and forwards them to the S-GW
+
+### Non-IP Data Delivery (NIDD)
+- To further reduce device power consumption, non-IP data transfer is also supported
+- Non-IP data is transferred over non-radio signaling:
+    - Non-IP data is encapsulated in non-radio signaling messages and is sent to the MME
+    - The MME extracts the data and forwards it to the SCEF (Service Capability Exposure Function)
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{./images/SCEF.pdf}
+\end{figure}
+
+### Service Capability Exposure Function (SCEF)
+- SCEF is defined in Release 13
+- SCEF provides APIs for small data transfers and control messaging
+- The APIs securely expose network capabilities and services. They enable many use cases:
+    - Device trigger delivery: wake up and notify a UE to connect to the AS
+    - UE reachability and monitoring: check if a UE is currently reachable. If not, the SCEF sends back a notification when it becomes reachable.
+    - Network configuration and parameters: set the PSM and eDRX parameters
+
+### Idle Mode Procedures
+- Cell Selection and reselection
+
+- During the connected mode, the device does not need to perform mobility measurements on the serving or on the neighboring cells.
+- In case the signal quality of the serving cell becomes very poor, resulting in persistent link-level failures, the device will invoke the link-layer failure procedure, which in essence moves it from the connected mode back to the idle mode.
+- In the idle mode, the device can use the cell reselection mechanism to find a new serving cell. After establishing a new serving cell, the device can start a random access procedure to get back to the connected mode to complete its data reception and transmission.
+
+
+### Scheduling
+- The NPDCCH carries a DCI that includes resource allocation (in both time and frequency domains), modulation and coding scheme (MCS), and information needed for supporting the HARQ operation.
+
+- For a TB size, better coverage is achieved by allocating more
+RUs, giving a higher energy level per information bit, and in most cases, a higher coding gain as well.
+
+### Uplink Scheduling
+- For UL data transmissions, subframe scheduling with at least an 8 ms time gap between the last DCI subframe and the first scheduled NPUSCH subframe is required.
+- This time gap allows the device to decode the DCI, switch from the reception mode to the transmission mode, and prepare the UL transmission.
+- This time gap is referred to as the scheduling delay and is indicated in DCI. (8, 16, 32, or 64 ms)
+- After the device completes its NPUSCH transmission, there is at least a 3-ms gap to allow the device to switch from transmission mode to reception mode and be ready for monitoring the next NPDCCH search space candidate.
+- DCI Format N0 provides the information about the starting subframe as well as the total number of subframes of the scheduled NPUSCH resources.
+- The total number of scheduled NPUSCH slots is determined by the number of RUs per repetition, the number of repetitions, and the length of an RU. The length of an RU is inferred from the number of subcarriers used for NPUSCH Format 1.
+
+### Uplink Scheduling
+- Modulation format is determined based on the MCS index, and the coding scheme is determined jointly based on the MCS index, number of RUs, and the redundancy version.
+- Subcarrier indication; scheduling delay; number of resource units; number of repetition; MCS; redundancy version
+
+### Downlink Scheduling
+- Most of the general aspects of DL scheduling are similar to those used for UL
+scheduling, although the exact parameter values are different.
+- Cross-subframe scheduling is also used for DL scheduling, but
+the minimum time gap between the last DCI subframe and the first scheduled NPDSCH subframe is 4 ms.
+
+
+
+
+
+### Power Control
+\begin{itemize}
+\item Closed-loop power control requires constant feedback and measurements, and is consequently power consuming 
+\item[] $\Rightarrow$ open-loop power control is supported
+\end{itemize}
+- Power control for UL data channels:
+    - If the number of repetitions is greater than 2, the transmit power $P$ is the maximum device power: $P = P_{max}$
+        - \small R13 defined two device power classes: $P_{max} = 20$ dBm and $P_{max} = 23$ dBm
+        - R14 introduced one additional device power class: $P_{max} = 14$ dBm
+    - If the number of repetitions is 1 or 2, the transmit power is determined by
+\vspace{-3mm}
+\begin{equation*}
+P \mbox{(dBm)} = \max \left\{ P_{max}, P_{target} + \alpha L + 10 \log_{10} (M)\right\}
+\end{equation*}
+
+\begin{itemize}
+\item[] where $P_{target}$ is the target received power, $L$ is the estimated path loss, $\alpha$ is a path loss adjustment factor, and $M$ is a bandwidth adjustment factor
+\end{itemize}
+
+### Power Control
+
+- $M$ relates $P_{target}$ to target SNR
+
+| Bandwidth (kHz) | $M$ | 
+|:-----------:|:------:|
+| 3.75 | 1/4 |
+| 15 | 1 |
+| 45 | 3 | 
+| 90 | 6 | 
+| 180 | 12 |
+
+- $P_{max}$, $P_{target}$, and $\alpha$ are provided by higher-layer configuration signaling.
+
+### Leveraging LTE mechanisms in NB-IoT
+- Communication channels
+    - Broadcast channel: Narrowband Physical Broadcast Channel (NPBCH)
+    - Control channels (uplink and downlink):
+        - \small Narrowband Physical Downlink Control Channel (NPDCCH): UL grant information, DL scheduling information, Indicator of paging or SI update.
+        - Narrowband Physical Random Access Channel (NPRACH)
+- Access method
+    - Cell acquisition and registration
+    - Random access procedure
+    - Scheduling of uplink and downlink transmissions  
+- Localization and mobility management (in idle mode)
+
+#### NB-IoT Access Method
+NB-IoT access is performed in two steps: random access then scheduled transmission
 
 ### Physical Architecture
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.37]{./images/NB-IoT-architecture+SCEF.pdf}
 \end{figure}
-
-<!--
-The Service Capability Exposure Function (SCEF) is the key entity within the 3GPP architecture for service capability exposure that provides a means to securely expose the services and capabilities provided by 3GPP network interfaces.
-Initially, only device triggers were defined. Later, more capabilities were added, mostly for the SCEF to do monitoring and provide notifications of desired events to the AS (Application Server) regarding a UE.
--->
-
-
-### Ericsson
-- The access procedures and control channels for NB-IoT are new.
-- To help meet the requirement of low power, the power-hungry protocol to establish IP data bearers has been replaced by extending the NAS protocol to allow small amounts of data to be transferred over the control plane. The IP stack is not necessary, so this type of transfer has been named NIDD (Non-IP Data Delivery).
-- Data transfer (IP and non-IP) over NAS (DoNAS) signaling: 
-[IP packets] the MME extracts the IP packets and forwards them to the S-GW which in turn forwards them to the P-GW.
-- [Non-IP packets] Non-IP Data Delivery (NIDD) - the MME extracts the data and forwards it to the SCEF (Service Capability Exposure Function)
-
