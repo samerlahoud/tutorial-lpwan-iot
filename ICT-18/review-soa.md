@@ -1,16 +1,20 @@
 ## Perf Analysis
 
+### Indications
+- D = done
+- R = removed
+
 ### Global :
-- Scalability analysis of large-scale LoRaWAN networks in ns-3
-- Do LoRa Low-Power Wide-Area Networks Scale
-- Performance Evaluation of LoRa Considering Scenario Conditions
-- LoRaWAN in the Wild
+- {D} Scalability analysis of large-scale LoRaWAN networks in ns-3
+- {D} Do LoRa Low-Power Wide-Area Networks Scale
+- {D} Performance Evaluation of LoRa Considering Scenario Conditions
+- {R} LoRaWAN in the Wild
 
 ### Fairness :
-- A Fair Adaptive Data Rate Algorithm for LoRaWAN
+- Fair Adaptive Data Rate Allocation and Power Control in LoRaWAN
 
 ### Delay
-- Analysis of the delay of confirmed downlink frames in Class B of LoRaWAN
+- {R} Analysis of the delay of confirmed downlink frames in Class B of LoRaWAN
 
 ### Energy
 - Modeling the Energy Performance of LoRaWAN
