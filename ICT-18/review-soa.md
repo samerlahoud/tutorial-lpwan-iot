@@ -22,14 +22,14 @@
 - {D} Modeling the Energy Performance of LoRaWAN
 
 ### Capacity
-- 2D Time-frequency interference modelling using stochastic geometry for performance evaluation in Low-Power Wide-Area Networks
-- Mathematical model of LoRaWAN channel access
-- Mathematical Model of LoRaWAN Channel Access with Capture Effect
-- Does Bidirectional Traffic Do More Harm Than Good in LoRaWAN Based LPWA Networks
+- {R} 2D Time-frequency interference modelling using stochastic geometry for performance evaluation in Low-Power Wide-Area Networks
+- {R} Mathematical model of LoRaWAN channel access
+- {R} Mathematical Model of LoRaWAN Channel Access with Capture Effect
+- {R} Does Bidirectional Traffic Do More Harm Than Good in LoRaWAN Based LPWA Networks
 
-- Evaluation of Macro Diversity Gain in Long Range ALOHA Networks
+- {D} Evaluation of Macro Diversity Gain in Long Range ALOHA Networks
 - Modelling and Analysis of Low-Power Wide-Area Networks
-- Low Power Wide Area Network Analysis: Can LoRa Scale?
+- {R} Low Power Wide Area Network Analysis: Can LoRa Scale?
 - Modeling dense urban wireless networks with 3D stochastic geometry
 
 ### Comparison

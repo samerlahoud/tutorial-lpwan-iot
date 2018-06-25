@@ -96,15 +96,28 @@
 	\includegraphics[scale=0.35]{./images/soa-energy-cost.png}
 \end{figure}
 
-### Modeling The Macro-Diversity Gain\footnote{Song, Qipeng, Xavier Lagrange, and Loutfi Nuaymi. "Evaluation of Macro Diversity Gain in Long Range ALOHA Networks." IEEE Communications Letters 21.11 (2017)}
-- End-device and gateway positions form a stationary Poisson point process
-- The transmit success probability is written $p_s = P  \{SINR = \frac{P_r}{I+N} \approx \frac{P_r}{I} \geq \theta\}$
-- $r$ refers to the distance between the transmitter and the receiver, $\gamma$ is the path-loss exponent, $H$ is an exponentially distributed random variable with unit mean, $\chi$ is a zero-mean Gaussian r.v. with variance $\sigma^2$
-$$p_s(r) = E_\chi \[ \exp(-p \lambda_m \pi A \theta^{\frac{2}{\gamma}} e^{\frac{2\sigma^2}{\gamma^2}}r^2)\]$$
+### Model for the Macro-Diversity Gain\footnote{Song, Qipeng, Xavier Lagrange, and Loutfi Nuaymi. "Evaluation of Macro Diversity Gain in Long Range ALOHA Networks." IEEE Communications Letters 21.11 (2017)}
+- End-device and gateway positions form a stationary Poisson point process with spatial density $\lambda_m$ and $\lambda_b$, respectively
+- The spatial density of end-devices that are transmitting a packet is $p\lambda_m$
+- The transmit success probability is defined as
+$$p_s = \mathbb{P} \{SINR = \frac{P_r}{I+N} \approx \frac{P_r}{I} \geq \theta\}$$
+- With macro reception diversity, the transmission fails if and only if none of the gateways has received the packet
+- Let $\gamma$ be the path-loss exponent, $H$ an exponentially distributed random variable with unit mean, $\chi$ a zero-mean Gaussian r.v. with variance $\sigma^2$, the network packet loss rate $P_f$ can be written as:
+$$P_f = \exp\left( - \frac{\lambda_b}{A\theta^\frac{2}{\gamma} p \lambda_m} \right)$$
+
+<!--
+$$p_s(r) = \mathbb{E}_\chi \left[ \exp(-p \lambda_m \pi A\theta^{\frac{2}{\gamma}} e^{\frac{2\sigma^2}{\gamma^2}}r^2e^{-\frac{2}{\gamma}\chi})\right]$$
+-->
+
+### Evaluation of Macro-Diversity\footnote{Song, Qipeng, Xavier Lagrange, and Loutfi Nuaymi. "Evaluation of Macro Diversity Gain in Long Range ALOHA Networks." IEEE Communications Letters 21.11 (2017)}
+- Macro diversity leads to lower packet loss rate than the cases where the end-device attaches to the nearest gateway or to the gateway corresponding to the strongest received power
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.3]{./images/soa-macro-diversity.png}
+\end{figure}
 
 ### Other
 - Modelling and Analysis of Low-Power Wide-Area Networks
-- Low Power Wide Area Network Analysis: Can LoRa Scale?
 - Modeling dense urban wireless networks with 3D stochastic geometry
 
 ## Going Beyond LoRaWAN
