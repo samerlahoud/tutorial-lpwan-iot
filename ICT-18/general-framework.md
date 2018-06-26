@@ -96,6 +96,7 @@ Low power refers to the ability of an IoT device to function for many years on a
 | Design complexity       | Simplified network topology and deployment                 |
 | Network scalability     | Support of high density of devices                         |
 
+<!--
 ### LPWAN Architecture
 \begin{figure}
 	\centering
@@ -103,12 +104,13 @@ Low power refers to the ability of an IoT device to function for many years on a
 \end{figure}
 
 ### Common Characteristics of LPWAN Technologies
-- Optimised radio modulation
+- Optimized radio modulation
 - Star topology
 - Frame sizes in the order of tens of bytes
 - Frames transmitted a few times per day at ultra-low speeds
 - Mostly upstream transmission pattern
 - Devices spend most of their time in low-energy deep-sleep mode
+-->
 
 <!--
 "NB-IoT will crush Sigfox and LoRa because it means there will be no need for them," Matt Beal, Vodafone's director of innovation and architecture
@@ -117,7 +119,4 @@ Low power refers to the ability of an IoT device to function for many years on a
 -->
 
 #### LPWAN Technologies
-Various technologies are currently candidating for LPWA: LoRaWAN, NB-IoT, Sigfox, Wi-SUN, Ingenu, etc.
-
-### Comparison of LPWAN Technologies
-Test
+Various technologies are currently being designed to meet the LPWAN requirements: LoRaWAN, NB-IoT, Sigfox, Wi-SUN, Ingenu, etc.
