@@ -1,6 +1,9 @@
 # Low Power Wide Area Networks for the Internet of Things
 ## Framework, Optimization, and Challenges of LoRaWAN and NB-IoT
 
+### Licence
+The authors made the tutorial sources available under Creative Common license CC BY-NC-SA 4.0. This is a human-readable summary of the license: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
 ### Abstract
 Low-Power Wide Area Networks (LPWAN) have recently gained considerable attention in the Internet of Things (IoT). The key objective of these wireless technologies is to connect low-power devices over very large areas, with low data rates. LPWANs are promising for various emerging IoT applications, complementing the traditional cellular and short-range technologies.
 
