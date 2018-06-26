@@ -41,7 +41,7 @@
   \includegraphics[scale=0.65]{./images/soa-pdr-sf.png}
 \end{figure}
 
-### Fair Assignment of Spreading Factors\footnote{Reynders, Brecht, Wannes Meert, and Sofie Pollin. "Power and spreading factor control in low power wide area networks." 2017 IEEE International Conference on Communications (ICC). IEEE, (2017)}
+### Fair Assignment of Spreading Factors\footnote{Reynders, Brecht, Wannes Meert, and Sofie Pollin. "Power and spreading factor control in low power wide area networks." 2017 IEEE International Conference on Communications (ICC) (2017)}
 - Fairness is achieved by minimizing the maximum collision on spreading factors: $\min \underset{s}{\max}\ p_{coll,s}$
     - The minimum is reached for a fraction $p_s$ of end-devices using spreading factor $s$ given by $p_s =\frac{s}{2^s}/\sum_{i=7}^{12} \frac{i}{2i}$
 - Fairness does not hinder the data extraction rate DER (the ratio of received packets to transmitted packets over a period of time)
@@ -68,7 +68,7 @@
   \includegraphics[scale=0.65]{./images/soa-cnf-uncnf.png}
 \end{figure}
 
-### Measurement of the Capture Effect\footnote{Bor, Martin C., et al. "Do LoRa low-power wide-area networks scale?." Proceedings of the 19th ACM International Conference on Modeling, Analysis and Simulation of Wireless and Mobile Systems. ACM, 2016.}
+### Measurement of the Capture Effect\footnote{Bor, Martin C., et al. "Do LoRa low-power wide-area networks scale?." Proceedings of the 19th ACM International Conference on Modeling, Analysis and Simulation of Wireless and Mobile Systems. ACM (2016)}
 - Experimentation (55.25 symbols packet length) shows the packet reception rate as function of transmission offset relative to the weak node in symbols
 - A strong transmission can be successfully decoded when it arrives one packet time early up to at most 3 symbols late
 - Capture model integrated in a discrete-event simulator (LoRaSim)
@@ -116,11 +116,27 @@ $$p_s(r) = \mathbb{E}_\chi \left[ \exp(-p \lambda_m \pi A\theta^{\frac{2}{\gamma
   \includegraphics[scale=0.3]{./images/soa-macro-diversity.png}
 \end{figure}
 
-### Other
-- Modelling and Analysis of Low-Power Wide-Area Networks
-- Modeling dense urban wireless networks with 3D stochastic geometry
+### Model for the Coexistence of LoRa with Other Technologies\footnote{Qin, Zhijin, et al. "Modelling and analysis of low-power wide-area networks." IEEE International Conference on Communications (ICC) (2017)}
+- Coexistence of LoRa and non-LoRa nodes
+    - LoRa nodes position form a Matern cluster process (PPP cluster center is formed by LoRa gateways and the end-devices in each cluster form the children process)
+    - Non-LoRa nodes are modelled as PPP
+- In the SINR expression, interference is the sum of three terms: intra-cluster, inter-cluster, and coexistence
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.25]{./images/soa-coexistence-network.png}
+\end{figure}
+
+### Coverage of LoRa with Coexisting Technologies\footnote{Qin, Zhijin, et al. "Modelling and analysis of low-power wide-area networks." IEEE International Conference on Communications (ICC) (2017)}
+- The coverage probability monotonically decreases with the density of gateways and non LoRa nodes
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/soa-coexistence-coverage.png}
+\end{figure}
 
 ## Going Beyond LoRaWAN
 ### Research Approaches for Improving LoRaWAN
 - physical Layer
 - mac Layer : scheduling or learning
+- Modeling dense urban wireless networks with 3D stochastic geometry
