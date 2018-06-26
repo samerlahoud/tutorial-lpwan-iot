@@ -496,7 +496,7 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 ### extended Discontinuous Reception (eDRX)
 - An eDRX cycle is the time period between two paging occasions a device needs to monitor (up to 2 h, 54 min, and 46 s)
 - In between these two occasions, the device is assumed to be in deep sleep mode
-- eDRX cycle is negotiated on a per-device basis
+- The eDRX cycle is negotiated on a per-device basis
 
 \begin{figure}
 	\centering
@@ -564,13 +564,12 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 	\includegraphics[scale=0.37]{./images/NB-IoT-architecture+SCEF.pdf}
 \end{figure}
 
-### Idle Mode Procedures
-- Cell Selection and reselection
-
-- During the connected mode, the device does not need to perform mobility measurements on the serving or on the neighboring cells.
-- In case the signal quality of the serving cell becomes very poor, resulting in persistent link-level failures, the device will invoke the link-layer failure procedure, which in essence moves it from the connected mode back to the idle mode.
-- In the idle mode, the device can use the cell reselection mechanism to find a new serving cell. After establishing a new serving cell, the device can start a random access procedure to get back to the connected mode to complete its data reception and transmission.
-
+### Mobility Management
+<!--
+- Idle devices wake up at the end of each eDRX cycle to perform cell reselection measurements
+-->
+    - Connected devices do not perform mobility measurements
+    - In idle mode, they initiate cell reselection and then switch back to connected mode
 
 ### Scheduling
 - The NPDCCH carries a DCI that includes resource allocation (in both time and frequency domains), modulation and coding scheme (MCS), and information needed for supporting the HARQ operation.
@@ -642,9 +641,3 @@ P \mbox{ (dBm)} = \max \left\{ P_{max}, P_{target} + \alpha L + 10 \log_{10} (M)
 | 180 | 12 |
 
 - $P_{max}$, $P_{target}$, and $\alpha$ are provided by higher-layer configuration signaling
-
-### Leveraging LTE mechanisms in NB-IoT
-- Localization and mobility management (in idle mode)
-
-
-
