@@ -136,7 +136,37 @@ $$p_s(r) = \mathbb{E}_\chi \left[ \exp(-p \lambda_m \pi A\theta^{\frac{2}{\gamma
 \end{figure}
 
 ## Going Beyond LoRaWAN
-### Research Approaches for Improving LoRaWAN
-- physical Layer
-- mac Layer : scheduling or learning
-- Modeling dense urban wireless networks with 3D stochastic geometry
+### Disentangling Interfering Transmissions\footnote{Eletreby, Rashad, et al. "Empowering Low-Power Wide Area Networks in Urban Settings." Proceedings of the Conference of the ACM Special Interest Group on Data Communication (2017)}
+- Exploit hardware imperfections in LoRa transmitters to resolve collisions
+    - Signals from colliding transmitters are likely to experience a small frequency offset
+- Decode useful data
+    - Frequency offset remains constant over a packet between chirps but data does not
+- Attribute data to users
+    - Data bits occur on integer peak locations in the Fourier transform, while frequency offsets need not
+- Results: decoding collisions and extending range of LoRa transmission  
+
+### Scheduling for Improving Reliability\footnote{Reynders, Brecht, et al. "Improving Reliability and Scalability of LoRaWANs Through Lightweight Scheduling." IEEE Internet of Things Journal (2018)}
+- Two-step lightweight scheduling
+    - Gateway schedules nodes in a coarse-grained manner through dynamically specifying the allowed transmission powers and spreading factors on each channel
+	- Based on the gateway scheduling information, am end-device determines its own transmission power, spreading factor, and when and on which channel to transmit
+- Results: increase throughput and fairness for large scenarios
+\begin{figure}
+		\centering
+	  \includegraphics[scale=0.25]{./images/soa-scheduling-frame.png}
+\end{figure}
+
+### Learning for Improving Latency\footnote{Bonnefoi, Rémi, Christophe Moy, and Jacques Palicot. "Improvement of the LPWAN AMI backhaul’s latency thanks to reinforcement learning algorithms." EURASIP Journal on Wireless Communications and Networking 2018.1 (2018)}
+- Derive closed-form expressions for the probability of a successful transmission into one channel with a simple acknowledgement
+- Derive the expression of the latency for different frequency access schemes
+- Selection of the best channel requires the knowledge of the probability of collision in the channels
+    - MAB problem (acknowledgement as a reward) with reinforcement learning algorithms
+- Results: increase success probability and reduce latency with time
+
+### Application Layer Coding for Data Recovery\footnote{Marcelis, Paul J., Vijay S. Rao, and R. Venkatesha Prasad. "DaRe: Data recovery through application layer coding for LoRaWAN.", IEEE/ACM Second International Conference onInternet-of-Things Design and Implementation (IoTDI) (2017)}
+- Thorough characterization of losses in LoRaWAN: channel outage, burstiness $\Rightarrow$ Gilbert Elliot model for bursty erasure channels
+- Spread the redundant information from the data in one frame across other frames
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.2]{./images/soa-dare-window.png}
+\end{figure}
+- Results: tuning the coding parameters and increasing data recovery ratio
