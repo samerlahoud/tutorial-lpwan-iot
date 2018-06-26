@@ -488,6 +488,7 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 \end {itemize}
 
 ### Device Reachability
+- To reduce device power consumption, devices that have had no traffic for a predefined period of time (inactivity timer) are switched to idle mode
 - Idle devices monitor paging channels either periodically, or only after a mobile-originated data transfer (for a short period of time)
     - extended Discontinuous Reception (eDRX)
     - Power-Saving Mode (PSM)
@@ -531,7 +532,7 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 ### Data Transport
 - Signaling messages, that are required before a device transmits data, are reduced:
     - User Plane Cellular IoT (CIoT) Evolved Packet System (EPS) optimization procedure
-        - \small Suspend/resume user plane connection (rather than release/re- establish user plane connection)
+        - \small Suspend/resume RRC connection (rather than release/re-establish RRC connection)
         - The device context is maintained at the UE, eNB, and MME during idle mode
     - Control Plane CIoT EPS optimization procedure
         - \small Transfer data over non-radio signaling (DoNAS, Data over Non-Access Stratum)
@@ -554,8 +555,14 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 - SCEF provides APIs for small data transfers and control messaging
 - The APIs securely expose network capabilities and services. They enable many use cases:
     - Device trigger delivery: wake up and notify a UE to connect to the AS
-    - UE reachability and monitoring: check if a UE is currently reachable. If not, the SCEF sends back a notification when it becomes reachable.
+    - UE reachability and monitoring: check if a UE is currently reachable. If not, send back a notification when it becomes reachable.
     - Network configuration and parameters: set the PSM and eDRX parameters
+
+### Physical Architecture
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.37]{./images/NB-IoT-architecture+SCEF.pdf}
+\end{figure}
 
 ### Idle Mode Procedures
 - Cell Selection and reselection
@@ -597,12 +604,20 @@ the minimum time gap between the last DCI subframe and the first scheduled NPDSC
 \begin{itemize}
 \item Closed-loop power control requires constant feedback and measurements, and is consequently power consuming 
 \item[] $\Rightarrow$ open-loop power control is supported
+\item Power control for UL data channels:
+
+\begin{itemize}
+
+    \item If the number of repetitions is greater than 2, the transmit power $P$ is the maximum device power: $P = P_{max}$
+
+    \begin{itemize}
+        \item \small R13 defined two device power classes: $P_{max} =$ 20 and 23 dBm
+        \item R14 introduced one additional device power class: $P_{max} =$ 14 dBm
+    \end{itemize}
+    
+    \item If the number of repetitions is 1 or 2, the transmit power is determined by:
 \end{itemize}
-- Power control for UL data channels:
-    - If the number of repetitions is greater than 2, the transmit power $P$ is the maximum device power: $P = P_{max}$
-        - \small R13 defined two device power classes: $P_{max} =$ 20 and 23 dBm
-        - R14 introduced one additional device power class: $P_{max} =$ 14 dBm
-    - If the number of repetitions is 1 or 2, the transmit power is determined by:
+\end{itemize}
 \begin{equation*}
 P \mbox{ (dBm)} = \max \left\{ P_{max}, P_{target} + \alpha L + 10 \log_{10} (M)\right\}
 \end{equation*}
@@ -610,12 +625,13 @@ P \mbox{ (dBm)} = \max \left\{ P_{max}, P_{target} + \alpha L + 10 \log_{10} (M)
 \begin{itemize}
 \item[]
 \begin{itemize}
+
 \item[] where $P_{target}$ is the target received power, $L$ is the estimated path loss, $\alpha$ is a path loss adjustment factor, and $M$ is a bandwidth adjustment factor
 \end{itemize}
 \end{itemize}
 
 ### Power Control
-- $M$ relates $P_{target}$ to target SNR
+- $M$ relates $P_{target}$ to target $SNR$
 
 | Bandwidth (kHz) | $M$ | 
 |:-----------:|:------:|
@@ -631,9 +647,4 @@ P \mbox{ (dBm)} = \max \left\{ P_{max}, P_{target} + \alpha L + 10 \log_{10} (M)
 - Localization and mobility management (in idle mode)
 
 
-### Physical Architecture
-\begin{figure}
-	\centering
-	\includegraphics[scale=0.37]{./images/NB-IoT-architecture+SCEF.pdf}
-\end{figure}
 

@@ -274,7 +274,7 @@ CSS provides a low-complexity, low-cost, low-power, yet robust alternative to th
 
 ### Deep Sleep Mode
 - Most of the IoT applications require infrequent transmission of small data volumes
-- Idle devices enter a deep sleep mode. They:
+- Idle devices may enter a deep sleep mode. They:
     - shut down their transceiver
     - keep track of time and scheduled events via a low-power oscillator (that is kept running)
 - Devices wake up from deep sleep mode to:
