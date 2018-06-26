@@ -565,10 +565,13 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 \end{figure}
 
 ### Mobility Management
+- Mobility management is limited to idle mode and is performed through cell reselection (with tracking area updates)
 <!--
 - Idle devices wake up at the end of each eDRX cycle to perform cell reselection measurements
 -->
+- Handover management is not supported, as NB-IoT is designed for infrequent and short messages
     - Connected devices do not perform mobility measurements
+    - In case of connection loss (persistent link-layer failures), they switch to idle mode
     - In idle mode, they initiate cell reselection and then switch back to connected mode
 
 ### Scheduling
