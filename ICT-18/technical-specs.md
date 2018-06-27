@@ -1,5 +1,32 @@
 # Technical Specification
 
+### From LoRa to LoRaWAN
+
+- LoRa
+
+    - Modulation technique for LPWAN
+- LoRaWAN
+    - Uses LoRa modulation on physical layer
+    - Proposes a MAC layer for access control
+    - Specified by LoRa Alliance
+
+### LoRaWAN Timeline
+
+- Cycleo first introduced LoRa in 2009
+
+    - M2M communications
+
+    - Large coverage
+
+- Semtech acquired Cycleo in 2012 for 5 M$!
+
+    - Patents filed in 2014
+
+- LoRa Alliance initiated in 2014
+    - Actility, Cisco, Bouygues, IBM, Orange, SK Telecom, KPN, ZTE, Semtech, La Poste, SoftBank, Swisscom, etc.
+
+    - LoRaWAN 1.1 specification in 2018
+
 ## LoRa Radio Interface
 
 ### What is LoRa?
@@ -50,7 +77,7 @@ R_b = SF \cdot \frac{B}{2^{SF}} \cdot \frac{4}{4+CR}
 \end{equation*}
 $$\text{with } 1 \leq CR \leq 4,\text{and } 7 \leq SF \leq 12$$
 
-### LoRa Radio Optimization
+### LoRa Radio Performance
 
 | Spreading Factor  | Bit Rate (kb/s) |  Sensitivity (dBm) |
 |:---:|:---:|:---:|
@@ -84,7 +111,10 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 7 \leq SF \leq 12$$
 	\includegraphics[scale=0.45]{./images/phy-layer.pdf}
 \end{figure}
 
-### LoRa Channels
+### LoRaWAN Data Rates
+- from spec
+
+### LoRaWAN Channels
 
 - Operates in license-free bands all around the world
     - 433, 868 (EU), 915 MHz
@@ -121,35 +151,18 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 7 \leq SF \leq 12$$
 
 A device just transmitted a 0.5 s long frame on one default channel. This channel is in a sub-band allowing 1% duty-cycle. Therefore this whole sub-band (868 – 868.6) will be unavailable for 49.5 s
 
-
-### From LoRa to LoRaWAN
-
-- LoRa
-
-    - Modulation technique for LPWAN
-- LoRaWAN
-    - Uses LoRa modulation on physical layer
-    - Proposes a MAC layer for access control
-    - Specified by LoRa Alliance
-
-### LoRaWAN Timeline
-
-- Cycleo first introduced LoRa in 2009
-
-    - M2M communications
-
-    - Large coverage
-
-- Semtech acquired Cycleo in 2012 for 5 M$!
-
-    - Patents filed in 2014
-
-- LoRa Alliance initiated in 2014
-    - Actility, Cisco, Bouygues, IBM, Orange, SK Telecom, KPN, ZTE, Semtech, La Poste, SoftBank, Swisscom, etc.
-
-    - LoRaWAN 1.1 specification in 2018
-
 ## LoRaWAN Physical Architecture
+
+### LoRaWAN General Characteristics
+- LoRaWAN network architecture is typically laid out in a star-of-stars topology
+- Data rates ranging from 300 bps to 5.5 kbps
+    - Two high-speed channels at 11 kbps and 50 kbps (FSK modulation)
+    - Eight channels: bandwidth 125 kHz or 250 kHz
+    - Support for adaptive data rate (power and spreading factor control)
+
+\begin{figure}
+	\includegraphics[scale=0.5]{./images/lorawan-archi.eps}
+\end{figure}
 
 ### End-Devices
 \begin{figure}
@@ -177,7 +190,7 @@ A device just transmitted a 0.5 s long frame on one default channel. This channe
 
 - Adapts data transmission rates
 
-
+<!--
 ### LoRaWAN General Characteristics
 - LoRaWAN network architecture is typically laid out in a star-of-stars topology
 - All end-point communication is generally bi-directional
@@ -188,6 +201,7 @@ A device just transmitted a 0.5 s long frame on one default channel. This channe
     - Support for adaptive data rate (power and spreading factor control)
 - Secure bi-directional communication, mobility, and localization
     - Device authentication, message encryption, and frame counter
+-->
 
 ## LoRaWAN Protocol Architecture
 ### Uplink transmission
@@ -605,7 +619,7 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
     - MCS
     - number of repetitions
     - scheduling delay ($\geq$ 4 ms)
-    - HARQ-Ack resource: subcarrier index and time offset 
+    - HARQ-Ack resource: subcarrier index and time offset
 - Resources for HARQ feedback are also scheduled
 - After HARQ feedback transmission, the device has at least 3 ms to switch to reception mode and monitor the next DCI message
 
