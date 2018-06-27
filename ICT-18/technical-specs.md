@@ -591,11 +591,11 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 -->
 
 ### Uplink Scheduling
+- An uplink scheduling example\footnote{O. Liberg et al., \textit{Cellular Internet of Things - Technologies, Standards, and Performance}. Cambridge, MA, USA: American Press, 2017.}:
 
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.4]{./images/UL-scheduling.pdf}
-	\caption*{An uplink scheduling example\footnote{O. Liberg et al., \textit{Cellular Internet of Things - Technologies, Standards, and Performance}. Cambridge, MA, USA: American Press, 2017.}}
 \end{figure}
 
 ### Downlink Scheduling
