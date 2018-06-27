@@ -16,7 +16,7 @@ P_{Rx} = P_{Tx} + G_{System} - L_{System} - L_{Channel} - M
   \item[] $G_{System}$ = system gains such as antenna gains
   \item[] $L_{System}$ = system losses such as feed-line losses
   \item[] $L_{Channel}$ = losses due to the propagation channel
-  \item[] $M$ = fading margin and protection margin
+  \item[] $M$ = additional margins
 \end{itemize}
 
 ### Additional Margins
