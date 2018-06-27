@@ -180,12 +180,11 @@ $$G = N . \lambda(s) . T_a(s)$$
     - All packets have the same length of $l$ bytes
 - The normalized throughput of the LoRaWAN network is given by:
 $$S = G\exp(-2G) = N \lambda(s) T_a(l,s) \exp(-2 N \lambda(s) T_a(l,s))$$
-- The total number of successfully received packets per second is obtained by:
+- The total number of transmitted packets per second that are successfully received by the gateway (referred to as successful transmissions in the following) is obtained by:
 $$\frac{1}{T_a(l,s)}\times S$$
 
-
-### Received Packets per Hour
-- The number of received packets per hour decreases for more than 50 end-devices
+### Successful Transmissions per Hour
+- The number of successful transmissions per hour decreases for more than 50 end-devices
 \begin{figure}
 	\centering
   \includegraphics[scale=0.4]{./images/total-received-packets-nb-users-aloha.eps}
@@ -193,7 +192,7 @@ $$\frac{1}{T_a(l,s)}\times S$$
 \end{figure}
 
 ### Data Extraction Rate
-- For 100 end-devices the percentage of received packets to transmitted packets is equal to 14\% (the average number of received packets per end-device equals 40 per hour, out of 289 generated packets)
+- For 100 end-devices the percentage of successful transmissions is equal to 14\% (the average number of successfully transmitted packets per end-device equals 40 per hour, out of 289 generated packets)
 \begin{figure}
 	\centering
   \includegraphics[scale=0.4]{./images/der-nb-users-aloha.eps}
@@ -209,16 +208,13 @@ $$\frac{1}{T_a(l,s)}\times S$$
   \caption*{$l$=50 bytes, SF=7}
 \end{figure}
 
-### Spreading Factors and Packet Reception
-- For 50 end-devices, the average number of received packets per end-device per hour increases from 6 to 106 when SF decreases from 12 to 7
+### Spreading Factors and Successful Transmissions
+- For 50 end-devices, the average number of successful transmissions per end-device per hour increases from 6 to 106 when SF decreases from 12 to 7
 \begin{figure}
 	\centering
   \includegraphics[scale=0.4]{./images/sf-compare-received-packets-nb-users-aloha.eps}
   \caption*{$l$=50 bytes, $\lambda(s) = \frac{d}{T_a(l,s)}$}
 \end{figure}
-
-### Use Case Conclusion
-- Conclude for use case
 
 ### Collisions and Capture Effect
 - It is assumed by default that all transmitted signals that collide will fail to be received
@@ -237,12 +233,12 @@ $$\frac{1}{T_a(l,s)}\times S$$
 - We take $G = N \lambda(s) T_a(l,s)$, where $\lambda(s)$ is the packet generation rate of each end-device, and $T_a(l,s)$ the time to transmit a packet of $l$ bytes
 - We assume that a packet is successfully received by one gateway if the corresponding received signal power is higher than the maximum interferer
     - We consider an additional margin of $\Delta$ dB ($\Delta$ equals 3 dB or 6 dB in practice)
-- The probability of successful reception of one packet when $n$ collisions occur is denoted by $P_{cap}(n,\Delta)$
+- The probability of successful transmission of one packet when $n$ collisions occur is denoted by $P_{cap}(n,\Delta)$
 - The normalized throughput of the LoRaWAN network is given by:
 $$S = G\exp(-2G) (1+\sum_{n=2}^{N} \frac{(2G)^n}{n!} (1-(1-P_{cap}(n,\Delta))^r))$$
 
-### Received Packets with Multiple Gateways and Capture Effect
-- The number of received packets per hour per end-device increases from 38 to 52 when considering the capture effect with one gateway, and reaches 84 with 4 gateways
+### Successful Transmissions with Capture Effect
+- For 100 end-devices, the number of successful transmissions per hour per end-device increases from 38 to 52 when considering the capture effect with one gateway, and reaches 84 with 4 gateways
 \begin{figure}
 	\centering
   \includegraphics[scale=0.4]{./images/capture-effect-aloha.eps}
