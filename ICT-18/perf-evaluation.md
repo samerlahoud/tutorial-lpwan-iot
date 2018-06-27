@@ -15,7 +15,7 @@ P_{Rx} = P_{Tx} + G_{System} - L_{System} - L_{Channel} - M
   \item[] $P_{Tx}$ = the transmitted power
   \item[] $G_{System}$ = system gains such as antenna gains
   \item[] $L_{System}$ = system losses such as feed-line losses
-  \item[] $L_{Channel}$ = losses due to the propagation channel
+  \item[] $L_{Channel}$ = path loss
   \item[] $M$ = additional margins
 \end{itemize}
 
@@ -27,6 +27,16 @@ P_{Rx} = P_{Tx} + G_{System} - L_{System} - L_{Channel} - M
     - deep indoor penetration loss (second wall): +3 dB
 - Protection margin
 
+### Maximum Allowable Path Loss
+- The maximum allowable path loss ($MAPL$) is expressed as:
+\begin{equation*}
+MAPL = \max L_{Channel} \mbox{ } | \mbox{ } P_{Rx} = \mbox{receiver sensitivity}
+\end{equation*}
+\begin{equation*}
+\Rightarrow MAPL = P_{Tx} + G_{System} - L_{System} - M - \mbox{receiver sensitivity}
+\end{equation*}
+
+- The maximum allowable distance between a transmitter and a receiver (cell range) depends on the $MAPL$ and the channel model
 
 <!--
 ### Enhanced Network Capacity
@@ -243,4 +253,26 @@ $$S = G\exp(-2G) (1+\sum_{n=2}^{N} \frac{(2G)^n}{n!} (1-(1-P_{cap}(n,\Delta))^r)
 	\centering
   \includegraphics[scale=0.4]{./images/capture-effect-aloha.eps}
   \caption*{$l$=50 bytes, SF=7, $\lambda(s) = \frac{d}{T_a(l,s)}$, $\Delta = 6$ dB}
+\end{figure}
+
+## Coverage Comparison of LoRaWAN and NB-IoT
+
+### Coupling Loss
+
+- Coverage outage $\Rightarrow$ coupling loss $> MCL$ (NB-IoT: 164 dB, LoRaWAN: 157 dB)
+- In indoor dense urban environments, the outage probability of LoRaWAN is 87% (with a single gateway)
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/coupling-loss-lora-nbiot-1gw.eps}
+\end{figure}
+
+### Enhancing the Coverage with Multiple Gateways
+
+- Network densification decreases the outage probability of LoRaWAN to 55% 
+- LoRaWAN has coverage limitations in comparison with NB-IoT
+ 
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/coupling-loss-lora-nbiot-4gw.eps}
 \end{figure}
