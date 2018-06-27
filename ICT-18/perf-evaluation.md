@@ -76,7 +76,7 @@ $$B = 44.9 - 6.55 \log_{10}(h_b)$$
 
 - We consider the following parameters:
     - Transmit power: $P_{Tx} = 14$ dBm
-    - Sum of antenna gains: $G_{System} = 6$ dBi
+    - Antenna gain: $G_{System} = 3$ dBi
     - Fading and protection margin: $M = 10$ dB
     - Noise floor: $N= -153$ dBm
 
@@ -192,11 +192,11 @@ $$\frac{1}{T_a(l,s)}\times S$$
   \caption*{$l$=50 bytes, SF=7, $\lambda(s) = \frac{d}{T_a(l,s)}$}
 \end{figure}
 
-### Received Packets per End-Device per Hour
-- For 100 end-devices generating 289 packets per hour, the average number of received packets per end-device equals 40 per hour
+### Data Extraction Rate
+- For 100 end-devices the percentage of received packets to transmitted packets is equal to 14\% (the average number of received packets per end-device equals 40 per hour, out of 289 generated packets)
 \begin{figure}
 	\centering
-  \includegraphics[scale=0.4]{./images/received-packets-nb-users-aloha.eps}
+  \includegraphics[scale=0.4]{./images/der-nb-users-aloha.eps}
   \caption*{$l$=50 bytes, SF=7, $\lambda(s) = \frac{d}{T_a(l,s)}$}
 \end{figure}
 
@@ -219,8 +219,6 @@ $$\frac{1}{T_a(l,s)}\times S$$
 
 ### Use Case Conclusion
 - Conclude for use case
-
-### Introduce Data Extraction Rate
 
 ### Collisions and Capture Effect
 - It is assumed by default that all transmitted signals that collide will fail to be received
