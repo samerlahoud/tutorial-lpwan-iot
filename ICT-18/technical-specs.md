@@ -1,11 +1,38 @@
 # Technical Specification
 
+### From LoRa to LoRaWAN
+
+- LoRa
+
+    - Modulation technique for LPWAN
+- LoRaWAN
+    - Uses LoRa modulation on physical layer
+    - Proposes a MAC layer for access control
+    - Specified by LoRa Alliance
+
+### LoRaWAN Timeline
+
+- Cycleo first introduced LoRa in 2009
+
+    - M2M communications
+
+    - Large coverage
+
+- Semtech acquired Cycleo in 2012 for 5 M$!
+
+    - Patents filed in 2014
+
+- LoRa Alliance initiated in 2014
+    - Actility, Cisco, Bouygues, IBM, Orange, SK Telecom, KPN, ZTE, Semtech, La Poste, SoftBank, Swisscom, etc.
+
+    - LoRaWAN 1.1 specification in 2018
+
 ## LoRa Radio Interface
 
 ### What is LoRa?
 
 \begin{block}{Definition of LoRa}
-LoRa is a wireless modulation technique that uses Chirp Spread Spectrum (CSS) in combination with Pulse-Position Modulation (PPM).
+LoRa is a wireless modulation technique that uses Chirp Spread Spectrum (CSS) in combination with Pulse-Position Modulation (PPM)
 \end{block}
 
 - Processing gain given by $g_p = BT$
@@ -35,7 +62,8 @@ $$R_b = SF \cdot \frac{B}{2^{SF}}$$
 \end{figure}
 
 ### LoRa Bit-Rate
-- LoRa includes a variable error correction scheme that improves the robustness of the transmitted signal at the expense of redundancy
+- LoRa includes a variable error correction scheme based on Hamming code
+    - Error correction improves the robustness of the transmitted signal at the expense of redundancy
 - Given a coding rate $CR$, the bit-rate is given by:
 
 \begin{equation*}
@@ -49,7 +77,7 @@ R_b = SF \cdot \frac{B}{2^{SF}} \cdot \frac{4}{4+CR}
 \end{equation*}
 $$\text{with } 1 \leq CR \leq 4,\text{and } 7 \leq SF \leq 12$$
 
-### LoRa Radio Optimization
+### LoRa Radio Performance
 
 | Spreading Factor  | Bit Rate (kb/s) |  Sensitivity (dBm) |
 |:---:|:---:|:---:|
@@ -83,7 +111,10 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 7 \leq SF \leq 12$$
 	\includegraphics[scale=0.45]{./images/phy-layer.pdf}
 \end{figure}
 
-### LoRa Channels
+### LoRaWAN Data Rates
+- from spec
+
+### LoRaWAN Channels
 
 - Operates in license-free bands all around the world
     - 433, 868 (EU), 915 MHz
@@ -120,35 +151,18 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 7 \leq SF \leq 12$$
 
 A device just transmitted a 0.5 s long frame on one default channel. This channel is in a sub-band allowing 1% duty-cycle. Therefore this whole sub-band (868 – 868.6) will be unavailable for 49.5 s
 
-
-### From LoRa to LoRaWAN
-
-- LoRa
-
-    - Modulation technique for LPWAN
-- LoRaWAN
-    - Uses LoRa modulation on physical layer
-    - Proposes a MAC layer for access control
-    - Specified by LoRa Alliance
-
-### LoRaWAN Timeline
-
-- Cycleo first introduced LoRa in 2009
-
-    - M2M communications
-
-    - Large coverage
-
-- Semtech acquired Cycleo in 2012 for 5 M$!
-
-    - Patents filed in 2014
-
-- LoRa Alliance initiated in 2014
-    - Actility, Cisco, Bouygues, IBM, Orange, SK Telecom, KPN, ZTE, Semtech, La Poste, SoftBank, Swisscom, etc.
-
-    - LoRaWAN 1.1 specification in 2018
-
 ## LoRaWAN Physical Architecture
+
+### LoRaWAN General Characteristics
+- LoRaWAN network architecture is typically laid out in a star-of-stars topology
+- Data rates ranging from 300 bps to 5.5 kbps
+    - Two high-speed channels at 11 kbps and 50 kbps (FSK modulation)
+    - Eight channels: bandwidth 125 kHz or 250 kHz
+    - Support for adaptive data rate (power and spreading factor control)
+
+\begin{figure}
+	\includegraphics[scale=0.5]{./images/lorawan-archi.eps}
+\end{figure}
 
 ### End-Devices
 \begin{figure}
@@ -176,7 +190,7 @@ A device just transmitted a 0.5 s long frame on one default channel. This channe
 
 - Adapts data transmission rates
 
-
+<!--
 ### LoRaWAN General Characteristics
 - LoRaWAN network architecture is typically laid out in a star-of-stars topology
 - All end-point communication is generally bi-directional
@@ -187,6 +201,7 @@ A device just transmitted a 0.5 s long frame on one default channel. This channe
     - Support for adaptive data rate (power and spreading factor control)
 - Secure bi-directional communication, mobility, and localization
     - Device authentication, message encryption, and frame counter
+-->
 
 ## LoRaWAN Protocol Architecture
 ### Uplink transmission
@@ -194,6 +209,9 @@ A device just transmitted a 0.5 s long frame on one default channel. This channe
     - Devices transmit without any coordination on a randomly chosen channel
     - Regulated maximum transmit duty cycle
     - Regulated maximum transmit duration (or dwell time)
+
+- Collisions occur in LoRaWAN
+    - Simultaneous transmissions on the same channel and spreading factor collide
 
 #### LoRaWAN Access Method
 LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its own communication needs with a small variation based on a random time basis
@@ -204,10 +222,6 @@ LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its ow
     - Each uplink transmission is followed by two short downlink receive windows
 
     - Adapted for applications that only require downlink communication from the server shortly after the end-device has sent an uplink transmission
-
-\begin{figure}
-	\includegraphics[scale=0.5]{./images/class-a-lorawan.eps}
-\end{figure}
 
 - Class B
 
@@ -243,7 +257,7 @@ LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its ow
     - Predefined channel and data rate, and possibility to modify it by MAC commands
 
 \begin{figure}
-\includegraphics[scale=0.5]{./images/lorawan-rx-window.png}
+	\includegraphics[scale=0.5]{./images/class-a-lorawan.eps}
 \end{figure}
 
 ### MAC Header
@@ -402,7 +416,7 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
     - A device periodically sets the ADR acknowledgment bit and waits for an acknowledgment from the network
     - If an ACK is not received, the device switches to the next lower data rate that provides a longer radio range
 
-
+<!--
 ### Wrap-up Example (1/3)
 \begin{figure}
 \includegraphics[scale=0.65]{./images/lorawan-ex1.png}
@@ -419,7 +433,7 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 \begin{figure}
 \includegraphics[scale=0.65]{./images/lorawan-ex3.png}
 \end{figure}
-
+-->
 <!--
 ## Security
 ### Online Video Tutorial on Security
@@ -449,10 +463,10 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 
 ### Radio Interface
 - Channel bandwidth: 180 kHz $\equiv$ 1 LTE Physical Resource Block (PRB) in the frequency domain
-- Transmission schemes: 
+- Transmission schemes:
     - OFDMA (subcarrier spacing $\Delta f = 15$ kHz) in the DL
     - SC-FDMA ($\Delta f = 15$ kHz or 3.75 kHz) in the UL
-- Smallest schedulable unit: 
+- Smallest schedulable unit:
     - 1 PRB = 180 kHz (12 subcarriers) over 1 ms (1 subframe) in the DL
     - 1 Resource Unit (RU) in the UL
         - \small 180 kHz (12 subcarriers) over 1 ms
@@ -605,13 +619,13 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
     - MCS
     - number of repetitions
     - scheduling delay ($\geq$ 4 ms)
-    - HARQ-Ack resource: subcarrier index and time offset 
+    - HARQ-Ack resource: subcarrier index and time offset
 - Resources for HARQ feedback are also scheduled
 - After HARQ feedback transmission, the device has at least 3 ms to switch to reception mode and monitor the next DCI message
 
 ### Power Control
 \begin{itemize}
-\item Closed-loop power control requires constant feedback and measurements, and is consequently power consuming 
+\item Closed-loop power control requires constant feedback and measurements, and is consequently power consuming
 \item[] $\Rightarrow$ open-loop power control is supported
 \item Power control for UL data channels:
 
@@ -623,7 +637,7 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
         \item \small R13 defined two device power classes: $P_{max} =$ 20 and 23 dBm
         \item R14 introduced one additional device power class: $P_{max} =$ 14 dBm
     \end{itemize}
-    
+
     \item If the number of repetitions is 1 or 2, the transmit power is determined by:
 \end{itemize}
 \end{itemize}
@@ -642,12 +656,12 @@ P \mbox{ (dBm)} = \max \left\{ P_{max}, P_{target} + \alpha L + 10 \log_{10} (M)
 ### Power Control
 - $M$ relates $P_{target}$ to target $SNR$
 
-| Bandwidth (kHz) | $M$ | 
+| Bandwidth (kHz) | $M$ |
 |:-----------:|:------:|
 | 3.75 | 1/4 |
 | 15 | 1 |
-| 45 | 3 | 
-| 90 | 6 | 
+| 45 | 3 |
+| 90 | 6 |
 | 180 | 12 |
 
 - $P_{max}$, $P_{target}$, and $\alpha$ are provided by higher-layer configuration signaling
