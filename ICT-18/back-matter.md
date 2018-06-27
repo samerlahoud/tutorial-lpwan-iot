@@ -6,8 +6,15 @@
 - What are the recent research directions for radio resource management in LoRaWAN and NB-IoT?
 
 ### Feedback and Tutorial Material
+- We appreciate if you could take five minutes to complete the following evaluation form:
+\begin{center}
+\color{blue}
+https://goo.gl/Ex7mg9
+\end{center}
 - Your feedback is important to us in order to continually improve our tutorial
-- We appreciate if you could take five minutes to complete the following evaluation form: https://goo.gl/Ex7mg9
 - We made the tutorial sources available under Creative Common license CC BY-NC-SA 4.0
-    - This is a human-readable summary of the license: https://creativecommons.org/licenses/by-nc-sa/4.0/
-- Presentation slides are available on https://github.com/samerlahoud/tutorial-lpwan-iot
+\begin{center}
+\color{blue}
+https://github.com/samerlahoud/tutorial-lpwan-iot
+\end{center}
+- This is a human-readable summary of the license: https://creativecommons.org/licenses/by-nc-sa/4.0/
