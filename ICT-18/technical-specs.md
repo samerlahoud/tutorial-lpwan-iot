@@ -256,7 +256,7 @@ LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its ow
     - RFU
     - Proprietary
 
-### ACK in Frame Control for Confimred Mode
+### ACK in Frame Control for Confirmed Mode
 - If the ACK (demanding acknowledge) sender is an end-device
     - The network will send the acknowledgement using one of the receive windows opened by the end-device after the send operation
 - If the sender is a NS
