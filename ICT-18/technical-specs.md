@@ -18,7 +18,7 @@
     - Actility, Cisco, Bouygues, IBM, Orange, SK Telecom, KPN, ZTE, Semtech, La Poste, SoftBank, Swisscom, etc.
     - LoRaWAN 1.1 specification in 2018
 
-## LoRa Radio Interface
+## LoRaWAN Radio Interface
 
 ### What is LoRa?
 
@@ -54,7 +54,7 @@ $$R_b = SF \cdot \frac{B}{2^{SF}}$$
 
 ### LoRa Bit-Rate
 - LoRa includes a variable error correction scheme based on Hamming code
-    - Error correction improves the robustness of the transmitted signal at the expense of redundancy
+    - Improve the robustness of the transmitted signal at the expense of redundancy
 - Given a coding rate $CR$, the bit-rate is given by:
 
 \begin{equation*}
@@ -70,23 +70,15 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 7 \leq SF \leq 12$$
 
 ### LoRa Radio Performance
 
-| Spreading Factor  | Bit Rate (kb/s) |  Sensitivity (dBm) |
+| Spreading Factor  | Bit Rate\footnote{$CR$ = 1 and $B$ = 125 kHz} (kb/s) |  Sensitivity (dBm) |
 |:---:|:---:|:---:|
-| 6 | 9.375 | -118 |
+| 6\footnote{Spreading factor 6 is not used in LoRaWAN} | 9.375 | -118 |
 | 7 | 5.468 | -123 |
 | 8 | 3.125 | -126 |
 | 9 | 1.757 | -129 |
 | 10 | 0.976 | -132 |
 | 11 | 0.537 | -134.5 |
 | 12 | 0.293 | -137 |
-
-\vspace{-6mm}
-\small
-\begin{itemize}
-  \item[] ($CR$ = 1 and $B$ = 125 kHz)
-\end{itemize}
-
-\normalsize
 
 -  Higher spreading factors lead to lower sensitivity and larger coverage
 -  Lower spreading factors lead to higher data rates
@@ -103,7 +95,19 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 7 \leq SF \leq 12$$
 \end{figure}
 
 ### LoRaWAN Data Rates
-- from spec
+
+| Data rate |    Configuration    | Indicative Physical Bit Rate |
+|:---------:|:-------------------:|:-----------------:|
+|     0     | LoRa SF12 / 125 kHz |        250        |
+|     1     | LoRa SF11 / 125 kHz |        440        |
+|     2     | LoRa SF10 / 125 kHz |        980        |
+|     3     |  LoRa SF9 / 125 kHz |        1760       |
+|     4     |  LoRa SF8 / 125 kHz |        3125       |
+|     5     |  LoRa SF7 / 125 kHz |        5470       |
+|     6     |  LoRa SF7 / 250 kHz |       11000       |
+|     7     |     FSK: 50 kbps    |       50000       |
+|   8...14  |         RFU         |                   |
+|     15    |  Defined in LoRaWAN |                   |
 
 ### LoRaWAN Channels
 
@@ -144,12 +148,11 @@ A device just transmitted a 0.5 s long frame on one default channel. This channe
 
 ## LoRaWAN Physical Architecture
 
-### LoRaWAN General Characteristics
+### LoRaWAN General Architecture
 - LoRaWAN network architecture is typically laid out in a star-of-stars topology
-- Data rates ranging from 300 bps to 5.5 kbps
-    - Two high-speed channels at 11 kbps and 50 kbps (FSK modulation)
-    - Eight channels: bandwidth 125 kHz or 250 kHz
-    - Support for adaptive data rate (power and spreading factor control)
+    - Devices
+    - Gateways
+    - Network server  
 
 \begin{figure}
 		\includegraphics[scale=0.5]{./images/lorawan-archi.eps}
@@ -161,25 +164,23 @@ A device just transmitted a 0.5 s long frame on one default channel. This channe
 \end{figure}
 
 - End-devices are also called motes or devices
-- Communicate to one or more gateways via a wireless interface using single hop LoRa or FSK
+    - Communicate to one or more gateways via a wireless interface using single hop LoRa or FSK
 
 ### Gateways
 \begin{figure}
 \includegraphics[scale=0.5]{./images/lorawan-archi.eps}
 \end{figure}
 - Gateways are also called concentrators or base stations
-- Forward Frames between devices and network server
-- Connected to the network server via IP interfaces
+    - Forward Frames between devices and network server
+    - Connected to the network server via IP interfaces
 
 ### Network Server
 \begin{figure}
 \includegraphics[scale=0.5]{./images/lorawan-archi.eps}
 \end{figure}
 - Network server is a central server located at the backend
-
-- Provides mobility, frame control, and security functions
-
-- Adapts data transmission rates
+    - Provides mobility, frame control, and security functions
+    - Adapts data transmission rates
 
 <!--
 ### LoRaWAN General Characteristics
@@ -220,18 +221,17 @@ LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its ow
 
 ### Messages
 - Uplink messages
-
     - Sent by devices to the NS
-
     - Relayed by one or multiple gateways
-
     - [Preamble, PHDR, PHDR_CRC, Payload, CRC]
 
 - Downlink messages
-
     - Sent by the NS to only one device and is relayed by a single gateway
-
     - [Preamble, PHDR, PHDR_CRC, Payload]
+
+- Each device has two frame counters
+    - Uplink frames, incremented by the device
+    - Downlink frames, incremented by the NS
 
 ### Receive Windows for Class A Devices
 - First receive window
@@ -245,12 +245,9 @@ LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its ow
 
 ### MAC Header
 - Format
-
     - [ MAC type, …, Device Address, Frame Control, Frame Counter, Frame Options, Frame Port, Payload]
 - Message Types
-
     - Join Request
-
     - Join Accept
     - Unconfirmed Data Up
     - Unconfirmed Data Down
@@ -259,31 +256,21 @@ LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its ow
     - RFU
     - Proprietary
 
-
-### ACK in Frame Control
-- If the ACK (demanding acknowledge) sender is an end-device, the network will send the acknowledgement using one of the receive windows opened by the end-device after the send operation
-- If the sender is a NS, the end-device transmits an acknowledgment at its own discretion, possibly piggybacked with the next Data message
+### ACK in Frame Control for Confimred Mode
+- If the ACK (demanding acknowledge) sender is an end-device
+    - The network will send the acknowledgement using one of the receive windows opened by the end-device after the send operation
+- If the sender is a NS
+    - The end-device transmits an acknowledgment at its own discretion, possibly piggybacked with the next Data message
 - A message is retransmitted (predefined number of times) if an ACK is not received
-
-
-### Frame Counter
-- Each device has two frame counters
-
-    - Uplink frames, incremented by the device
-
-    - Downlink frames, incremented by the NS
-
 
 ### MAC Commands
 - Commands are exchanged between devices and NS, not visible to the application layer
 - Examples
-
     - Indicate the quality of reception of the device
     - Indicate the battery level of a device
     - Request the device to change data rate, transmit power, repetition rate or channel
     - Sets the maximum aggregated transmit duty-cycle of a device
     - Change to the frequency and the data rate set for the second receive window (RX2) following each uplink
-
 
 ### Data Stored in Each device
 - Device address
@@ -294,9 +281,7 @@ LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its ow
 -  Session key
     -  Used for integrity check and encryption/decryption of MAC only messages
 - Application Session key
-
     - Used for integrity check and encryption/decryption of application data messages
-
 
 ### Two Ways of Activation
 - Over the air activation
@@ -305,6 +290,14 @@ LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its ow
 - Activation by Personalization
     - No MAC messages
     - The DevAddr and the two session keys NwkSKey and AppSKey are directly stored into the end-device
+
+### Adaptive Data Rate
+- Objectives
+    - Increase battery life
+    - Maximize network capacity
+- Data rate validation
+    - A device periodically sets the ADR acknowledgment bit and waits for an acknowledgment from the network
+    - If an ACK is not received, the device switches to the next lower data rate that provides a longer radio range
 
 <!--
 ### EU 433MHz ISM Band
@@ -366,7 +359,7 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
     - Systematic periodic uplink (for stationary devices)
     - Uplink on cell change that requires demodulating the gateway specific part of the beacon
 -->
-
+<!--
 ### LoRa Radio Optimization
 
 | Spreading Factor  | Bit Rate (kb/s) |  Sensitivity (dBm) |
@@ -388,16 +381,7 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 
 -  Higher spreading factors lead to better sensitivity and larger coverage
 -  Lower spreading factors lead to higher data rates
-
-### Adaptive Data Rate
-
-- Objectives
-
-    - Increase battery life
-    - Maximize network capacity
-- Data rate validation
-    - A device periodically sets the ADR acknowledgment bit and waits for an acknowledgment from the network
-    - If an ACK is not received, the device switches to the next lower data rate that provides a longer radio range
+-->
 
 <!--
 ### Wrap-up Example (1/3)
