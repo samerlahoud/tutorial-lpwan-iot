@@ -162,7 +162,7 @@ $$p_s(r) = \mathbb{E}_\chi \left[ \exp(-p \lambda_m \pi A\theta^{\frac{2}{\gamma
     - MAB problem (acknowledgement as a reward) with reinforcement learning algorithms
 - Results: increase success probability and reduce latency with time
 
-### Application Layer Coding for Data Recovery\footnote{Marcelis, Paul J., Vijay S. Rao, and R. Venkatesha Prasad. "DaRe: Data recovery through application layer coding for LoRaWAN.", IEEE/ACM Second International Conference onInternet-of-Things Design and Implementation (IoTDI) (2017)}
+### Application Layer Coding for Data Recovery\footnote{Marcelis, Paul J., Vijay S. Rao, and R. Venkatesha Prasad. "DaRe: Data recovery through application layer coding for LoRaWAN.", IEEE/ACM Second International Conference on Internet-of-Things Design and Implementation (IoTDI) (2017)}
 - Thorough characterization of losses in LoRaWAN: channel outage, burstiness $\Rightarrow$ Gilbert Elliot model for bursty erasure channels
 - Spread the redundant information from the data in one frame across other frames
 \begin{figure}
