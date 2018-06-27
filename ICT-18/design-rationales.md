@@ -333,3 +333,11 @@ C = B\log_2 (1+\frac{S}{N}) = B\log_2 (1+\frac{S}{N_0B})
 ### Network Topology and Deployment
 - LoRaWAN has a simple network architecture and operates in license-free bands $\Rightarrow$ low-cost deployment
 - NB-IoT reuses LTE frequency bands and infrastructure (through software upgrade) $\Rightarrow$ fast time-to-market
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.35]{./images/lpwa-architecture.eps}
+\end{figure}
+<!--
+Star of stars topology
+-->

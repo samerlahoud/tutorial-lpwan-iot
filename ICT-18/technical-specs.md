@@ -437,7 +437,7 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
         - Bearer management
         - Security management
         - Mobility management
-    - it reuses LTE infrastructure through a software upgrade
+    - it reuses LTE infrastructure through software upgrade
 
 ### Deployment Flexibility
 - NB-IoT supports three operation modes: in-band (LTE), guard-band (LTE), and standalone ($e.g.,$ refarm the GSM carrier)
@@ -574,33 +574,40 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
     - In case of connection loss (persistent link-layer failures), they switch to idle mode
     - In idle mode, they initiate cell reselection and then switch back to connected mode
 
-### Scheduling
-- The NPDCCH carries a DCI that includes resource allocation (in both time and frequency domains), modulation and coding scheme (MCS), and information needed for supporting the HARQ operation.
+### Uplink Scheduling
+- Scheduling information is transmitted in the Downlink Control Information (DCI) message
+- UL scheduling information includes:
+    - resource allocation (in time and frequency domains): subcarrier indication and number of RUs
+    - Modulation and Coding Scheme (MCS)
+    - number of repetitions
+    - scheduling delay: time gap between the last DCI and the first scheduled UL subframe ($\geq$ 8 ms)
+- A TB can be mapped over multiple RUs, allowing more redundancy bits for channel coding
+- The scheduling delay allows the device to decode the DCI message, switch to transmission mode, and prepare for the UL transmission
+- After data transmission, the device has at least 3 ms to switch to reception mode and monitor the next DCI message
 
-- For a TB size, better coverage is achieved by allocating more
-RUs, giving a higher energy level per information bit, and in most cases, a higher coding gain as well.
+<!--
+- The modulation format is determined based on the MCS index
+- The TBS and the code rate are based on the MCS index and the number of RUs
+-->
 
 ### Uplink Scheduling
-- For UL data transmissions, subframe scheduling with at least an 8 ms time gap between the last DCI subframe and the first scheduled NPUSCH subframe is required.
-- This time gap allows the device to decode the DCI, switch from the reception mode to the transmission mode, and prepare the UL transmission.
-- This time gap is referred to as the scheduling delay and is indicated in DCI. (8, 16, 32, or 64 ms)
-- After the device completes its NPUSCH transmission, there is at least a 3-ms gap to allow the device to switch from transmission mode to reception mode and be ready for monitoring the next NPDCCH search space candidate.
-- DCI Format N0 provides the information about the starting subframe as well as the total number of subframes of the scheduled NPUSCH resources.
-- The total number of scheduled NPUSCH slots is determined by the number of RUs per repetition, the number of repetitions, and the length of an RU. The length of an RU is inferred from the number of subcarriers used for NPUSCH Format 1.
 
-### Uplink Scheduling
-- Modulation format is determined based on the MCS index, and the coding scheme is determined jointly based on the MCS index, number of RUs, and the redundancy version.
-- Subcarrier indication; scheduling delay; number of resource units; number of repetition; MCS; redundancy version
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.4]{./images/UL-scheduling.pdf}
+	\caption*{An uplink scheduling example\footnote{O. Liberg et al., \textit{Cellular Internet of Things - Technologies, Standards, and Performance}. Cambridge, MA, USA: American Press, 2017.}}
+\end{figure}
 
 ### Downlink Scheduling
-- Most of the general aspects of DL scheduling are similar to those used for UL
-scheduling, although the exact parameter values are different.
-- Cross-subframe scheduling is also used for DL scheduling, but
-the minimum time gap between the last DCI subframe and the first scheduled NPDSCH subframe is 4 ms.
-
-
-
-
+- The general aspects of DL scheduling are similar to those of UL scheduling
+- DL scheduling information includes:
+    - resource allocation: number of subframes per repetition
+    - MCS
+    - number of repetitions
+    - scheduling delay ($\geq$ 4 ms)
+    - HARQ-Ack resource: subcarrier index and time offset 
+- Resources for HARQ feedback are also scheduled
+- After HARQ feedback transmission, the device has at least 3 ms to switch to reception mode and monitor the next DCI message
 
 ### Power Control
 \begin{itemize}
