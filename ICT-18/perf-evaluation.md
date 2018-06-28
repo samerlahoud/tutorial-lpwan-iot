@@ -90,7 +90,7 @@ $$B = 44.9 - 6.55 \log_{10}(h_b)$$
     - Fading and protection margin: $M = 10$ dB
     - Noise floor: $N= -153$ dBm
 
-- We can now compute the received power $P_{RX}(i)$ and $\text{SNR}(i)$ for end-device $i$:
+- We can now compute the received power $P_{RX}(i)$ and $\text{SNR}(i)$ at the gateway for end-device $i$:
 $$P_{Rx}(i) = P_{Tx} + G_{System} - L_{Channel}(i) - M$$
 $$\text{SNR}(i) = P_{Rx}(i) - N$$
 
