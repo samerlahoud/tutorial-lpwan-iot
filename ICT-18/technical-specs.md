@@ -219,6 +219,16 @@ LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its ow
 - Class C
     - Nearly always open receive windows (unless transmitting)
 
+### Receive Windows for Class A Devices
+- First receive window
+    - Same channel (and data rate) as the uplink
+- Second receive window
+   - Predefined channel and data rate, and possibility to modify it by MAC commands
+
+\begin{figure}
+  \includegraphics[scale=0.5]{./images/class-a-lorawan.eps}
+\end{figure}
+
 ### Messages
 - Uplink messages
     - Sent by devices to the NS
@@ -232,16 +242,6 @@ LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its ow
 - Each device has two frame counters
     - Uplink frames, incremented by the device
     - Downlink frames, incremented by the NS
-
-### Receive Windows for Class A Devices
-- First receive window
-    - Same channel (and data rate) as the uplink
-- Second receive window
-    - Predefined channel and data rate, and possibility to modify it by MAC commands
-
-\begin{figure}
-\includegraphics[scale=0.5]{./images/class-a-lorawan.eps}
-\end{figure}
 
 ### MAC Header
 - Format
