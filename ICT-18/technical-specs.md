@@ -58,7 +58,7 @@ R_b = SF \cdot \frac{B}{2^{SF}} \cdot CR
 \begin{equation*}
 R_b = SF \cdot \frac{B}{2^{SF}} \cdot \frac{4}{4+CR}
 \end{equation*}
-$$\text{with } 1 \leq CR \leq 4,\text{and } 7 \leq SF \leq 12$$
+$$\text{with } 1 \leq CR \leq 4,\text{and } 6 \leq SF \leq 12$$
 
 ### LoRa Spreading Factors
 - LoRa uses spreading factors from 6 to 12 (6 is not used in LoRaWAN)
@@ -223,7 +223,7 @@ LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its ow
 - First receive window
     - Same channel (and data rate) as the uplink
 - Second receive window
-   - Predefined channel and data rate, and possibility to modify it by MAC commands
+    - Predefined channel and data rate, and possibility to modify it by MAC commands
 
 \begin{figure}
   \includegraphics[scale=0.5]{./images/class-a-lorawan.eps}
