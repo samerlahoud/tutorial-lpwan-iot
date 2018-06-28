@@ -44,14 +44,6 @@ $$R_b = SF \cdot \frac{B}{2^{SF}}$$
 	\includegraphics[scale=0.5]{./images/lora-symbols.pdf}
 \end{figure}
 
-### LoRa Spreading Factors
-- LoRa uses spreading factors from 7 to 12
-
-\begin{figure}
-	\centering
-	\includegraphics[scale=0.25]{./images/sf-comparison.eps}
-\end{figure}
-
 ### LoRa Bit-Rate
 - LoRa includes a variable error correction scheme based on Hamming code
     - Improve the robustness of the transmitted signal at the expense of redundancy
@@ -67,6 +59,14 @@ R_b = SF \cdot \frac{B}{2^{SF}} \cdot CR
 R_b = SF \cdot \frac{B}{2^{SF}} \cdot \frac{4}{4+CR}
 \end{equation*}
 $$\text{with } 1 \leq CR \leq 4,\text{and } 7 \leq SF \leq 12$$
+
+### LoRa Spreading Factors
+- LoRa uses spreading factors from 6 to 12 (6 is not used in LoRaWAN)
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.25]{./images/sf-comparison.eps}
+\end{figure}
 
 ### LoRa Radio Performance
 
@@ -150,7 +150,7 @@ A device just transmitted a 0.5 s long frame on one default channel. This channe
 
 ### LoRaWAN General Architecture
 - LoRaWAN network architecture is typically laid out in a star-of-stars topology
-    - Devices
+    - End-devices
     - Gateways
     - Network server  
 
