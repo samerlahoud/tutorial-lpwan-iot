@@ -148,7 +148,7 @@ $$p_s(r) = \mathbb{E}_\chi \left[ \exp(-p \lambda_m \pi A\theta^{\frac{2}{\gamma
 ### Scheduling for Improving Reliability\footnote{Reynders, Brecht, et al. "Improving Reliability and Scalability of LoRaWANs Through Lightweight Scheduling." IEEE Internet of Things Journal (2018)}
 - Two-step lightweight scheduling
     - Gateway schedules nodes in a coarse-grained manner through dynamically specifying the allowed transmission powers and spreading factors on each channel
-	- Based on the gateway scheduling information, am end-device determines its own transmission power, spreading factor, and when and on which channel to transmit
+	- Based on the gateway scheduling information, an end-device determines its own transmission power, spreading factor, and when and on which channel to transmit
 - Results: increase throughput and fairness for large scenarios
 \begin{figure}
 		\centering
@@ -160,7 +160,7 @@ $$p_s(r) = \mathbb{E}_\chi \left[ \exp(-p \lambda_m \pi A\theta^{\frac{2}{\gamma
 - Derive the expression of the latency for different frequency access schemes
 - Selection of the best channel requires the knowledge of the probability of collision in the channels
     - MAB problem (acknowledgement as a reward) with reinforcement learning algorithms
-- Results: increase success probability and reduce latency with time
+- Results: increase success probability and reduce latency over time
 
 ### Application Layer Coding for Data Recovery\footnote{Marcelis, Paul J., Vijay S. Rao, and R. Venkatesha Prasad. "DaRe: Data recovery through application layer coding for LoRaWAN.", IEEE/ACM Second International Conference on Internet-of-Things Design and Implementation (IoTDI) (2017)}
 - Thorough characterization of losses in LoRaWAN: channel outage, burstiness $\Rightarrow$ Gilbert Elliot model for bursty erasure channels
