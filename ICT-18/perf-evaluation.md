@@ -64,7 +64,7 @@ MAPL = \max L_{Channel} \mbox{ } | \mbox{ } P_{Rx} = \mbox{receiver sensitivity}
     - Transmit power: 14 dBm
     - Gateway height: 30 m
     - End-device height: 1.5 m
-    - Antenna gains: 3 dBi
+    - Antenna gains: 6 dBi
     - Noise floor: -153 dBm
     - Pathloss: Okumura-Hata
     - Shadow fading: lognormal $\mathcal{N}(0,8)$
@@ -86,7 +86,7 @@ $$B = 44.9 - 6.55 \log_{10}(h_b)$$
 
 - We consider the following parameters:
     - Transmit power: $P_{Tx} = 14$ dBm
-    - Antenna gain: $G_{System} = 3$ dBi
+    - Antenna gain: $G_{System} = 6$ dBi
     - Fading and protection margin: $M = 10$ dB
     - Noise floor: $N= -153$ dBm
 
@@ -269,9 +269,9 @@ $$S = G\exp(-2G) (1+\sum_{n=2}^{N} \frac{(2G)^n}{n!} (1-(1-P_{cap}(n,\Delta))^r)
 
 ### Enhancing the Coverage with Multiple Gateways
 
-- Network densification decreases the outage probability of LoRaWAN to 55% 
+- Network densification decreases the outage probability of LoRaWAN to 55%
 - LoRaWAN has coverage limitations in comparison with NB-IoT
- 
+
 \begin{figure}
 	\centering
   \includegraphics[scale=0.4]{./images/coupling-loss-lora-nbiot-4gw.eps}
