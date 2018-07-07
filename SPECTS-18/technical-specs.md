@@ -127,17 +127,13 @@ f(t) = \frac{1}{2 \pi} \frac{d(2 \pi f_0 t + \pi \mu t^2 + \phi_0)}{dt} = f_0 + 
 	\includegraphics[scale=0.45]{./images/definitions.pdf}
 \end{figure}
 
+<!--
 ### What is Chirp Spread Spectrum?
 - Chirp Spread Spectrum (CSS) is a spread spectrum technique that uses wideband linear frequency modulated chirps to encode information
-- Encoding information using $up$-$chirp$ and $down$-$chirp$ signals:
-    - Example: "1" $\Rightarrow$ transmit an $up$-$chirp$, "0" $\Rightarrow$ transmit a $down$-$chirp$
-    - Chirps are transmitted in equidistant time steps
 - Encoding information using only one chirp waveform with Pulse-Position Modulation (PPM):
     - $M$ bits are encoded by transmitting a single $chirp$ in one of $2^M$ possible time shifts $\Rightarrow$ bit-rate = $M/T$ in b/s
     - Chirps are not transmitted in equidistant time steps
-- At the receiver, the wanted information is re-covered through de-chirping
-<!--
-multiply with the complexe conjugate of the chirp signal
+- At the receiver, the signal is re-covered through de-chirping
 -->
 <!--
 ### Example: Binary Orthogonal Keying (BOK) Schemes
@@ -149,20 +145,20 @@ multiply with the complexe conjugate of the chirp signal
 	\caption*{a) BOK using $up$- and $down$- chirps b) BOK using PPM}
 \end{figure}
 -->
-
+<!--
 ### Advantages of CSS
 
 - CSS is robust to interference, multipath fading, and Doppler effect
 
 - Time and frequency offsets between transmitter and receiver are equivalent, greatly reducing the complexity of the receiver design
-
+-->
 <!--
 Unlike the DSSS, the CSS does not add any pseudo-random elements to the signal, instead relying on the linear nature of the chirp pulse
 -->
-
+<!--
 #### Why CSS?
 CSS provides a low-complexity, low-cost, low-power, yet robust alternative to the traditional SS techniques
-
+-->
 ### What is LoRa?
 
 \begin{block}{Definition of LoRa}
@@ -252,10 +248,6 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 6 \leq SF \leq 12$$
 |   8...14  |         RFU         |                   |
 |     15    |  Defined in LoRaWAN |                   |
 
-### How LoRa Supports Massive Number of Low-Rate Devices
-- Trading off data rate for coverage
-- How to increase network capacity?
-    - LoRaWAN uses multiple orthogonal spreading factors simultaneously on the same channel
 
 ### LoRaWAN Channels
 
@@ -271,19 +263,17 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 6 \leq SF \leq 12$$
 |        |        | 868.30  | 0.3-5 kbps      |    |
 |        |        | 868.50  |                        |    |
 
-
+<!--
 ### ETSI Limitations
 
 - Restrictions on the maximum time the transmitter can be on or the maximum time a transmitter can transmit per hour
 - Choice between
-
     - Duty-cycle limitation
-
     - Listen Before Talk Adaptive Frequency Agility (LBT AFA) transmissions management
 - The current LoRaWAN specification exclusively uses duty-cycled limited transmissions to comply with the ETSI regulations
-
+-->
 ### Duty Cycle Limitation
-- The LoRaWAN enforces a per sub-band duty-cycle limitation
+- The LoRaWAN enforces a per sub-band duty-cycle limitation (ETSI regulation)
 
     - Each time a frame is transmitted in a given sub-band, the time of emission and the on-air duration of the frame are recorded for this sub-band
     - The same sub-band cannot be used again during the next $T_{off}$ seconds where: $$T_{off} = \frac{TimeOnAir}{DutyCyleSubband}- TimeOnAir$$
@@ -293,6 +283,24 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 6 \leq SF \leq 12$$
 #### Example
 
 A device just transmitted a 0.5 s long frame on one default channel. This channel is in a sub-band allowing 1% duty-cycle. Therefore this whole sub-band (868 – 868.6) will be unavailable for 49.5 s
+
+### How LoRaWAN Supports Massive Number of Low-Rate Devices
+- Trading off data rate for coverage
+    -  Higher spreading factors lead to lower sensitivity and larger coverage
+    -  Lower spreading factors lead to higher data rates
+- How to increase network capacity?
+    - LoRaWAN uses multiple orthogonal spreading factors simultaneously on the same channel
+
+### How LoRa Enables Low Device Complexity and Cost?
+- Reduce baseband processing complexity through:
+    - limiting message size: maximum application payload size between 51 and 222 bytes, depending on the spreading factor
+    - using simple channel codes: Hamming code
+    - simple modulation: LoRa
+    - supporting only half-duplex operation: no simultaneous transmission and reception
+- Reduce RF processing complexity and cost through:
+    - using one transmit-and-receive antenna
+    - not using a duplexer (since only half-duplex operation is supported)
+    - on-chip integrating power amplifier $\Rightarrow$ single-chip modem implementation (since transmit power is limited)
 
 ## LoRaWAN Physical Architecture
 
@@ -363,6 +371,7 @@ A device just transmitted a 0.5 s long frame on one default channel. This channe
     - Regulated maximum transmit duration (or dwell time)
 - Collisions occur in LoRaWAN
     - Simultaneous transmissions on the same channel and spreading factor collide
+- Two types of messages: unconfirmed and confirmed
 
 #### LoRaWAN Access Method
 LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its own communication needs with a small variation based on a random time basis
@@ -405,19 +414,6 @@ LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its ow
     - Downlink frames, incremented by the NS
 -->
 
-### How LoRa Enables Low Device Complexity and Cost?
-- Reduce baseband processing complexity through:
-    - limiting message size:
-    - using simple channel codes:
-    - not using complex modulations or multiple-input multiple-output (MIMO) transmissions
-    - supporting only half-duplex operation: no simultaneous transmission and reception
-
-### RF Processing
-- Reduce RF processing complexity and cost through:
-    - using one transmit-and-receive antenna
-    - not using a duplexer (since only half-duplex operation is supported)
-    - on-chip integrating power amplifier $\Rightarrow$ single-chip modem implementation (since transmit power is limited)
-
 <!--
 ### MAC Header
 - Format
@@ -431,7 +427,6 @@ LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its ow
     - Confirmed Data Down
     - RFU
     - Proprietary
--->
 
 ### ACK in Frame Control for Confirmed Mode
 - If the ACK (demanding acknowledge) sender is an end-device
@@ -439,7 +434,7 @@ LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its ow
 - If the sender is a NS
     - The end-device transmits an acknowledgment at its own discretion, possibly piggybacked with the next Data message
 - A message is retransmitted (predefined number of times) if an ACK is not received
-
+-->
 <!--
 ### MAC Commands
 - Commands are exchanged between devices and NS, not visible to the application layer

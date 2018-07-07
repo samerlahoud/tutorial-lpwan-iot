@@ -26,7 +26,7 @@ P_{Rx} = P_{Tx} + G_{System} - L_{System} - L_{Channel} - M
     - indoor penetration loss (first wall): $\sim 18$ dB (in dense urban environment), $\sim 15$ dB (in urban environment), and $\sim 10-12$ dB (in rural environment)
     - deep indoor penetration loss (second wall): +3 dB
 - Protection margin
-
+<!--
 ### Maximum Allowable Path Loss
 - The maximum allowable path loss ($MAPL$) is expressed as:
 \begin{equation*}
@@ -37,7 +37,7 @@ MAPL = \max L_{Channel} \mbox{ } | \mbox{ } P_{Rx} = \mbox{receiver sensitivity}
 \end{equation*}
 
 - The maximum allowable distance between a transmitter and a receiver (cell range) depends on the $MAPL$ and the channel model
-
+-->
 <!--
 ### Enhanced Network Capacity
 \begin{itemize}
@@ -161,6 +161,26 @@ Spreading Factor             | 7         | 8           | 9           | 10       
 -----------------------------|:---------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|
 Cumulative coverage (\%)     |88.70      | 94.50       | 97.60       | 99.20       | 99.60       | 100.00      |
 
+### Coverage in Different Environments
+
+- Coverage outage $\Rightarrow$ coupling loss $> MCL$ (LoRaWAN: 157 dB)
+- In indoor dense urban environments, the outage probability of LoRaWAN is 87% (with a single gateway)
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/coupling-loss-lora-1gw.eps}
+\end{figure}
+
+### Densification and Coverage Limitation
+
+- Network densification decreases the outage probability of LoRaWAN to 55%
+- LoRaWAN has coverage limitations especially in indoor dense urban
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/coupling-loss-lora-4gw.eps}
+\end{figure}
+
 ## Capacity of LoRaWAN
 ### Pure ALOHA Model
 - The start times of the packets in an ALOHA channel is modeled as a Poisson point process with parameter $\lambda$ packets/second
@@ -255,26 +275,4 @@ $$S = G\exp(-2G) (1+\sum_{n=2}^{N} \frac{(2G)^n}{n!} (1-(1-P_{cap}(n,\Delta))^r)
 	\centering
   \includegraphics[scale=0.4]{./images/capture-effect-aloha.eps}
   \caption*{$l$=50 bytes, SF=7, $\lambda(s) = \frac{d}{T_a(l,s)}$, $\Delta = 6$ dB}
-\end{figure}
-
-## Coverage Comparison of LoRaWAN and NB-IoT
-
-### Coupling Loss
-
-- Coverage outage $\Rightarrow$ coupling loss $> MCL$ (NB-IoT: 164 dB, LoRaWAN: 157 dB)
-- In indoor dense urban environments, the outage probability of LoRaWAN is 87% (with a single gateway)
-
-\begin{figure}
-	\centering
-  \includegraphics[scale=0.4]{./images/coupling-loss-lora-nbiot-1gw.eps}
-\end{figure}
-
-### Enhancing the Coverage with Multiple Gateways
-
-- Network densification decreases the outage probability of LoRaWAN to 55%
-- LoRaWAN has coverage limitations in comparison with NB-IoT
-
-\begin{figure}
-	\centering
-  \includegraphics[scale=0.4]{./images/coupling-loss-lora-nbiot-4gw.eps}
 \end{figure}

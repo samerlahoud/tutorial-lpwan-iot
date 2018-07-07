@@ -31,7 +31,7 @@
 ### Conclusions (4/4)
 - What are the recent research directions for radio resource management in LoRaWAN?
     - Adaptation of the radio propagation models
-    - Interference mitigation and scheduling
+    - Interference mitigation
     - Support for quality of service such as delay bounded transmission
     - Maximization of the energy efficiency
     - Providing IPv6 connectivity to the device (IETF lpwan working group)

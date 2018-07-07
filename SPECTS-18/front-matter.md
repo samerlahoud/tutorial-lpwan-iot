@@ -16,4 +16,6 @@ output:
 - What are the fundamental mechanisms that enable to meet the LPWAN requirements?
 - What are the major design choices made in the LoRaWAN specification?
 - How do we evaluate the performance of a LoRaWAN deployment in terms of coverage and capacity?
+<!--
 - What are the recent research directions for radio resource management in LoRaWAN?
+-->
