@@ -38,8 +38,10 @@
 \setbeamertemplate{title page}[empty]
 
 \setbeamerfont{subtitle}{size=\small}
-\setmathfont[BoldFont={Fira Sans}]{Fira Sans Light}
 \setsansfont[BoldFont={Fira Sans}]{Fira Sans Light}
+\setmathfont
+[    Extension = .otf
+]{texgyretermes-math}
 
 \setbeamercovered{transparent}
 
