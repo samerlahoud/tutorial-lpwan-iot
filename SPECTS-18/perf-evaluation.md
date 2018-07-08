@@ -225,6 +225,7 @@ $$\frac{1}{T_a(l,s)}\times S$$
 
 ### Data Extraction Rate
 - For 100 end-devices the percentage of successful transmissions is equal to 14\% (the average number of successfully transmitted packets per end-device equals 40 per hour, out of 289 generated packets)
+
 \begin{figure}
 	\centering
   \includegraphics[scale=0.4]{./images/der-nb-users-aloha.eps}
@@ -234,6 +235,7 @@ $$\frac{1}{T_a(l,s)}\times S$$
 ### Packet Generation Rate  
 - For small number of end-devices, the throughput is limited by the duty cycle
 - For large number of end-devices, the throughput is limited by collisions
+
 \begin{figure}
 	\centering
   \includegraphics[scale=0.4]{./images/received-packets-generated-packets-aloha.eps}
@@ -242,6 +244,7 @@ $$\frac{1}{T_a(l,s)}\times S$$
 
 ### Spreading Factors and Successful Transmissions
 - For 50 end-devices, the average number of successful transmissions per end-device per hour increases from 6 to 106 when SF decreases from 12 to 7
+
 \begin{figure}
 	\centering
   \includegraphics[scale=0.4]{./images/sf-compare-received-packets-nb-users-aloha.eps}
@@ -255,6 +258,7 @@ $$\frac{1}{T_a(l,s)}\times S$$
     - The receiver sensitivity
     - The signal to noise plus interference ratio SINR
 - The presence of multiple receivers favors the capture effect
+
 \begin{figure}
 	\centering
   \includegraphics[scale=0.4]{./images/capture-schema.eps}
@@ -271,6 +275,7 @@ $$S = G\exp(-2G) (1+\sum_{n=2}^{N} \frac{(2G)^n}{n!} (1-(1-P_{cap}(n,\Delta))^r)
 
 ### Successful Transmissions with Capture Effect
 - For 100 end-devices, the number of successful transmissions per hour per end-device increases from 38 to 52 when considering the capture effect with one gateway, and reaches 84 with 4 gateways
+
 \begin{figure}
 	\centering
   \includegraphics[scale=0.4]{./images/capture-effect-aloha.eps}
