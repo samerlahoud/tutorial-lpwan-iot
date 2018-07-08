@@ -1,17 +1,14 @@
-%\usetheme{Boadilla}
 \usetheme{usj-tree}
-%\usetheme{metropolis}
-\usefonttheme{professionalfonts}
 \usepackage{graphicx}
 \usepackage{rotating}
-%\setbeamertemplate{caption}[numbered]
 \usepackage{hyperref}
 \usepackage{caption}
 \usepackage[normalem]{ulem}
-%\mode<presentation>
 \usepackage{wasysym}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
 
 \usepackage{longtable,booktabs}
 \usepackage{caption}
@@ -20,28 +17,16 @@
 \def\fnum@table{\tablename~\thetable}
 \makeatother
 
-%\makeatletter % undo the wrong changes made by mathspec
-%\let\RequirePackage\original@RequirePackage
-%\let\usepackage\RequirePackage
-%\makeatother
-
-\usepackage{amsmath}
-
-%\uselanguage{French}
-%\languagepath{French}
-
 \useinnertheme{rectangles}
-%\usecolortheme{seahorse}
 \setbeamertemplate{navigation symbols}{}
 
-%\institute[USJ]{ICT 2018, 25th International Conference on Telecommunication}
 \setbeamertemplate{title page}[empty]
 
 \setbeamerfont{subtitle}{size=\small}
 \setsansfont[BoldFont={Fira Sans}]{Fira Sans Light}
-\setmathfont
-[    Extension = .otf
-]{texgyretermes-math}
+%\setmathfont
+%[    Extension = .otf
+%]{texgyretermes-math}
 
 \setbeamercovered{transparent}
 
@@ -55,13 +40,6 @@
 \setbeamerfont{title}{series=\bfseries,parent=structure}
 \setbeamerfont{frametitle}{series=\bfseries,parent=structure}
 
-%\setbeamercolor{title}{fg=clemsonpurple,bg=white}
-%\setbeamercolor{local structure}{fg=clemsonpurple}
-%\setbeamercolor{section in toc}{fg=clemsonpurple,bg=white}
-% \setbeamercolor{subsection in toc}{fg=clemsonorange,bg=white}
-%\setbeamercolor{item projected}{fg=clemsonpurple,bg=white}
-%\setbeamertemplate{itemize item}{\color{clemsonpurple}$\bullet$}
-%\setbeamertemplate{itemize subitem}{\color{clemsonpurple}\scriptsize{$\bullet$}}
 \let\Tiny=\tiny
 
 \AtBeginPart{}

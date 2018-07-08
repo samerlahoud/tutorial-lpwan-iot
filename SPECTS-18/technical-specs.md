@@ -69,11 +69,10 @@ SNR_{threshold} = \left( \frac{E_b}{N_0}\right)_{threshold} - G_p
 
     - $E_b$ is the energy per bit
     - $N_0$ is the noise power spectral density
-    - $G_p$ is the processing gain given by: $$G_p = 10\log_{10}(T_bB)$$
+    - $G_p$ is the processing gain given by: $$G_p = 10\log_{10}(\frac{B}{R_b})$$
 
-- The higher $G_p$ is
-    - the lower $SNR_{threshold}$ is $\Rightarrow$ larger radio coverage
-    - the lower $R_b$ is
+- If we increase $G_p$, $SNR_{threshold}$ decreases $\Rightarrow$ larger radio coverage
+    - But $R_b$ decreases also!
 
 ### Linear Chirp
 - A linear chirp is a sinusoidal signal whose frequency linearly increases ($up$-$chirp$) or decreases ($down$-$chirp$) over time
@@ -292,15 +291,15 @@ A device just transmitted a 0.5 s long frame on one default channel. This channe
     - LoRaWAN uses multiple orthogonal spreading factors simultaneously on the same channel
 
 ### How LoRa Enables Low Device Complexity and Cost?
-- Reduce baseband processing complexity through:
-    - limiting message size: maximum application payload size between 51 and 222 bytes, depending on the spreading factor
-    - using simple channel codes: Hamming code
-    - simple modulation: LoRa
-    - supporting only half-duplex operation: no simultaneous transmission and reception
-- Reduce RF processing complexity and cost through:
-    - using one transmit-and-receive antenna
-    - not using a duplexer (since only half-duplex operation is supported)
-    - on-chip integrating power amplifier $\Rightarrow$ single-chip modem implementation (since transmit power is limited)
+- Reduce baseband processing complexity:
+    - Short messages: maximum application payload size between 51 and 222 bytes, depending on the spreading factor
+    - Simple channel codes: Hamming code
+    - Simple modulation: LoRa
+    - Support only for half-duplex operation: no simultaneous transmission and reception
+- Reduce RF processing complexity and cost:
+    - One transmit-and-receive antenna
+    - No duplexer (only half-duplex operation is supported)
+    - Single-chip modem and power amplifier (low transmit power)
 
 ## LoRaWAN Physical Architecture
 
@@ -394,6 +393,7 @@ LoRaWAN is an ALOHA-type protocol: transmission by the device is based on its ow
 - Second receive window
     - Predefined channel and data rate, and possibility to modify it by MAC commands
 
+&nbsp;
 \begin{figure}
   \includegraphics[scale=0.5]{./images/class-a-lorawan.eps}
 \end{figure}

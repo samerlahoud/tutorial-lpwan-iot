@@ -6,6 +6,7 @@ title: Low Power Wide Area Networks for the Internet of Things
 subtitle: Framework, Performance Evaluation, and Challenges
 date: SPECTS 2018, Bordeaux, France
 institute: ESIB, Saint Joseph University of Beirut, Lebanon
+mathspec: true
 output:
   beamer_presentation:
     slide_level: 3

@@ -79,7 +79,7 @@ MAPL = \max L_{Channel} \mbox{ } | \mbox{ } P_{Rx} = \mbox{receiver sensitivity}
 $$L_{Channel}(i) = A+B \log_{10}(d(i,g))$$
 
 - The two parameters $A$ and $B$ depend on the antenna heights ($h_b = 30$ m for the gateway and $h_d = 1.5$ m for the end-device) and the central frequency $f_c = 868$ MHz
-$$A = 69.55 + 26.16 \log_{10}(f_c) - 13.82 \log_{10}(h_b) - 3.2(\log{10}(11.75 h_d))^2+4.97$$
+$$A = 69.55 + 26.16 \log_{10}(f_c) - 13.82 \log_{10}(h_b) - 3.2(\log_{10}(11.75 h_d))^2+4.97$$
 $$B = 44.9 - 6.55 \log_{10}(h_b)$$
 
 ### Link Budget
@@ -173,7 +173,7 @@ Cumulative coverage (\%)     |88.70      | 94.50       | 97.60       | 99.20    
 
 ### Densification and Coverage Limitation
 
-- Network densification decreases the outage probability of LoRaWAN to 55%
+- Network densification (4 gateways) decreases the outage probability of LoRaWAN to 55%
 - LoRaWAN has coverage limitations especially in indoor dense urban
 
 \begin{figure}
