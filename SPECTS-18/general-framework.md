@@ -42,6 +42,7 @@ The Internet of Things (IoT) generally refers to scenarios where network connect
 -->
 ### Evolution of IoT Devices
 - The largest growth is expected for devices connected to a wide-area network
+
 \begin{figure}
 	\includegraphics[scale=0.5]{./images/ericsson-connected-devices.pdf}
 	\caption*{Source: Ericsson mobility report, 2017}

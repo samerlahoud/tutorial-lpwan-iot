@@ -10,7 +10,7 @@
     - Simplified architecture
 
 ### Conclusions (2/4)
-- What are the major design choices made in the LoRaWAN and NB-IoT specifications?
+- What are the major design choices made in the LoRaWAN specification?
 
 |                   |        LoRaWAN        |
 |-------------------|:---------------------:|
