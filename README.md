@@ -4,6 +4,9 @@
 ### Licence
 The authors made the tutorial sources available under Creative Common license CC BY-NC-SA 4.0. This is a human-readable summary of the license: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
+### Funding
+This project has been jointly funded with the support of the National Council for Scientific Research in Lebanon CNRS-L and Saint Joseph University of Beirut.
+
 ### Abstract
 Low-Power Wide Area Networks (LPWAN) have recently gained considerable attention in the Internet of Things (IoT). The key objective of these wireless technologies is to connect low-power devices over very large areas, with low data rates. LPWANs are promising for various emerging IoT applications, complementing the traditional cellular and short-range technologies.
 
