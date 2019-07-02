@@ -1,0 +1,29 @@
+ICT:
+- framework : 30 min => SL (12s)
+- design rationale : 50 minutes => MH (34s)
+
+Tech : 
+- LoRaWAN : 30 minutes => SL (30s)
+==== Pause
+- NB-IoT : 45 minutes => MH (20s)
+
+Perf
+- Link budget : 5 minutes => MH (3s)
+- ALOHA for LoRa : 40 minutes => SL (20s)
+- NB-IoT Coverage comparison : 5 minutes => MH (2s)
+
+- Research directions : 30 minutes => SL (20s)
+- Conclusion : 10 minutes => MH (4s) 
+
+
+
+
+IoT services and applications that foster mMTC; Samer Lahoud; 10 minutes
+Requirements and characteristics of mMTC; Samer Lahoud; 10 minutes
+5G and cellular IoT technologies; Melhem El Helou; 10 minutes
+NB-IoT design rationale - how NB-IoT leverages and adapts 3GPP LTE infrastructure and mechanisms to meet 5G mMTC requirements?; Melhem El Helou; 15 minutes
+NB-IoT standard: radio interface, physical architecture, protocol architecture; Melhem El Helou; 15 minutes
+Radio models and link budget analysis for NB-IoT; Melhem El Helou; 10 minutes
+Bandwidth-based dimensioning for NB-IoT; Samer Lahoud; 15 minutes
+Performance comparison of NB-IoT and LoRaWAN; Melhem El Helou; 10 minutes
+Research directions for radio resource management in NB-IoT; Samer Lahoud; 25 minutes
