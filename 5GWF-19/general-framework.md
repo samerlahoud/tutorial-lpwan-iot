@@ -1,12 +1,14 @@
 # General Framework
 
 ### A New Dimension in Communications
+```{=latex}
 \begin{figure}
     \centering
     \includegraphics<1>[scale=0.7]{./images/iot-dimension-1}
     \includegraphics<2>[scale=0.7]{./images/iot-dimension-2}
     \caption*{Source: The Internet of Things, ITU Internet Reports, 2005}
 \end{figure}
+```
 
 - Current communications brought the ABC (Always Best Connected) paradigm
 - The Internet of Things (IoT) explores a new dimension in communications
@@ -25,6 +27,7 @@ The Internet of Things (IoT) generally refers to scenarios where network connect
 | Cities        | Traffic control, environmental monitoring   |
 
 ### IoT Reference Model
+```{=latex}
 \begin{figure}
 	\centering
 	\includegraphics<1>[scale=0.3]{./images/iot-e2e-chain-1.eps}
@@ -34,12 +37,14 @@ The Internet of Things (IoT) generally refers to scenarios where network connect
 	\includegraphics<5>[scale=0.3]{./images/iot-e2e-chain-5.eps}
   \caption*{Source: Overview of the Internet of Things, ITU-T Y.2060, 2012}
 \end{figure}
+```
 
 ### Evolution of IoT Devices
-- The largest growth is expected for devices connected to a wide-area network
+- The largest growth is expected for cellular IoT devices
+
 \begin{figure}
 	\includegraphics[scale=0.5]{./images/ericsson-connected-devices.pdf}
-	\caption*{Source: Ericsson mobility report, 2017}
+	\caption*{Source: Ericsson mobility report, 2019}
 \end{figure}
 
 ### The Case of IoT for Smart Agriculture
@@ -63,6 +68,7 @@ The Internet of Things (IoT) generally refers to scenarios where network connect
 Do existing wireless networking technologies satisfy these constraints?
 
 ### LPWAN Sweet Spot
+```{=latex}
 \begin{figure}
 	\centering
 	\includegraphics<1>[scale=0.35]{./images/spider-graph-0.eps}
@@ -71,6 +77,7 @@ Do existing wireless networking technologies satisfy these constraints?
 	\includegraphics<4>[scale=0.35]{./images/spider-graph-3.eps}
   \caption*{Source: Peter R. Egli, Low Power Wide Area Network, 2015}
 \end{figure}
+```
 
 ### LPWAN Scenarios
 \begin{block}{Low Power Wide Area Networks}

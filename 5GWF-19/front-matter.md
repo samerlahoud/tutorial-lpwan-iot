@@ -12,8 +12,8 @@ output:
 ...
 
 ### Tutorial Outcomes
-- How do LPWAN complement traditional cellular and short-range wireless technologies?
-- What are the fundamental mechanisms that enable to meet the LPWAN requirements?
-- What are the major design choices made in the LoRaWAN and NB-IoT specifications?
-- How do we evaluate the performance of a LoRaWAN and NB-IoT deployment in terms of coverage and capacity?
-- What are the recent research directions for radio resource management in LoRaWAN and NB-IoT?
+- What are the main drivers for cellular IoT in 5G?
+- What are the requirements and characteristics of mMTC in 5G?
+- How do NB-IoT leverage and adapt 3GPP LTE infrastructure and mechanisms to meet 5G mMTC requirements?
+- How do we evaluate the performance of an NB-IoT deployment in terms of coverage and capacity?
+- What are the recent research directions for radio resource management in NB-IoT?
