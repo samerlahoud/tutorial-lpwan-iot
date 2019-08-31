@@ -67,63 +67,34 @@ The Internet of Things (IoT) generally refers to scenarios where network connect
 #### Challenge
 Do existing wireless networking technologies satisfy these constraints?
 
-### LPWAN Sweet Spot
+### Capabilities of IMT-2020
 ```{=latex}
 \begin{figure}
 	\centering
-	\includegraphics<1>[scale=0.35]{./images/spider-graph-0.eps}
-	\includegraphics<2>[scale=0.35]{./images/spider-graph-1.eps}
-	\includegraphics<3>[scale=0.35]{./images/spider-graph-2.eps}
-	\includegraphics<4>[scale=0.35]{./images/spider-graph-3.eps}
-  \caption*{Source: Peter R. Egli, Low Power Wide Area Network, 2015}
+	\includegraphics<1>[scale=0.55]{./images/imt2020.png}
+  \caption*{Source: IMT 2020 Vision - Framework and overall objectives of the future development of IMT for 2020 and beyond, ITU-R M.2083}
 \end{figure}
 ```
 
-### LPWAN Scenarios
-\begin{block}{Low Power Wide Area Networks}
+### Massive Machine Type Communications
+\begin{block}{mMTC: Massive Machine Type Communications}
+requiring low power consumption and low data rates for very large numbers of connected devices
+
 Low power refers to the ability of an IoT device to function for many years on a single battery charge, while at the same time it is able to communicate from locations where shadowing and path loss would limit the usefulness of more traditional cellular technologies (3GPP Low Power Wide Area Technologies, GSMA White Paper, 2016)
 \end{block}
 
-- Typical scenarios for LPWAN (Usman Raza *et al.*, Low Power Wide Area Networks: An Overview, IEEE Communications Surveys \& Tutorials, 2017)
-    - Smart grid
-    - Industrial asset monitoring
-    - Critical infrastructure monitoring
-    - Agriculture
+- Typical use cases for mMTC (Usman Raza *et al.*, Low Power Wide Area Networks: An Overview, IEEE Communications Surveys \& Tutorials, 2017)
+  - Smart wearables
+  - Smart metering
 
-### LPWAN Requirements
+### mMTC Requirements
 
-| Indicator               | Requirement                                                |
-|-------------------------|------------------------------------------------------------|
-| Power consumption       | Devices operate for 10 years on a single charge            |
-| Device unit cost        | Below $5 per module                                        |
-| Dependability           | Completely unattended and resilient operation              |
-| Coverage                | Improved outdoor and indoor penetration coverage           |
-| Security                | Secure connectivity and strong authentication              |
-| Data transfer           | Supports small, intermittent blocks of data                |
-| Design complexity       | Simplified network topology and deployment                 |
-| Network scalability     | Support of high density of devices                         |
-
-<!--
-### LPWAN Architecture
-\begin{figure}
-	\centering
-	\includegraphics[scale=0.4]{./images/lpwa-architecture.eps}
-\end{figure}
-
-### Common Characteristics of LPWAN Technologies
-- Optimized radio modulation
-- Star topology
-- Frame sizes in the order of tens of bytes
-- Frames transmitted a few times per day at ultra-low speeds
-- Mostly upstream transmission pattern
-- Devices spend most of their time in low-energy deep-sleep mode
--->
-
-<!--
-"NB-IoT will crush Sigfox and LoRa because it means there will be no need for them," Matt Beal, Vodafone's director of innovation and architecture
-
-"Is Sigfox/LoRa the new WiMAX?", Stefan Kindt, Head of Technology Marketing at Nokia Networks
--->
+| Indicator                             | Requirement                                                         |
+|---------------------------------------|---------------------------------------------------------------------|
+| Coverage                              | 164 dB maximum coupling loss at a rate of 160 bps                   |
+| Connection density                    | 1,000,000 device/km2                                                |  
+| UE battery life                       | 10 years battery lifetime (15 years desirable) for a 5 Wh battery for a device sending daily 200 bytes uplink data followed by 20 bytes downlink data at a maximum coupling loss of 164 dB   |
+| Latency for infrequent small packets  | 10 s for a 20 byte application packet in uplink at 164 dB maximum coupling loss and starting from the device being in the most “battery efficient” state                                      |
 
 #### LPWAN Technologies
-Various technologies are currently being designed to meet the LPWAN requirements: LoRaWAN, NB-IoT, Sigfox, Wi-SUN, Ingenu, etc.
+Various technologies are currently being designed to meet the mMTC requirements: LoRaWAN, NB-IoT, Sigfox, Wi-SUN, Ingenu, etc.
