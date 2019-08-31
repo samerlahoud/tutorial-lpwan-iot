@@ -78,23 +78,25 @@ Do existing wireless networking technologies satisfy these constraints?
 
 ### Massive Machine Type Communications
 \begin{block}{mMTC: Massive Machine Type Communications}
-requiring low power consumption and low data rates for very large numbers of connected devices
-
-Low power refers to the ability of an IoT device to function for many years on a single battery charge, while at the same time it is able to communicate from locations where shadowing and path loss would limit the usefulness of more traditional cellular technologies (3GPP Low Power Wide Area Technologies, GSMA White Paper, 2016)
+mMTC enables improved network coverage, long device operational lifetime, and a high density of connections at low data rates
 \end{block}
 
-- Typical use cases for mMTC (Usman Raza *et al.*, Low Power Wide Area Networks: An Overview, IEEE Communications Surveys \& Tutorials, 2017)
+- Typical use cases for mMTC include:
   - Smart wearables
-  - Smart metering
+  - Smart cities
+  - Smart agriculture
 
-### mMTC Requirements
+- mMTC can also be referred to as Mobile IoT, Massive IoT, or Low Power Wide Area (LPWA)
+
+### mMTC Requirements\footnote{3GPP TR38.913, Study on Scenarios and Requirements for Next Generation Access Technologies (Release 14), 2017}
 
 | Indicator                             | Requirement                                                         |
 |---------------------------------------|---------------------------------------------------------------------|
-| Coverage                              | 164 dB maximum coupling loss at a rate of 160 bps                   |
-| Connection density                    | 1,000,000 device/km2                                                |  
-| UE battery life                       | 10 years battery lifetime (15 years desirable) for a 5 Wh battery for a device sending daily 200 bytes uplink data followed by 20 bytes downlink data at a maximum coupling loss of 164 dB   |
-| Latency for infrequent small packets  | 10 s for a 20 byte application packet in uplink at 164 dB maximum coupling loss and starting from the device being in the most “battery efficient” state                                      |
+| Coverage                              | 164 dB maximum coupling loss at 160 bps                             |
+| Connection density                    | 1,000,000 devices per square kilometer                              |  
+| UE battery life                       | 10 years battery lifetime (15 years desirable)$^1$                  |
+| Latency                               | 10 s for a 20 byte application packet$^2$                           |
 
-#### LPWAN Technologies
-Various technologies are currently being designed to meet the mMTC requirements: LoRaWAN, NB-IoT, Sigfox, Wi-SUN, Ingenu, etc.
+$^1$ For a 5 Wh battery for a device sending daily 200 bytes uplink data followed by 20 bytes downlink data at a maximum coupling loss of 164 dB
+
+$^2$ In uplink at 164 dB maximum coupling loss and starting from the device being in the most *battery efficient* state
