@@ -20,10 +20,10 @@ Perf
 
 IoT services and applications that foster mMTC; Samer Lahoud; 10 minutes
 Requirements and characteristics of mMTC; Samer Lahoud; 10 minutes
-5G and cellular IoT technologies; Melhem El Helou; 10 minutes
+5G and cellular IoT technologies; Samer Lahoud; 10 minutes
 NB-IoT design rationale - how NB-IoT leverages and adapts 3GPP LTE infrastructure and mechanisms to meet 5G mMTC requirements?; Melhem El Helou; 15 minutes
 NB-IoT standard: radio interface, physical architecture, protocol architecture; Melhem El Helou; 15 minutes
 Radio models and link budget analysis for NB-IoT; Melhem El Helou; 10 minutes
-Bandwidth-based dimensioning for NB-IoT; Samer Lahoud; 15 minutes
-Performance comparison of NB-IoT and LoRaWAN; Melhem El Helou; 10 minutes
-Research directions for radio resource management in NB-IoT; Samer Lahoud; 25 minutes
+Bandwidth-based dimensioning for NB-IoT; Melhem El Helou; 15 minutes
+Performance comparison of NB-IoT and LoRaWAN; Samer Lahoud; 10 minutes
+Research directions for radio resource management in NB-IoT; Melhem El Helou; 25 minutes

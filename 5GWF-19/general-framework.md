@@ -78,7 +78,7 @@ Do existing wireless networking technologies satisfy these constraints?
 
 ### Massive Machine Type Communications
 \begin{block}{mMTC: Massive Machine Type Communications}
-mMTC enables improved network coverage, long device operational lifetime, and a high density of connections at low data rates
+mMTC requires improved network coverage, long device operational lifetime, and a high density of connections at low data rates
 \end{block}
 
 - Typical use cases for mMTC include:
@@ -94,9 +94,25 @@ mMTC enables improved network coverage, long device operational lifetime, and a 
 |---------------------------------------|---------------------------------------------------------------------|
 | Coverage                              | 164 dB maximum coupling loss at 160 bps                             |
 | Connection density                    | 1,000,000 devices per square kilometer                              |  
-| UE battery life                       | 10 years battery lifetime (15 years desirable)$^1$                  |
-| Latency                               | 10 s for a 20 byte application packet$^2$                           |
+| UE battery life                       | 10 years battery lifetime (15 years desirable)\footnote{For a 5 Wh battery for a device sending daily 200 bytes uplink data followed by 20 bytes downlink data at a maximum coupling loss of 164 dB}                                                                                                                      |
+| Latency                               | 10 s for a 20 byte application packet\footnote{In uplink at 164 dB maximum coupling loss and starting from the device being in the most battery efficient state}                         |
 
-$^1$ For a 5 Wh battery for a device sending daily 200 bytes uplink data followed by 20 bytes downlink data at a maximum coupling loss of 164 dB
+### The Cellular Internet of Things
+- New requirements for machine connectivity have led to the development and standardization of three 3GPP Cellular IoT (CIoT) technologies:
+    - *Extended Coverage GSM for the Internet of Things (EC-GSM-IoT)*
+    - *LTE for Machine-Type Communications (LTE-M)*
+    - *Narrowband Internet of Things (NB-IoT)*
+- These technologies are designed to operate in licensed frequency bands
 
-$^2$ In uplink at 164 dB maximum coupling loss and starting from the device being in the most *battery efficient* state
+#### NB-IoT Approach
+Adapt and leverage existing 4G technology to meet the LPWAN requirements
+
+### Extended requirements (including LPWA)
+
+### Cellular versus Non-Cellular
+
+### 3GPP Choices
+
+### LTE-M and NB-IoT
+
+### 5G NR
