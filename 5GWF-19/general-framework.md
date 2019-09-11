@@ -40,7 +40,7 @@ The Internet of Things (IoT) generally refers to scenarios where network connect
 ```
 
 ### Evolution of IoT Devices
-- The largest growth is expected for cellular IoT devices
+- The number of IoT devices will exceed the number of PCs and mobile phones
 
 \begin{figure}
 	\includegraphics[scale=0.5]{./images/ericsson-connected-devices.pdf}
@@ -98,7 +98,7 @@ mMTC requires improved network coverage, long device operational lifetime, and a
 | Latency                               | 10 s for a 20 byte application packet\footnote{In uplink at 164 dB maximum coupling loss and starting from the device being in the most battery efficient state}                         |
 
 ### The Cellular Internet of Things
-- New requirements for machine connectivity have led to the development and standardization of three 3GPP Cellular IoT (CIoT) technologies:
+- mMTC requirements have led to the development and standardization of three 3GPP Cellular IoT (CIoT) technologies:
     - *Extended Coverage GSM for the Internet of Things (EC-GSM-IoT)*
     - *LTE for Machine-Type Communications (LTE-M)*
     - *Narrowband Internet of Things (NB-IoT)*
@@ -109,9 +109,31 @@ Adapt and leverage existing 4G technology to meet the LPWAN requirements
 
 ### Extended requirements (including LPWA)
 
+### All Three 3GPP Choices
+
+- EC-GSM-IoT
+  - Fully backward compatible
+  - Installed onto GSM networks
+  - Bandwidth of 600 kHz
+
+- LTE-M
+  - Based on LTE
+  - Stringent requirements on throughput and latency
+  - Flexible bandwidth of 1.4 MHz and more
+
+- NB-IoT
+  - New radio access technology
+  - Reuses components from LTE
+  - Bandwidth starting from 200 kHz
+
 ### Cellular versus Non-Cellular
 
-### 3GPP Choices
+- The largest growth is expected for cellular IoT devices
+
+\begin{figure}
+	\includegraphics[scale=0.5]{./images/ericsson-cellular-iot.pdf}
+	\caption*{Source: Ericsson mobility report, 2019}
+\end{figure}
 
 ### LTE-M and NB-IoT
 
