@@ -75,6 +75,10 @@ Do existing wireless networking technologies satisfy these constraints?
   \caption*{Source: IMT 2020 Vision - Framework and overall objectives of the future development of IMT for 2020 and beyond, ITU-R M.2083}
 \end{figure}
 ```
+<!--
+URLLC is adapted for high-end IoT applications such as automated driving, industrial automation, and eHealth.
+mMTC is LPWA IoT.
+-->
 
 ### Massive Machine Type Communications
 \begin{block}{mMTC: Massive Machine Type Communications}
@@ -85,8 +89,6 @@ mMTC requires improved network coverage, long device operational lifetime, and a
   - Smart wearables
   - Smart cities
   - Smart agriculture
-
-- mMTC can also be referred to as Mobile IoT, Massive IoT, or Low Power Wide Area (LPWA)
 
 ### mMTC Requirements\footnote{3GPP TR38.913, Study on Scenarios and Requirements for Next Generation Access Technologies (Release 14), 2017}
 
@@ -102,14 +104,17 @@ mMTC requires improved network coverage, long device operational lifetime, and a
     - *Extended Coverage GSM for the Internet of Things (EC-GSM-IoT)*
     - *LTE for Machine-Type Communications (LTE-M)*
     - *Narrowband Internet of Things (NB-IoT)*
+- mMTC can also be referred to as Mobile IoT, Massive IoT, or Low Power Wide Area (LPWA)
 - These technologies are designed to operate in licensed frequency bands
 
-#### NB-IoT Approach
-Adapt and leverage existing 4G technology to meet the LPWAN requirements
+<!--
+### Extended requirements (including LPWA or CIoT)
+CIoT (before 5G) is less stringent on density 
+Third Generation Partnership Project, Technical Report 45.820 v13.0.0, Cellular System Support for Ultra-
+low Complexity and Low Throughput Internet of Things, 2016
+-->
 
-### Extended requirements (including LPWA)
-
-### All Three 3GPP Choices
+### Cellular LPWA Technologies 
 
 - EC-GSM-IoT
   - Fully backward compatible
@@ -126,6 +131,15 @@ Adapt and leverage existing 4G technology to meet the LPWAN requirements
   - Reuses components from LTE
   - Bandwidth starting from 200 kHz
 
+### 5G Design for mMTC
+
+- Continuation of CIoT standards LTE-M and NB-IoT
+  - LTE-M and NB-IoT fulfill the mMTC 5G requirements
+  - No specification of NR mMTC solution in Release 15
+  - In the future, NB-IoT and LTE-M may operate in-band within an NR carrier
+
+### Comparaison of LTE-M and NB-IoT
+
 ### Cellular versus Non-Cellular
 
 - The largest growth is expected for cellular IoT devices
@@ -135,6 +149,19 @@ Adapt and leverage existing 4G technology to meet the LPWAN requirements
 	\caption*{Source: Ericsson mobility report, 2019}
 \end{figure}
 
-### LTE-M and NB-IoT
+### LoRaWAN
 
-### 5G NR
+- Develop a clean-slate technology that meets the LPWAN requirements: LoRaWAN
+- Adapt and leverage existing 4G technology to meet the LPWAN requirements: NB-IoT
+
+- LoRa is a robust modulation for wireless transmission
+  - Variation of Chirp Spread Spectrum (CSS)
+  - Uses Spreading Factors to increase the coverage
+- Operates in license-free bands
+  - Lebanon: 868 MHz
+- Spectrum regulation
+  - Transmit power limited to 14 dBm (25 mW)
+  - 1% per sub-band duty-cycle limitation
+- Coverage can reach tens of kilometers
+  - Record of 45 km in Bekaa
+- Data rates range from 300 bps to 5.5 kbps
