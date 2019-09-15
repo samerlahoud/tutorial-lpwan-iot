@@ -35,6 +35,13 @@
 - Maximum Transport Block Size (TBS):
     - 680 bits (R13), or 2536 bits (R14), mapped over up to 10 subframes (10 ms) in the DL
 
+<!--
+Bandwidth reduction concentrates the limited power on a narrower bandwidth at the UE. Therefore, it boosts the uplink PSD.
+
+In Release 13 and 14, NB-IoT only supports frequency division
+duplex (FDD) half-duplex mode. Time division duplex (TDD) mode was introduced in Release 15.
+-->
+
 ### Radio Interface
 \begin{itemize}
 \item[]
@@ -64,6 +71,10 @@
 - Idle devices monitor paging channels either periodically, or only after a mobile-originated data transfer (for a short period of time)
     - extended Discontinuous Reception (eDRX)
     - Power-Saving Mode (PSM)
+
+<!--
+Both techniques enable a relaxed monitoring of the NPDCCH to save energy.
+-->
 
 ### extended Discontinuous Reception (eDRX)
 - An eDRX cycle is the time period between two paging occasions a device needs to monitor (up to 2 h, 54 min, and 46 s)
@@ -100,6 +111,13 @@
 	\centering
 	\includegraphics[scale=0.4]{./images/cell-access.pdf}
 \end{figure}
+
+<!--
+R15: Semi-Persistent Scheduling:
+In general, SPS is comprised of persistent scheduling for initial transmissions and dynamic scheduling for retransmissions (to enable better support of voice messages). 
+The base station assigns specific resource units to be used for NB-IoT UE voice messages with specific interval (regular configured periodicity) to save control plane overhead and hence optimize the radio resource usage. 
+-->
+
 
 ### Data Transport
 - Signaling messages, that are required before a device transmits data, are reduced:
@@ -160,6 +178,15 @@
 <!--
 - The modulation format is determined based on the MCS index
 - The TBS and the code rate are based on the MCS index and the number of RUs
+-->
+
+<!--
+- For both uplink and downlink, there are five physical channels:
+    - Narrowband Physical Broadcast Channel (NPBCH): Master information for system access.
+    - Narrowband Physical Downlink Control Channel (NPDCCH): Scheduling information.
+    - Narrowband Physical Downlink Shared Channel (NPDSCH): Downlink dedicated and common data.
+    - Narrowband Physical Random Access Channel (NPRACH): Random access.
+    - Narrowband Physical Uplink Shared Channel (NPUSCH): Uplink data.
 -->
 
 ### Uplink Scheduling

@@ -17,6 +17,11 @@
 \item[] $\Rightarrow$ NB-IoT
 \end{itemize}
 
+<!--
+- Enhanced coverage while maintaining energy consumption is an indispensable characteristic of NB-IoT. 
+- To achieve this goal, NB-IoT adopts a new radio access design built from existing LTE.
+-->
+
 ## Low Device Complexity and Cost
 
 ### Device Complexity and Cost
@@ -117,20 +122,20 @@ MCL \mbox{ (dB) }= P_{Tx} - \underbrace{(SNR_{threshold} -174 + 10\log_{10}(B) +
 - Repetitions compensate for the $SNR$ degradation
 
 \begin{equation*}
-\left(SNR\right)_N \mbox{ (dB)} = \underbrace{10\log_{10}(N)}_{\mbox{$G_p$}} + \left(SNR\right)_1
+\left(SNR\right)_R \mbox{ (dB)} = \underbrace{10\log_{10}(R)}_{\mbox{$G_p$}} + \left(SNR\right)_1
 \end{equation*}
 
 \begin{itemize}
-\item[] where $(SNR)_N$ is the ideal $SNR$ after combining $N$ transmissions and $(SNR)_1$ is the $SNR$ of a single transmission.
+\item[] where $(SNR)_R$ is the ideal $SNR$ after combining $R$ transmissions and $(SNR)_1$ is the $SNR$ of a single transmission.
 \end{itemize}
 
 \begin{equation*}
-\left(SNR\right)_N \geq SNR_{threshold} \Rightarrow (SNR)_1 \geq  \underbrace{SNR_{threshold} - 10\log_{10}(N)}_{\mbox{Reduced $SNR_{threshold}$}}
+\left(SNR\right)_R \geq SNR_{threshold} \Rightarrow (SNR)_1 \geq  \underbrace{SNR_{threshold} - 10\log_{10}(R)}_{\mbox{Reduced $SNR_{threshold}$}}
 \end{equation*}
 
 ### Real vs. Ideal Processing Gain
 - In practice, combining two signals is rarely perfect: signal impairments will result in a lower overall processing gain
-- For $N$ between 2 and 16, the ideal gain can be achieved without any visible degradation\footnote{Simulations have been carried out for EC-GSM-IoT in O. Liberg et al., \textit{Cellular Internet of Things - Technologies, Standards, and Performance}. Cambridge, MA, USA: American Press, 2017.}
+- For $R$ between 2 and 16, the ideal gain can be achieved without any visible degradation\footnote{Simulations have been carried out for EC-GSM-IoT in O. Liberg et al., \textit{Cellular Internet of Things - Technologies, Standards, and Performance}. Cambridge, MA, USA: American Press, 2017.}
 
 ## Low Power Consumption
 
@@ -179,6 +184,11 @@ C = B\log_2 (1+\frac{S}{N}) = B\log_2 (1+\frac{S}{N_0B})
 \item[] $C$ no longer depends on $B$
 \item[] $\Rightarrow$ allocate a single tone (subcarrier) for devices in bad coverage to increase network capacity without loss of performance
 \end{itemize}
+
+<!--
+Moreover, allocating a single tone boosts the uplink power spectral density (concentrates the transmit power on a narrower bandwidth, thus enhancing the received $SNR$.
+-->
+
 
 ## Simplified Network Topology and Deployment
 
