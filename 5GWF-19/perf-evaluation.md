@@ -301,6 +301,15 @@ W_{cs} = min(W_{cs}^{max}, 2^{\left\lfloor \log_2(RU \cdot R \cdot \eta_p)\right
     - Deduce their instantaneous physical rate/spectral efficiency
     - Average user instantaneous physical rate/spectral efficiency $\rightarrow$ network capacity = average number of devices per cell = average user instantaneous rate/average user required rate
 
+### Results (A reproduire)
+- Link adaptation
+    - Objective: maximize the instantaneous physical rate
+    - For each number of repetition $R$, identify the MCS that maximizes the instantaneous rate, subject to: received SNR $\geq SNR_{threshold}$ $\Rightarrow$ one MCS candidate for each $R$
+    - Choose, from these candidates, the (MCS, $R$) couple that maximizes the instantaneous physical rate
+- Results:
+    - Average user instantaneous rate to compute the cell capacity
+    - Percentage of users using each MCS, or each (MCS, $R$) couple if more relevant
+
 ### Simulation Scenarios
 - Mise au point
 
