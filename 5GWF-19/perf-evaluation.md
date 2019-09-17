@@ -38,13 +38,13 @@ MAPL = \max L_{Channel} \mbox{ } | \mbox{ } P_{Rx} = \mbox{receiver sensitivity}
 
 - The maximum allowable distance between a transmitter and a receiver (cell range) depends on the $MAPL$ and the channel model
 
-### To Do
+### To Do (A reproduire)
 - Compute the receiver sensitivity:
-    - Cell edge $\Rightarrow$ $R_b$ = 160 b/s, single-tone, subcarrier spacing = 3.75 kHz, and $R$ = 128
+    - Cell edge $\Rightarrow$ $R_b$ = 160 b/s, single-tone transmission, $\Delta f = 3.75$ kHz, and $R$ = 1
     - Determine the required $SNR$: $SNR_{threshold} = SNR_{req}$
     - Determine the receiver sensitivity
 - Our channel models\footnote{R. El Chall, S. Lahoud and M. El Helou, "LoRaWAN Network: Radio Propagation Models and Performance Evaluation in Various Environments in Lebanon," in \textit{IEEE Internet of Things Journal}, vol. 6, no. 2, pp. 2366-2378, April 2019.}: limitations of well-known models
-- Give an numerical example of the cell range
+- Compute the cell range for different propagation environments
 
 ## Coverage of NB-IoT
 
@@ -231,7 +231,7 @@ SNR_e = (2^{\frac{R_b}{BW \cdot BW_{eff}}}-1) \cdot SNR_{eff}
     - nocs: Realistic CE without cross-subframe technique
 - Evaluation framework:
     1. $SNR_{req}$ estimation
-    2. Configure the link adaptation of the signaling packet transfers required prior to the uplink data transmission.
+    2. Configure the link adaptation\footnote{P. Andres-Maldonado \textit{et al.}, “Analytic Analysis of Narrowband IoT Coverage Enhancement Approaches,” in Proc. \textit{2018 Global Internet of Things Summit (GIoTS)}, Bilbao, Spain, 2018.} of the signaling packet transfers required prior to the uplink data transmission.
     3. Estimation of the NB-IoT performance using an energy consumption model\footnote{P. Andres-Maldonado, P. Ameigeiras, J. Prados-Garzon, J. Navarro-Ortiz, and J. M. Lopez-Soler, “Narrowband IoT Data Transmission Procedures for Massive Machine-Type Communications,” in \textit{IEEE Network}, vol. 31, no. 6, pp. 8–15, Nov./Dec. 2017.}
 
 ### Parameter Settings
@@ -263,12 +263,14 @@ W_{cs} = min(W_{cs}^{max}, 2^{\left\lfloor \log_2(RU \cdot R \cdot \eta_p)\right
 \item[] where $W_{cs}^{max}$ is the maximum cross-subframe window considered and and $\eta_p$ is a correction factor: $\eta_p = 1$ for multi-tone configurations and $\eta_p = 0.6667$ for single-tone configurations.
 \end{itemize}
 
-### Results
-- Estimate the $SNR_{req}$ in different configurations of number of RUs, MCS, BW, and R.
-- Spectral efficiency as a function of MCL (dB)
-- (A reproduire?) $SNR_{req}$ and $\gamma$ (bps/Hz) as a function of TBS size, for ideal, wcs, and nocs.... 1 RU and 8 RU
-- (A reproduire) Example of degradation of the SNR gain in wcs and nocs scenarios compared with ideal scenario when a higher number of repetitions is used in uplink: $SNR_{req}$ as a function of the number of repetitions for ideal, nocs, and wcs
-    - TBS = 1000 bits, 8 RU?
+### Results (A reproduire)
+- $SNR_{req}$ (dB) as a function of the number of repetitions, for ideal, wcs, and nocs CE.
+    - TBS = 1000 bits with 4 RU and 10 RU
+    - RU: 180 kHz over 1 ms
+    - $W_{cs} \in \left\{1, 2, 4, 8, 16\right\}$: 8-ms seems to be very commun, or use the formula of the previous slide
+- $\gamma$ (b/s/Hz) as a function of the number of repetitions, for ideal, wcs, and nocs CE (should have no impact).
+    - TBS = 1000 bits with 4 RU and 10 RU
+    - RU: 180 kHz over 1 ms
 
 ### Parameters
 - TB: Application data (20 bytes), CoAP (4 bytes), DTLS (13 bytes), UDP (8 bytes), IP (40 bytes), PDCP (5 bytes), RLC (2 bytes), and MAC (2 bytes) => total: 94 bytes
@@ -279,33 +281,31 @@ W_{cs} = min(W_{cs}^{max}, 2^{\left\lfloor \log_2(RU \cdot R \cdot \eta_p)\right
 - Single-tone transmissions: $I_{TBS} = 0...10$; $I_{MCS} = I_{TBS}; BPSK for $I_{TBS} = 0$, or 2, and QPSK for all other values
 - For NPUSCH transmissions, for every 256 ms continuous transmission, a 40 ms gap is introduced.
 - A datarate of 160 bps is required at the MCL of 164 dB.
-
-*1 RU, 5 RU, and 10 RU*
-
-Maximum throughput => 1 RU = 1 ms * 12 subcarriers
-1 RU => 224 k; 2 RU => 244 k; 3 RU => 248 k; 4 RU => 282 k; 5 RU => 251.2 k; 6 RU => 257.3 k; 8 RU => 253 k; 10 RU => 253.6 k
-
-Minimum throughput => 1 RU = 32 ms * 1 subcarrier
-1 RU => 500; 2 RU => 500; 3 RU => 583; 4 RU => 687.5; 5 RU => 750; 6 RU => 791.6; 8 RU => 812.5; 10 RU => 800
-
-- Consider TBS = 1000 bits (8-ms cross-subframe CE?)
-    - (A reproduire) Instantaneous data rate as a function of CL for 12 tones, 6 tones, 3 tones, 1 tone | 15 kHz, and 1 tone | 3.75 kHz
-        - CL -> SNR ...?
-    - (A reproduire?) RU = 1 ms, how many RU are needed to transmit this TB with R repetions? Modify R. Who can transmit this TB over x RU with R repetition?
 -->
+
+### Results (A reproduire)
+- Instantaneous data rate ($R_b/R$ in kb/s) as a function of the coupling loss (CL, in dB), for 12 tones, 6 tones, 3 tones, 1 tone ($\Delta f = 15$ kHz), and 1 tone ($\Delta f = 3.75$ kHz)
+    - TBS = 1000 bits (with 4 RU, 5 RU, 6 RU, 8 RU, and 10 RU for multi-tone transmissions; 6 RU, 8 RU, and 10 RU for single-tone transmissions)
+    - Compute $R_b$ and $BW$
+    - Deduce $SNR_e$
+    - Compute the received $SNR$ as a function of the CL
+    - Deduce the required number of transmissions $R$ (Realistic CE, $W_{cs} = 8$ ms)
+    - Deduce $R_b/R$. If it depends on the number of RU, display the maximum $R_b/R$.
+
+### Results (A reproduire)
+- Spectral efficiency/instantaneous physical rate, for multi-tone and single-tone transmissions
+    - Multi-tone transmissions provide similar spectral efficiencies. Consequently, network capacity = maximum data rate $\Rightarrow$ RU = 180 kHz (12 subcarriers) over 1 ms
+    - Single-tone transmissions provide similar spectral efficiencies. Consequently, maximum data rate $\Rightarrow$ RU = 15 kHz over 8 ms
+    - Generate devices, compute their received SNR
+    - Perform link adaptation: determine their MCS and number of repetitions
+    - Deduce their instantaneous physical rate/spectral efficiency
+    - Average user instantaneous physical rate/spectral efficiency $\rightarrow$ network capacity = average number of devices per cell = average user instantaneous rate/average user required rate
 
 ### Simulation Scenarios
 - Mise au point
-- $R_b$? as a function of $BW$, $RU$, and $T$
-- Simulation scenarios
 
 
-
-
-
-
-
-
+<!-- 
 ## Coverage of LoRaWAN
 
 ### Evaluation Scenario
@@ -503,6 +503,8 @@ $$S = G\exp(-2G) (1+\sum_{n=2}^{N} \frac{(2G)^n}{n!} (1-(1-P_{cap}(n,\Delta))^r)
   \includegraphics[scale=0.4]{./images/capture-effect-aloha.eps}
   \caption*{$l$=50 bytes, SF=7, $\lambda(s) = \frac{d}{T_a(l,s)}$, $\Delta = 6$ dB}
 \end{figure}
+
+-->
 
 ## Coverage Comparison of LoRaWAN and NB-IoT
 
