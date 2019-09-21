@@ -38,13 +38,33 @@ MAPL = \max L_{Channel} \mbox{ } | \mbox{ } P_{Rx} = \mbox{receiver sensitivity}
 
 - The maximum allowable distance between a transmitter and a receiver (cell range) depends on the $MAPL$ and the channel model
 
-### To Do (A reproduire)
+### To Do
 - Compute the receiver sensitivity:
     - Cell edge $\Rightarrow$ $R_b$ = 160 b/s, single-tone transmission, $\Delta f = 3.75$ kHz, and $R$ = 1
     - Determine the required $SNR$: $SNR_{threshold} = SNR_{req}$
     - Determine the receiver sensitivity
+
+- Sensitivity (dBm) = $SNR_{threshold}$ (dB) + $N$ (dBm) = $SNR_{threshold} - 174 + 10 \log_{10}(B) + NF$ = -148.0249 dBm
+
 - Our channel models\footnote{R. El Chall, S. Lahoud and M. El Helou, "LoRaWAN Network: Radio Propagation Models and Performance Evaluation in Various Environments in Lebanon," in \textit{IEEE Internet of Things Journal}, vol. 6, no. 2, pp. 2366-2378, April 2019.}: limitations of well-known models
 - Compute the cell range for different propagation environments
+
+
+### Uplink Link Budget
+
+|     |                                                          |        |
+|:---:|:--------------------------------------------------------:|:------:|
+| $(a)$ |                Device transmit power (dBm)               |   23   |
+| $(b)$ |              Base station antenna gain (dBi)             |   12   |
+| $(c)$ |               Base station feed-line loss (dB)           |    3   |
+| $(d)$ |                  Thermal noise (dBm/Hz)                  |  -174  |
+| $(e)$ |                  Channel bandwidth (Hz)                  |  3750  |
+| $(f)$ |               Base station receiver $NF$ (dB)            |    3   |
+| $(g)$ |Base station receiver $N$ (dBm) = $(d)+ 10 \log_{10} (e)+ (f)$| -135.3 |
+| $(h)$ |            Required SINR at the base station (dB)        | -12.74 |
+| $(i)$ |   Base station receiver sensitivity (dBm) =  $(g) + (h)$ |  -148  |
+|       |         \textbf{\textit{MAPL} (dB)} = $(a)+(b)-(c)-(i)$  | \textbf{180} |
+|       |     \textbf{Cell range}\footnote{Base station antenna height = 30 m, device antenna height = 1 m, carrier frequency = 1800 MHz} \textbf{- urban environment (km)}         |   \textbf{18.2}    |
 
 ## Coverage of NB-IoT
 
@@ -263,11 +283,11 @@ W_{cs} = min(W_{cs}^{max}, 2^{\left\lfloor \log_2(RU \cdot R \cdot \eta_p)\right
 \item[] where $W_{cs}^{max}$ is the maximum cross-subframe window considered and and $\eta_p$ is a correction factor: $\eta_p = 1$ for multi-tone configurations and $\eta_p = 0.6667$ for single-tone configurations.
 \end{itemize}
 
-### Results (A reproduire)
+### Results
 - $SNR_{req}$ (dB) as a function of the number of repetitions, for ideal, wcs, and nocs CE.
     - TBS = 1000 bits with 4 RU and 10 RU
     - RU: 180 kHz over 1 ms
-    - $W_{cs} \in \left\{1, 2, 4, 8, 16\right\}$: 8-ms seems to be very commun, or use the formula of the previous slide
+    - $W_{cs} = 8-ms
 - $\gamma$ (b/s/Hz) as a function of the number of repetitions, for ideal, wcs, and nocs CE (should have no impact).
     - TBS = 1000 bits with 4 RU and 10 RU
     - RU: 180 kHz over 1 ms
@@ -312,7 +332,8 @@ W_{cs} = min(W_{cs}^{max}, 2^{\left\lfloor \log_2(RU \cdot R \cdot \eta_p)\right
 
 ### Simulation Scenarios
 - Mise au point
-
+- NB-IoT sensitivity: -150.1357 dBm (100 b/s); -147 dBm (200 b/s)
+- LoRaWAN sensitivity: -142 dBm (100 b/s); -139 dBm (200 b/s)
 
 <!-- 
 ## Coverage of LoRaWAN
