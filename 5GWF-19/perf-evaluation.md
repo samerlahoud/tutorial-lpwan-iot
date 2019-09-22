@@ -292,6 +292,20 @@ W_{cs} = min(W_{cs}^{max}, 2^{\left\lfloor \log_2(RU \cdot R \cdot \eta_p)\right
     - TBS = 1000 bits with 4 RU and 10 RU
     - RU: 180 kHz over 1 ms
 
+### Result 1
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.65]{./images/SNRthreshold.eps}
+\end{figure}
+
+### Result 2
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.65]{./images/spectralEfficiency.eps}
+\end{figure}
+
 ### Parameters
 - TB: Application data (20 bytes), CoAP (4 bytes), DTLS (13 bytes), UDP (8 bytes), IP (40 bytes), PDCP (5 bytes), RLC (2 bytes), and MAC (2 bytes) => total: 94 bytes
 - A 3-byte CRC is calculated and attached to a TB
@@ -303,7 +317,7 @@ W_{cs} = min(W_{cs}^{max}, 2^{\left\lfloor \log_2(RU \cdot R \cdot \eta_p)\right
 - A datarate of 160 bps is required at the MCL of 164 dB.
 -->
 
-### Results (A reproduire)
+### Results
 - Instantaneous data rate ($R_b/R$ in kb/s) as a function of the coupling loss (CL, in dB), for 12 tones, 6 tones, 3 tones, 1 tone ($\Delta f = 15$ kHz), and 1 tone ($\Delta f = 3.75$ kHz)
     - TBS = 1000 bits (with 4 RU, 5 RU, 6 RU, 8 RU, and 10 RU for multi-tone transmissions; 6 RU, 8 RU, and 10 RU for single-tone transmissions)
     - Compute $R_b$ and $BW$
@@ -311,6 +325,13 @@ W_{cs} = min(W_{cs}^{max}, 2^{\left\lfloor \log_2(RU \cdot R \cdot \eta_p)\right
     - Compute the received $SNR$ as a function of the CL
     - Deduce the required number of transmissions $R$ (Realistic CE, $W_{cs} = 8$ ms)
     - Deduce $R_b/R$. If it depends on the number of RU, display the maximum $R_b/R$.
+
+### Result 3
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.65]{./images/instantaneousRate.eps}
+\end{figure}
 
 ### Results (A reproduire)
 - Spectral efficiency/instantaneous physical rate, for multi-tone and single-tone transmissions
