@@ -6,6 +6,7 @@ title: Cellular Internet of Things
 subtitle: Framework, Optimization, and Challenges of NB-IoT
 date: 5GWF 2019, Dresden, Germany
 institute: ESIB, Saint Joseph University of Beirut, Lebanon
+mathspec: true
 output:
   beamer_presentation:
     slide_level: 3
