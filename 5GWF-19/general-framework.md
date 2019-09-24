@@ -99,6 +99,17 @@ mMTC requires improved network coverage, long device operational lifetime, and a
 | UE battery life                       | 10 years battery lifetime (15 years desirable)\footnote{For a 5 Wh battery for a device sending daily 200 bytes uplink data followed by 20 bytes downlink data at a maximum coupling loss of 164 dB}                                                                                                                      |
 | Latency                               | 10 s for a 20 byte application packet\footnote{In uplink at 164 dB maximum coupling loss and starting from the device being in the most battery efficient state}                         |
 
+### From Requirements to Technologies
+
+- Addressing the mMTC requirements:
+  - Adapt and leverage existing cellular technology
+  - Develop a clean-slate technology
+
+- Put statistics from ABI
+- Go in depth in Ceullaur techno
+- Give an example of non-cellular and lorawan
+- Comapre and conlude for cellular
+
 ### The Cellular Internet of Things
 - mMTC requirements have led to the development and standardization of three 3GPP Cellular IoT technologies:
     - *Extended Coverage GSM for the Internet of Things (EC-GSM-IoT)*
