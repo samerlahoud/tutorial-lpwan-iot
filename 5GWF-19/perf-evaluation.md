@@ -57,14 +57,15 @@ MAPL = \max L_{Channel} \mbox{ } | \mbox{ } P_{Rx} = \mbox{receiver sensitivity}
 | $(a)$ |                Device transmit power (dBm)               |   23   |
 | $(b)$ |              Base station antenna gain (dBi)             |   12   |
 | $(c)$ |               Base station feed-line loss (dB)           |    3   |
-| $(d)$ |                  Thermal noise (dBm/Hz)                  |  -174  |
-| $(e)$ |                  Channel bandwidth (Hz)                  |  3750  |
-| $(f)$ |               Base station receiver $NF$ (dB)            |    3   |
-| $(g)$ |Base station receiver $N$ (dBm) = $(d)+ 10 \log_{10} (e)+ (f)$| -135.3 |
-| $(h)$ |            Required SINR at the base station (dB)        | -12.74 |
-| $(i)$ |   Base station receiver sensitivity (dBm) =  $(g) + (h)$ |  -148  |
-|       |         \textbf{\textit{MAPL} (dB)} = $(a)+(b)-(c)-(i)$  | \textbf{180} |
-|       |     \textbf{Cell range}\footnote{Base station antenna height = 30 m, device antenna height = 1 m, carrier frequency = 1800 MHz} \textbf{- urban environment (km)}         |   \textbf{18.2}    |
+| $(d)$ |                Additional margins (dB)                  |   13   |
+| $(e)$ |                  Thermal noise (dBm/Hz)                  |  -174  |
+| $(f)$ |                  Channel bandwidth (Hz)                  |  3750  |
+| $(g)$ |               Base station receiver $NF$ (dB)            |    3   |
+| $(h)$ |Base station receiver $N$ (dBm) = $(e)+ 10 \log_{10} (f)+ (g)$| -135.3 |
+| $(i)$ |            Required SINR at the base station (dB)        | -12.74 |
+| $(j)$ |   Base station receiver sensitivity (dBm) =  $(h) + (i)$ |  -148  |
+|       |         \textbf{\textit{MAPL} (dB)} = $(a)+(b)-(c)-(d)-(j)$  | \textbf{167} |
+|       |     \textbf{Cell range}\footnote{Base station antenna height = 30 m, device antenna height = 1 m, carrier frequency = 862 MHz} \textbf{- urban environment (km)}         |   \textbf{13.45}    |
 
 ## Coverage of NB-IoT
 
@@ -333,7 +334,7 @@ W_{cs} = min(W_{cs}^{max}, 2^{\left\lfloor \log_2(RU \cdot R \cdot \eta_p)\right
   \includegraphics[scale=0.65]{./images/instantaneousRate.eps}
 \end{figure}
 
-### Results (A reproduire)
+### Results
 - Spectral efficiency/instantaneous physical rate, for multi-tone and single-tone transmissions
     - Multi-tone transmissions provide similar spectral efficiencies. Consequently, network capacity = maximum data rate $\Rightarrow$ RU = 180 kHz (12 subcarriers) over 1 ms
     - Single-tone transmissions provide similar spectral efficiencies. Consequently, maximum data rate $\Rightarrow$ RU = 15 kHz over 8 ms
@@ -342,7 +343,7 @@ W_{cs} = min(W_{cs}^{max}, 2^{\left\lfloor \log_2(RU \cdot R \cdot \eta_p)\right
     - Deduce their instantaneous physical rate/spectral efficiency
     - Average user instantaneous physical rate/spectral efficiency $\rightarrow$ network capacity = average number of devices per cell = average user instantaneous rate/average user required rate
 
-### Results (A reproduire)
+### Results
 - Link adaptation
     - Objective: maximize the instantaneous physical rate
     - For each number of repetition $R$, identify the MCS that maximizes the instantaneous rate, subject to: received SNR $\geq SNR_{threshold}$ $\Rightarrow$ one MCS candidate for each $R$
