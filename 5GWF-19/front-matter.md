@@ -1,7 +1,7 @@
 ---
 author:
-- Samer Lahoud
 - Melhem El Helou
+- Samer Lahoud
 title: Cellular Internet of Things
 subtitle: Framework, Optimization, and Challenges of NB-IoT
 date: 5GWF 2019, Dresden, Germany
