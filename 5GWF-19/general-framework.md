@@ -179,7 +179,7 @@ low Complexity and Low Throughput Internet of Things, 2016
 	\caption*{Source: Mobile IoT Rollout Report, www.gsma.com}
 \end{figure}
 
-### LoRaWAN: An Example of (Non-Cellular) LPWA technology
+### LoRaWAN: An Example of *Non-Cellular* LPWA technology
 
 - LoRaWAN is a clean slate LPWA technology 
   - Other non-cellular LPWA are being specified: Sigfox, Ingenu, Wi-SUN, etc.
@@ -195,7 +195,7 @@ low Complexity and Low Throughput Internet of Things, 2016
   - Simultaneous transmissions on the same channel and spreading factor *collide*
 
 
-### A Glimpse on LoRaWAN Design Challenges
+### A Glimpse on LoRaWAN Design Challenges (1/2)
 
 - Device reachability and battery lifetime
   - Class A devices open two short downlink receive windows only after an uplink transmission
@@ -205,16 +205,24 @@ low Complexity and Low Throughput Internet of Things, 2016
   - Lower spreading factors lead to higher data rates 
 - Network architecture
   - Star-of-stars topology: devices, gateways, and network server
+
+### A Glimpse on LoRaWAN Design Challenges (2/2)
+
 - Device throughput
   - Collisions occur for concurrent transmissions on the same channel and spreading factor 
-  - ALOHA model determines the device throughput given the load of the network
+  - ALOHA model enables to compute the device throughput given the network load
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/sf-compare-received-packets-nb-users-aloha.eps}
+\end{figure}
 
 ### Cellular versus Non-Cellular IoT
 
 - Advantages of cellular technologies
-  - Dedicated spectrum
-  - Reusing infrastructure
-  - ...
+  - Dedicated spectrum: coordinated interference and QoS support
+  - Global standards: large support form vendors and service providers
+  - Reuse of cellular infrastructure: easy installation, management, and operation of devices
 
 - The largest growth is expected for cellular IoT devices
 
@@ -222,3 +230,10 @@ low Complexity and Low Throughput Internet of Things, 2016
 	\includegraphics[scale=0.5]{./images/ericsson-cellular-iot.pdf}
 	\caption*{Source: Ericsson mobility report, 2019}
 \end{figure}
+
+<!--
+- spectrum cost is one main disadvantage for cellular
+- Roaming is an example of easy operation for cellular
+- Power is not limited by regulation in licensed bands
+- Unlicensed suffer for limited power (despite antenna gains) and duty cycles
+-->
