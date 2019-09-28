@@ -1,21 +1,19 @@
 # Performance Evaluation
 
-## Link Budget Analysis
-
 ### Link Budget
 - The link budget is a measure of all the gains and losses from the transmitter, through the propagation channel, to the target receiver
-- The link budget of a network wireless link can be expressed as:
+- The link budget can be expressed as:
 
 \begin{equation*}
 P_{Rx} = P_{Tx} + G_{System} - L_{System} - L_{Channel} - M
 \end{equation*}
 \begin{itemize}
   \item[] where:
-  \item[] $P_{Rx}$ = the expected received power
-  \item[] $P_{Tx}$ = the transmitted power
-  \item[] $G_{System}$ = system gains such as antenna gains
-  \item[] $L_{System}$ = system losses such as feed-line losses
-  \item[] $L_{Channel}$ = path loss
+  \item[] $P_{Rx}$ = median received power
+  \item[] $P_{Tx}$ = transmit power
+  \item[] $G_{System}$ = system gains, \textit{e.g., } antenna, diversity, and amplifier gains
+  \item[] $L_{System}$ = system losses, \textit{e.g., } cable and connector losses
+  \item[] $L_{Channel}$ = median path loss
   \item[] $M$ = additional margins
 \end{itemize}
 
@@ -25,235 +23,119 @@ P_{Rx} = P_{Tx} + G_{System} - L_{System} - L_{Channel} - M
 - Penetration margin:
     - indoor penetration loss (first wall): $\sim 18$ dB (in dense urban environment), $\sim 15$ dB (in urban environment), and $\sim 10-12$ dB (in rural environment)
     - deep indoor penetration loss (second wall): +3 dB
-- Protection margin
+- Body loss
 
-### Maximum Allowable Path Loss
-- The maximum allowable path loss ($MAPL$) is expressed as:
+### Maximum Allowable Path Loss and Cell Range
+\begin{itemize}
+\item The maximum allowable path loss ($MAPL$) is expressed as:
 \begin{equation*}
-MAPL = \max L_{Channel} \mbox{ } | \mbox{ } P_{Rx} = \mbox{receiver sensitivity}
+MAPL = \max L_{Channel} \mbox{ } | \mbox{ } P_{Rx} \geq \mbox{receiver sensitivity}
 \end{equation*}
 \begin{equation*}
 \Rightarrow MAPL = P_{Tx} + G_{System} - L_{System} - M - \mbox{receiver sensitivity}
 \end{equation*}
 
-- The maximum allowable distance between a transmitter and a receiver (cell range) depends on the $MAPL$ and the channel model
+\item The maximum allowable distance between the transmitter and the target receiver (cell range) depends on the $MAPL$ and the channel model\footnote{R. El Chall, S. Lahoud and M. El Helou, "LoRaWAN Network: Radio Propagation Models and Performance Evaluation in Various Environments in Lebanon," in \textit{IEEE Internet of Things Journal}, vol. 6, no. 2, pp. 2366-2378, April 2019.}
 
-### To Do
-- Compute the receiver sensitivity:
-    - Cell edge $\Rightarrow$ $R_b$ = 160 b/s, single-tone transmission, $\Delta f = 3.75$ kHz, and $R$ = 1
-    - Determine the required $SNR$: $SNR_{threshold} = SNR_{req}$
-    - Determine the receiver sensitivity
+\item Balanced links $\Rightarrow$ Uplink cell range = downlink cell range
+\item[] \hspace{20.5mm} $\Rightarrow$ Uplink $MAPL$ = downlink $MAPL$
+\end{itemize}
 
-- Sensitivity (dBm) = $SNR_{threshold}$ (dB) + $N$ (dBm) = $SNR_{threshold} - 174 + 10 \log_{10}(B) + NF$ = -148.0249 dBm
-
-- Our channel models\footnote{R. El Chall, S. Lahoud and M. El Helou, "LoRaWAN Network: Radio Propagation Models and Performance Evaluation in Various Environments in Lebanon," in \textit{IEEE Internet of Things Journal}, vol. 6, no. 2, pp. 2366-2378, April 2019.}: limitations of well-known models
-- Compute the cell range for different propagation environments
-
-
-### Uplink Link Budget
+### Illustration: Uplink Link Budget Analysis
 
 |     |                                                          |        |
 |:---:|:--------------------------------------------------------:|:------:|
-| $(a)$ |                Device transmit power (dBm)               |   23   |
-| $(b)$ |              Base station antenna gain (dBi)             |   12   |
-| $(c)$ |               Base station feed-line loss (dB)           |    3   |
-| $(d)$ |                Additional margins (dB)                  |   13   |
-| $(e)$ |                  Thermal noise (dBm/Hz)                  |  -174  |
-| $(f)$ |                  Channel bandwidth (Hz)                  |  3750  |
-| $(g)$ |               Base station receiver $NF$ (dB)            |    3   |
-| $(h)$ |Base station receiver $N$ (dBm) = $(e)+ 10 \log_{10} (f)+ (g)$| -135.3 |
-| $(i)$ |            Required SINR at the base station (dB)        | -12.74 |
-| $(j)$ |   Base station receiver sensitivity (dBm) =  $(h) + (i)$ |  -148  |
-|       |         \textbf{\textit{MAPL} (dB)} = $(a)+(b)-(c)-(d)-(j)$  | \textbf{167} |
-|       |     \textbf{Cell range}\footnote{Base station antenna height = 30 m, device antenna height = 1 m, carrier frequency = 862 MHz} \textbf{- urban environment (km)}         |   \textbf{13.45}    |
+| $(a)$ |                Device $P_{Tx}$ (dBm)               |   23   |
+| $(b)$ |              $G_{System} =$ base station antenna gain (dBi)             |   12   |
+| $(c)$ |               $L_{System} =$ base station cable loss (dB)           |    3   |
+| $(d)$ |                $M$ (dB)                  |   13   |
+| $(e)$ |                  $B$ (Hz)                  |  3750  |
+| $(f)$ |               Base station receiver $NF$ (dB)            |    3   |
+| $(g)$ |Base station receiver $N$ (dBm) = $-174+ 10 \log_{10} (e)+ (f)$| -135.3 |
+| $(h)$ |            Required SINR\footnote{Target instantaneous data rate = 160 b/s} at the base station (dB)        | -12.74 |
+| $(i)$ |   Base station receiver sensitivity (dBm) =  $(g) + (h)$ |  -148  |
+|       |         \textbf{Uplink \textit{MAPL} (dB)} = $(a)+(b)-(c)-(d)-(i)$  | \textbf{167} |
+|       |     \textbf{Uplink cell range}\footnote{Okumura-Hata model: base station antenna height = 30 m, device antenna height = 1 m, carrier frequency = 862 MHz} \textbf{- urban environment (km)}         |   \textbf{13.45}    |
 
-## Coverage of NB-IoT
+### Instantaneous Data Rate\footnote{P. Andres-Maldonado, P. Ameigeiras, J. Prados-Garzon, J. Navarro-Ortiz and J. M. Lopez-Soler, "An Analytical Performance Evaluation Framework for NB-IoT," in \textit{IEEE Internet of Things Journal}, vol. 6, no. 4, pp. 7232-7240, Aug. 2019.}
 
-### Introduction
-
-- The goal is to cover devices in areas previously inaccessible
-by cellular networks due to penetration losses or remote locations.
-- To solve this, NB-IoT utilizes bandwidth reduction and repetitions:
-    - Bandwidth reduction concentrates the limited power on a narrower bandwidth at the UE $\Rightarrow$ it boosts the uplink power spectral density.
-    - The successive repetitions can be incrementally soft combined at the receiver before decoding to raise error correction.
-- In uplink, the transmission can be repeated {1, 2, 4, 8, 16,
-32, 64, 128} times, using the same transmission power on each
-repetition.
-- In downlink, the number of repetitions are {1, 2, 4, 8, 16, 32, 64, 128, 192, 256, 384, 512, 768, 1024, 1536, 2048}.
-- Each repetition is self-decodable, and all repetitions are confirmed just once.
-- The arrangement of the repetitions depends on the number of
-tones, subcarrier spacing, and the radio conditions.
-
-### Channel Estimation
-- To allow for coherent demodulation of the uplink and downlink
-channels, NB-IoT has two reference signals: 
-    1. Demodulation reference signal (DMRS) in uplink
-    2. Narrowband reference signal (NRS) in downlink
-- Reference symbols, also known as pilot symbols, are inserted in the time-frequency resource grid to allow channel estimation (CE)
-- In downlink, NRS is included in all subframes that may be used for broadcast or downlink transmission using specific resource elements of the resource grid
-- In uplink, DMRS is only multiplexed with the data. Depending on the uplink transmission, DMRS is included in either one or three SC-FDMA symbols per slot
-- From these known transmitted pilot symbols, the receiver
-can estimate the channel response
-- Note that the quality of the estimation is limited by the number of pilot symbols and the received SNR
-
-### Channel Estimation
-- Under the targeted low range of SNR, an accurate CE becomes a dominant issue that limits the coverage improvement
-- Since most of the NB-IoT UEs are stationary or have little mobility, the channel can be considered very slowly time-variant $\Rightarrow$ the CE could be improved using multiple consecutive subframes for the estimation, also known as \textit{cross-subframe CE}
-- This improvement would be constrained by the coherence time of
-the channel $\Rightarrow$ The length of the time-domain filter
-of the cross-subframe CE has to be carefully chosen to avoid
-performance degradation.
-
-### System Model\footnote{P. Andres-Maldonado, P. Ameigeiras, J. Prados-Garzon, J. Navarro-Ortiz and J. M. Lopez-Soler, "An Analytical Performance Evaluation Framework for NB-IoT," in \textit{IEEE Internet of Things Journal}, vol. 6, no. 4, pp. 7232-7240, Aug. 2019.}
-- While the UE is camping on the cell, it transfers data to the network periodically
-- To save battery, after the end of the communication with the eNB and a period of NPDCCH monitoring, the UE stays in PSM
-- Prior uplink data, the UE needs to reestablish the radio resource control (RRC) connection between the UE and the eNB. To do that, we assume the UE performs an RRC Resume procedure. 
-- The analysis presented here focuses on the study of the uplink transmission, although the analysis is reciprocal for downlink considering subframes instead of RUs, and the specific parameters of downlink.
-- We assume a very slowly time-variant channel and low
-Doppler frequency (1 Hz)
-- We only consider channel losses because of path loss, denoted as $L$, then MCL = $L$. To compensate channel losses, the UE adjusts its transmission power $P_{tx}$ up to a maximum allowed value $P_{max}$
-
-### System Model
 \begin{itemize}
-\item Consequently, the SNR, denoted as $S/N$, can be calculated as:
-
-\begin{equation*}
-\frac{S}{N} = \frac{P_{tx}}{L \cdot F \cdot N_0 \cdot BW}
-\end{equation*}
-
-\item[] where $N_0$ is the thermal noise density, $F$ is the receiver noise figure, $BW = SCS \cdot N_T$ is the allocated bandwidth, $SCS$ is the subcarrier spacing, and $N_T$ is the number of tones
-
-\item When the eNB configures the UE’s data transmission, we
-consider four parameters:
-\begin{enumerate}
-    \item number of RUs
-    \item MCS level
-    \item the bandwidth allocated
-    \item the number of repetitions
-\end{enumerate}
-\item For downlink receptions, we consider three parameters:
-\begin{enumerate}
-    \item number of subframes
-    \item MCS level
-    \item number of repetitions
-\end{enumerate}
-\end{itemize}
-
-### System Model
-\begin{itemize}
-\item For both downlink and uplink, we assume the same information is included in each repetition and combined at the receptor using chase combining.
-\item We consider QPSK modulation. The combination of the MCS, number of RUs, and allocated bandwidth determine the data rate of the transmission, derived as:
+\item The instantaneous data rate $R_b$ (b/s) can be expressed as:
 
 \begin{equation*}
 R_b = \frac{b+ CRC}{RU \cdot T}
 \end{equation*}
 
-\item[] where $R_b$ is measured in bits/s, $b$ is the size of the data packet in bits, $CRC$ is the size in bits of the cyclic redundancy check code, $RU$ is the number of RUs allocated to the UE, and $T$ is the duration in seconds of an RU.
+\item[] where:
+\item[] $b$ = transport block size (b)
+\item[] $CRC$ = cyclic redundancy check code size (b)
+\item[] $RU$ = number of allocated RUs
+\item[] $T$ = RU duration (s)
 \end{itemize}
 
-### System Model
-- The selected configuration of the transmission parameters determines the $S/N$ at the UE's receiver
-- We define $SNR_{req}$ as the minimum $S/N$ to successfully decode the uplink transmission $\Rightarrow S/N \geq SNR_{req}$
-- When applying repetitions or bandwidth reduction, the values of $SNR_{req}$ and $S/N$ can be modified
-- Specifically for uplink repetitions, the same data is repeatedly transmitted $R$ times
-- The received transmission’s copies at the eNB can be combined to raise error correction. The resulting $SNR$ after the coherent combining of the copies is defined as effective $SNR$, denoted as $SNR_e$
-- For ideal CE, the $SNR_e$ can be expressed as:
-\begin{equation*}
-SNR_e = \sum^{R} SNR_{req} = R \cdot SNR_{req}
-\end{equation*}
-
-### System Model
-- For realistic CE, there is an estimation error, denoted as
-$\sigma$
-- This CE error will impact the system’s performance and limit the gain from repetitions.
-- The approximated $SNR_e$ can be rewritten as\footnote{Y. D. Beyene, R. Jantti, K. Ruttik and S. Iraji, "On the Performance of Narrow-Band Internet of Things (NB-IoT)," in \textit{2017 IEEE Wireless Communications and Networking Conference (WCNC)}, San Francisco, CA, 2017.}:
-
-\begin{equation*}
-SNR_e = \frac{R \cdot (\sigma + SNR_{req})}{(\sigma + 1 + \frac{\sigma}{SNR_{req}}) \cdot (1+ \frac{\sigma}{2 \cdot SNR_{req}})}
-\end{equation*}
-
-### Analysis
-- The aim is to estimate the $SNR_{req}$ of the UE considering the new concerns of NB-IoT, such as coverage enhancement approaches and CE errors at low SNR range
-- The transmit power can be rewritten as:
-
-\begin{equation*}
-P_{tx} = SNR_{req} \cdot L \cdot F \cdot N_0 \cdot BW
-\end{equation*}
-
-### Baseline Analysis\footnote{P. Andres-Maldonado \textit{et al.}, “Analytic Analysis of Narrowband IoT Coverage Enhancement Approaches,” in Proc. \textit{2018 Global Internet of Things Summit (GIoTS)}, Bilbao, Spain, 2018.}: Ideal CE
-
-- Based on the Shannon theorem, the $SNR$ at the eNB, denoted as $SNR_e$, can be derived as:
-
-\begin{equation*}
-SNR_e = 2^{R_b/BW} - 1 = 2^{\frac{b+CRC}{BW \cdot RU \cdot T}}-1
-\end{equation*}
-
-- The required SNR at the eNB can be expressed as:
-
-\begin{equation*}
-SNR_{req} = \frac{2^{R_b/BW} - 1}{R} = \frac{2^{\frac{b+CRC}{BW \cdot RU \cdot T}} - 1}{R}
-\end{equation*}
-
-- The bandwidth utilization $\gamma$ can be obtained as:
+### Spectral Efficiency
+\begin{itemize}
+\item The spectral efficiency $\gamma$ (b/s/Hz) can be written as:
 
 \begin{equation*}
 \gamma = \frac{R_b}{R \cdot BW} = \frac{b+CRC}{R \cdot BW \cdot RU \cdot T}
 \end{equation*}
 
-### Detailed Analysis\footnote{P. Andres-Maldonado, P. Ameigeiras, J. Prados-Garzon, J. Navarro-Ortiz and J. M. Lopez-Soler, "An Analytical Performance Evaluation Framework for NB-IoT," in \textit{IEEE Internet of Things Journal}, vol. 6, no. 4, pp. 7232-7240, Aug. 2019.}: Realistic CE
+\item[] where:
+\item[] $BW$ = allocated bandwidth (Hz)
+\item[] $R$ = number of repetitions
+\end{itemize}
+
+### Modified Shannon Capacity\footnote{P. Andres-Maldonado, P. Ameigeiras, J. Prados-Garzon, J. Navarro-Ortiz and J. M. Lopez-Soler, "An Analytical Performance Evaluation Framework for NB-IoT," in \textit{IEEE Internet of Things Journal}, vol. 6, no. 4, pp. 7232-7240, Aug. 2019.}
 
 \begin{itemize}
 \item A modified Shannon capacity formula is used, as for LTE:
 
 \begin{equation*}
-C = BW \cdot BW_{eff} \cdot \log_2(1+ \frac{SNR_e}{SNR_{eff}})
+C = BW \cdot BW_{eff} \cdot \log_2(1+ \frac{(SNR)_R}{SNR_{eff}})
 \end{equation*}
 
-\item[] where $C$ is the capacity of the channel measured in bits/s, $BW_{eff}$ is the bandwidth efficiency of the used technology (i.e., NB-IoT), and $SNR_{eff}$ is the efficiency of the SNR in NB-IoT.
+\item[] where $C$ is the capacity of the channel measured in b/s, $BW_{eff}$ is the bandwidth efficiency of the used technology (i.e., NB-IoT), and $SNR_{eff}$ is the efficiency of the SNR in NB-IoT.
 
-\item Consequently, the $SNR_e$ can be expressed as:
+\item Consequently, the required $SNR$ after combining $R$ transmissions, $(SNR)_R$, can be expressed as:
 
 \begin{equation*}
-SNR_e = (2^{\frac{R_b}{BW \cdot BW_{eff}}}-1) \cdot SNR_{eff}
+(SNR)_R = (2^{\frac{R_b}{BW \cdot BW_{eff}}}-1) \cdot SNR_{eff}
 \end{equation*}
 \end{itemize}
 
-### Detailed Analysis: Realistic CE
+### Channel Estimation and Required $SNR$
 \begin{itemize}
-\item The approximated $SNR_{req}$ can be obtained as:
+\item Ideal CE: The required $SNR$ of a single transmission, $(SNR)_1$, can be written as:
 
 \begin{equation*}
-(2^{\frac{R_b}{BW \cdot BW_{eff}}}-1) \cdot SNR_{eff} = \frac{R \cdot (\sigma + SNR_{req})}{(\sigma + 1 + \frac{\sigma}{SNR_{req}}) \cdot (1+ \frac{\sigma}{2 \cdot SNR_{req}})}
+(SNR)_1 = \frac{(SNR)_R}{R} = \frac{(2^{\frac{R_b}{BW \cdot BW_{eff}}}-1) \cdot SNR_{eff}}{R}
 \end{equation*}
 
-\item Unlike the baseline analysis, there is not a simple solution when solving $SNR_{req}$ $\Rightarrow$ $SNR_{req}$ is obtained through an iterative method
-\item $\sigma$ depends on $SNR_{req}$. This is due to the quality of the CE depends on the amplitude of the received pilot symbols, and therefore, the $SNR_{req}$
-\item After conducted simulations, the dependency between $\sigma$ and $SNR_{req}$ can be expressed in dB as a linear dependency:
+\item Realistic CE\footnote{Y. D. Beyene, R. Jantti, K. Ruttik and S. Iraji, "On the Performance of Narrow-Band Internet of Things (NB-IoT)," in \textit{2017 IEEE Wireless Communications and Networking Conference (WCNC)}, San Francisco, CA, 2017.}$^,$\footnote{P. Andres-Maldonado, P. Ameigeiras, J. Prados-Garzon, J. Navarro-Ortiz and J. M. Lopez-Soler, "An Analytical Performance Evaluation Framework for NB-IoT," in \textit{IEEE Internet of Things Journal}, vol. 6, no. 4, pp. 7232-7240, Aug. 2019.}:
 
 \begin{equation*}
-\sigma_{dB} = c_1 \cdot SNR_{req, dB} + c_2
+(2^{\frac{R_b}{BW \cdot BW_{eff}}}-1) \cdot SNR_{eff} = \frac{R \cdot (\sigma + (SNR)_{1})}{(\sigma + 1 + \frac{\sigma}{(SNR)_{1}}) \cdot (1+ \frac{\sigma}{2 \cdot (SNR)_{1}})}
 \end{equation*}
 
-\item[] where $SNR_{req,dB}$ and $\sigma_{dB}$ are measured in dB, and $c_1$ and $c_2$ are constants that depend on the cross-subframe window used in the CE and the modulation technique.
+\item[] where $\sigma$ denotes the estimation error
 \end{itemize}
 
-### Detailed Analysis: Realistic CE
-- To minimize the effects of noise on the realistic CE, the channel estimates are averaged
-- Under the hypothesis of slowly time-variant channel, the utilization of cross-subframe CE can produce a substantial noise reduction
-- The value of $W_{cs}$ denotes the number of resources to be considered in the cross-subframe CE
-    - For uplink, these resources are the number of RUs
-    - For downlink, they are the number of subframes
-- The simulation of different values of $W_{cs}$ provides a set of $c_1$ and $c_2$ values
+### Channel Estimation and Required $SNR$
 
-### Numerical Results
-- Three different scenarios:
-    - ideal: Ideal CE
-    - wcs: Realistic CE with cross-subframe
-    - nocs: Realistic CE without cross-subframe technique
-- Evaluation framework:
-    1. $SNR_{req}$ estimation
-    2. Configure the link adaptation\footnote{P. Andres-Maldonado \textit{et al.}, “Analytic Analysis of Narrowband IoT Coverage Enhancement Approaches,” in Proc. \textit{2018 Global Internet of Things Summit (GIoTS)}, Bilbao, Spain, 2018.} of the signaling packet transfers required prior to the uplink data transmission.
-    3. Estimation of the NB-IoT performance using an energy consumption model\footnote{P. Andres-Maldonado, P. Ameigeiras, J. Prados-Garzon, J. Navarro-Ortiz, and J. M. Lopez-Soler, “Narrowband IoT Data Transmission Procedures for Massive Machine-Type Communications,” in \textit{IEEE Network}, vol. 31, no. 6, pp. 8–15, Nov./Dec. 2017.}
+\begin{itemize}
+\item For realistic CE, $(SNR)_1$ is solved iteratively
+
+\item $\sigma$ depends on $(SNR)_{1}$, as the CE quality depends on the amplitude of the received pilot symbols, and therefore, the $(SNR)_{1}$
+\item After conducted simulations, the dependency between $\sigma$ and $(SNR)_{1}$ can be expressed in dB as a linear dependency:
+
+\begin{equation*}
+\sigma_{dB} = c_1 \cdot (SNR)_{1, dB} + c_2
+\end{equation*}
+
+\item[] where $(SNR)_{1,dB}$ and $\sigma_{dB}$ are measured in dB, and $c_1$ and $c_2$ are constants that depend on the cross-subframe window used in the CE and the modulation technique.
+\item The simulation of different values of $W_{cs}$ provides a set of $c_1$ and $c_2$ values
+\end{itemize}
 
 ### Parameter Settings
 - The correction values for Shannon formula are derived through curve fitting to the 3GPP’s link-level simulation results for NPUSCH and NPDSCH:
@@ -272,17 +154,6 @@ SNR_e = (2^{\frac{R_b}{BW \cdot BW_{eff}}}-1) \cdot SNR_{eff}
 |    4   |   -0.4780   |    1.5869   |  -0.4990  |  11.5017  |
 |    8   |   -0.4725   |    0.1239   |  -0.4992  |   9.9952  |
 |   16   |   -0.4475   |   -1.1335   |  -0.4969  |   8.5077  |
-
-### Parameter Settings
-\begin{itemize}
-\item In uplink, $W_{cs}$ is derived as:
-
-\begin{equation*}
-W_{cs} = min(W_{cs}^{max}, 2^{\left\lfloor \log_2(RU \cdot R \cdot \eta_p)\right\rfloor})
-\end{equation*}
-
-\item[] where $W_{cs}^{max}$ is the maximum cross-subframe window considered and and $\eta_p$ is a correction factor: $\eta_p = 1$ for multi-tone configurations and $\eta_p = 0.6667$ for single-tone configurations.
-\end{itemize}
 
 ### Results
 - $SNR_{req}$ (dB) as a function of the number of repetitions, for ideal, wcs, and nocs CE.
@@ -353,7 +224,6 @@ W_{cs} = min(W_{cs}^{max}, 2^{\left\lfloor \log_2(RU \cdot R \cdot \eta_p)\right
     - Percentage of users using each MCS, or each (MCS, $R$) couple if more relevant
 
 ### Simulation Scenarios
-- Mise au point
 - NB-IoT sensitivity: -150.1357 dBm (100 b/s); -147 dBm (200 b/s)
 - LoRaWAN sensitivity: -142 dBm (100 b/s); -139 dBm (200 b/s)
 

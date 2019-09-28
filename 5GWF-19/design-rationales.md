@@ -134,8 +134,11 @@ MCL \mbox{ (dB) }= P_{Tx} - \underbrace{(SNR_{threshold} -174 + 10\log_{10}(B) +
 \end{equation*}
 
 ### Real vs. Ideal Processing Gain
-- In practice, combining two signals is rarely perfect: signal impairments will result in a lower overall processing gain
-- For $R$ between 2 and 16, the ideal gain can be achieved without any visible degradation\footnote{Simulations have been carried out for EC-GSM-IoT in O. Liberg et al., \textit{Cellular Internet of Things - Technologies, Standards, and Performance}. Cambridge, MA, USA: American Press, 2017.}
+- In practice, channel estimation (CE) is rarely perfect: CE quality is limited by the number of pilot symbols and the radio conditions
+- CE errors result in a lower overall processing gain: Real $G_p < 10\log_{10}(R)$
+- How to improve $G_p$ in practice?
+    - NB-IoT UE are stationary or have little mobility $\Rightarrow$ The NB-IoT channel is very slowly time-variant
+    - Average the channel estimates over multiple consecutive subframes, thus improving CE $\Rightarrow$ \textit{cross-subframe CE}
 
 ## Low Power Consumption
 
