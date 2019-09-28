@@ -112,12 +112,6 @@ Low power refers to the ability of an IoT device to function for many years on a
   - Adapt and leverage existing cellular technology (Cellular IoT)
   - Develop a clean-slate technology
 
-### Plan
-- Put statistics from ABI
-- Go in depth in Cellular techno
-- Give an example of non-cellular and lorawan
-- Compare and conclude for cellular
-
 ### The Cellular Internet of Things
 - mMTC requirements have led to the development and standardization of three 3GPP Cellular IoT technologies:
     - *Extended Coverage GSM for the Internet of Things (EC-GSM-IoT)*
