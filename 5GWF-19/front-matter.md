@@ -1,7 +1,7 @@
 ---
 author:
-- Samer Lahoud
 - Melhem El Helou
+- Samer Lahoud
 title: Cellular Internet of Things
 subtitle: Framework, Optimization, and Challenges of NB-IoT
 date: 5GWF 2019, Dresden, Germany
@@ -17,4 +17,4 @@ output:
 - What are the requirements and characteristics of mMTC in 5G?
 - How do NB-IoT leverage and adapt 3GPP LTE infrastructure and mechanisms to meet 5G mMTC requirements?
 - How do we evaluate the performance of an NB-IoT deployment in terms of coverage and capacity?
-- What are the recent research directions for radio resource management in NB-IoT?
+- What are the challenges for optimizing the performance of NB-IoT?

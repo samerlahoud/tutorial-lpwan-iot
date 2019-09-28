@@ -99,25 +99,27 @@ mMTC requires improved network coverage, long device operational lifetime, and a
 | UE battery life                       | 10 years battery lifetime (15 years desirable)\footnote{For a 5 Wh battery for a device sending daily 200 bytes uplink data followed by 20 bytes downlink data at a maximum coupling loss of 164 dB}                                                                                                                      |
 | Latency                               | 10 s for a 20 byte application packet\footnote{In uplink at 164 dB maximum coupling loss and starting from the device being in the most battery efficient state}                         |
 
-### From Requirements to Technologies
+### Emergence of Low Power Wide Area Technologies
 
-- Addressing the mMTC requirements:
-  - Adapt and leverage existing cellular technology
+\begin{block}{Low Power Wide Area Networks}
+Low power refers to the ability of an IoT device to function for many years on a single battery charge, while at the same time it is able to communicate from locations where shadowing and path loss would limit the usefulness of more traditional cellular technologies (3GPP Low Power Wide Area Technologies, GSMA White Paper, 2016)
+\end{block}
+
+- Low Power Wide Area (LPWA) technologies enable to address the mMTC requirements
+- A large number of candidate technologies:
+  - LoRaWAN, Sigfox, Ingenu, NB-IoT, etc.
+- Two main design choices: 
+  - Adapt and leverage existing cellular technology (Cellular IoT)
   - Develop a clean-slate technology
-
-- Put statistics from ABI
-- Go in depth in Ceullaur techno
-- Give an example of non-cellular and lorawan
-- Comapre and conlude for cellular
 
 ### The Cellular Internet of Things
 - mMTC requirements have led to the development and standardization of three 3GPP Cellular IoT technologies:
     - *Extended Coverage GSM for the Internet of Things (EC-GSM-IoT)*
     - *LTE for Machine-Type Communications (LTE-M)*
     - *Narrowband Internet of Things (NB-IoT)*
-- Cellular IoT technologies adapt and leverage existing 3GPP technologies to meet the mMTC requirements
+- Cellular IoT technologies share some common specifications 
   - Designed to operate in licensed frequency bands
-  - Frequently referred to as Low Power Wide Area (LPWA)
+  - Reuse or adapt concepts and components from existing cellular networks
 
 <!--
 ### Extended requirements (including LPWA or CIoT)
@@ -126,6 +128,7 @@ Third Generation Partnership Project, Technical Report 45.820 v13.0.0, Cellular 
 low Complexity and Low Throughput Internet of Things, 2016
 -->
 
+<!--
 ### Cellular LPWA Technologies 
 
 - EC-GSM-IoT
@@ -142,8 +145,9 @@ low Complexity and Low Throughput Internet of Things, 2016
   - New radio access technology
   - Reuses components from LTE
   - Bandwidth starting from 200 kHz
+-->
 
-### Cellular LPWA Technologies
+### Cellular IoT 3GPP Standards
 
 |                    | EC-GSM-IoT                         | LTE-M     | NB-IoT                                |
 |--------------------|------------------------------------|-----------|---------------------------------------|
@@ -153,7 +157,7 @@ low Complexity and Low Throughput Internet of Things, 2016
 
 ### 5G Design for mMTC
 
-- Continuation of CIoT standards LTE-M and NB-IoT
+- Continuation of Cellular IoT standards LTE-M and NB-IoT
   - LTE-M and NB-IoT fulfill the mMTC 5G requirements
   - No specification of NR mMTC solution in Release 15
   - In the future, NB-IoT and LTE-M may operate in-band within an NR carrier
@@ -169,14 +173,50 @@ low Complexity and Low Throughput Internet of Things, 2016
 	\caption*{Source: Mobile IoT Rollout Report, www.gsma.com}
 \end{figure}
 
-### Cellular versus Non-Cellular
+### LoRaWAN: An Example of *Non-Cellular* LPWA technology
 
-- Addressing the mMTC requirements:
-  - Adapt and leverage existing cellular technology (LTE-M and NB-IoT)
-  - Develop a clean-slate technology (LoRaWAN, Sigfox, Ingenu, Wi-SUN, etc.)
+- LoRaWAN is a clean slate LPWA technology 
+  - Other non-cellular LPWA are being specified: Sigfox, Ingenu, Wi-SUN, etc.
+- Uses a *new* robust modulation called LoRa
+  - Variation of Chirp Spread Spectrum (CSS)
+  - Uses spreading factors to increase the coverage
+  - Data rates range from 300 bps to 5.5 kbps 
+- Operates in license-free bands (868 MHz in Europe)
+  - Transmit power limited to 14 dBm (25 mW)
+  - 1% per sub-band duty-cycle limitation
+- Access is contention based 
+  - Devices transmit without any coordination on a randomly chosen channel
+  - Simultaneous transmissions on the same channel and spreading factor *collide*
+
+
+### A Glimpse on LoRaWAN Design Challenges (1/2)
+
+- Device reachability and battery lifetime
+  - Class A devices open two short downlink receive windows only after an uplink transmission
+- Network capacity and coverage
+  - Using multiple orthogonal spreading factors simultaneously on the same channel
+  - Higher spreading factors lead to lower sensitivity and larger coverage
+  - Lower spreading factors lead to higher data rates 
+- Network architecture
+  - Star-of-stars topology: devices, gateways, and network server
+
+### A Glimpse on LoRaWAN Design Challenges (2/2)
+
+- Device throughput
+  - Collisions occur for concurrent transmissions on the same channel and spreading factor 
+  - ALOHA model enables to compute the device throughput given the network load
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/sf-compare-received-packets-nb-users-aloha.eps}
+\end{figure}
+
+### Cellular versus Non-Cellular IoT
 
 - Advantages of cellular technologies
-  - Dedicated spectrum
+  - Dedicated spectrum: coordinated interference and QoS support
+  - Global standards: large support form vendors and service providers
+  - Reuse of cellular infrastructure: easy installation, management, and operation of devices
 
 - The largest growth is expected for cellular IoT devices
 
@@ -185,16 +225,9 @@ low Complexity and Low Throughput Internet of Things, 2016
 	\caption*{Source: Ericsson mobility report, 2019}
 \end{figure}
 
-### LoRaWAN
-
-- LoRa is a robust modulation for wireless transmission
-  - Variation of Chirp Spread Spectrum (CSS)
-  - Uses Spreading Factors to increase the coverage
-- Operates in license-free bands
-  - Lebanon: 868 MHz
-- Spectrum regulation
-  - Transmit power limited to 14 dBm (25 mW)
-  - 1% per sub-band duty-cycle limitation
-- Coverage can reach tens of kilometers
-  - Record of 45 km in Bekaa
-- Data rates range from 300 bps to 5.5 kbps
+<!--
+- spectrum cost is one main disadvantage for cellular
+- Roaming is an example of easy operation for cellular
+- Power is not limited by regulation in licensed bands
+- Unlicensed suffer for limited power (despite antenna gains) and duty cycles
+-->
