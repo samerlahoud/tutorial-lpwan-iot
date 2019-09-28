@@ -179,26 +179,42 @@ low Complexity and Low Throughput Internet of Things, 2016
 	\caption*{Source: Mobile IoT Rollout Report, www.gsma.com}
 \end{figure}
 
-### LoRaWAN: An Example on (Non-Cellular) LPWA technology
+### LoRaWAN: An Example of (Non-Cellular) LPWA technology
 
 - LoRaWAN is a clean slate LPWA technology 
-- LoRaWAN uses a *new* robust modulation called LoRa
+  - Other non-cellular LPWA are being specified: Sigfox, Ingenu, Wi-SUN, etc.
+- Uses a *new* robust modulation called LoRa
   - Variation of Chirp Spread Spectrum (CSS)
-  - Uses Spreading Factors (SF) to increase the coverage
-- LoRaWAN operates in license-free bands
-  - Europe: 868 MHz
+  - Uses spreading factors to increase the coverage
+  - Data rates range from 300 bps to 5.5 kbps 
+- Operates in license-free bands (868 MHz in Europe)
   - Transmit power limited to 14 dBm (25 mW)
   - 1% per sub-band duty-cycle limitation
-- Coverage can reach tens of kilometers
-- Data rates range from 300 bps to 5.5 kbps according to SF
-- Other non-cellular LPWA are being specified
-  - LoRaWAN, Sigfox, Ingenu, Wi-SUN, etc.
+- Access is contention based 
+  - Devices transmit without any coordination on a randomly chosen channel
+  - Simultaneous transmissions on the same channel and spreading factor *collide*
+
+
+### A Glimpse on LoRaWAN Design Challenges
+
+- Device reachability and battery lifetime
+  - Class A devices open two short downlink receive windows only after an uplink transmission
+- Network capacity and coverage
+  - Using multiple orthogonal spreading factors simultaneously on the same channel
+  - Higher spreading factors lead to lower sensitivity and larger coverage
+  - Lower spreading factors lead to higher data rates 
+- Network architecture
+  - Star-of-stars topology: devices, gateways, and network server
+- Device throughput
+  - Collisions occur for concurrent transmissions on the same channel and spreading factor 
+  - ALOHA model determines the device throughput given the load of the network
 
 ### Cellular versus Non-Cellular IoT
 
 - Advantages of cellular technologies
   - Dedicated spectrum
   - Reusing infrastructure
+  - ...
 
 - The largest growth is expected for cellular IoT devices
 
