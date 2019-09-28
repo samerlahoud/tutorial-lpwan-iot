@@ -101,6 +101,10 @@ mMTC requires improved network coverage, long device operational lifetime, and a
 
 ### Emergence of Low Power Wide Area Technologies
 
+\begin{block}{Low Power Wide Area Networks}
+Low power refers to the ability of an IoT device to function for many years on a single battery charge, while at the same time it is able to communicate from locations where shadowing and path loss would limit the usefulness of more traditional cellular technologies (3GPP Low Power Wide Area Technologies, GSMA White Paper, 2016)
+\end{block}
+
 - Low Power Wide Area (LPWA) technologies enable to address the mMTC requirements
 - A large number of candidate technologies:
   - LoRaWAN, Sigfox, Ingenu, NB-IoT, etc.
@@ -108,6 +112,7 @@ mMTC requires improved network coverage, long device operational lifetime, and a
   - Adapt and leverage existing cellular technology (Cellular IoT)
   - Develop a clean-slate technology
 
+### Plan
 - Put statistics from ABI
 - Go in depth in Cellular techno
 - Give an example of non-cellular and lorawan
@@ -118,9 +123,9 @@ mMTC requires improved network coverage, long device operational lifetime, and a
     - *Extended Coverage GSM for the Internet of Things (EC-GSM-IoT)*
     - *LTE for Machine-Type Communications (LTE-M)*
     - *Narrowband Internet of Things (NB-IoT)*
-- Cellular IoT technologies adapt and leverage existing 3GPP technologies to meet the mMTC requirements
+- Cellular IoT technologies share some common specifications 
   - Designed to operate in licensed frequency bands
-  - Frequently referred to as Low Power Wide Area (LPWA)
+  - Reuse or adapt concepts and components from existing cellular networks
 
 <!--
 ### Extended requirements (including LPWA or CIoT)
@@ -129,6 +134,7 @@ Third Generation Partnership Project, Technical Report 45.820 v13.0.0, Cellular 
 low Complexity and Low Throughput Internet of Things, 2016
 -->
 
+<!--
 ### Cellular LPWA Technologies 
 
 - EC-GSM-IoT
@@ -145,8 +151,9 @@ low Complexity and Low Throughput Internet of Things, 2016
   - New radio access technology
   - Reuses components from LTE
   - Bandwidth starting from 200 kHz
+-->
 
-### Cellular LPWA Technologies
+### Cellular IoT 3GPP Standards
 
 |                    | EC-GSM-IoT                         | LTE-M     | NB-IoT                                |
 |--------------------|------------------------------------|-----------|---------------------------------------|
@@ -156,7 +163,7 @@ low Complexity and Low Throughput Internet of Things, 2016
 
 ### 5G Design for mMTC
 
-- Continuation of CIoT standards LTE-M and NB-IoT
+- Continuation of Cellular IoT standards LTE-M and NB-IoT
   - LTE-M and NB-IoT fulfill the mMTC 5G requirements
   - No specification of NR mMTC solution in Release 15
   - In the future, NB-IoT and LTE-M may operate in-band within an NR carrier
@@ -172,14 +179,26 @@ low Complexity and Low Throughput Internet of Things, 2016
 	\caption*{Source: Mobile IoT Rollout Report, www.gsma.com}
 \end{figure}
 
-### Cellular versus Non-Cellular
+### LoRaWAN: An Example on (Non-Cellular) LPWA technology
 
-- Addressing the mMTC requirements:
-  - Adapt and leverage existing cellular technology (LTE-M and NB-IoT)
-  - Develop a clean-slate technology (LoRaWAN, Sigfox, Ingenu, Wi-SUN, etc.)
+- LoRaWAN is a clean slate LPWA technology 
+- LoRaWAN uses a *new* robust modulation called LoRa
+  - Variation of Chirp Spread Spectrum (CSS)
+  - Uses Spreading Factors (SF) to increase the coverage
+- LoRaWAN operates in license-free bands
+  - Europe: 868 MHz
+  - Transmit power limited to 14 dBm (25 mW)
+  - 1% per sub-band duty-cycle limitation
+- Coverage can reach tens of kilometers
+- Data rates range from 300 bps to 5.5 kbps according to SF
+- Other non-cellular LPWA are being specified
+  - LoRaWAN, Sigfox, Ingenu, Wi-SUN, etc.
+
+### Cellular versus Non-Cellular IoT
 
 - Advantages of cellular technologies
   - Dedicated spectrum
+  - Reusing infrastructure
 
 - The largest growth is expected for cellular IoT devices
 
@@ -187,17 +206,3 @@ low Complexity and Low Throughput Internet of Things, 2016
 	\includegraphics[scale=0.5]{./images/ericsson-cellular-iot.pdf}
 	\caption*{Source: Ericsson mobility report, 2019}
 \end{figure}
-
-### LoRaWAN
-
-- LoRa is a robust modulation for wireless transmission
-  - Variation of Chirp Spread Spectrum (CSS)
-  - Uses Spreading Factors to increase the coverage
-- Operates in license-free bands
-  - Lebanon: 868 MHz
-- Spectrum regulation
-  - Transmit power limited to 14 dBm (25 mW)
-  - 1% per sub-band duty-cycle limitation
-- Coverage can reach tens of kilometers
-  - Record of 45 km in Bekaa
-- Data rates range from 300 bps to 5.5 kbps
