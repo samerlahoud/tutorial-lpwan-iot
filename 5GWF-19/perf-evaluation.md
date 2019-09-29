@@ -1,5 +1,7 @@
 # Performance Evaluation
 
+## Cell Range Estimation
+
 ### Link Budget
 - The link budget is a measure of all the gains and losses from the transmitter, through the propagation channel, to the target receiver
 - The link budget can be expressed as:
