@@ -169,7 +169,7 @@ low Complexity and Low Throughput Internet of Things, 2016
 ### Current Deployment of LTE-M and NB-IoT
 
 \begin{figure}
-	\includegraphics[scale=0.3]{./images/ciot-deployment-map}
+	\includegraphics[scale=0.3]{./images/ciot-deployment}
 	\caption*{Source: Mobile IoT Rollout Report, www.gsma.com}
 \end{figure}
 
