@@ -52,12 +52,14 @@
 ### Radio Quality
 - Reliability $\Rightarrow$ bit error rate ($BER$) $\leq$ target $BER$
 - The energy per bit to noise power spectral density ratio ($E_ b/N_0$) is defined as the ratio of the energy per bit ($E_b$) to the noise power spectral density ($N_0$)
-\vspace{-2mm}
+
+```{=latex}
 \begin{figure}
 	\centering
 	\includegraphics<1>[scale=0.43]{./images/qpsk-perf-1.pdf}
 	\includegraphics<2>[scale=0.43]{./images/qpsk-perf-2.pdf}
 \end{figure}
+```
 
 ### Radio Quality
 \begin{equation*}
