@@ -1,22 +1,6 @@
 ## System-level Performance Evaluation
 
 ### Results
-- Instantaneous data rate ($R_b/R$ in kb/s) as a function of the coupling loss (CL, in dB), for 12 tones, 6 tones, 3 tones, 1 tone ($\Delta f = 15$ kHz), and 1 tone ($\Delta f = 3.75$ kHz)
-    - TBS = 1000 bits (with 4 RU, 5 RU, 6 RU, 8 RU, and 10 RU for multi-tone transmissions; 6 RU, 8 RU, and 10 RU for single-tone transmissions)
-    - Compute $R_b$ and $BW$
-    - Deduce $SNR_e$
-    - Compute the received $SNR$ as a function of the CL
-    - Deduce the required number of transmissions $R$ (Realistic CE, $W_{cs} = 8$ ms)
-    - Deduce $R_b/R$. If it depends on the number of RU, display the maximum $R_b/R$.
-
-### Result 3
-
-\begin{figure}
-	\centering
-  \includegraphics[scale=0.65]{./images/instantaneousRate.eps}
-\end{figure}
-
-### Results
 - Spectral efficiency/instantaneous physical rate, for multi-tone and single-tone transmissions
     - Multi-tone transmissions provide similar spectral efficiencies. Consequently, network capacity = maximum data rate $\Rightarrow$ RU = 180 kHz (12 subcarriers) over 1 ms
     - Single-tone transmissions provide similar spectral efficiencies. Consequently, maximum data rate $\Rightarrow$ RU = 15 kHz over 8 ms
