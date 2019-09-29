@@ -221,7 +221,7 @@ low Complexity and Low Throughput Internet of Things, 2016
 - The largest growth is expected for cellular IoT devices
 
 \begin{figure}
-	\includegraphics[scale=0.5]{./images/ericsson-cellular-iot.pdf}
+	\includegraphics[scale=0.5]{./images/ericsson-ciot.pdf}
 	\caption*{Source: Ericsson mobility report, 2019}
 \end{figure}
 
