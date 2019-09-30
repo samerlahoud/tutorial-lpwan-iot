@@ -81,14 +81,9 @@ $$d = \frac{\bar{D}}{I}$$
   \includegraphics<2>[scale=0.4]{./images/nbiot_mcs_repetitions_occurence-8000.eps}
 \end{figure}
 ```
-### Analyzing Network Capacity
-
-\begin{figure}
-	\centering
-  \includegraphics[scale=0.4]{./images/nbiot_rate-4000.eps}
-\end{figure}
 
 ### Analyzing Network Capacity
+- The average NB-IoT rate decreases linearly with the number of device, while it drops drastically beyound 1000 devices for LoRaWAN
 
 \begin{figure}
 	\centering
@@ -96,6 +91,8 @@ $$d = \frac{\bar{D}}{I}$$
 \end{figure}
 
 ### Analyzing Network Capacity
+
+- If we consider an arrival rate of 5 packets per hour on each device, LoRaWAN does not succeed in delivering such service for more than 1000 devices
 
 \begin{figure}
 	\centering
