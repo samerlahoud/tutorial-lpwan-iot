@@ -1,14 +1,14 @@
-# NB-IoT Design Principles
+# Design Principles
 
-### Revisiting LPWAN Requirements
+### Revisiting the mMTC 5G Requirements
 - Low device complexity and cost
 - Reliability under extreme coverage conditions
 - Low power consumption: long battery lifetime
 - High capacity: support for massive number of low-rate devices
 - Simplified network topology and deployment
 
-#### NB-IoT Objective and Approach
-Adapt and leverage existing 4G technology to meet the LPWAN requirements
+#### NB-IoT Approach
+Adapt and leverage existing 4G technology to meet the mMTC 5G requirements
 
 <!--
 - Enhanced coverage while maintaining energy consumption is an indispensable characteristic of NB-IoT. 
@@ -45,7 +45,7 @@ Adapt and leverage existing 4G technology to meet the LPWAN requirements
 
 ## Reliability Under Extreme Coverage Conditions
 
-### Radio Quality
+### Reliability and Radio Quality
 - Reliability $\Rightarrow$ bit error rate ($BER$) $\leq$ target $BER$
 - The $SNR$, or equivalently the carrier-to-noise ratio ($CNR$ or $C/N$), is defined as the ratio of the received signal power $C$ to the power of the noise $N$ within the bandwidth of the transmitted signal
 
@@ -83,7 +83,6 @@ $BER$ $\leq$ $BER_{target}$ & $\Leftrightarrow$ & $SNR \geq SNR_{threshold}$ \\
 \end{figure}
 
 ### How to Improve Coverage?
-
 - Coverage targets are usually specified in terms of $MCL$
 - Increasing $P_{Tx}$, or lowering $NF$, leads to higher device complexity and cost
 - Reducing $B$ leads to lower network capacity
@@ -108,8 +107,8 @@ $$ \left(SNR\right)_R \geq SNR_{threshold} \Rightarrow (SNR)_1 \geq  \underbrace
     - the lower the useful data rate is
 - In practice, channel estimation (CE) is rarely perfect
 - CE errors result in lower processing gain: realistic $G_p < 10\text{log}_{10}(R)$
-- As NB-IoT UE are stationary or have little mobility, the radio channel is very slowly time-variant
 - Improve CE and consequently $G_p$ through averaging the channel estimates over multiple consecutive subframes $\Rightarrow$ \textit{Cross-subframe CE}
+    - The radio channel is very slowly time-variant, as NB-IoT UE are stationary or have little mobility
 
 <!--
 CE quality is limited by the number of pilot symbols and the radio conditions
@@ -119,6 +118,9 @@ CE quality is limited by the number of pilot symbols and the radio conditions
 
 ### Deep Sleep Mode
 - Most of the IoT applications require infrequent transmission of small data volumes
+<!--
+- Devices that have had no traffic for a predefined period of time (inactivity timer) are switched to idle mode
+-->
 - Idle devices may enter a deep sleep mode. They:
     - shut down their transceiver
     - keep track of time and scheduled events via a low-power oscillator (that is kept running)
@@ -130,9 +132,86 @@ CE quality is limited by the number of pilot symbols and the radio conditions
 - Battery lifetime is increased through:
     - optimizing device reachability: 
         - \small Devices monitor paging channels periodically, or only after a mobile- originated data transfer (for a short period of time)
-        - \small \textit{extended Discontinuous Reception (eDRX)} and \textit{Power-Saving Mode (PSM)} support these operations
-    - reducing signaling messages when a device needs to transmit data:
-        - \small Suspend/resume user plane connection (instead of release/re-establish user plane connection), or transfer data over non-radio signaling
+    - reducing signaling messages when a device needs to transmit data
+
+## Device Reachability
+
+### extended Discontinuous Reception (eDRX)
+- An eDRX cycle is the time period between two paging occasions a device needs to monitor (up to 2 h, 54 min, and 46 s)
+- In between these two occasions, the device is assumed to be in deep sleep mode
+- The eDRX cycle is negotiated on a per-device basis
+
+```{=latex}
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.33]{./images/eDRX.pdf}
+    \vspace{-2mm}
+	\caption*{Two possible eDRX cycle configurations}
+\end{figure}
+```
+
+### Power-Saving Mode (PSM)
+- In PSM, idle devices do not monitor paging channels $\Rightarrow$ unreachability
+- A device leaves PSM to send application data or a periodic tracking area update message
+\vspace{-2mm}
+```{=latex}
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.33]{./images/PSM.pdf}
+    \vspace{-2mm}
+	\caption*{Operation in PSM including periodic TAU}
+\end{figure}
+```
+
+### Power-Saving Mode (PSM)
+- After data transfer, the device monitors paging occasions until  an active timer expires
+- When the active timer expires, the device re-enters PSM and is unreachable until the next mobile-originated event
+- The tracking area update period is configurable on a per-device basis (up to a year)
+
+## Data Transmission
+
+### Cell Access
+- From idle to connected mode:
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.4]{./images/cell-access.pdf}
+\end{figure}
+
+<!--
+R15: Semi-Persistent Scheduling:
+In general, SPS is comprised of persistent scheduling for initial transmissions and dynamic scheduling for retransmissions (to enable better support of voice messages). 
+The base station assigns specific resource units to be used for NB-IoT UE voice messages with specific interval (regular configured periodicity) to save control plane overhead and hence optimize the radio resource usage. 
+-->
+
+### Data Transmission Optimization
+- Signaling messages, that are required before a device transmits data, are reduced:
+    - User Plane Cellular IoT (CIoT) Evolved Packet System (EPS) optimization procedure
+        - \small Suspend/resume RRC connection (rather than release/re-establish RRC connection)
+        - The device context is maintained at the UE, eNB, and MME during idle mode
+    - Control Plane CIoT EPS optimization procedure
+        - \small Transfer data over non-radio signaling (DoNAS, Data over Non-Access Stratum)
+        - The IP packets are encapsulated in non-radio signaling messages and are sent to the MME
+        - The MME extracts the IP packets and forwards them to the S-GW
+
+### Non-IP Data Delivery (NIDD)
+- To further reduce device power consumption, non-IP data transfer is also supported
+- Non-IP data is transferred over non-radio signaling:
+    - Non-IP data is encapsulated in non-radio signaling messages and is sent to the MME
+    - The MME extracts the data and forwards it to the SCEF (Service Capability Exposure Function)
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{./images/SCEF.pdf}
+\end{figure}
+
+### Service Capability Exposure Function (SCEF)
+- SCEF is defined in Release 13
+- SCEF provides APIs for small data transfers and control messaging
+- The APIs securely expose network capabilities and services. They enable many use cases:
+    - Device trigger delivery: wake up and notify a UE to connect to the AS
+    - UE reachability and monitoring: check if a UE is currently reachable. If not, send back a notification when it becomes reachable.
+    - Network configuration and parameters: set the PSM and eDRX parameters
 
 ## High Capacity
 
