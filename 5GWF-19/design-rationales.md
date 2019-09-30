@@ -7,15 +7,8 @@
 - High capacity: support for massive number of low-rate devices
 - Simplified network topology and deployment
 
-#### Objectives and Approaches
-\begin{itemize}
-\item Develop a \textit{clean-slate} technology that meets the LPWAN requirements
-\vspace{-1mm}
-\item[] $\Rightarrow$ LoRaWAN
-\item Adapt and leverage existing 4G technology to meet the LPWAN requirements
-\vspace{-1mm}
-\item[] $\Rightarrow$ NB-IoT
-\end{itemize}
+#### NB-IoT Objective and Approach
+- Adapt and leverage existing 4G technology to meet the LPWAN requirements
 
 <!--
 - Enhanced coverage while maintaining energy consumption is an indispensable characteristic of NB-IoT. 
@@ -36,9 +29,12 @@
 
 ### Digital Baseband Processing
 - Reduce baseband processing complexity through:
-    - limiting message size: Downlink (DL) Transport Block Size (TBS) = 680 bits (R13), or 2536 bits (R14); Uplink (UL) TBS = 1000 bits (R13), or 2536 bits (R14)
-    - using simple channel codes: LTE tail-biting convolution code (TBCC) in the DL; LTE turbo code, or repetition code in the UL
-    - not using complex modulations or multiple-input multiple-output (MIMO) transmissions: QPSK in the DL; QPSK in the UL multi-tone; $\pi$/4-QPSK, or $\pi$/2- BPSK in the UL single-tone
+    - limiting message size: 
+        - \small Downlink (DL) Transport Block Size (TBS) = 680 bits (R13), or 2536 bits (R14); Uplink (UL) TBS = 1000 bits (R13), or 2536 bits (R14)
+    - using simple channel codes: 
+        - \small LTE tail-biting convolution code (TBCC) in the DL; LTE turbo code, or repetition code in the UL
+    - not using complex modulations or multiple-input multiple-output (MIMO) transmissions:
+        - \small QPSK in the DL; QPSK in the UL multi-tone; $\pi$/4-QPSK, or $\pi$/2- BPSK in the UL single-tone
     - supporting only half-duplex operation: no simultaneous transmission and reception
 
 ### RF Processing
@@ -54,10 +50,11 @@
 - The energy per bit to noise power spectral density ratio ($E_ b/N_0$) is defined as the ratio of the energy per bit ($E_b$) to the noise power spectral density ($N_0$)
 
 ```{=latex}
+\vspace{-0.7cm}
 \begin{figure}
 	\centering
-	\includegraphics<1>[scale=0.43]{./images/qpsk-perf-1.pdf}
-	\includegraphics<2>[scale=0.43]{./images/qpsk-perf-2.pdf}
+	\includegraphics<1>[scale=0.6]{./images/qpsk-perf-1-snr.pdf}
+	\includegraphics<2>[scale=0.6]{./images/qpsk-perf-2-snr.pdf}
 \end{figure}
 ```
 
@@ -66,14 +63,14 @@
 \mbox{$BER \leq$ $BER_{target}$} \Leftrightarrow \frac{E_b}{N_0} \geq \left( \frac{E_b}{N_0}\right)_{threshold}
 \end{equation*}
 
-- $(E_b/N_0)_{threshold}$ does not depend on the signal bandwidth and bit-rate
+- $(E_b/N_0)_{threshold}$ does not depend on the signal bandwidth and data rate
 - The $SNR$, or equivalently the carrier-to-noise ratio ($CNR$ or $C/N$), is defined as the ratio of the received signal power $C$ to the power of the noise $N$ within the bandwidth of the transmitted signal
 
 \begin{equation*}
 SNR = \frac{C}{N} = \frac{E_b/T_b}{N_0B} = \frac{E_b}{N_0}\frac{R_b}{B}
 \end{equation*}
 \begin{itemize}
-  \item[] where $B$ is the signal bandwidth in Hz, and $R_b$ is the bit-rate in b/s.
+  \item[] where $B$ is the signal bandwidth in Hz, and $R_b$ is the data rate in b/s.
 \end{itemize}
 
 ### Receiver Sensitivity
@@ -135,12 +132,15 @@ MCL \mbox{ (dB) }= P_{Tx} - \underbrace{(SNR_{threshold} -174 + 10\log_{10}(B) +
 \left(SNR\right)_R \geq SNR_{threshold} \Rightarrow (SNR)_1 \geq  \underbrace{SNR_{threshold} - 10\log_{10}(R)}_{\mbox{Reduced $SNR_{threshold}$}}
 \end{equation*}
 
-### Real vs. Ideal Processing Gain
-- In practice, channel estimation (CE) is rarely perfect: CE quality is limited by the number of pilot symbols and the radio conditions
-- CE errors result in a lower overall processing gain: Real $G_p < 10\log_{10}(R)$
-- How to improve $G_p$ in practice?
-    - NB-IoT UE are stationary or have little mobility $\Rightarrow$ The NB-IoT channel is very slowly time-variant
-    - Average the channel estimates over multiple consecutive subframes, thus improving CE $\Rightarrow$ \textit{cross-subframe CE}
+### Ideal vs. Realistic Processing Gain
+- In practice, channel estimation (CE) is rarely perfect
+- CE errors result in lower overall processing gain: Realistic $G_p < 10\text{log}_{10}(R)$
+- The radio channel is very slowly time-variant, as NB-IoT UE are stationary or have little mobility
+- Average the channel estimates over multiple consecutive subframes so as to improve CE and consequently $G_p \Rightarrow$ \textit{Cross-subframe CE}
+
+<!--
+CE quality is limited by the number of pilot symbols and the radio conditions
+-->
 
 ## Low Power Consumption
 
