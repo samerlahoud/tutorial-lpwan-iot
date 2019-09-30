@@ -1,5 +1,108 @@
 ## System-level Performance Evaluation
 
+### Evaluation Scenario
+- Study area
+    - Surface: circle of radius 4 km
+    - Distribution of devices: uniform
+    - Single eNodeB
+    - Environment type: urban
+- Uplink link budget
+  - Parameters as in link level study
+  - Interference loss: $I = 3$ dB
+  - Penetration loss: $L_{penetration} = 15$ dB
+  - 50% of indoor devices
+  - Shadow fading: lognormal $\mathcal{N}(0,8)$
+
+\begin{picture}(50,50)
+\put(190,60){\hbox{\includegraphics[scale=0.25]{./images/network_topo.eps}}}
+\end{picture}
+
+### From Link Level to System Level Performance (1/2)
+
+- The uplink SINR for each device $i$ and each transmit format $t$
+$$SINR(i,t) = P_{TX} + G_{system} - L_{system} - L_{channel}(i) - \beta(i) L_{penetration} - N(t) - I$$
+
+  - $L_{channel}(i)$ channel loss with shadow fading
+  - $N(t) = -174+10\text{log}_{10}(B(t)) + NF$
+  - $\beta(i) = 1$ for an indoor device, and 0 otherwise
+- The corresponding maximum data rate after *link adaptation*
+  - This is equal to the feasible rate with the lowest number of repetitions and highest MCS index 
+$$D(i,t) = \underset{m}{\text{max}}(\underset{r}{\text{max}}(D(m,r,t)))$$ 
+$$\text{with } SINR(i,t) \geq SINR_{threshold}(m,r,t)$$
+  
+
+### From Link Level to System Level Performance (2/2)
+
+- The maximum data rate for each device $i$
+$$D(i) = \underset{t}{\text{max}}\ D(i,t)$$
+  - This assumes that multi-tone and single-tone transmissions provide similar spectral efficiencies respectively
+- The device data rate for average radio conditions
+$$\bar{D} = \frac{\sum_{i}D(i)}{I}$$
+- The average device rate after scheduling
+$$d = \frac{\bar{D}}{I}$$
+
+### Analyzing Link Adaptation
+
+- For a cell radius of 4 km, good radio conditions enable to exploit the spectral efficiency of multi tone transmission
+- For larger cells, single tone transmissions achieves better signal quality and becomes more attractive 
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/nbiot_tx_format_tones.eps}
+\end{figure}
+
+### Analyzing Link Adaptation
+
+- Only 20% of devices use more than one repetition for a cell radius of 4 km
+- 45% of devices use two or more repetitions in harsh radio conditions 
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/nbiot_repetitions.eps}
+\end{figure}
+
+### Analyzing Link Adaptation
+- For a cell radius of 4 km, 50% of devices use high MCS index (greater or equal to 9) in order to increase data rates
+- For larger cell radius, 70% of devices use high MCS index!
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/nbiot_mcs_index.eps}
+\end{figure}
+
+### Analyzing Link Adaptation
+
+- In order to combat harsh radio conditions and maximize rates, high MCS index are used jointly with a high number of repetitions
+
+```{=latex}
+\begin{figure}
+	\centering
+  \includegraphics<1>[scale=0.4]{./images/nbiot_mcs_repetitions_occurence-4000.eps}
+  \includegraphics<2>[scale=0.4]{./images/nbiot_mcs_repetitions_occurence-8000.eps}
+\end{figure}
+```
+### Analyzing Network Capacity
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/nbiot_rate-4000.eps}
+\end{figure}
+
+### Analyzing Network Capacity
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/lpwa_rate_comparison-4000.eps}
+\end{figure}
+
+### Analyzing Network Capacity
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/lpwa_bounded_rate_comparison-4000.eps}
+\end{figure}
+
+<!--
 ### Results
 - Spectral efficiency/instantaneous physical rate, for multi-tone and single-tone transmissions
     - Multi-tone transmissions provide similar spectral efficiencies. Consequently, network capacity = maximum data rate $\Rightarrow$ RU = 180 kHz (12 subcarriers) over 1 ms
@@ -17,19 +120,7 @@
 - Results:
     - Average user instantaneous rate to compute the cell capacity
     - Percentage of users using each MCS, or each (MCS, $R$) couple if more relevant
-
-### Evaluation Scenario
-- Area
-    - Surface: circle of radius 4 km
-    - Distribution of devices: uniform
-    - Single eNodeB
-    - Environment type: urban
-- Uplink link budget similar to link level performance study
-
-\begin{figure}
-	\centering
-  \includegraphics[scale=0.3]{./images/network_topo.eps}
-\end{figure}
+-->
 
 ## Coverage Comparison of NB-IoT and LoRaWAN
 
@@ -46,7 +137,9 @@
 - Coverage is computed for different environments (path loss formulas)
   - Outdoor rural
   - Outdoor urban
-  - Indoor dense urban
+  - Indoor dense urban (penetration margin of 18 dB)
+
+- Best coverage is computed for single tone transmission and $\Delta f = 3.75$ kHz
 
 ### Coverage Comparison (1/3)
 - The outage probability of NB-IoT at 100 b/s is almost null for all cases whereas it reaches 36% for LoRaWAN in indoor dense urban environments
