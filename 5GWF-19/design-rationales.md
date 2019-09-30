@@ -8,7 +8,7 @@
 - Simplified network topology and deployment
 
 #### NB-IoT Objective and Approach
-- Adapt and leverage existing 4G technology to meet the LPWAN requirements
+Adapt and leverage existing 4G technology to meet the LPWAN requirements
 
 <!--
 - Enhanced coverage while maintaining energy consumption is an indispensable characteristic of NB-IoT. 
@@ -47,56 +47,34 @@
 
 ### Radio Quality
 - Reliability $\Rightarrow$ bit error rate ($BER$) $\leq$ target $BER$
-- The energy per bit to noise power spectral density ratio ($E_ b/N_0$) is defined as the ratio of the energy per bit ($E_b$) to the noise power spectral density ($N_0$)
+- The $SNR$, or equivalently the carrier-to-noise ratio ($CNR$ or $C/N$), is defined as the ratio of the received signal power $C$ to the power of the noise $N$ within the bandwidth of the transmitted signal
 
 ```{=latex}
 \vspace{-0.7cm}
 \begin{figure}
 	\centering
-	\includegraphics<1>[scale=0.6]{./images/qpsk-perf-1-snr.pdf}
-	\includegraphics<2>[scale=0.6]{./images/qpsk-perf-2-snr.pdf}
+	\includegraphics<1>[scale=0.55]{./images/qpsk-perf-1-snr.pdf}
+	\includegraphics<2>[scale=0.55]{./images/qpsk-perf-2-snr.pdf}
 \end{figure}
 ```
-
-### Radio Quality
-\begin{equation*}
-\mbox{$BER \leq$ $BER_{target}$} \Leftrightarrow \frac{E_b}{N_0} \geq \left( \frac{E_b}{N_0}\right)_{threshold}
-\end{equation*}
-
-- $(E_b/N_0)_{threshold}$ does not depend on the signal bandwidth and data rate
-- The $SNR$, or equivalently the carrier-to-noise ratio ($CNR$ or $C/N$), is defined as the ratio of the received signal power $C$ to the power of the noise $N$ within the bandwidth of the transmitted signal
-
-\begin{equation*}
-SNR = \frac{C}{N} = \frac{E_b/T_b}{N_0B} = \frac{E_b}{N_0}\frac{R_b}{B}
-\end{equation*}
-\begin{itemize}
-  \item[] where $B$ is the signal bandwidth in Hz, and $R_b$ is the data rate in b/s.
-\end{itemize}
 
 ### Receiver Sensitivity
 \begin{table}
 \centering
-\begin{tabular}{c c c}
-$BER$ $\leq$ $BER_{target}$& $\Leftrightarrow$ &$SNR$ $\geq \underbrace{\left(\frac{E_b}{N_0}\right)_{threshold} \frac{R_b}{B}}_{SNR_{threshold}}$ \\
+\begin{tabular}{c c l}
+$BER$ $\leq$ $BER_{target}$ & $\Leftrightarrow$ & $SNR \geq SNR_{threshold}$ \\
 &&\\
-& $\Leftrightarrow$& $S$ (dBm) $\geq \underbrace{SNR_{threshold}\mbox{ (dB) } + N \mbox{ (dBm)}}_{\mbox{Receiver sensitivity}}$ \\
+& $\Leftrightarrow$& $S$ (dBm) $\geq \underbrace{SNR_{threshold}\text{ (dB) } + N \text{ (dBm)}}_{\text{Receiver sensitivity}}$ \\
 \end{tabular}
 \end{table}
 
 - $N$ (dBm) is the background noise power at the receiver $= TN$ (dBm) $+ NF$ (dB)
-    - $TN$ is the thermal noise caused by thermal agitation of charge carriers: $-174 + 10\log_{10}(B)$
+    - $TN$ is the thermal noise caused by thermal agitation of charge carriers: $-174 + 10\text{log}_{10}(B)$
     - $NF$ is the noise figure caused by RF components
 
 ### Maximum Coupling Loss
-- The Maximum Coupling Loss ($MCL$) defines the maximum loss the system can cope with between a transmitter and a receiver:
-
-\begin{equation*}
-MCL \mbox{ (dB) }= P_{Tx} - \underbrace{(SNR_{threshold} -174 + 10\log_{10}(B) + NF)}_{\mbox{Receiver sensitivity}}
-\end{equation*}
-
-\begin{itemize}
-\item[] where $P_{Tx}$ is the transmit power in dBm.
-\end{itemize}
+- The Maximum Coupling Loss ($MCL$) defines the maximum loss the system can cope with between a transmitter and a receiver: $$ MCL \text{ (dB) }= P_{Tx} - \underbrace{(SNR_{threshold} -174 + 10\text{log}_{10}(B) + NF)}_{\text{Receiver sensitivity}}$$
+    - $P_{Tx}$ is the transmit power (dBm)
 
 \vspace{-2mm}
 \begin{figure}
@@ -105,38 +83,33 @@ MCL \mbox{ (dB) }= P_{Tx} - \underbrace{(SNR_{threshold} -174 + 10\log_{10}(B) +
 \end{figure}
 
 ### How to Improve Coverage?
-\begin{itemize}
-\item Coverage targets are usually specified in terms of $MCL$
-\item Increasing $P_{Tx}$, or lowering $NF$, leads to higher device complexity and cost
-\item[] $\Rightarrow$ inadequate solutions
-\item Reducing $B$ leads to lower network capacity $\Rightarrow$ inadequate solution
-\item Reducing $SNR_{threshold}$ through repetitions and efficient HARQ retransmissions
-\end{itemize}
 
-## Repetitions in NB-IoT
+- Coverage targets are usually specified in terms of $MCL$
+- Increasing $P_{Tx}$, or lowering $NF$, leads to higher device complexity and cost
+- Reducing $B$ leads to lower network capacity
+- Improve coverage by reducing $SNR_{threshold}$ through repetitions and efficient HARQ retransmissions
+
+## Repetitions
 
 ### Signal Combination
-- Users in extreme coverage conditions blindly repeat information (without any feedback from the receiver)
+- Devices in extreme coverage conditions blindly repeat information (without any feedback from the receiver)
 - The receiver accumulates the blindly transmitted signals and combines all the repetitions
 - Repetitions compensate for the $SNR$ degradation
+$$ \left(SNR\right)_R \text{ (dB)} = 10\text{log}_{10}(R) + \left(SNR\right)_1$$
+    - $(SNR)_R$ is the ideal $SNR$ after combining $R$ transmissions
+    - $(SNR)_1$ is the $SNR$ of a single transmission
+    - $G_p = 10\text{log}_{10}(R)$ is the processing gain
 
-\begin{equation*}
-\left(SNR\right)_R \mbox{ (dB)} = \underbrace{10\log_{10}(R)}_{\mbox{$G_p$}} + \left(SNR\right)_1
-\end{equation*}
+$$ \left(SNR\right)_R \geq SNR_{threshold} \Rightarrow (SNR)_1 \geq  \underbrace{SNR_{threshold} - 10\text{log}_{10}(R)}_{\text{Reduced $SNR_{threshold}$}}$$
 
-\begin{itemize}
-\item[] where $(SNR)_R$ is the ideal $SNR$ after combining $R$ transmissions and $(SNR)_1$ is the $SNR$ of a single transmission.
-\end{itemize}
-
-\begin{equation*}
-\left(SNR\right)_R \geq SNR_{threshold} \Rightarrow (SNR)_1 \geq  \underbrace{SNR_{threshold} - 10\log_{10}(R)}_{\mbox{Reduced $SNR_{threshold}$}}
-\end{equation*}
-
-### Ideal vs. Realistic Processing Gain
+### Processing Gain
+- The higher $G_p$ is
+    - the lower the SNR threshold of a single transmission is $\Rightarrow$ larger radio coverage
+    - the lower the useful data rate is
 - In practice, channel estimation (CE) is rarely perfect
-- CE errors result in lower overall processing gain: Realistic $G_p < 10\text{log}_{10}(R)$
-- The radio channel is very slowly time-variant, as NB-IoT UE are stationary or have little mobility
-- Average the channel estimates over multiple consecutive subframes so as to improve CE and consequently $G_p \Rightarrow$ \textit{Cross-subframe CE}
+- CE errors result in lower processing gain: realistic $G_p < 10\text{log}_{10}(R)$
+- As NB-IoT UE are stationary or have little mobility, the radio channel is very slowly time-variant
+- Improve CE and consequently $G_p$ through averaging the channel estimates over multiple consecutive subframes $\Rightarrow$ \textit{Cross-subframe CE}
 
 <!--
 CE quality is limited by the number of pilot symbols and the radio conditions
@@ -151,49 +124,28 @@ CE quality is limited by the number of pilot symbols and the radio conditions
     - keep track of time and scheduled events via a low-power oscillator (that is kept running)
 - Devices wake up from deep sleep mode to:
     - transmit data
-    - open receive windows, or monitor paging channels
+    - monitor paging channels
 
 ### Battery Lifetime
-\begin{itemize}
-\item Battery lifetime is increased through:
-
-    \begin{itemize}
-    \item optimizing device reachability: devices monitor paging channels either periodically, or only after a mobile-originated data transfer (for a short period of time).
-    \item[] \textit{extended Discontinuous Reception (eDRX)} and \textit{Power-Saving Mode (PSM)} support these operations.
-\vspace{2mm}
-    \item reducing signaling messages when a device needs to transmit data: suspend/resume (rather than release/re-establish) user plane connection, or transfer data over non-radio signaling
-    \end{itemize}
-\end{itemize}
+- Battery lifetime is increased through:
+    - optimizing device reachability: 
+        - \small Devices monitor paging channels periodically, or only after a mobile- originated data transfer (for a short period of time)
+        - \small \textit{extended Discontinuous Reception (eDRX)} and \textit{Power-Saving Mode (PSM)} support these operations
+    - reducing signaling messages when a device needs to transmit data:
+        - \small Suspend/resume user plane connection (instead of release/re-establish user plane connection), or transfer data over non-radio signaling
 
 ## High Capacity
 
 ### Support for Massive Number of Low-Rate Devices
 - Trading off data rate for coverage
-- How to increase network capacity?
-    - NB-IoT uses single-tone transmissions in the UL when coupling loss is high
+- Increase network capacity through using single-tone transmissions in the UL, when coupling loss is high
 
 ### Why Single-Tone Transmissions?
-- The channel capacity $C$ is given by:
-
-\begin{equation*}
-C = B\log_2 (1+\frac{S}{N}) = B\log_2 (1+\frac{S}{N_0B})
-\end{equation*}
-
-- When coupling loss is high, $\frac{S}{N_0B} \ll 1 \Rightarrow \ln(1 + \frac{S}{N_0B}) \approx \frac{S}{N_0B}$.
-
-\begin{equation*}
-\Rightarrow C = \frac{S}{N_0}\log_2(e)
-\end{equation*}
-
-\begin{itemize}
-\item[] $C$ no longer depends on $B$
-\item[] $\Rightarrow$ allocate a single tone (subcarrier) for devices in bad coverage to increase network capacity without loss of performance
-\end{itemize}
-
-<!--
-Moreover, allocating a single tone boosts the uplink power spectral density (concentrates the transmit power on a narrower bandwidth, thus enhancing the received $SNR$.
--->
-
+- The channel capacity $C$ is given by: $$C = B\text{log}_2 (1+\frac{S}{N}) = B\text{log}_2 (1+\frac{S}{N_0B})$$
+- When coupling loss is high, $\frac{S}{N_0B} \ll 1 \Rightarrow \text{ln}(1 + \frac{S}{N_0B}) \approx \frac{S}{N_0B}$.
+$$\Rightarrow C = \frac{S}{N_0}\text{log}_2(e)$$
+- As $C$ no longer depends on $B$, allocating a single tone (subcarrier) for devices in bad coverage increases network capacity without loss of performance
+- The uplink transmit power is concentrated on a narrower bandwidth, thus boosting the received SNR
 
 ## Simplified Network Topology and Deployment
 
@@ -204,6 +156,3 @@ Moreover, allocating a single tone boosts the uplink power spectral density (con
 	\centering
 	\includegraphics[scale=0.35]{./images/lpwa-architecture.eps}
 \end{figure}
-<!--
-Star of stars topology
--->
