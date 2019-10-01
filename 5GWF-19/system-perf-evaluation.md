@@ -1,47 +1,68 @@
 ## System-level Performance Evaluation
 
+### From Link Level to System Level Performance
+
+- Link level performance evaluation consider a single NB-IoT communication link between a pair of devices in an isolate noise-only scenario
+- System level performance evaluation builds on link level results to consider a network with multiple concurrent communication links as in a realistic scenario
+  - Gain deeper insight into the different network factors that affect the rate
+  - Analyse cell planning strategies and compute the user performance indicators
+  - Modify scheduling algorithms and study their performance 
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.25]{./images/network_topo.eps}
+\end{figure}
+
+<!--
+  - Analyze the rate of NB-IoT transmission modes under different scenarios
+  - Gain deeper insight into the different factors that can affect the rate
+  - Modify parameters and propagation conditions and study their effect
+-->
+
 ### Evaluation Scenario
 - Study area
-    - Surface: circle of radius 4 km
+    - Surface: circular cell of radius 4 km
     - Distribution of devices: uniform
-    - Single eNodeB
+    - Single Base Station
     - Environment type: urban
 - Uplink link budget
   - Parameters as in link level study
-  - Interference loss: $I = 3$ dB
+  - Shadow fading: lognormal $\mathcal{N}(0,8)$
+  - Interference loss: $IF = 3$ dB
   - Penetration loss: $L_{penetration} = 15$ dB
   - 50% of indoor devices
-  - Shadow fading: lognormal $\mathcal{N}(0,8)$
 
 \begin{picture}(50,50)
 \put(190,60){\hbox{\includegraphics[scale=0.25]{./images/network_topo.eps}}}
 \end{picture}
 
-### From Link Level to System Level Performance (1/2)
+### Computing the User Rates (1/2)
 
-- The uplink SINR for each device $i$ and each transmit format $t$
-$$SINR(i,t) = P_{TX} + G_{system} - L_{system} - L_{channel}(i) - \beta(i) L_{penetration} - N(t) - I$$
-
+- The uplink SINR for each device $i$ and each transmit format $t$ with:
   - $L_{channel}(i)$ channel loss with shadow fading
   - $N(t) = -174+10\text{log}_{10}(B(t)) + NF$
   - $\beta(i) = 1$ for an indoor device, and 0 otherwise
+
+$$SINR(i,t) = P_{TX} + G_{system} - L_{system} - L_{channel}(i) - \beta(i) L_{penetration} - N(t) - IF$$
+
 - The corresponding maximum data rate after *link adaptation*
-  - This is equal to the feasible rate with the lowest number of repetitions and highest MCS index 
 $$D(i,t) = \underset{m}{\text{max}}(\underset{r}{\text{max}}(D(m,r,t)))$$ 
 $$\text{with } SINR(i,t) \geq SINR_{threshold}(m,r,t)$$
-  
 
-### From Link Level to System Level Performance (2/2)
+<!--  
+  - This is equal to the feasible rate with the lowest number of repetitions and highest MCS index 
+-->
 
-- The maximum data rate for each device $i$
+### Computing the User Rates (2/2)
+
+- The maximum data rate for each device $i$ assuming that multi-tone and single-tone transmissions provide similar spectral efficiencies respectively
 $$D(i) = \underset{t}{\text{max}}\ D(i,t)$$
-  - This assumes that multi-tone and single-tone transmissions provide similar spectral efficiencies respectively
 - The device data rate for average radio conditions
 $$\bar{D} = \frac{\sum_{i}D(i)}{I}$$
 - The average device rate after scheduling
 $$d = \frac{\bar{D}}{I}$$
 
-### Analyzing Link Adaptation
+### Transmission Formats
 
 - For a cell radius of 4 km, good radio conditions enable to exploit the spectral efficiency of multi tone transmission
 - For larger cells, single tone transmissions achieves better signal quality and becomes more attractive 
@@ -51,7 +72,7 @@ $$d = \frac{\bar{D}}{I}$$
   \includegraphics[scale=0.4]{./images/nbiot_tx_format_tones.eps}
 \end{figure}
 
-### Analyzing Link Adaptation
+### Repetitions
 
 - Only 20% of devices use more than one repetition for a cell radius of 4 km
 - 45% of devices use two or more repetitions in harsh radio conditions 
@@ -61,7 +82,7 @@ $$d = \frac{\bar{D}}{I}$$
   \includegraphics[scale=0.4]{./images/nbiot_repetitions.eps}
 \end{figure}
 
-### Analyzing Link Adaptation
+### Modulation and Coding Schemes
 - For a cell radius of 4 km, 50% of devices use high MCS index (greater or equal to 9) in order to increase data rates
 - For larger cell radius, 70% of devices use high MCS index!
 
@@ -70,9 +91,9 @@ $$d = \frac{\bar{D}}{I}$$
   \includegraphics[scale=0.4]{./images/nbiot_mcs_index.eps}
 \end{figure}
 
-### Analyzing Link Adaptation
+### Link Adaptation: MCS index and Repetitions
 
-- In order to combat harsh radio conditions and maximize rates, high MCS index are used jointly with a high number of repetitions
+- In order to combat harsh radio conditions and maximize rates, high MCS indexes are used jointly with a high number of repetitions
 
 ```{=latex}
 \begin{figure}
@@ -82,15 +103,15 @@ $$d = \frac{\bar{D}}{I}$$
 \end{figure}
 ```
 
-### Analyzing Network Capacity
-- The average NB-IoT rate decreases linearly with the number of device, while it drops drastically beyound 1000 devices for LoRaWAN
+### Network Capacity for NB-IoT and LoRaWAN
+- The average NB-IoT rate decreases linearly with the number of device, while it drops drastically beyond 1000 devices for LoRaWAN
 
 \begin{figure}
 	\centering
   \includegraphics[scale=0.4]{./images/lpwa_rate_comparison-4000.eps}
 \end{figure}
 
-### Analyzing Network Capacity
+### Network Capacity with Constant Arrival Rate 
 
 - If we consider an arrival rate of 5 packets per hour on each device, LoRaWAN does not succeed in delivering such service for more than 1000 devices
 
