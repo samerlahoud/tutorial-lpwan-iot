@@ -29,12 +29,9 @@ Adapt and leverage existing 4G technology to meet the mMTC 5G requirements
 
 ### Digital Baseband Processing
 - Reduce baseband processing complexity through:
-    - limiting message size: 
-        - \small Downlink (DL) Transport Block Size (TBS) = 680 bits (R13), or 2536 bits (R14); Uplink (UL) TBS = 1000 bits (R13), or 2536 bits (R14)
-    - using simple channel codes: 
-        - \small LTE tail-biting convolution code (TBCC) in the DL; LTE turbo code, or repetition code in the UL
-    - not using complex modulations or multiple-input multiple-output (MIMO) transmissions:
-        - \small QPSK in the DL; QPSK in the UL multi-tone; $\pi$/4-QPSK, or $\pi$/2- BPSK in the UL single-tone
+    - limiting message size       
+    - using simple channel codes
+    - not using complex modulations or multiple-input multiple-output (MIMO) transmissions
     - supporting only half-duplex operation: no simultaneous transmission and reception
 
 ### RF Processing
@@ -107,11 +104,11 @@ $$ \left(SNR\right)_R \geq SNR_{threshold} \Rightarrow (SNR)_1 \geq  \underbrace
     - the lower the useful data rate is
 - In practice, channel estimation (CE) is rarely perfect
 - CE errors result in lower processing gain: realistic $G_p < 10\text{log}_{10}(R)$
-- Improve CE and consequently $G_p$ through averaging the channel estimates over multiple consecutive subframes $\Rightarrow$ \textit{Cross-subframe CE}
-    - The radio channel is very slowly time-variant, as NB-IoT UE are stationary or have little mobility
+- Improve CE and consequently $G_p$ through averaging the channel estimates over multiple consecutive subframes (very slowly time-variant channel): \textit{Cross-subframe CE}
 
 <!--
 CE quality is limited by the number of pilot symbols and the radio conditions
+The radio channel is very slowly time-variant, as NB-IoT UE are stationary or have little mobility
 -->
 
 ## Low Power Consumption
@@ -233,5 +230,5 @@ $$\Rightarrow C = \frac{S}{N_0}\text{log}_2(e)$$
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.35]{./images/lpwa-architecture.eps}
+	\includegraphics[scale=0.37]{./images/NB-IoT-architecture+SCEF.pdf}
 \end{figure}

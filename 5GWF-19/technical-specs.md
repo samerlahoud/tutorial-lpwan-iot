@@ -11,6 +11,14 @@
         - Mobility management
     - it reuses LTE infrastructure through software upgrade
 
+<!--
+- Mobility management is limited to idle mode and is performed through cell reselection (with tracking area updates)
+- Handover management is not supported, as NB-IoT is designed for infrequent and short messages
+    - Connected devices do not perform mobility measurements
+    - In case of connection loss (persistent link-layer failures), they switch to idle mode
+    - In idle mode, they initiate cell reselection and then switch back to connected mode
+-->
+
 ### Deployment Flexibility
 - NB-IoT supports three operation modes: in-band (LTE), guard-band (LTE), and standalone ($e.g.,$ refarm the GSM carrier)
 
@@ -18,6 +26,8 @@
 	\centering
 	\includegraphics[scale=0.18]{./images/NB-IoT-operation-modes.pdf}
 \end{figure}
+
+- NB-IoT supports frequency division duplex (FDD) and time division duplex (TDD) modes
 
 ### Radio Interface
 - Channel bandwidth: 180 kHz $\equiv$ 1 LTE Physical Resource Block (PRB) in the frequency domain
@@ -32,12 +42,6 @@
         - 45 kHz (3 subcarriers) over 4 ms
         - 15 kHz (1 subcarrier) over 8 ms
         - 3.75 kHz (1 subcarrier) over 32 ms
-
-<!--
-In Release 13 and 14, NB-IoT only supports frequency division
-duplex (FDD) half-duplex mode. 
-Time division duplex (TDD) mode was introduced in Release 15.
--->
 
 ### Radio Interface
 - Maximum Transport Block Size (TBS):
@@ -54,21 +58,17 @@ Time division duplex (TDD) mode was introduced in Release 15.
     - 20 dB coverage enhancement over GPRS $\Rightarrow$ sevenfold increase in coverage area (in an open environment), or (deep) indoor penetration
     - Transmission gaps can be configured to avoid long transmissions
 
-### Physical Architecture
-\begin{figure}
-	\centering
-	\includegraphics[scale=0.37]{./images/NB-IoT-architecture+SCEF.pdf}
-\end{figure}
-
+<!--
 ### Mobility Management
 - Mobility management is limited to idle mode and is performed through cell reselection (with tracking area updates)
-<!--
+%%%
 - Idle devices wake up at the end of each eDRX cycle to perform cell reselection measurements
--->
+%%%
 - Handover management is not supported, as NB-IoT is designed for infrequent and short messages
     - Connected devices do not perform mobility measurements
     - In case of connection loss (persistent link-layer failures), they switch to idle mode
     - In idle mode, they initiate cell reselection and then switch back to connected mode
+-->
 
 ### Uplink Scheduling
 - Scheduling information is transmitted in the Downlink Control Information (DCI) message

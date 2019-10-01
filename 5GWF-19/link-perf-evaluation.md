@@ -136,7 +136,7 @@ $$\left(2^{\frac{R_b}{BW \cdot BW_{eff}}}-1\right) \cdot SNR_{eff} = \frac{R \cd
 
 ### Useful Data Rate
 - When coupling loss is low, multi-tone transmission provides higher data rate
-- When coupling loss is high, all transmit formats provide similar data rate
+- When coupling loss is high, all transmission formats provide similar data rate
 - When coupling loss is very high, only single-tone transmission is possible
 
 ```{=latex}
@@ -147,7 +147,3 @@ $$\left(2^{\frac{R_b}{BW \cdot BW_{eff}}}-1\right) \cdot SNR_{eff} = \frac{R \cd
   \caption*{$TBS$ = 1000 bits, $CRC$ = 24 bits, 8-ms cross-subframe CE}
 \end{figure}
 ```
-
-<!-- 
-Only single-tone transmissions are possible, when coupling loss is very high
--->
