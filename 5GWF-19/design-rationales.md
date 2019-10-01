@@ -1,14 +1,12 @@
 # Design Principles
 
-### Revisiting the mMTC 5G Requirements
-- Low device complexity and cost
-- Reliability under extreme coverage conditions
-- Low power consumption: long battery lifetime
-- High capacity: support for massive number of low-rate devices
-- Simplified network topology and deployment
-
-#### NB-IoT Approach
-Adapt and leverage existing 4G technology to meet the mMTC 5G requirements
+### NB-IoT Characteristics
+- Main characteristics to meet the mMTC 5G Requirements:
+    - Low device complexity and cost
+    - Reliability under extreme coverage conditions
+    - Low power consumption: long battery lifetime
+    - High capacity: support for massive number of low-rate devices
+    - Simplified network topology and deployment
 
 <!--
 - Enhanced coverage while maintaining energy consumption is an indispensable characteristic of NB-IoT. 
