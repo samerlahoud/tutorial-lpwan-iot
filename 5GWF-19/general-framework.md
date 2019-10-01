@@ -152,8 +152,14 @@ low Complexity and Low Throughput Internet of Things, 2016
 |                    | EC-GSM-IoT                         | LTE-M     | NB-IoT                                |
 |--------------------|------------------------------------|-----------|---------------------------------------|
 | Spectrum           | GSM bands                          | LTE bands | LTE in-band, guard bands, SA          |
-| Peak data rate     | 240 kbps \footnote{8PSK, 4 slots}  | 1 Mbps    | 50 kbps (UL multi-tone)               |
+| Peak data rate     | 240 kbps \footnote{8PSK, 4 slots}  | 1 Mbps    | 250 kbps (UL multi-tone)              |
 | Bandwidth          | 200KHz per ch.                     | 1.08MHz   | 180KHz                                |
+
+<!--
+NB-IoT : 
+- 20 kb/s (single tone configuration)
+- Peak throughputs are lower than these figures when the time offsets between DCI, NPDSCH/NPUSCH, and HARQ acknowledgment are taken into account
+-->
 
 ### 5G Design for mMTC
 
@@ -202,9 +208,9 @@ low Complexity and Low Throughput Internet of Things, 2016
 
 ### A Glimpse on LoRaWAN Design Challenges (2/2)
 
-- Device throughput
+- Device rate
   - Collisions occur for concurrent transmissions on the same channel and spreading factor 
-  - ALOHA model enables to compute the device throughput given the network load
+  - ALOHA model enables to compute the device rate given the network load
 
 \begin{figure}
 	\centering

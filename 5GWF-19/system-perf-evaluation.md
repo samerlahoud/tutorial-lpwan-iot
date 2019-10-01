@@ -28,7 +28,7 @@
 - Uplink link budget
   - Parameters as in link level study
   - Shadow fading: lognormal $\mathcal{N}(0,8)$
-  - Interference loss: $IF = 3$ dB
+  - Interference: $IF = 3$ dB
   - Penetration loss: $L_{penetration} = 15$ dB
   - 50% of indoor devices
 
