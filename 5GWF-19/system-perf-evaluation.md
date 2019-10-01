@@ -104,7 +104,7 @@ $$d = \frac{\bar{D}}{I}$$
 ```
 
 ### Network Capacity for NB-IoT and LoRaWAN
-- The average NB-IoT rate decreases linearly with the number of device, while it drops drastically beyond 1000 devices for LoRaWAN
+- The average NB-IoT rate decreases linearly with the number of devices, while it drops drastically beyond 1000 devices for LoRaWAN
 
 \begin{figure}
 	\centering
