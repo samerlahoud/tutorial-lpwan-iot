@@ -5,7 +5,7 @@
 - Link-level performance evaluation considers a single NB-IoT communication link between a pair of devices in an isolate noise-only scenario
 - System-level performance evaluation builds on link level results to consider a network with multiple concurrent communication links as in a realistic scenario
   - Gain deeper insight into the different network factors that affect the rate
-  - Analyse cell planning strategies and compute the user performance indicators
+  - Analyse cell planning strategies and compute device performance indicators
   - Modify scheduling algorithms and study their performance 
 
 \begin{figure}
@@ -27,7 +27,7 @@
     - Environment type: urban
 - Uplink link budget
   - Parameters as in link level study
-  - Shadow fading: lognormal $\mathcal{N}(0,8)$
+  - Shadow fading: $\mathcal{N}(0,8)$
   - Interference: $IF = 3$ dB
   - Penetration loss: $L_{penetration} = 15$ dB
   - 50% of indoor devices
@@ -38,7 +38,7 @@
 
 ### Computing the Device Rates (1/2)
 
-- The uplink SINR for each device $i$ and each transmit format $t$
+- The uplink SINR for each device $i$ and each transmission format $t$
 $$SINR(i,t) = P_{TX} + G_{system} - L_{system} - L_{channel}(i) - \beta(i) L_{penetration} - N(t) - IF$$
 
   - $L_{channel}(i)$ channel loss with shadow fading
