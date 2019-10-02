@@ -202,7 +202,7 @@ NB-IoT :
 - Device reachability and battery lifetime
   - Class A devices open two short downlink receive windows only after an uplink transmission
 - Network capacity and coverage
-  - Using multiple orthogonal spreading factors simultaneously on the same channel
+  - Use multiple orthogonal spreading factors simultaneously on the same channel
   - Higher spreading factors lead to lower sensitivity and larger coverage
   - Lower spreading factors lead to higher data rates 
 - Network architecture
