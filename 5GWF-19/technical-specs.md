@@ -12,6 +12,7 @@
     - it reuses LTE infrastructure through software upgrade
 
 <!--
+- Bearer management: establishment, maintenance, and release of the bearers
 - Mobility management is limited to idle mode and is performed through cell reselection (with tracking area updates)
 - Handover management is not supported, as NB-IoT is designed for infrequent and short messages
     - Connected devices do not perform mobility measurements
@@ -82,7 +83,6 @@
 - After data transmission, the device has at least 3 ms to switch to reception mode and monitor the next DCI message
 
 <!--
-- The modulation format is determined based on the MCS index
 - The TBS and the code rate are based on the MCS index and the number of RUs
 -->
 

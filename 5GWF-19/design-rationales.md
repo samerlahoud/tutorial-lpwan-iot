@@ -9,8 +9,9 @@
     - Simplified network topology and deployment
 
 <!--
-- Enhanced coverage while maintaining energy consumption is an indispensable characteristic of NB-IoT. 
-- To achieve this goal, NB-IoT adopts a new radio access design built from existing LTE.
+- Low complexity and cost to support mass production and deployment
+- Cover areas traditional cellular technologies can not cover (due for example to penetration losses)
+- Simplified network topology and deployment to allow fast time-to-market
 -->
 
 ## Low Device Complexity and Cost
@@ -64,7 +65,7 @@ $BER$ $\leq$ $BER_{target}$ & $\Leftrightarrow$ & $SNR \geq SNR_{threshold}$ \\
 \end{table}
 
 - $N$ (dBm) is the background noise power at the receiver $= TN$ (dBm) $+ NF$ (dB)
-    - $TN$ is the thermal noise caused by thermal agitation of charge carriers: $-174 + 10\text{log}_{10}(B)$
+    - $TN$ is the thermal noise caused by thermal agitation of charge carriers: $-174 + 10\text{log}_{10}(B)$, $B$ is the signal bandwidth (Hz)
     - $NF$ is the noise figure caused by RF components
 
 ### Maximum Coupling Loss
@@ -106,7 +107,7 @@ $$ \left(SNR\right)_R \geq SNR_{threshold} \Rightarrow (SNR)_1 \geq  \underbrace
 
 <!--
 CE quality is limited by the number of pilot symbols and the radio conditions
-The radio channel is very slowly time-variant, as NB-IoT UE are stationary or have little mobility
+NB-IoT UE are stationary or have little mobility => the radio channel is very slowly time-variant
 -->
 
 ## Low Power Consumption
@@ -175,8 +176,8 @@ The radio channel is very slowly time-variant, as NB-IoT UE are stationary or ha
 
 <!--
 R15: Semi-Persistent Scheduling:
-In general, SPS is comprised of persistent scheduling for initial transmissions and dynamic scheduling for retransmissions (to enable better support of voice messages). 
-The base station assigns specific resource units to be used for NB-IoT UE voice messages with specific interval (regular configured periodicity) to save control plane overhead and hence optimize the radio resource usage. 
+Persistent scheduling for initial transmissions and dynamic scheduling for retransmissions (to enable better support of voice messages)
+Periodic resource allocation to save control plane overhead
 -->
 
 ### Data Transmission Optimization
@@ -216,6 +217,7 @@ The base station assigns specific resource units to be used for NB-IoT UE voice 
 
 ### Why Single-Tone Transmissions?
 - The channel capacity $C$ is given by: $$C = B\text{log}_2 (1+\frac{S}{N}) = B\text{log}_2 (1+\frac{S}{N_0B})$$
+    - $N_0$ is the noise power spectral density
 - When coupling loss is high, $\frac{S}{N_0B} \ll 1 \Rightarrow \text{ln}(1 + \frac{S}{N_0B}) \approx \frac{S}{N_0B}$.
 $$\Rightarrow C = \frac{S}{N_0}\text{log}_2(e)$$
 - As $C$ no longer depends on $B$, allocating a single tone (subcarrier) for devices in bad coverage increases network capacity without loss of performance
