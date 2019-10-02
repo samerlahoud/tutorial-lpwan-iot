@@ -15,6 +15,6 @@ output:
 ### Tutorial Outcomes
 - What are the main drivers for cellular IoT in 5G?
 - What are the requirements and characteristics of mMTC in 5G?
-- How do NB-IoT leverage and adapt 3GPP LTE infrastructure and mechanisms to meet 5G mMTC requirements?
+- How does NB-IoT leverage and adapt 3GPP LTE infrastructure and mechanisms to meet 5G mMTC requirements?
 - How do we evaluate the performance of an NB-IoT deployment in terms of coverage and capacity?
 - What are the challenges for optimizing the performance of NB-IoT?
