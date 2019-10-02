@@ -26,6 +26,7 @@ The Internet of Things (IoT) generally refers to scenarios where network connect
 | Vehicles      | Condition-based maintenance                 |
 | Cities        | Traffic control, environmental monitoring   |
 
+<!--
 ### IoT Reference Model
 ```{=latex}
 \begin{figure}
@@ -38,6 +39,7 @@ The Internet of Things (IoT) generally refers to scenarios where network connect
   \caption*{Source: Overview of the Internet of Things, ITU-T Y.2060, 2012}
 \end{figure}
 ```
+-->
 
 ### Evolution of IoT Devices
 - The number of IoT devices will exceed the number of PCs and mobile phones
@@ -54,7 +56,7 @@ The Internet of Things (IoT) generally refers to scenarios where network connect
 \end{figure}
 - Periodic sensing of microclimates in vineyards
 
-### Constraints on the Device and Network Layers
+### Constraints on the Devices and the Network
 - Difficult physical accessibility and limited access to power sources
     - Wireless communications
     - Autonomy and long battery life operation
@@ -153,7 +155,7 @@ low Complexity and Low Throughput Internet of Things, 2016
 |--------------------|------------------------------------|-----------|---------------------------------------|
 | Spectrum           | GSM bands                          | LTE bands | LTE in-band, guard bands, SA          |
 | Peak data rate     | 240 kbps \footnote{8PSK, 4 slots}  | 1 Mbps    | 250 kbps (UL multi-tone)              |
-| Bandwidth          | 200KHz per ch.                     | 1.08MHz   | 180KHz                                |
+| Bandwidth          | 200 kHz per ch.                    | 1.08 MHz  | 180 kHz                                |
 
 <!--
 NB-IoT : 
