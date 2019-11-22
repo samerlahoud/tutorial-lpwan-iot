@@ -1,0 +1,64 @@
+\usetheme{usj-tree-rev2}
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage[normalem]{ulem}
+\usepackage{wasysym}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{fontspec}
+
+\usepackage{longtable,booktabs}
+\usepackage{caption}
+% These lines are needed to make table captions work with longtable:
+\makeatletter
+\def\fnum@table{\tablename~\thetable}
+\makeatother
+
+\useinnertheme{rectangles}
+\setbeamertemplate{navigation symbols}{}
+
+\setbeamertemplate{title page}[empty]
+
+\setbeamerfont{subtitle}{size=\small}
+\setsansfont[BoldFont={Fira Sans}]{Fira Sans Light}
+
+\setbeamercovered{transparent}
+
+\definecolor{clemsonpurple}{HTML}{522D80}
+\definecolor{clemsonorange}{HTML}{F66733}
+\definecolor{mDarkBrown}{HTML}{604c38}
+\definecolor{mDarkTeal}{HTML}{23373b}
+\definecolor{mLightBrown}{HTML}{EB811B}
+\definecolor{mLightGreen}{HTML}{14B03D}
+
+\setbeamerfont{title}{series=\bfseries,parent=structure}
+\setbeamerfont{frametitle}{series=\bfseries,parent=structure}
+
+\let\Tiny=\tiny
+
+\AtBeginPart{}
+\setcounter{tocdepth}{1}
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\AtBeginSubsection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsubsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+\AtBeginSubsubsection{}
+
+%\setlength{\emergencystretch}{0em}
+%\setlength{\parskip}{0pt}
