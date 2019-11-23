@@ -23,6 +23,7 @@
 ### Conclusions (3/3)
 - What are the challenges for optimizing the performance of LoRaWAN and NB-IoT?
     - Adaptation of the radio propagation models
+    - Adaptive channel access
     - Interference mitigation
     - Link adaptation and resource allocation
     - Support for quality of service such as delay bounded transmissions
