@@ -72,7 +72,7 @@ $$L_{Channel}(i) = A+B \log_{10}(d(i,g))$$
 $$A = 69.55 + 26.16 \log_{10}(f_c) - 13.82 \log_{10}(h_b) - 3.2(\log{10}(11.75 h_d))^2+4.97$$
 $$B = 44.9 - 6.55 \log_{10}(h_b)$$
 -->
-### Link Budget
+### Signal to Noise Ratio Computation
 
 - We consider the following parameters:
     - Transmit power: $P_{Tx} = 14$ dBm
@@ -98,7 +98,7 @@ SNR Interval (dB) | Spreading Factor      |
 
 - Note that for SNR values lower that -20 dB, the end-device is considered out of coverage of the gateway
 
-### Coverage Study
+### Coverage Study of LoRaWAN
 ```{=latex}
 \begin{figure}
 	\centering
@@ -156,31 +156,35 @@ Cumulative coverage (\%)     |88.70      | 94.50       | 97.60       | 99.20    
 
 ## Coverage of NB-IoT
 
-### Computing the Device Rates (1/2)
+### Device Rate Computation (1/2)
+
+- Similar evaluation scenario as for LoRaWAN
 
 - The uplink SINR for each device $i$ and each transmission format $t$
 $$SINR(i,t) = P_{TX} + G_{system} - L_{system} - L_{channel}(i) - \beta(i) L_{penetration} - N(t) - IF$$
 
-  - $L_{channel}(i)$ channel loss with shadow fading
+  - $P_{Tx} = 23$ dBm
   - $N(t) = -174+10\text{log}_{10}(B(t)) + NF$
-  - $\beta(i) = 1$ for an indoor device, and 0 otherwise
-
-- The corresponding maximum data rate after *link adaptation*
-$$D(i,t) = \underset{m}{\text{max}}(\underset{r}{\text{max}}(D(m,r,t)))$$ 
-$$\text{with } SINR(i,t) \geq SINR_{threshold}(m,r,t)$$
 
 <!--  
   - This is equal to the feasible rate with the lowest number of repetitions and highest MCS index 
 -->
 
-### Computing the Device Rates (2/2)
+### Device Rate Computation (2/2)
+
+- The corresponding maximum data rate after *link adaptation*
+$$D(i,t) = \underset{m}{\text{max}}(\underset{r}{\text{max}}(D(m,r,t)))$$ 
+$$\text{with } SINR(i,t) \geq SINR_{threshold}(m,r,t)$$
 
 - The maximum data rate for each device $i$ assuming that multi-tone and single-tone transmissions provide similar spectral efficiencies respectively
 $$D(i) = \underset{t}{\text{max}}\ D(i,t)$$
+
+<!--
 - The device data rate for average radio conditions
 $$\bar{D} = \frac{\sum_{i}D(i)}{I}$$
 - The average device rate after scheduling
 $$d = \frac{\bar{D}}{I}$$
+-->
 
 ### Transmission Formats
 
@@ -361,7 +365,19 @@ $$S = G\exp(-2G) (1+\sum_{n=2}^{N} \frac{(2G)^n}{n!} (1-(1-P_{cap}(n,\Delta))^r)
   \includegraphics[scale=0.4]{./images/capture-effect-aloha.eps}
   \caption*{$l$=50 bytes, SF=7, $\lambda(s) = \frac{d}{T_a(l,s)}$, $\Delta = 6$ dB}
 \end{figure}
- 
+
+## Capacity of NB-IoT
+
+### Average Data Rate Computation
+- The maximum data rate for each device $i$ assuming that multi-tone and single-tone transmissions provide similar spectral efficiencies respectively
+$$D(i) = \underset{t}{\text{max}}\ D(i,t)$$
+- The device data rate for average radio conditions
+$$\bar{D} = \frac{\sum_{i}D(i)}{I}$$
+- The average device rate after scheduling
+$$d = \frac{\bar{D}}{I}$$
+
+## Capacity Comparison of NB-IoT and LoRaWAN
+
 ### Network Capacity for NB-IoT and LoRaWAN
 - The average rate decreases linearly with the number of devices for NB-IoT, while it drastically drops beyond 1000 devices for LoRaWAN
 
