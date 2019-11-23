@@ -96,7 +96,7 @@ SNR Interval (dB) | Spreading Factor      |
 [-17.5, -15[      | 11                    |
 [-20, -17.5[      | 12                    |
 
-- Note that for SNR values lower that -20 dB, the end-device is considered out of coverage of the gateway
+- Note that for SNR values lower than -20 dB, the end-device is considered out of coverage of the gateway
 
 ### Coverage Study of LoRaWAN
 ```{=latex}

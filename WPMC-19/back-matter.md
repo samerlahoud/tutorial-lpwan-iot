@@ -27,7 +27,7 @@
 - We appreciate if you could take five minutes to complete the following evaluation form:
 \begin{center}
 \color{blue}
-https://goo.gl/Ex7mg9
+http://tiny.cc/lpwan-iot
 \end{center}
 - Your feedback is important to us in order to continually improve our tutorial
 - We made the tutorial sources available under Creative Common license CC BY-NC-SA 4.0
