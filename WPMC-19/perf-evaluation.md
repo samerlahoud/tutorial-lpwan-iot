@@ -271,6 +271,46 @@ $$d = \frac{\bar{D}}{I}$$
 \end{figure}
 
 ## Capacity of LoRaWAN
+
+### Capacity Model for LoRaWAN
+- The start times of the packets in an ALOHA channel are modeled as a Poisson point process with parameter $\lambda$ packets/second
+- Given a duty cycle limitation of $d=1$\%, we must verify for spreading factor $s$: $$\lambda(s) \leq \frac{d}{T_a(l,s)}$$
+- The time to transmit a packet of $l$ bytes (size of MAC payload) on spreading factor $s$ is denoted $T_a(l,s)$
+- The normalized total throughput of the LoRaWAN network with $N(s)$ end-devices on spreading factor $s$ is given by:
+$$S = \sum_s G(s)\text{exp}(-2G(s))$$ 
+$$\text{with } G=N(s) \lambda(s) T_a(l,s)$$
+
+### Packet Generation Rate  
+- For small number of end-devices, the throughput is limited by the duty cycle
+- For large number of end-devices, the throughput is limited by collisions
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/received-packets-generated-packets-aloha.eps}
+  \caption*{$l$=50 bytes, SF=7}
+\end{figure}
+
+### Spreading Factors and Packet Delivery
+- For 50 end-devices, the average number of delivered packets per end-device per hour increases from 6 to 106 when SF decreases from 12 to 7
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/sf-compare-received-packets-nb-users-aloha.eps}
+  \caption*{$l$=50 bytes, $\lambda(s) = \frac{d}{T_a(l,s)}$}
+\end{figure}
+
+### Traffic Load and Packet Delivery
+- The traffic load for high spreading factors induces a low delivery ratio
+
+```{=latex}
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/combined-load-1gw-8000.eps}
+  \caption*{$l$=50 bytes, $\lambda = \frac{d}{T_a(l,s=12)}$}
+\end{figure}
+```
+
+<!--
 ### Pure ALOHA Model
 - The start times of the packets in an ALOHA channel is modeled as a Poisson point process with parameter $\lambda$ packets/second
 \begin{figure}
@@ -365,6 +405,7 @@ $$S = G\exp(-2G) (1+\sum_{n=2}^{N} \frac{(2G)^n}{n!} (1-(1-P_{cap}(n,\Delta))^r)
   \includegraphics[scale=0.4]{./images/capture-effect-aloha.eps}
   \caption*{$l$=50 bytes, SF=7, $\lambda(s) = \frac{d}{T_a(l,s)}$, $\Delta = 6$ dB}
 \end{figure}
+-->
 
 ## Capacity of NB-IoT
 
