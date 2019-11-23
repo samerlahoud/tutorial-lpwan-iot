@@ -16,7 +16,7 @@
     - Patents filed in 2014
 - LoRa Alliance initiated in 2014
     - Actility, Cisco, Bouygues, IBM, Orange, SK Telecom, KPN, ZTE, Semtech, La Poste, SoftBank, Swisscom, etc.
-    - LoRaWAN 1.1 specification in 2018
+    - LoRaWAN 1.0.3 specification in 2018
 
 ## LoRaWAN Radio Interface
 
@@ -29,14 +29,14 @@ LoRa is a wireless modulation technique that uses Chirp Spread Spectrum (CSS) in
 - Processing gain given by $g_p = BT$
 - Variable number of bits encoded in a symbol
 
-$$R_b = \frac{\log_2 (g_p)}{T} = \log_2 (g_p) \cdot \frac{B}{g_p}$$
+$$R_b = \frac{\text{log}_2 (g_p)}{T} = \text{log}_2 (g_p) \cdot \frac{B}{g_p}$$
 
 - Spreading factor $SF$ given by $\log_2 (g_p)$
 
 $$R_b = SF \cdot \frac{B}{2^{SF}}$$
 
 ### LoRa Symbols
-- $\log_2 (g_p)$ bits are encoded by transmitting a single $chirp$ in $g_p$ possible cyclic time shifts
+- $\text{log}_2 (g_p)$ bits are encoded by transmitting a single $chirp$ in $g_p$ possible cyclic time shifts
 - Example: $g_p = 4$ $\Rightarrow$ 2 bits/symbol
 
 \begin{figure}
@@ -88,6 +88,7 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 6 \leq SF \leq 12$$
     - 8 preamble ($up$-$chirp$) symbols
     - 2 synchronization ($down$-$chirp$) symbols
     - 5 modulated symbols (payload)
+    - Up to 255 bytes of payload
 
 \begin{figure}
 	\centering
@@ -128,9 +129,7 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 6 \leq SF \leq 12$$
 
 - Restrictions on the maximum time the transmitter can be on or the maximum time a transmitter can transmit per hour
 - Choice between
-
     - Duty-cycle limitation
-
     - Listen Before Talk Adaptive Frequency Agility (LBT AFA) transmissions management
 - The current LoRaWAN specification exclusively uses duty-cycled limited transmissions to comply with the ETSI regulations
 
