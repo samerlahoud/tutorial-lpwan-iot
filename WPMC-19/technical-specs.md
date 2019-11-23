@@ -1,4 +1,5 @@
 # Technical Specifications
+## LoRaWAN
 
 ### From LoRa to LoRaWAN
 - LoRa
@@ -18,7 +19,7 @@
     - Actility, Cisco, Bouygues, IBM, Orange, SK Telecom, KPN, ZTE, Semtech, La Poste, SoftBank, Swisscom, etc.
     - LoRaWAN 1.0.3 specification in 2018
 
-## LoRaWAN Radio Interface
+## Radio Interface
 
 ### What is LoRa?
 
@@ -31,7 +32,7 @@ LoRa is a wireless modulation technique that uses Chirp Spread Spectrum (CSS) in
 
 $$R_b = \frac{\text{log}_2 (g_p)}{T} = \text{log}_2 (g_p) \cdot \frac{B}{g_p}$$
 
-- Spreading factor $SF$ given by $\log_2 (g_p)$
+- Spreading factor $SF$ given by $\text{log}_2 (g_p)$
 
 $$R_b = SF \cdot \frac{B}{2^{SF}}$$
 
@@ -163,7 +164,7 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 6 \leq SF \leq 12$$
 
 A device just transmitted a 0.5 s long frame on one default channel. This channel is in a sub-band allowing 1% duty-cycle. Therefore this whole sub-band (868 – 868.6) will be unavailable for 49.5 s
 
-## LoRaWAN Physical Architecture
+## Physical Architecture
 
 ### LoRaWAN General Architecture
 - LoRaWAN network architecture is typically laid out in a star-of-stars topology
@@ -212,7 +213,7 @@ A device just transmitted a 0.5 s long frame on one default channel. This channe
     - Device authentication, message encryption, and frame counter
 -->
 
-## LoRaWAN Protocol Architecture
+## Protocol Architecture
 ### Uplink transmission
 - Uncoordinated data transmission
     - Devices transmit without any coordination on a randomly chosen channel
@@ -428,7 +429,7 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 
 ### NB-IoT and LTE
 - NB-IoT is part of the 3GPP specifications: Releases 13, 14, and 15
-- NB-IoT fulfills the 5G mMTC requirements
+    - NB-IoT fulfills the 5G mMTC requirements
 - NB-IoT adapts and leverages the LTE ecosystem:
     - it reuses many LTE design principles:
         - \small Transmission schemes
@@ -471,19 +472,6 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
         - 15 kHz (1 subcarrier) over 8 ms
         - 3.75 kHz (1 subcarrier) over 32 ms
 
-### Transmission Formats
-- When coupling loss is low, multi-tone transmissions provide higher data rates
-- When coupling loss is high, all transmission formats provide similar data rates
-- When coupling loss is very high, only single-tone transmissions are possible
-
-```{=latex}
-\begin{figure}
-	\centering
-  \includegraphics[scale=0.55]{./images/instantaneousRate.eps}
-  \vspace{-1mm}
-  \caption*{$TBS$ = 1000 bits, $CRC$ = 24 bits, 8-ms cross-subframe CE}
-\end{figure}
-```
 ### Radio Interface
 - Maximum Transport Block Size (TBS):
     - 680 bits (R13), or 2536 bits (R14), mapped over up to 10 subframes (10 ms) in the DL
@@ -499,28 +487,44 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
     - 20 dB coverage enhancement over GPRS $\Rightarrow$ sevenfold increase in coverage area (in an open environment), or (deep) indoor penetration
     - Transmission gaps can be configured to avoid long transmissions
 
-### Ideal vs. Realistic Processing Gain
+### Transmission Formats
+- When coupling loss is low, multi-tone transmissions provide higher data rates
+- When coupling loss is high, all transmission formats provide similar data rates
+- When coupling loss is very high, only single-tone transmissions are possible
+
+```{=latex}
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.55]{./images/instantaneousRate.eps}
+  \vspace{-1mm}
+  \caption*{$TBS$ = 1000 bits, $CRC$ = 24 bits, 8-ms cross-subframe CE}
+\end{figure}
+```
+
+### Repetitions: Ideal vs. Realistic Processing Gain
 - Cross-subframe CE improves realistic $G_p$ and decreases $(SNR)_{1,\text{ }threshold}$
-- As $R$ is higher, $(SNR)_{1,\text{ }threshold}$ decreases leading to an increase in the estimation error
+- As $R$ is higher, $(SNR)_{1,\text{ }threshold}$ decreases leading to an increase in the CE error
 - As $N_{RU}$ is higher, the channel coding rate decreases leading to a decrease in $(SNR)_{1,\text{ }threshold}$
 
 ```{=latex}
 \begin{figure}
 	\centering
-	\includegraphics<1>[scale=0.55]{./images/SNRthreshold-4.eps}
-	\includegraphics<2>[scale=0.55]{./images/SNRthreshold.eps}
+	\includegraphics<1>[scale=0.5]{./images/SNRthreshold-4.eps}
+	\includegraphics<2>[scale=0.5]{./images/SNRthreshold.eps}
+    \vspace{-2mm}
+	\caption*{$TBS$ = 1000 bits, $CRC$ = 24 bits, $T_{RU}$ = 1 ms, and $B$ = 180 kHz}
 \end{figure}
 ```
 
-### Spectral Efficiency
+### Spectral Efficiency $\gamma$
 - Ideal CE achieves similar spectral efficiency with lower $(SNR)_{1,\text{ }threshold}$
 - As $N_{RU}$ is higher, the channel coding rate decreases leading to a decrease in $\gamma$
-
+\vspace{3mm}
 ```{=latex}
 \begin{figure}
 	\centering
-  \includegraphics[scale=0.55]{./images/spectralEfficiency.eps}
-  \caption*{$TBS$ = 1000 bits, $CRC$ = 24 bits, $T_{RU}$ = 1, and $B$ = 180 kHz}
+  \includegraphics[scale=0.5]{./images/spectralEfficiency.eps}
+  \caption*{$TBS$ = 1000 bits, $CRC$ = 24 bits, $T_{RU}$ = 1 ms, and $B$ = 180 kHz}
 \end{figure}
 ```
 

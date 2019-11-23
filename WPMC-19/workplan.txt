@@ -44,11 +44,6 @@ NB-IoT standard: radio interface, physical architecture, protocol architecture; 
 
 Perf: 60 min
 Radio models and link budget analysis; Melhem El Helou; 5 min
-Link-level performances:
-* Ideal vs realistic CE => Tech
-* Data rate as a function of CL for different transmission formats => Tech
-* ToA as a function of MAC payload => Tech
-* Energy consumption for different DR => Tech
 
 Coverage Evaluation: 30 min
 LoRaWAN (SF + multiple GW)
