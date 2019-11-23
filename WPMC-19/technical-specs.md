@@ -19,7 +19,7 @@
     - Actility, Cisco, Bouygues, IBM, Orange, SK Telecom, KPN, ZTE, Semtech, La Poste, SoftBank, Swisscom, etc.
     - LoRaWAN 1.0.3 specification in 2018
 
-## Radio Interface
+## LoRaWAN Radio Interface
 
 ### What is LoRa?
 
@@ -45,10 +45,10 @@ $$R_b = SF \cdot \frac{B}{2^{SF}}$$
 	\includegraphics[scale=0.5]{./images/lora-symbols.pdf}
 \end{figure}
 
-### LoRa Bit-Rate
+### LoRa Data Rate
 - LoRa includes a variable error correction scheme based on Hamming code
     - Improve the robustness of the transmitted signal at the expense of redundancy
-- Given a coding rate $CR$, the bit-rate is given by:
+- Given a coding rate $CR$, the data rate is given by:
 
 \begin{equation*}
 R_b = SF \cdot \frac{B}{2^{SF}} \cdot CR
@@ -71,7 +71,7 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 6 \leq SF \leq 12$$
 
 ### LoRa Radio Performance
 
-| Spreading Factor  | Bit Rate\footnote{$CR$ = 1 and $B$ = 125 kHz} (kb/s) |  Sensitivity (dBm) |
+| Spreading Factor  | Data Rate\footnote{$CR$ = 1 and $B$ = 125 kHz} (kb/s) |  Sensitivity (dBm) |
 |:---:|:---:|:---:|
 | 6\footnote{Spreading factor 6 is not used in LoRaWAN} | 9.375 | -118 |
 | 7 | 5.468 | -123 |
@@ -107,7 +107,7 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 6 \leq SF \leq 12$$
 
 ### LoRaWAN Data Rates
 
-| Data rate |    Configuration    | Indicative Physical Bit Rate |
+| Data rate |    Configuration    | Indicative Physical Data Rate |
 |:---------:|:-------------------:|:-----------------:|
 |     0     | LoRa SF12 / 125 kHz |        250        |
 |     1     | LoRa SF11 / 125 kHz |        440        |
@@ -164,7 +164,7 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 6 \leq SF \leq 12$$
 
 A device just transmitted a 0.5 s long frame on one default channel. This channel is in a sub-band allowing 1% duty-cycle. Therefore this whole sub-band (868 – 868.6) will be unavailable for 49.5 s
 
-## Physical Architecture
+## LoRaWAN Physical Architecture
 
 ### LoRaWAN General Architecture
 - LoRaWAN network architecture is typically laid out in a star-of-stars topology
@@ -213,7 +213,7 @@ A device just transmitted a 0.5 s long frame on one default channel. This channe
     - Device authentication, message encryption, and frame counter
 -->
 
-## Protocol Architecture
+## LoRaWAN Protocol Architecture
 ### Uplink transmission
 - Uncoordinated data transmission
     - Devices transmit without any coordination on a randomly chosen channel
@@ -380,7 +380,7 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 <!--
 ### LoRa Radio Optimization
 
-| Spreading Factor  | Bit Rate (kb/s) |  Sensitivity (dBm) |
+| Spreading Factor  | Data Rate (kb/s) |  Sensitivity (dBm) |
 |---|---|---|
 | 7 | 5.468 | -123 |
 | 8 | 3.125 | -126 |
