@@ -428,6 +428,7 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 
 ### NB-IoT and LTE
 - NB-IoT is part of the 3GPP specifications: Releases 13, 14, and 15
+- NB-IoT fulfills the 5G mMTC requirements
 - NB-IoT adapts and leverages the LTE ecosystem:
     - it reuses many LTE design principles:
         - \small Transmission schemes
