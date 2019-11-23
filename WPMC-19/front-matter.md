@@ -4,7 +4,7 @@ author:
 - Melhem El Helou
 title: Low Power Wide Area Networks for the Internet of Things
 subtitle: Framework, Performance Evaluation, and Challenges of LoRaWAN and NB-IoT
-date: ICT 2018, Saint-Malo, France
+date: WPMC 2019, Lisboa, Portugal
 institute: ESIB, Saint Joseph University of Beirut, Lebanon
 mathspec: true
 output:
