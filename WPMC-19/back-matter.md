@@ -11,14 +11,14 @@
     - Combination of simulation, mathematical modeling and measurement campaigns
     - Performance evaluations should take into account collisions and duty cycle in LoRaWAN, scheduling and signaling in NB-IoT
 
-#### Global performance
-- LoRaWAN shows coverage limitations compared to NB-IoT especially in indoor dense urban environments
+#### Tyocal LoRaWAN performance
+- LoRaWAN shows coverage limitations, in comparison with NB-IoT, especially in indoor dense urban environments
 - Collisions hinder the performance of LoRaWAN in heavy loaded networks
 
-#### Typical performance of NB-IoT
-- In order to maximize data rates, multi-tone transmissions are preferred for good radio conditions, while single-tone enable to combat harsh conditions 
-- No coverage outage is observed for a cell radius of 4 km in an indoor dense urban environment
-- The capacity of a deployment can scale up to 200 000 devices sending 5 packets per hour
+#### Tyocal LoRaWAN performance
+- No coverage outage is observed for a cell radius of 4 km in indoor dense urban environments
+- In order to maximize data rates, multi-tone transmissions are preferred for good radio conditions, while single-tone transmissions enable to combat harsh conditions 
+- The capacity of an NB-IoT deployment can scale up to 200 000 devices sending 5 packets per hour
 
 ### Conclusions (3/3)
 - What are the challenges for optimizing the performance of LoRaWAN and NB-IoT?
@@ -26,7 +26,7 @@
     - Adaptive channel access
     - Interference mitigation
     - Link adaptation and resource allocation
-    - Support for quality of service such as delay bounded transmissions
+    - Support for quality of service such as delay-bounded transmissions
     - Energy efficiency maximization and power management
 
 ### Feedback and Tutorial Material
