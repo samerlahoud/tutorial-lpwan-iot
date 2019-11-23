@@ -40,10 +40,10 @@ The Internet of Things (IoT) generally refers to scenarios where network connect
 ```
 
 ### Evolution of IoT Devices
-- The largest growth is expected for devices connected to a wide-area network
+- The number of IoT devices will exceed the number of PCs and mobile phones
 \begin{figure}
 	\includegraphics[scale=0.5]{./images/ericsson-connected-devices.pdf}
-	\caption*{Source: Ericsson mobility report, 2017}
+	\caption*{Source: Ericsson mobility report, 2019}
 \end{figure}
 
 ### The Case of IoT for Smart Agriculture
@@ -66,6 +66,44 @@ The Internet of Things (IoT) generally refers to scenarios where network connect
 #### Challenge
 Do existing wireless networking technologies satisfy these constraints?
 
+### Capabilities of IMT-2020
+```{=latex}
+\begin{figure}
+	\centering
+	\includegraphics<1>[scale=0.55]{./images/imt2020.png}
+  \caption*{Source: IMT 2020 Vision - Framework and overall objectives of the future development of IMT for 2020 and beyond, ITU-R M.2083}
+\end{figure}
+```
+<!--
+URLLC is adapted for high-end IoT applications such as automated driving, industrial automation, and eHealth.
+mMTC is LPWA IoT.
+-->
+
+<!--
+### Massive Machine Type Communications
+\begin{block}{mMTC: Massive Machine Type Communications}
+mMTC requires improved network coverage, long device operational lifetime, and a high density of connections at low data rates
+\end{block}
+
+- Typical use cases for mMTC include:
+  - Smart wearables
+  - Smart cities
+  - Smart agriculture
+-->
+
+### Emergence of Low Power Wide Area Technologies
+
+\begin{block}{Low Power Wide Area Networks}
+Low power refers to the ability of an IoT device to function for many years on a single battery charge, while at the same time it is able to communicate from locations where shadowing and path loss would limit the usefulness of more traditional cellular technologies (3GPP Low Power Wide Area Technologies, GSMA White Paper, 2016)
+\end{block}
+
+- Low Power Wide Area (LPWA) technologies support mMTC
+- Typical scenarios \footnote{Usman Raza {\it et al.}, Low Power Wide Area Networks: An Overview, IEEE Communications Surveys \& Tutorials, 2017} for LPWAN: 
+    - Smart grid
+    - Industrial asset monitoring
+    - Critical infrastructure monitoring
+    - Agriculture
+
 ### LPWAN Sweet Spot
 ```{=latex}
 \begin{figure}
@@ -78,6 +116,7 @@ Do existing wireless networking technologies satisfy these constraints?
 \end{figure}
 ```
 
+<!--
 ### LPWAN Scenarios
 \begin{block}{Low Power Wide Area Networks}
 Low power refers to the ability of an IoT device to function for many years on a single battery charge, while at the same time it is able to communicate from locations where shadowing and path loss would limit the usefulness of more traditional cellular technologies (3GPP Low Power Wide Area Technologies, GSMA White Paper, 2016)
@@ -88,6 +127,7 @@ Low power refers to the ability of an IoT device to function for many years on a
     - Industrial asset monitoring
     - Critical infrastructure monitoring
     - Agriculture
+-->
 
 ### LPWAN Requirements
 
@@ -101,6 +141,19 @@ Low power refers to the ability of an IoT device to function for many years on a
 | Data transfer           | Supports small, intermittent blocks of data                |
 | Design complexity       | Simplified network topology and deployment                 |
 | Network scalability     | Support of high density of devices                         |
+
+### LPWAN Candidate Technologies
+
+- A large number of candidate technologies:
+  - LoRaWAN, Sigfox, Ingenu, NB-IoT, etc.
+- Two main design choices: 
+  - Adapt and leverage existing cellular technology (Cellular IoT)
+  - Develop a clean-slate technology
+
+\begin{figure}
+	\includegraphics[scale=0.5]{./images/lpwa-forecast}
+	\caption*{LPWAN connections forecast. Source: ABI Research, 2019}
+\end{figure}
 
 <!--
 ### LPWAN Architecture
@@ -123,6 +176,3 @@ Low power refers to the ability of an IoT device to function for many years on a
 
 "Is Sigfox/LoRa the new WiMAX?", Stefan Kindt, Head of Technology Marketing at Nokia Networks
 -->
-
-#### LPWAN Technologies
-Various technologies are currently being designed to meet the LPWAN requirements: LoRaWAN, NB-IoT, Sigfox, Wi-SUN, Ingenu, etc.
