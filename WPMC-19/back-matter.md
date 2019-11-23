@@ -1,25 +1,12 @@
 ### Conclusions (1/4)
-- How do LPWAN complement traditional cellular and short-range wireless technologies?
-    - LPWAN devices function for many years on a single battery charge
-    - LPWAN devices communicate from locations where shadowing and path loss would limit the usefulness of more traditional cellular technologies
-- What are the fundamental mechanisms that enable to meet the LPWAN requirements?
-    - Short messages, low complexity codes and modulations
-    - Low receiver sensitivity
-    - Optimized reachability and low signaling
-    - Multiple transmissions on the same channel
-    - Simplified architecture
+- How do LoRaWAN and NB-IoT meet the LPWAN requirements?
+    - Complexity: short messages, simple channel codes, and low-complexity modulations
+    - Coverage: low receiver sensitivity
+    - Energy consumption: optimized device reachability and data transmission
+    - Capacity: multiple transmissions on the same channel
+    - Simplified network topology and deployment
 
-### Conclusions (2/4)
-- What are the major design choices made in the LoRaWAN and NB-IoT specifications?
-
-|                   |        LoRaWAN        |          NB-IoT          |
-|-------------------|:---------------------:|:------------------------:|
-| Reliability       |     CSS-based LoRa    |        Repetitions       |
-| Power consumption | Short receive windows |      eDRX, PSM modes     |
-| Capacity          |      Multiple SFs     | Single tone transmission |
-| Deployment        |  Simple architecture  |    Architecture reuse    |
-
-### Conclusions (3/4)
+### Conclusions (2/3)
 - How do we evaluate the performance of a LoRaWAN and NB-IoT deployment in terms of coverage and capacity?
     - Combination of simulation, mathematical modeling and measurement campaigns
     - Performance evaluations should take into account collisions and duty cycle in LoRaWAN, scheduling and signaling in NB-IoT
@@ -28,13 +15,18 @@
 - LoRaWAN shows coverage limitations compared to NB-IoT especially in indoor dense urban environments
 - Collisions hinder the performance of LoRaWAN in heavy loaded networks
 
-### Conclusions (4/4)
-- What are the recent research directions for radio resource management in LoRaWAN and NB-IoT?
+#### Typical performance of NB-IoT
+- In order to maximize data rates, multi-tone transmissions are preferred for good radio conditions, while single-tone enable to combat harsh conditions 
+- No coverage outage is observed for a cell radius of 4 km in an indoor dense urban environment
+- The capacity of a deployment can scale up to 200 000 devices sending 5 packets per hour
+
+### Conclusions (3/3)
+- What are the challenges for optimizing the performance of LoRaWAN and NB-IoT?
     - Adaptation of the radio propagation models
-    - Interference mitigation and scheduling
-    - Support for quality of service such as delay bounded transmission
-    - Maximization of the energy efficiency
-    - Providing IPv6 connectivity to the device (IETF lpwan working group)
+    - Interference mitigation
+    - Link adaptation and resource allocation
+    - Support for quality of service such as delay bounded transmissions
+    - Energy efficiency maximization and power management
 
 ### Feedback and Tutorial Material
 - We appreciate if you could take five minutes to complete the following evaluation form:
