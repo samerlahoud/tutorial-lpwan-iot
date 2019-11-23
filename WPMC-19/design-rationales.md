@@ -22,6 +22,10 @@ Support mass production and deployment
     - not using complex modulations or multiple-input multiple-output (MIMO) transmissions
     - supporting only half-duplex operation: no simultaneous transmission and reception
 
+<!--
+Limit message size ==> relax the processing time requirements
+-->
+
 ### RF Processing
 - Reduce RF processing complexity and cost through:
     - using one transmit-and-receive antenna
