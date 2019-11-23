@@ -13,8 +13,8 @@ output:
 ...
 
 ### Tutorial Outcomes
-- How do LPWAN complement traditional cellular and short-range wireless technologies?
+- What are the main drivers for Low Power Wide Area Networks?
 - What are the fundamental mechanisms that enable to meet the LPWAN requirements?
-- What are the major design choices made in the LoRaWAN and NB-IoT specifications?
+- What are the different design rationales for LoRaWAN and NB-IoT?
 - How do we evaluate the performance of LoRaWAN and NB-IoT deployments in terms of coverage and capacity?
 - What are the challenges for optimizing the performance of LoRaWAN and NB-IoT?

@@ -104,6 +104,7 @@ Low power refers to the ability of an IoT device to function for many years on a
     - Critical infrastructure monitoring
     - Agriculture
 
+<!--
 ### LPWAN Sweet Spot
 ```{=latex}
 \begin{figure}
@@ -116,7 +117,6 @@ Low power refers to the ability of an IoT device to function for many years on a
 \end{figure}
 ```
 
-<!--
 ### LPWAN Scenarios
 \begin{block}{Low Power Wide Area Networks}
 Low power refers to the ability of an IoT device to function for many years on a single battery charge, while at the same time it is able to communicate from locations where shadowing and path loss would limit the usefulness of more traditional cellular technologies (3GPP Low Power Wide Area Technologies, GSMA White Paper, 2016)
