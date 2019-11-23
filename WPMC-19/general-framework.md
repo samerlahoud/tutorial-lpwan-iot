@@ -97,7 +97,7 @@ mMTC requires improved network coverage, long device operational lifetime, and a
 Low power refers to the ability of an IoT device to function for many years on a single battery charge, while at the same time it is able to communicate from locations where shadowing and path loss would limit the usefulness of more traditional cellular technologies (3GPP Low Power Wide Area Technologies, GSMA White Paper, 2016)
 \end{block}
 
-- Low Power Wide Area (LPWA) technologies support mMTC
+- Low Power Wide Area (LPWA) technologies are designed to support mMTC
 - Typical scenarios \footnote{Usman Raza {\it et al.}, Low Power Wide Area Networks: An Overview, IEEE Communications Surveys \& Tutorials, 2017} for LPWAN: 
     - Smart grid
     - Industrial asset monitoring
@@ -146,7 +146,7 @@ Low power refers to the ability of an IoT device to function for many years on a
 
 - A large number of candidate technologies:
   - LoRaWAN, Sigfox, Ingenu, NB-IoT, etc.
-- Two main design choices: 
+- Two main design approaches: 
   - Adapt and leverage existing cellular technology (Cellular IoT)
   - Develop a clean-slate technology
 

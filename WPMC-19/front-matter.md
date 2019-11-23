@@ -15,6 +15,6 @@ output:
 ### Tutorial Outcomes
 - What are the main drivers for Low Power Wide Area Networks?
 - What are the fundamental mechanisms that enable to meet the LPWAN requirements?
-- What are the different design rationales for LoRaWAN and NB-IoT?
+- What are the main design principles of LoRaWAN and NB-IoT?
 - How do we evaluate the performance of LoRaWAN and NB-IoT deployments in terms of coverage and capacity?
 - What are the challenges for optimizing the performance of LoRaWAN and NB-IoT?
