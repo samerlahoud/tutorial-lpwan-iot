@@ -305,7 +305,7 @@ $$\text{with } G=N(s) \lambda(s) T_a(l,s)$$
 ```{=latex}
 \begin{figure}
 	\centering
-  \includegraphics[scale=0.4]{./images/combined-load-1gw-8000.eps}
+  \includegraphics[scale=0.4]{./images/lora_pdr.eps}
   \caption*{$l$=50 bytes, $\lambda = \frac{d}{T_a(l,s=12)}$}
 \end{figure}
 ```
