@@ -44,37 +44,25 @@ $$\Rightarrow MAPL = P_{Tx} + G_{System} - L_{System} - M - \text{receiver sensi
 |       |         \textbf{Uplink \textit{MAPL} (dB)} = $(a)+(b)-(c)-(d)-(i)$  | \textbf{164} |
 |       |     \textbf{Uplink cell range}\footnote{Okumura-Hata model: base station antenna height = 30 m, device antenna height = 1 m, carrier frequency = 862 MHz} \textbf{- urban environment (km)}         |   \textbf{11}    |
 
-
-
-
-
-
-
-
-
 ## Coverage of LoRaWAN
-
 ### Evaluation Scenario
-- Area
-    - Surface: square of 8 Km $\times$ 8 Km
-    - Number of end-devices: 1000
-    - Distribution of end-devices: uniform
-    - Single gateway
+- Study area
+    - Surface: circular cell of radius 4 km
+    - Distribution of devices: uniform
+    - Single Base Station
     - Environment type: urban
-- Radio link  
-    - Bandwidth: 125 kHz
-    - Transmit power: 14 dBm
-    - Gateway height: 30 m
-    - End-device height: 1.5 m
-    - Antenna gains: 6 dBi
-    - Noise floor: -153 dBm
-    - Pathloss: Okumura-Hata
-    - Shadow fading: lognormal $\mathcal{N}(0,8)$
+- Uplink link budget
+  - Parameters as in link level study
+  - Shadow fading: $\mathcal{N}(0,8)$
+  - Interference: $IF = 3$ dB
+  - Penetration loss: $L_{penetration} = 15$ dB
+  - 50% of indoor devices
 
 \begin{picture}(50,50)
-\put(190,80){\hbox{\includegraphics[scale=0.3]{./images/initial-network.eps}}}
+\put(190,60){\hbox{\includegraphics[scale=0.25]{./images/network_topo.eps}}}
 \end{picture}
 
+<!--
 ### Pathloss Model
 - Using the Okumura-Hata urban model, the pathloss between device $i$ and the gateway is proportional to the logarithm of the distance $d(i,g)$ in Km:
 
@@ -83,18 +71,18 @@ $$L_{Channel}(i) = A+B \log_{10}(d(i,g))$$
 - The two parameters $A$ and $B$ depend on the antenna heights ($h_b = 30$ m for the gateway and $h_d = 1.5$ m for the end-device) and the central frequency $f_c = 868$ MHz
 $$A = 69.55 + 26.16 \log_{10}(f_c) - 13.82 \log_{10}(h_b) - 3.2(\log{10}(11.75 h_d))^2+4.97$$
 $$B = 44.9 - 6.55 \log_{10}(h_b)$$
-
+-->
 ### Link Budget
 
 - We consider the following parameters:
     - Transmit power: $P_{Tx} = 14$ dBm
-    - Antenna gain: $G_{System} = 6$ dBi
-    - Fading and protection margin: $M = 10$ dB
     - Noise floor: $N= -153$ dBm
 
-- We can now compute the received power $P_{RX}(i)$ and $\text{SNR}(i)$ at the gateway for end-device $i$:
-$$P_{Rx}(i) = P_{Tx} + G_{System} - L_{Channel}(i) - M$$
-$$\text{SNR}(i) = P_{Rx}(i) - N$$
+- We can now compute the uplink $SNR(i)$ at the gateway for end-device $i$:
+$$SNR(i) = P_{TX} + G_{system} - L_{system} - L_{channel}(i) - \beta(i) L_{penetration} - N - IF$$
+
+  - $L_{channel}(i)$ channel loss with shadow fading
+  - $\beta(i) = 1$ for an indoor device, and 0 otherwise
 
 ### Spreading Factor Selection
 - The spreading factor for each end-device is selected using the following matching table (Source: SX1276/77/78/79 Semtech datasheet):
@@ -126,7 +114,7 @@ SNR Interval (dB) | Spreading Factor      |
 
 Spreading Factor             | 7         | 8           | 9           | 10          | 11          | 12          |
 -----------------------------|:---------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|
-Cumulative coverage (\%)     |40.50      | 51.60       | 61.60       | 70.40       | 77.70       | 86.10       |
+Cumulative coverage (\%)     |52.60      | 59.10       | 65.80       | 72.00       | 77.60       | 84.10       |
 
 <!--
 Spreading factor             | 7         | 8           | 9           | 10          | 11          | 12          |
@@ -153,7 +141,7 @@ Cumulative coverage (\%)     |40.50      | 51.60       | 61.60       | 70.40    
 
 - DR0 to DR5 correspond to spreading factors 12 to 7 with a bandwidth of 125 kHz. DR6 correspond to spreading factor 7 and a bandwidth of 250 kHz
 - For an end-device sending packets every 100 minutes, changing the spreading factor from 12 to 7 increases its lifetime by almost 1.5 years
--->
+
 
 ### Enhancing the Coverage with Multiple Gateways
 \begin{figure}
@@ -164,6 +152,119 @@ Cumulative coverage (\%)     |40.50      | 51.60       | 61.60       | 70.40    
 Spreading Factor             | 7         | 8           | 9           | 10          | 11          | 12          |
 -----------------------------|:---------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|
 Cumulative coverage (\%)     |88.70      | 94.50       | 97.60       | 99.20       | 99.60       | 100.00      |
+-->
+
+## Coverage of NB-IoT
+
+### Computing the Device Rates (1/2)
+
+- The uplink SINR for each device $i$ and each transmission format $t$
+$$SINR(i,t) = P_{TX} + G_{system} - L_{system} - L_{channel}(i) - \beta(i) L_{penetration} - N(t) - IF$$
+
+  - $L_{channel}(i)$ channel loss with shadow fading
+  - $N(t) = -174+10\text{log}_{10}(B(t)) + NF$
+  - $\beta(i) = 1$ for an indoor device, and 0 otherwise
+
+- The corresponding maximum data rate after *link adaptation*
+$$D(i,t) = \underset{m}{\text{max}}(\underset{r}{\text{max}}(D(m,r,t)))$$ 
+$$\text{with } SINR(i,t) \geq SINR_{threshold}(m,r,t)$$
+
+<!--  
+  - This is equal to the feasible rate with the lowest number of repetitions and highest MCS index 
+-->
+
+### Computing the Device Rates (2/2)
+
+- The maximum data rate for each device $i$ assuming that multi-tone and single-tone transmissions provide similar spectral efficiencies respectively
+$$D(i) = \underset{t}{\text{max}}\ D(i,t)$$
+- The device data rate for average radio conditions
+$$\bar{D} = \frac{\sum_{i}D(i)}{I}$$
+- The average device rate after scheduling
+$$d = \frac{\bar{D}}{I}$$
+
+### Transmission Formats
+
+- For a cell radius of 4 km, good radio conditions enable to exploit the spectral efficiency of multi-tone transmissions
+- For larger cells, single tone transmissions achieve better signal quality and become more attractive 
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/nbiot_tx_format_tones.eps}
+\end{figure}
+
+### Repetitions
+
+- Only 20% of devices use more than one repetition for a cell radius of 4 km
+- 45% of devices use two or more repetitions in harsh radio conditions 
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/nbiot_repetitions.eps}
+\end{figure}
+
+### Modulation and Coding Schemes
+- For a cell radius of 4 km, 50% of devices use high MCS index (greater or equal than 9) in order to increase data rates
+- For larger cells, 70% of devices use high MCS index!
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/nbiot_mcs_index.eps}
+\end{figure}
+
+### Link Adaptation: MCS index and Repetitions
+
+- In order to combat harsh radio conditions and maximize rates, high MCS index is used jointly with a large number of repetitions
+
+```{=latex}
+\begin{figure}
+	\centering
+  \includegraphics<1>[scale=0.4]{./images/nbiot_mcs_repetitions_occurence-4000.eps}
+  \includegraphics<2>[scale=0.4]{./images/nbiot_mcs_repetitions_occurence-8000.eps}
+\end{figure}
+```
+
+## Coverage Comparison of NB-IoT and LoRaWAN
+
+### Outage Probability and Receiver Sensitivity
+
+- Coverage outage is observed when the received power is less than the sensitivity
+- Receiver sensitivity is given at different target rates:
+
+|         | 100 b/s       | 200 b/s  |
+|---------|---------------|----------|
+| NB-IoT  | -150.1 dBm    | -147 dBm |
+| LoRaWAN | -142 dBm      | -139 dBm |
+
+- Coverage is computed for different environments (path loss formulas)
+  - Outdoor rural
+  - Outdoor urban
+  - Indoor dense urban (penetration margin of 18 dB)
+
+- Best coverage is computed for single-tone transmission and $\Delta f = 3.75$ kHz
+
+### Coverage Comparison (1/3)
+- The outage probability of NB-IoT at 100 b/s is almost null for all cases whereas it reaches 36% for LoRaWAN in indoor dense urban environments
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/coverage-100bps-4000m.eps}
+\end{figure}
+
+### Coverage Comparison (2/3)
+- The outage probability of NB-IoT at 200 b/s is slightly degraded in indoor dense urban environments
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/coverage-200bps-4000m.eps}
+\end{figure}
+
+### Coverage Comparison (3/3)
+- For a larger cell radius (8 km), LoRaWAN exhibits severe coverage limitation at 200 b/s in comparison with NB-IoT 
+
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.4]{./images/coverage-200bps-8000m.eps}
+\end{figure}
 
 ## Capacity of LoRaWAN
 ### Pure ALOHA Model
@@ -260,25 +361,20 @@ $$S = G\exp(-2G) (1+\sum_{n=2}^{N} \frac{(2G)^n}{n!} (1-(1-P_{cap}(n,\Delta))^r)
   \includegraphics[scale=0.4]{./images/capture-effect-aloha.eps}
   \caption*{$l$=50 bytes, SF=7, $\lambda(s) = \frac{d}{T_a(l,s)}$, $\Delta = 6$ dB}
 \end{figure}
-
-## Coverage Comparison of LoRaWAN and NB-IoT
-
-### Coupling Loss
-
-- Coverage outage $\Rightarrow$ coupling loss $> MCL$ (NB-IoT: 164 dB, LoRaWAN: 157 dB)
-- In indoor dense urban environments, the outage probability of LoRaWAN is 87% (with a single gateway)
+ 
+### Network Capacity for NB-IoT and LoRaWAN
+- The average rate decreases linearly with the number of devices for NB-IoT, while it drastically drops beyond 1000 devices for LoRaWAN
 
 \begin{figure}
 	\centering
-  \includegraphics[scale=0.4]{./images/coupling-loss-lora-nbiot-1gw.eps}
+  \includegraphics[scale=0.4]{./images/lpwa_rate_comparison-4000.eps}
 \end{figure}
 
-### Enhancing the Coverage with Multiple Gateways
+### Network Capacity with Constant Arrival Rate 
 
-- Network densification decreases the outage probability of LoRaWAN to 55%
-- LoRaWAN has coverage limitations in comparison with NB-IoT
+- If we consider an arrival rate of 5 packets per hour on each device, LoRaWAN does not succeed in delivering such service for more than 1000 devices
 
 \begin{figure}
 	\centering
-  \includegraphics[scale=0.4]{./images/coupling-loss-lora-nbiot-4gw.eps}
+  \includegraphics[scale=0.4]{./images/lpwa_bounded_rate_comparison-4000.eps}
 \end{figure}
