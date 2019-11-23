@@ -1,23 +1,16 @@
 # Performance Evaluation
 
-## Link Budget Analysis
+## Cell Range Estimation
 
 ### Link Budget
 - The link budget is a measure of all the gains and losses from the transmitter, through the propagation channel, to the target receiver
-- The link budget of a network wireless link can be expressed as:
-
-\begin{equation*}
-P_{Rx} = P_{Tx} + G_{System} - L_{System} - L_{Channel} - M
-\end{equation*}
-\begin{itemize}
-  \item[] where:
-  \item[] $P_{Rx}$ = the expected received power
-  \item[] $P_{Tx}$ = the transmitted power
-  \item[] $G_{System}$ = system gains such as antenna gains
-  \item[] $L_{System}$ = system losses such as feed-line losses
-  \item[] $L_{Channel}$ = path loss
-  \item[] $M$ = additional margins
-\end{itemize}
+- The link budget can be expressed as: $$P_{Rx} = P_{Tx} + G_{System} - L_{System} - L_{Channel} - M$$
+    - $P_{Rx}$ = median received power
+    - $P_{Tx}$ = transmit power
+    - $G_{System}$ = system gains (\textit{e.g., } antenna, diversity, and amplifier gains)
+    - $L_{System}$ = system losses (\textit{e.g., } cable and connector losses)
+    - $L_{Channel}$ = median path loss
+    - $M$ = additional margins
 
 ### Additional Margins
 - Fading margin
@@ -25,30 +18,39 @@ P_{Rx} = P_{Tx} + G_{System} - L_{System} - L_{Channel} - M
 - Penetration margin:
     - indoor penetration loss (first wall): $\sim 18$ dB (in dense urban environment), $\sim 15$ dB (in urban environment), and $\sim 10-12$ dB (in rural environment)
     - deep indoor penetration loss (second wall): +3 dB
-- Protection margin
+- Body loss
 
-### Maximum Allowable Path Loss
+### Maximum Allowable Path Loss and Cell Range
+
 - The maximum allowable path loss ($MAPL$) is expressed as:
-\begin{equation*}
-MAPL = \max L_{Channel} \mbox{ } | \mbox{ } P_{Rx} = \mbox{receiver sensitivity}
-\end{equation*}
-\begin{equation*}
-\Rightarrow MAPL = P_{Tx} + G_{System} - L_{System} - M - \mbox{receiver sensitivity}
-\end{equation*}
+$$MAPL = \text{max } L_{Channel} \mbox{ } | \mbox{ } P_{Rx} \geq \text{receiver sensitivity}$$
+$$\Rightarrow MAPL = P_{Tx} + G_{System} - L_{System} - M - \text{receiver sensitivity}$$
+- The maximum allowable distance between the transmitter and the target receiver (cell range) depends on the $MAPL$ and the channel model\footnote{R. El Chall, S. Lahoud, and M. El Helou, "LoRaWAN Network: Radio Propagation Models and Performance Evaluation in Various Environments in Lebanon," in \textit{IEEE Internet of Things Journal}, vol. 6, no. 2, pp. 2366-2378, April 2019.}
+- Transmission and reception parameters are determined so as to achieve balanced links (\textit{i.e.,} uplink $MAPL$ = downlink $MAPL$)
 
-- The maximum allowable distance between a transmitter and a receiver (cell range) depends on the $MAPL$ and the channel model
+### Illustration: NB-IoT Uplink Link Budget Analysis
 
-<!--
-### Enhanced Network Capacity
-\begin{itemize}
-  \item LoRa employs orthogonal spreading factors which enables multiple spread signals to be transmitted at the same time and on the same channel
-  \item Modulated signals at different spreading factors appear as noise to the target receiver
-  \item The equivalent capacity of a single 125 kHz LoRa channel is:
-  \item[] $\mbox{    }SF12 + SF11 + SF10 + SF9 + SF8 + SF7 + SF6$
-  \item[] $= 293 + 537 + 976 + 1757 + 3125 + 5468 + 9375$
-  \item[] $= 21 531$ b/s $= 21.321$ kb/s
-\end{itemize}
--->
+|     |                                                          |        |
+|:---:|:--------------------------------------------------------:|:------:|
+| $(a)$ |                $P_{Tx}$ (dBm)               |   23   |
+| $(b)$ |              $G_{System} =$ base station antenna gain (dBi)             |   12   |
+| $(c)$ |               $L_{System} =$ base station cable loss (dB)           |    3   |
+| $(d)$ |                $M$ (dB)                  |   16   |
+| $(e)$ |                  $B$ (Hz)                  |  3750  |
+| $(f)$ |               Receiver $NF$ (dB)            |    3   |
+| $(g)$ |              Receiver $N$ (dBm) = $-174+ 10 \text{log}_{10} (e)+ (f)$| -135.3 |
+| $(h)$ |            Required SINR\footnote{Target transmission data rate = 160 b/s} at the receiver (dB)        | -12.74 |
+| $(i)$ |   Receiver sensitivity (dBm) =  $(g) + (h)$ |  -148  |
+|       |         \textbf{Uplink \textit{MAPL} (dB)} = $(a)+(b)-(c)-(d)-(i)$  | \textbf{164} |
+|       |     \textbf{Uplink cell range}\footnote{Okumura-Hata model: base station antenna height = 30 m, device antenna height = 1 m, carrier frequency = 862 MHz} \textbf{- urban environment (km)}         |   \textbf{11}    |
+
+
+
+
+
+
+
+
 
 ## Coverage of LoRaWAN
 
