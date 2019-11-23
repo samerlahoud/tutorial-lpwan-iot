@@ -49,7 +49,7 @@ $$\Rightarrow MAPL = P_{Tx} + G_{System} - L_{System} - M - \text{receiver sensi
 - Study area
     - Surface: circular cell of radius 4 km
     - Distribution of devices: uniform
-    - Single Base Station
+    - Single gateway
     - Environment type: urban
 - Uplink link budget
   - Parameters as in link level study
@@ -74,7 +74,7 @@ $$B = 44.9 - 6.55 \log_{10}(h_b)$$
 -->
 ### Signal to Noise Ratio Computation
 
-- We consider the following parameters:
+- We consider the following specific parameters for LoRaWAN:
     - Transmit power: $P_{Tx} = 14$ dBm
     - Noise floor: $N= -153$ dBm
 
@@ -158,7 +158,7 @@ Cumulative coverage (\%)     |88.70      | 94.50       | 97.60       | 99.20    
 
 ### Device Rate Computation (1/2)
 
-- Similar evaluation scenario as for LoRaWAN
+- We consider a similar evaluation scenario as for LoRaWAN
 
 - The uplink SINR for each device $i$ and each transmission format $t$
 $$SINR(i,t) = P_{TX} + G_{system} - L_{system} - L_{channel}(i) - \beta(i) L_{penetration} - N(t) - IF$$
@@ -410,8 +410,9 @@ $$S = G\exp(-2G) (1+\sum_{n=2}^{N} \frac{(2G)^n}{n!} (1-(1-P_{cap}(n,\Delta))^r)
 ## Capacity of NB-IoT
 
 ### Average Data Rate Computation
-- The maximum data rate for each device $i$ assuming that multi-tone and single-tone transmissions provide similar spectral efficiencies respectively
-$$D(i) = \underset{t}{\text{max}}\ D(i,t)$$
+- We compute the maximum data rate $D(i)$ for each device $i$ 
+  - Link adapation
+  - Choice of transmission format
 - The device data rate for average radio conditions
 $$\bar{D} = \frac{\sum_{i}D(i)}{I}$$
 - The average device rate after scheduling
