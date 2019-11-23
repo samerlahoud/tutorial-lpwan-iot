@@ -415,7 +415,7 @@ $$S = G\exp(-2G) (1+\sum_{n=2}^{N} \frac{(2G)^n}{n!} (1-(1-P_{cap}(n,\Delta))^r)
   - Choice of transmission format
 - The device data rate for average radio conditions is given by:
 $$\bar{D} = \frac{\sum_{i}D(i)}{I}$$
-- After scheduling, the average device rate is computed as follows
+- After scheduling, the average device rate is computed as follows:
 $$d = \frac{\bar{D}}{I}$$
 
 ## Capacity Comparison of NB-IoT and LoRaWAN
