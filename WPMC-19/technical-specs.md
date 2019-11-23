@@ -83,6 +83,24 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 6 \leq SF \leq 12$$
 -  Higher spreading factors lead to lower sensitivity and larger coverage
 -  Lower spreading factors lead to higher data rates
 
+### Spreading Factor and Time on Air
+- The Time on Air is defined as the time required to transmit a packet in a sub-band
+- The selection of the spreading factor impacts the Time on Air and consequently determines the duty cycle limitation
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.35]{./images/timeonair.eps}
+\end{figure}
+
+### Spreading Factor and Energy Consumption
+\begin{figure}
+	\centering
+  \includegraphics[scale=0.2]{./images/energy-sf-lorawan.png}
+  \caption*{Source: Lluís Casals {\it et al.}, Modeling the Energy Performance of LoRaWAN, Sensors, 2017}
+\end{figure}
+
+- DR0 to DR5 correspond to spreading factors 12 to 7 with a bandwidth of 125 kHz. DR6 correspond to spreading factor 7 and a bandwidth of 250 kHz
+- For an end-device sending packets every 100 minutes, changing the spreading factor from 12 to 7 increases its lifetime by almost 1.5 years
+
 ### LoRa Physical Layer
 - LoRa transmission consists of:
     - 8 preamble ($up$-$chirp$) symbols

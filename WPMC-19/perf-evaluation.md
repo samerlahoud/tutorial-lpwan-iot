@@ -135,6 +135,7 @@ Coverage (\%)                |40.50      | 11.10       | 10.00       | 8.80     
 Cumulative coverage (\%)     |40.50      | 51.60       | 61.60       | 70.40       | 77.70       | 86.10       |
 -->
 
+<!--
 ### Spreading Factor and Time on Air
 - The Time on Air is defined as the time required to transmit a packet in a sub-band
 - The selection of the spreading factor impacts the Time on Air and consequently determines the duty cycle limitation
@@ -152,6 +153,7 @@ Cumulative coverage (\%)     |40.50      | 51.60       | 61.60       | 70.40    
 
 - DR0 to DR5 correspond to spreading factors 12 to 7 with a bandwidth of 125 kHz. DR6 correspond to spreading factor 7 and a bandwidth of 250 kHz
 - For an end-device sending packets every 100 minutes, changing the spreading factor from 12 to 7 increases its lifetime by almost 1.5 years
+-->
 
 ### Enhancing the Coverage with Multiple Gateways
 \begin{figure}
