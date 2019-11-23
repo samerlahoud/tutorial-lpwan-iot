@@ -160,7 +160,7 @@ Cumulative coverage (\%)     |88.70      | 94.50       | 97.60       | 99.20    
 
 - We consider a similar evaluation scenario as for LoRaWAN
 
-- The uplink SINR for each device $i$ and each transmission format $t$
+- The uplink SINR for each device $i$ and each transmission format $t$ is given by:
 $$SINR(i,t) = P_{TX} + G_{system} - L_{system} - L_{channel}(i) - \beta(i) L_{penetration} - N(t) - IF$$
 
   - $P_{Tx} = 23$ dBm
@@ -172,11 +172,11 @@ $$SINR(i,t) = P_{TX} + G_{system} - L_{system} - L_{channel}(i) - \beta(i) L_{pe
 
 ### Device Rate Computation (2/2)
 
-- The corresponding maximum data rate after *link adaptation*
+- We compute the corresponding maximum data rate after *link adaptation*
 $$D(i,t) = \underset{m}{\text{max}}(\underset{r}{\text{max}}(D(m,r,t)))$$ 
 $$\text{with } SINR(i,t) \geq SINR_{threshold}(m,r,t)$$
 
-- The maximum data rate for each device $i$ assuming that multi-tone and single-tone transmissions provide similar spectral efficiencies respectively
+- The maximum data rate \footnote{assuming that multi-tone and single-tone transmissions provide similar spectral efficiencies respectively} for each device $i$  is given by:
 $$D(i) = \underset{t}{\text{max}}\ D(i,t)$$
 
 <!--
@@ -413,9 +413,9 @@ $$S = G\exp(-2G) (1+\sum_{n=2}^{N} \frac{(2G)^n}{n!} (1-(1-P_{cap}(n,\Delta))^r)
 - We compute the maximum data rate $D(i)$ for each device $i$ 
   - Link adapation
   - Choice of transmission format
-- The device data rate for average radio conditions
+- The device data rate for average radio conditions is given by:
 $$\bar{D} = \frac{\sum_{i}D(i)}{I}$$
-- The average device rate after scheduling
+- After scheduling, the average device rate is computed as follows
 $$d = \frac{\bar{D}}{I}$$
 
 ## Capacity Comparison of NB-IoT and LoRaWAN
