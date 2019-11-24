@@ -250,7 +250,6 @@ NB-IoT UE are stationary or have little mobility => the radio channel is very sl
 
 ### Why Single-Tone Transmissions?
 - The channel capacity $C$ is given by: $$C = B\text{log}_2 (1+\frac{S}{N}) = B\text{log}_2 (1+\frac{S}{N_0B})$$
-    - $N_0$ is the noise power spectral density
 - When coupling loss is high, $\frac{S}{N_0B} \ll 1 \Rightarrow \text{ln}(1 + \frac{S}{N_0B}) \approx \frac{S}{N_0B}$.
 $$\Rightarrow C = \frac{S}{N_0}\text{log}_2(e)$$
 - As $C$ no longer depends on $B$, allocating a single tone (subcarrier) for devices in bad coverage increases network capacity without loss of performance
