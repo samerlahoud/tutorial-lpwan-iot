@@ -26,6 +26,7 @@ The Internet of Things (IoT) generally refers to scenarios where network connect
 | Vehicles      | Condition-based maintenance                 |
 | Cities        | Traffic control, environmental monitoring   |
 
+<!--
 ### IoT Reference Model
 ```{=latex}
 \begin{figure}
@@ -38,6 +39,7 @@ The Internet of Things (IoT) generally refers to scenarios where network connect
   \caption*{Source: Overview of the Internet of Things, ITU-T Y.2060, 2012}
 \end{figure}
 ```
+-->
 
 ### Evolution of IoT Devices
 - The number of IoT devices will exceed the number of PCs and mobile phones
@@ -98,7 +100,7 @@ Low power refers to the ability of an IoT device to function for many years on a
 \end{block}
 
 - Low Power Wide Area (LPWA) technologies are designed to support mMTC
-- Typical scenarios \footnote{Usman Raza {\it et al.}, Low Power Wide Area Networks: An Overview, IEEE Communications Surveys \& Tutorials, 2017} for LPWAN: 
+- Typical scenarios\footnote{Usman Raza {\it et al.}, Low Power Wide Area Networks: An Overview, IEEE Communications Surveys \& Tutorials, 2017} for LPWAN: 
     - Smart grid
     - Industrial asset monitoring
     - Critical infrastructure monitoring
