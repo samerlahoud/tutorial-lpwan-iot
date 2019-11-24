@@ -15,7 +15,7 @@ Perf
 - Conclusion: 10 minutes => MH
 
 5GWF:
-Framework 30 min => 25 réalisé
+Framework 30 min => 25 (réalisé)
 IoT services and applications that foster mMTC; Samer Lahoud; 10 minutes
 Requirements and characteristics of mMTC; Samer Lahoud; 10 minutes
 5G and cellular IoT technologies; Samer Lahoud; 10 minutes
@@ -30,7 +30,7 @@ Performance comparison of NB-IoT and LoRaWAN; Samer Lahoud; 10 minutes
 Research directions for radio resource management in NB-IoT; Melhem El Helou; 25 minutes
 
 WPMC:
-Framework: 25 min
+Framework: 25 min =>  (réalisé)
 Services and applications that foster low power wide area networks; Samer Lahoud
 Architecture and characteristics of low power wide area networks; Samer Lahoud
 
