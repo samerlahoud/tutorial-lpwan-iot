@@ -487,7 +487,7 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
     - 20 dB coverage enhancement over GPRS $\Rightarrow$ sevenfold increase in coverage area (in an open environment), or (deep) indoor penetration
     - Transmission gaps can be configured to avoid long transmissions
 
-### Transmission Formats
+### Uplink Transmission Formats
 - When coupling loss is low, multi-tone transmissions provide higher data rates
 - When coupling loss is high, all transmission formats provide similar data rates
 - When coupling loss is very high, only single-tone transmissions are possible
