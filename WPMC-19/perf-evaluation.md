@@ -63,6 +63,9 @@ $$\Rightarrow MAPL = P_{Tx} + G_{System} - L_{System} - M - \text{receiver sensi
 \end{picture}
 
 <!--
+zero-mean Gaussian random variable, with standard deviation σ: N(0,σ)
+-->
+<!--
 ### Pathloss Model
 - Using the Okumura-Hata urban model, the pathloss between device $i$ and the gateway is proportional to the logarithm of the distance $d(i,g)$ in Km:
 
@@ -176,7 +179,7 @@ $$SINR(i,t) = P_{TX} + G_{system} - L_{system} - L_{channel}(i) - \beta(i) L_{pe
 $$D(i,t) = \underset{m}{\text{max}}(\underset{r}{\text{max}}(D(m,r,t)))$$ 
 $$\text{with } SINR(i,t) \geq SINR_{threshold}(m,r,t)$$
 
-- The maximum data rate \footnote{assuming that multi-tone and single-tone transmissions provide similar spectral efficiencies respectively} for each device $i$  is given by:
+- The maximum data rate\footnote{We assume that multi-tone and single-tone transmissions provide similar spectral efficiencies respectively} for each device $i$  is given by:
 $$D(i) = \underset{t}{\text{max}}\ D(i,t)$$
 
 <!--
