@@ -86,7 +86,7 @@ $$\text{with } 1 \leq CR \leq 4,\text{and } 6 \leq SF \leq 12$$
 
 ### Spreading Factor and Time on Air
 - The Time on Air is defined as the time required to transmit a packet in a sub-band
-- The selection of the spreading factor impacts the Time on Air and consequently determines the duty cycle limitation
+- The selection of the spreading factor impacts the Time on Air
 
 \begin{figure}
 	\centering
