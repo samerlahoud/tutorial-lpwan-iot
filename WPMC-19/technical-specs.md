@@ -568,7 +568,7 @@ $$T_{on} = BeaconReserved + N \times 30 ms$$
 
 ### Power-Saving Mode (PSM)
 - After data transfer, the device monitors paging occasions until  an active timer expires
-- When the active timer expires, the device re-enters PSM and is unreachable until the next mobile-originated event
+- When the active timer expires, the device re-enters PSM and is unreachable until the next device-originated event
 - The tracking area update period is configurable on a per-device basis (up to a year)
 
 ## Data Transmission
