@@ -35,4 +35,8 @@ http://tiny.cc/lpwan-iot
 \color{blue}
 https://github.com/samerlahoud/tutorial-lpwan-iot
 \end{center}
-- This is a human-readable summary of the license: https://creativecommons.org/licenses/by-nc-sa/4.0/
+- This is a human-readable summary of the license: 
+\begin{center}
+\color{blue}
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+\end{center}
